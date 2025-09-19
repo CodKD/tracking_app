@@ -1,0 +1,17 @@
+{
+  "appName": "تتبع الطلبات",
+  "appVersion":"1.0.0",
+  "pleaseEnterValue": "ادخل قيمة",
+  "pleaseEnterName": "من فضلك ادخل الاسم",
+  "nameMustBeMoreThan3Characters": "الاسم يجب ان يكون اكبر من 3 حروف",
+  "passwordMustContainUpperLowerAndSpecialCharacter": "يحب ان يحتوي علي حرف كبير و حرف صغير ورمز مميز",
+  "passwordsDoNotMatch": "كلمة المرور غير متطابقه",
+  "pleaseEnterYourPassword": "ادخل كلمة المرور",
+  "pleaseEnterYourEmail": "ادخل البريد الالكتروني",
+  "emailMustBeLikeThisExampleGmailCom": "البريد الالكتروني يجب ان يكون  \"example@gmail.com",
+  "pleaseEnterYourPhoneNumber": "ادخل رقم الهاتف ",
+  "enterAValidEgyptianPhoneNumber": "ادخل رفم هاتف مصري  (e.g., 01xxxxxxxxx)" ,
+  "home": "الرئيسية",
+  "orders": "الطلبات",
+  "profile": "الملف الشخصي"
+  }
