@@ -12,6 +12,7 @@ class _ApiClient implements ApiClient {
   _ApiClient(this.dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://flower.elevateegy.com/api/';
   }
+  
 
   final Dio dio;
 
