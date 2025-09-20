@@ -97,8 +97,8 @@ jobs:
           cd ios
           # Create Payload directory
           mkdir -p Payload
-          # Copy the app bundle to Payload
-          cp -R build/Debug-iphoneos/Runner.app Payload/
+          # Copy the app bundle to Payload (correct Flutter iOS build path)
+          cp -R ../build/ios/Debug-iphoneos/Runner.app Payload/
           # Create IPA
           zip -r Runner.ipa Payload/
           # Clean up
