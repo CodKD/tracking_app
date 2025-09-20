@@ -1,48 +1,23 @@
-name: SonarCloud Analysis
-
+name: Build
 on:
   push:
     branches:
-      - developement
       - master
+      - developement
   pull_request:
-    branches:
-      - developement
-      - master
-
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
+  sonarqube:
+    name: SonarQube
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Required for SonarCloud analysis
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: 3.35.4
-
-      - run: flutter --version
-
-      - name: Install packages
-        run: flutter pub get
-
-      - name: Generate files
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Analyze code
-        run: flutter analyze
-
-      - name: Run tests
-        run: flutter test
-
-      # SonarCloud step - will be skipped if SONAR_TOKEN is not set
-      - name: SonarCloud Scan
-        if: env.SONAR_TOKEN != ''
-        uses: SonarSource/sonarcloud-github-action@master
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      # The analysis requires to retrieve dependencies and build successfully
+      - name: Build
+        run: <mark><commands_to_build_your_project></mark>
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
