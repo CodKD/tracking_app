@@ -19,6 +19,7 @@ import '../../features/login/data/data_source/login_remote_data_scource.dart'
 import '../../features/login/data/repos_impl/login_repo_impl.dart' as _i998;
 import '../../features/login/domain/repos/login_repo.dart' as _i184;
 import '../../features/login/domain/use_cases/login_use_case.dart' as _i191;
+import '../../features/login/presentation/cubit/login_view_model.dart' as _i442;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/login_remote_data_source_impl.dart'
     as _i915;
@@ -47,6 +48,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i191.LoginUseCase>(
       () => _i191.LoginUseCase(gh<_i184.LoginRepo>()),
+    );
+    gh.factory<_i442.LoginViewModel>(
+      () => _i442.LoginViewModel(loginUseCase: gh<_i191.LoginUseCase>()),
     );
     return this;
   }
