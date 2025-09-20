@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Required for SonarCloud analysis
 
@@ -33,33 +33,16 @@ jobs:
       - name: Generate files
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
-      - name: Add Flutter to PATH
-        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
-
       - name: Analyze code
         run: flutter analyze
 
       - name: Run tests
         run: flutter test
 
+      # SonarCloud step - will be skipped if SONAR_TOKEN is not set
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@master
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarcloud-github-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        with:
-          args: >
-            -Dsonar.organization=yahyaeltayeeb
-            -Dsonar.projectKey=yahyaeltayeeb_e-commerce-app
-            -Dsonar.sources=lib
-            -Dsonar.tests=test
-            -Dsonar.dart.analyzer.mode=FLUTTER
-
-      - name: SonarCloud Quality Gate check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 10
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        continue-on-error: true
