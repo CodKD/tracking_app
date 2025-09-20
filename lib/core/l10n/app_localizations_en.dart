@@ -21,12 +21,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterName => 'Please enter name';
 
   @override
-  String get nameMustBeMoreThan3Characters =>
-      'Name must be more than 3 characters';
+  String get nameMustBeMoreThan3Characters => 'Name must be more than 3 characters';
 
   @override
-  String get passwordMustContainUpperLowerAndSpecialCharacter =>
-      'Password must contain upper, lower, and special character';
+  String get passwordMustContainUpperLowerAndSpecialCharacter => 'Password must contain upper, lower, and special character';
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
@@ -38,15 +36,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterYourEmail => 'Please enter your email';
 
   @override
-  String get emailMustBeLikeThisExampleGmailCom =>
-      'Email must be like this \"example@gmail.com';
+  String get emailMustBeLikeThisExampleGmailCom => 'Email must be like this \"example@gmail.com';
 
   @override
   String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
 
   @override
-  String get enterAValidEgyptianPhoneNumber =>
-      'Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)';
+  String get enterAValidEgyptianPhoneNumber => 'Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)';
 
   @override
   String get home => 'Home';
