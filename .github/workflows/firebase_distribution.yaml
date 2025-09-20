@@ -46,7 +46,7 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_ANDROID_DEV }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIAL_FILE_CONTENT }}
-          groups: android-testers
+          groups: Android-team
           file: build/app/outputs/flutter-apk/app-debug.apk
           releaseNotes: |
             Android Debug Build
@@ -112,7 +112,7 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID_IOS_DEV }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIAL_FILE_CONTENT }}
-          groups: ios-testers
+          groups: IOS-team
           file: ios/Runner.ipa
           releaseNotes: |
             iOS Debug Build
