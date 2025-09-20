@@ -18,9 +18,15 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.35.1
+          flutter-version: 3.35.4
       - run: flutter --version
       - name: Install packages
         run: flutter pub get
-      - name: Run test
-        run: flutter test test
+      - name: Analyze code
+        run: flutter analyze
+      - name: Run tests
+        run: flutter test --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: coverage/lcov.info
