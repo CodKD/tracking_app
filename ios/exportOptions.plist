@@ -18,7 +18,7 @@
     <string>export</string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>com.example.trackingapp</key>
+        <key>com.example.trackingApp</key>
         <string>tracking_app Development</string>
     </dict>
 </dict>

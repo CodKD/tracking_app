@@ -82,7 +82,11 @@ jobs:
       - name: Install CocoaPods
         run: |
           cd ios
-          pod install
+          # Clean any existing pods
+          rm -rf Pods
+          rm -rf Podfile.lock
+          # Install pods with iOS 15.0 deployment target
+          pod install --repo-update
           
       - name: Build iOS Debug
         run: |
