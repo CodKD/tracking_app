@@ -13,5 +13,5 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
   @POST(AppConstants.login)
-  Future<HttpResponse<LoginResponseDto>> login({required LoginRequestDto loginRequestDto});
+  Future<HttpResponse<LoginResponseDto>> login({@Body() required LoginRequestDto loginRequestDto});
 }
