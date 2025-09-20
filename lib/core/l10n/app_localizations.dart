@@ -187,6 +187,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @welcome_to_flowery_rider_app.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome To \nFlowery Rider App'**
+  String get welcome_to_flowery_rider_app;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @apply_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply now'**
+  String get apply_now;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'v 1.0.0-beta.1'**
+  String get version;
+
+  /// No description provided for @enter_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enter_your_email;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @enter_your_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enter_your_password;
+
+  /// No description provided for @remember_me.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get remember_me;
+
+  /// No description provided for @forgot_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgot_password;
+
+  /// No description provided for @continue_btn.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continue_btn;
 }
 
 class _AppLocalizationsDelegate

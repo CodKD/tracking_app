@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 
-class AppTextFormFeild extends StatelessWidget {
+class AppTextFormField extends StatefulWidget {
   final EdgeInsetsGeometry? contentPadding;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
   final TextStyle? inputTextStyle;
   final TextStyle? hintStyle;
+  final TextStyle? labelStyle;
   final String hintText;
-  final bool? isObscureText;
   final Widget? suffixIcon;
   final Color? backgroundColor;
+  final String? labelText;
+  final bool isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  bool isObscureText;
 
-  const AppTextFormFeild({
+  AppTextFormField({
     super.key,
     this.contentPadding,
     this.focusedBorder,
     this.enabledBorder,
     this.inputTextStyle,
     this.hintStyle,
+    this.labelStyle,
+    this.labelText,
+    required this.isPassword,
     required this.hintText,
-    this.isObscureText,
+    this.isObscureText = true,
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
@@ -30,61 +36,62 @@ class AppTextFormFeild extends StatelessWidget {
   });
 
   @override
+  State<AppTextFormField> createState() => _AppTextFormFieldState();
+}
+
+class _AppTextFormFieldState extends State<AppTextFormField> {
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscuringCharacter: "*",
-      controller: controller,
+      controller: widget.controller,
       decoration: InputDecoration(
+        labelText: widget.labelText,
+        labelStyle: widget.labelStyle ?? const TextStyle(color: AppColors.black),
+        hintText: widget.hintText,
+        hintStyle: widget.hintStyle ?? const TextStyle(color: AppColors.grey),
         isDense: true,
         contentPadding:
-            contentPadding ??
-            EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 18,
-            ),
+            widget.contentPadding ??
+            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         focusedBorder:
-            focusedBorder ??
+            widget.focusedBorder ??
             OutlineInputBorder(
-              borderSide: const BorderSide(
-                // color: AppColors.mainBlue,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(width: 1),
+              borderRadius: BorderRadius.circular(4.0),
             ),
         enabledBorder:
-            enabledBorder ??
+            widget.enabledBorder ??
             OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppColors.grey,
-                width: 1.3,
-              ),
-              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: AppColors.grey, width: 1),
+              borderRadius: BorderRadius.circular(4.0),
             ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.red,
-            width: 1.3,
-          ),
-          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderRadius: BorderRadius.circular(4.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.red,
-            width: 1.3,
-          ),
-          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderRadius: BorderRadius.circular(4.0),
         ),
-        hintStyle:
-            hintStyle ??
-            const TextStyle(color: AppColors.grey),
-        hintText: hintText,
-        suffixIcon: suffixIcon,
-        fillColor: backgroundColor,
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                onPressed: () {
+                  widget.isObscureText = !widget.isObscureText;
+                  setState(() {});
+                },
+                icon: Icon(
+                  widget.isObscureText ? Icons.visibility_off : Icons.visibility,
+                  color: AppColors.grey,
+                ),
+              )
+            : widget.suffixIcon,
+        fillColor: widget.backgroundColor,
         filled: true,
       ),
-      obscureText: isObscureText ?? false,
+      obscureText: widget.isPassword ? widget.isObscureText : false,
       style: TextStyle(fontSize: 14),
-      validator: validator,
+      validator: widget.validator,
     );
   }
 }
