@@ -4,20 +4,23 @@ import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
-import 'package:tracking_app/core/gen/assets.gen.dart';
+import 'package:tracking_app/features/login/presentation/login_view.dart';
+import 'package:tracking_app/gen/assets.gen.dart';
+
+import '../../features/login/presentation/onboarding_view.dart';
 
 abstract class Routes {
   static Route generateRoute(RouteSettings settings) {
     final url = Uri.parse(settings.name ?? "/");
     switch (url.path) {
-  case AppRoutes.homeScreen:
-        return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        );
+      case AppRoutes.homeScreen:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
+      case AppRoutes.loginView:
+        return MaterialPageRoute(builder: (context) => LoginView());
+      case AppRoutes.onBoardingView:
+        return MaterialPageRoute(builder: (context) => const OnboardingView());
       default:
-        return MaterialPageRoute(
-          builder: (context) => NotFoundScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => NotFoundScreen());
     }
   }
 }
@@ -89,7 +92,7 @@ class NotFoundScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        AppRoutes.loginScreen,
+                        AppRoutes.onBoardingView,
                       );
                     },
                     child: Text("Go to Home"),

@@ -56,4 +56,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get welcome_to_flowery_rider_app => 'Welcome To \nFlowery Rider App';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get apply_now => 'Apply now';
+
+  @override
+  String get version => 'v 1.0.0-beta.1';
+
+  @override
+  String get enter_your_email => 'Enter your email';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enter_your_password => 'Enter your password';
+
+  @override
+  String get remember_me => 'Remember me';
+
+  @override
+  String get forgot_password => 'Forgot password?';
+
+  @override
+  String get continue_btn => 'Continue';
 }

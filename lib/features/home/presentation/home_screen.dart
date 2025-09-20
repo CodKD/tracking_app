@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:tracking_app/core/l10n/app_localizations.dart';
 import 'package:tracking_app/features/home/presentation/blocs/home_view_model.dart';
-import 'package:tracking_app/core/gen/assets.gen.dart';
+import 'package:tracking_app/gen/assets.gen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
