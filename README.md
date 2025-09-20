@@ -1,4 +1,4 @@
-# 🌸 Tracking App
+# Tracking App
 
 A modern **Flutter e-commerce application** built with Clean Architecture.  
 The app allows Drivers to deliver orders to users and user manage orders efficiently.
