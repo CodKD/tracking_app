@@ -12,6 +12,7 @@ class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://flower.elevateegy.com/api/';
   }
+  
 
   // ignore: unused_field
   final Dio _dio;
