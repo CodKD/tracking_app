@@ -9,11 +9,12 @@ part of 'api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _ApiClient implements ApiClient {
-  _ApiClient(this.dio, {this.baseUrl, this.errorLogger}) {
+  _ApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://flower.elevateegy.com/api/';
   }
 
-  final Dio dio;
+  // ignore: unused_field
+  final Dio _dio;
 
   String? baseUrl;
 
