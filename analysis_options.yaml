@@ -9,6 +9,17 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/generated_plugin_registrant.dart"
+  errors:
+    # Treat missing required parameters as errors
+    missing_required_param: error
+    # Ignore unused fields in generated files (common with retrofit/json_annotation)
+    unused_field: ignore
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

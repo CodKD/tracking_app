@@ -14,7 +14,6 @@ class _ApiClient implements ApiClient {
   }
   
 
-  // ignore: unused_field
   final Dio _dio;
 
   String? baseUrl;
