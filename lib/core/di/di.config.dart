@@ -14,7 +14,14 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 
+import '../../features/login/data/data_source/login_remote_data_scource.dart'
+    as _i207;
+import '../../features/login/data/repos_impl/login_repo_impl.dart' as _i998;
+import '../../features/login/domain/repos/login_repo.dart' as _i184;
+import '../../features/login/domain/use_cases/login_use_case.dart' as _i191;
 import '../api_layer/api_client/api_client.dart' as _i225;
+import '../api_layer/data_source_impl/login_remote_data_source_impl.dart'
+    as _i915;
 import 'modules/dio_module.dart' as _i983;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -32,6 +39,15 @@ extension GetItInjectableX on _i174.GetIt {
       () => dioModule.provideDio(gh<_i528.PrettyDioLogger>()),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient(gh<_i361.Dio>()));
+    gh.factory<_i207.LoginRemoteDataSource>(
+      () => _i915.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i184.LoginRepo>(
+      () => _i998.LoginRepoImpl(gh<_i207.LoginRemoteDataSource>()),
+    );
+    gh.factory<_i191.LoginUseCase>(
+      () => _i191.LoginUseCase(gh<_i184.LoginRepo>()),
+    );
     return this;
   }
 }
