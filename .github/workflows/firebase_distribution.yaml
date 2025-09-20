@@ -105,6 +105,16 @@ jobs:
           rm -rf Payload
 
             
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: 'latest'
+          
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIAL_FILE_CONTENT }}
+          
       - name: Setup Firebase CLI
         run: |
           # Install Firebase CLI using npm
@@ -112,12 +122,9 @@ jobs:
           
       - name: Distribute to Firebase
         run: |
-          # Create service account key file
-          echo '${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIAL_FILE_CONTENT }}' > firebase-service-account.json
-          export GOOGLE_APPLICATION_CREDENTIALS="firebase-service-account.json"
-          
+          cd ios
           # Upload to Firebase App Distribution
-          firebase appdistribution:distribute ios/Runner.ipa \
+          firebase appdistribution:distribute Runner.ipa \
             --app ${{ secrets.FIREBASE_APP_ID_IOS_DEV }} \
             --groups "IOS-team" \
             --release-notes "iOS Debug Build - Branch: ${{ github.ref_name }} - Commit: ${{ github.sha }}"
