@@ -92,24 +92,18 @@ jobs:
         run: |
           flutter build ios --debug --no-codesign
           
-      - name: Create iOS Archive
+      - name: Create unsigned IPA
         run: |
           cd ios
-          xcodebuild -workspace Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Debug \
-            -archivePath Runner.xcarchive \
-            -allowProvisioningUpdates \
-            archive
-            
-      - name: Export IPA
-        run: |
-          cd ios
-          xcodebuild -exportArchive \
-            -archivePath Runner.xcarchive \
-            -exportPath . \
-            -exportOptionsPlist exportOptions.plist \
-            -allowProvisioningUpdates
+          # Create Payload directory
+          mkdir -p Payload
+          # Copy the app bundle to Payload
+          cp -R build/Debug-iphoneos/Runner.app Payload/
+          # Create IPA
+          zip -r Runner.ipa Payload/
+          # Clean up
+          rm -rf Payload
+
             
       - name: Upload iOS IPA to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.7.1
