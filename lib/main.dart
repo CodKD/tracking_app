@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/di/di.dart';
 import 'package:tracking_app/core/di/modules/shared_preferences_module.dart';
-import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/l10n/app_localizations.dart';
 import 'package:tracking_app/core/resources/app_constants.dart';
 import 'core/route/app_routes.dart';
