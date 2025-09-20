@@ -31,7 +31,15 @@ jobs:
         run: flutter analyze
       
       - name: Run tests
-        run: flutter test
+        run: flutter test --coverage
+      
+      - name: Generate LCOV report
+        run: |
+          # Install lcov if needed (usually available on Ubuntu)
+          sudo apt-get update
+          sudo apt-get install -y lcov
+          # Convert coverage to LCOV format
+          genhtml coverage/lcov.info -o coverage/html
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
