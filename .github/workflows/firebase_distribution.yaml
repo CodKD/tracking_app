@@ -123,12 +123,14 @@ jobs:
           # Set environment variables for authentication
           export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/firebase-service-account.json"
           
-          # Upload to Firebase App Distribution with explicit project
+          # Initialize Firebase project context
+          firebase use "$PROJECT_ID"
+          
+          # Upload to Firebase App Distribution (project is now set via 'firebase use')
           firebase appdistribution:distribute Runner.ipa \
             --app ${{ secrets.FIREBASE_APP_ID_IOS_DEV }} \
             --groups "IOS-team" \
-            --release-notes "iOS Debug Build - Branch: ${{ github.ref_name }} - Commit: ${{ github.sha }}" \
-            --project "$PROJECT_ID"
+            --release-notes "iOS Debug Build - Branch: ${{ github.ref_name }} - Commit: ${{ github.sha }}"
             
           # Clean up
           rm firebase-service-account.json
