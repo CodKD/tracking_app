@@ -105,6 +105,11 @@ jobs:
           rm -rf Payload
 
             
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: 'latest'
+          
       - name: Setup Firebase CLI
         run: |
           # Install Firebase CLI using npm
@@ -120,17 +125,19 @@ jobs:
           PROJECT_ID=$(cat firebase-service-account.json | python3 -c "import sys, json; print(json.load(sys.stdin)['project_id'])")
           echo "Using project ID: $PROJECT_ID"
           
-          # Set environment variables for authentication
-          export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/firebase-service-account.json"
+          # Authenticate using service account directly with gcloud
+          gcloud auth activate-service-account --key-file firebase-service-account.json
+          gcloud config set project "$PROJECT_ID"
           
-          # Initialize Firebase project context
-          firebase use "$PROJECT_ID"
+          # Get access token for Firebase CLI
+          ACCESS_TOKEN=$(gcloud auth print-access-token)
           
-          # Upload to Firebase App Distribution (project is now set via 'firebase use')
+          # Upload to Firebase App Distribution using token authentication
           firebase appdistribution:distribute Runner.ipa \
             --app ${{ secrets.FIREBASE_APP_ID_IOS_DEV }} \
             --groups "IOS-team" \
-            --release-notes "iOS Debug Build - Branch: ${{ github.ref_name }} - Commit: ${{ github.sha }}"
+            --release-notes "iOS Debug Build - Branch: ${{ github.ref_name }} - Commit: ${{ github.sha }}" \
+            --token "$ACCESS_TOKEN"
             
           # Clean up
           rm firebase-service-account.json
