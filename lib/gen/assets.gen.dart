@@ -43,7 +43,6 @@ class $AssetsImageGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [noRoutes, onboarding];
-
 }
 
 class $AssetsSvgGen {
