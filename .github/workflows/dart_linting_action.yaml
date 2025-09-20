@@ -2,9 +2,9 @@ name: Dart Linting Action
 
 on:
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, developement ]
   push:
-    branches: [ main, develop ]
+    branches: [ main, developement ]
 
 jobs:
   lint:
