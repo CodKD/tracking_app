@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tracking_app/features/forget_password/domain/entities/forget_password_response_entity.dart';
+
+import '../../../domain/entities/forget_password_response_entity.dart';
 
 part 'forget_password_response_dto.g.dart';
 

@@ -4,11 +4,15 @@ import 'package:tracking_app/core/api_layer/api_client/api_client.dart';
 import 'package:tracking_app/core/api_layer/api_result/api_result.dart';
 import 'package:tracking_app/features/forget_password/data/datasources/contracts/forget_password_remote_data_source.dart';
 import 'package:tracking_app/features/forget_password/data/models/request/forget_password_request_dto.dart';
+import 'package:tracking_app/features/forget_password/data/models/request/reset_password_request_dto.dart';
 import 'package:tracking_app/features/forget_password/data/models/request/verify_reset_code_request_dto.dart';
 import 'package:tracking_app/features/forget_password/data/models/response/forget_password_response_dto.dart';
+import 'package:tracking_app/features/forget_password/data/models/response/reset_password_response_dto.dart';
 import 'package:tracking_app/features/forget_password/data/models/response/verify_reset_code_response_dto.dart';
-import 'package:tracking_app/features/forget_password/domain/entities/forget_password_response_entity.dart';
+import 'package:tracking_app/features/forget_password/domain/entities/reset_password_response_entity.dart';
 import 'package:tracking_app/features/forget_password/domain/entities/verify_reset_code_entity.dart';
+
+import '../../../domain/entities/forget_password_response_entity.dart';
 
 @Injectable(as: ForgetPasswordRemoteDataSource)
 class ForgetPasswordRemoteDataSourceImpl
@@ -24,8 +28,42 @@ class ForgetPasswordRemoteDataSourceImpl
           .forgetPassword(
             forgetPasswordRequestDto: ForgetPasswordRequestDto(email: email),
           );
+      if (forgetPasswordResponseDto.message != "success" ||
+          forgetPasswordResponseDto.message != "Success") {
+        return ApiErrorResult(
+          forgetPasswordResponseDto.message ?? "Unknown error",
+        );
+      } else {
+        return ApiSuccessResult(forgetPasswordResponseDto.toEntity());
+      }
+    } on DioException catch (e) {
+      return ApiErrorResult(e.message ?? "Unknown Dio error");
+    } catch (e) {
+      throw Exception("Unexpected error: $e");
+    }
+  }
 
-      return ApiSuccessResult(forgetPasswordResponseDto.toEntity());
+  @override
+  Future<ApiResult<ResetPasswordResponseEntity>> resetPassword({
+    required String email,
+    required String newPassword,
+  }) async {
+    try {
+      ResetPasswordResponseDto resetPasswordResponseDto = await apiClient
+          .resetPassword(
+            resetPasswordRequestDto: ResetPasswordRequestDto(
+              email: email,
+              newPassword: newPassword,
+            ),
+          );
+      if (resetPasswordResponseDto.message != "success" ||
+          resetPasswordResponseDto.message != "Success") {
+        return ApiErrorResult(
+          resetPasswordResponseDto.message ?? "Unknown error",
+        );
+      } else {
+        return ApiSuccessResult(resetPasswordResponseDto.toEntity());
+      }
     } on DioException catch (e) {
       return ApiErrorResult(e.message ?? "Unknown Dio error");
     } catch (e) {
@@ -44,8 +82,14 @@ class ForgetPasswordRemoteDataSourceImpl
               resetCode: resetCode,
             ),
           );
-
-      return ApiSuccessResult(verifyResetCodeResponseDto.toEntity());
+      if (verifyResetCodeResponseDto.status != "success" ||
+          verifyResetCodeResponseDto.status != "Success") {
+        return ApiErrorResult(
+          verifyResetCodeResponseDto.status ?? "Unknown error",
+        );
+      } else {
+        return ApiSuccessResult(verifyResetCodeResponseDto.toEntity());
+      }
     } on DioException catch (e) {
       return ApiErrorResult(e.message ?? "Unknown Dio error");
     } catch (e) {

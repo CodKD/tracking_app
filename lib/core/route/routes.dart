@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
+import 'package:tracking_app/features/forget_password/presentation/pages/forget_password_view.dart';
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
 
@@ -10,14 +11,12 @@ abstract class Routes {
   static Route generateRoute(RouteSettings settings) {
     final url = Uri.parse(settings.name ?? "/");
     switch (url.path) {
-  case AppRoutes.homeScreen:
-        return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        );
+      case AppRoutes.homeScreen:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
+      case AppRoutes.forgetPasswordScreen:
+        return MaterialPageRoute(builder: (context) => ForgetPasswordView());
       default:
-        return MaterialPageRoute(
-          builder: (context) => NotFoundScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => NotFoundScreen());
     }
   }
 }
