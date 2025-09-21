@@ -28,8 +28,7 @@ class ForgetPasswordRemoteDataSourceImpl
           .forgetPassword(
             forgetPasswordRequestDto: ForgetPasswordRequestDto(email: email),
           );
-      if (forgetPasswordResponseDto.message != "success" ||
-          forgetPasswordResponseDto.message != "Success") {
+      if (forgetPasswordResponseDto.message != "success") {
         return ApiErrorResult(
           forgetPasswordResponseDto.message ?? "Unknown error",
         );
@@ -56,8 +55,7 @@ class ForgetPasswordRemoteDataSourceImpl
               newPassword: newPassword,
             ),
           );
-      if (resetPasswordResponseDto.message != "success" ||
-          resetPasswordResponseDto.message != "Success") {
+      if (resetPasswordResponseDto.message != "success") {
         return ApiErrorResult(
           resetPasswordResponseDto.message ?? "Unknown error",
         );
@@ -82,14 +80,8 @@ class ForgetPasswordRemoteDataSourceImpl
               resetCode: resetCode,
             ),
           );
-      if (verifyResetCodeResponseDto.status != "success" ||
-          verifyResetCodeResponseDto.status != "Success") {
-        return ApiErrorResult(
-          verifyResetCodeResponseDto.status ?? "Unknown error",
-        );
-      } else {
-        return ApiSuccessResult(verifyResetCodeResponseDto.toEntity());
-      }
+
+      return ApiSuccessResult(verifyResetCodeResponseDto.toEntity());
     } on DioException catch (e) {
       return ApiErrorResult(e.message ?? "Unknown Dio error");
     } catch (e) {

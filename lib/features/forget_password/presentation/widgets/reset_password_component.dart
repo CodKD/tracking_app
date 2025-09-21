@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/dialog/dialog.dart';
+import 'package:tracking_app/core/extensions/navigator_extensions.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/input_formatter/app_regex.dart';
+import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_styles.dart';
 import 'package:tracking_app/features/forget_password/presentation/cubit/forget_password_cubit.dart';
 
@@ -140,9 +142,10 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
             content:
                 "Password reset successfully! Please login with your new password.",
             posActions: "OK",
-          ).then((_) {
-            // Navigate back to login or previous screen
-            Navigator.of(context).popUntil((route) => route.isFirst);
+          );
+          Future.delayed(const Duration(seconds: 1), () {
+            // ignore: use_build_context_synchronously
+            context.pushReplacementNamed(AppRoutes.homeScreen);
           });
         } else if (state is ResetPassFailureState) {
           DialogUtils.hideLoading(context);

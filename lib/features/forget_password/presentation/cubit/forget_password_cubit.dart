@@ -169,12 +169,13 @@ class ForgetPasswordViewModel extends Cubit<ForgetPassStates> {
       final result = await verifyResetCodeUseCase.call(resetCode: otpCode);
 
       switch (result) {
+        case ApiErrorResult():
+          emit(OtpFailureState(error: result.errorMessage));
+          break;
         case ApiSuccessResult<VerifyResetCodeResponseEntity>():
           emit(OtpSuccessState());
           _navigateToResetPasswordPage();
-          break;
-        case ApiErrorResult():
-          emit(OtpFailureState(error: result.errorMessage));
+
           break;
       }
     } catch (e) {
@@ -251,6 +252,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPassStates> {
       switch (result) {
         case ApiSuccessResult<ResetPasswordResponseEntity>():
           emit(ResetPassSuccessState());
+
           break;
         case ApiErrorResult():
           emit(ResetPassFailureState(error: result.errorMessage));
