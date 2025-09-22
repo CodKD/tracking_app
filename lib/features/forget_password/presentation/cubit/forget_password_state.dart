@@ -1,7 +1,6 @@
 part of 'forget_password_cubit.dart';
 
-@immutable
-abstract class ForgetPassStates {}
+sealed class ForgetPassStates {}
 
 // Initial States
 class ForgetPassInitState extends ForgetPassStates {}
