@@ -18,7 +18,7 @@ import '../../features/forget_password/data/datasources/contracts/forget_passwor
     as _i855;
 import '../../features/forget_password/data/datasources/impl/forget_password_remote_data_source_impl.dart'
     as _i1014;
-import '../../features/forget_password/data/repositories/forget_password_repo_impl.dart'
+import '../../features/forget_password/data/repos_impl/forget_password_repo_impl.dart'
     as _i732;
 import '../../features/forget_password/domain/repositories/forget_password_repo.dart'
     as _i184;
@@ -59,11 +59,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i773.ForgetPasswordUseCase>(
       () => _i773.ForgetPasswordUseCase(gh<_i184.ForgetPasswordRepo>()),
     );
-    gh.factory<_i309.VerifyResetCodeUseCase>(
-      () => _i309.VerifyResetCodeUseCase(gh<_i184.ForgetPasswordRepo>()),
-    );
     gh.factory<_i123.ResetPasswordUseCase>(
       () => _i123.ResetPasswordUseCase(gh<_i184.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i309.VerifyResetCodeUseCase>(
+      () => _i309.VerifyResetCodeUseCase(gh<_i184.ForgetPasswordRepo>()),
     );
     gh.factory<_i1056.ForgetPasswordViewModel>(
       () => _i1056.ForgetPasswordViewModel(
