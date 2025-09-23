@@ -1,65 +1,46 @@
-name: SonarCloud Analysis
-
+name: Build
 on:
   push:
     branches:
-      - developement
       - master
+      - developement
   pull_request:
-    branches:
-      - developement
-      - master
-
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
+  sonarqube:
+    name: SonarQube
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Required for SonarCloud analysis
-
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      # The analysis requires to retrieve dependencies and build successfully
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.35.2
-
-      - run: flutter --version
-
-      - name: Install packages
+          flutter-version: 3.35.4
+      
+      - name: Install dependencies
         run: flutter pub get
-
+      
       - name: Generate files
         run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Add Flutter to PATH
-        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
-
+      
       - name: Analyze code
         run: flutter analyze
-
+      
       - name: Run tests
-        run: flutter test
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@master
+        run: flutter test --coverage
+      
+      - name: Generate LCOV report
+        run: |
+          # Install lcov if needed (usually available on Ubuntu)
+          sudo apt-get update
+          sudo apt-get install -y lcov
+          # Convert coverage to LCOV format
+          genhtml coverage/lcov.info -o coverage/html
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        with:
-          args: >
-            -Dsonar.organization=yahyaeltayeeb
-            -Dsonar.projectKey=yahyaeltayeeb_e-commerce-app
-            -Dsonar.sources=lib
-            -Dsonar.tests=test
-            -Dsonar.dart.analyzer.mode=FLUTTER
-
-      - name: SonarCloud Quality Gate check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 10
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-        continue-on-error: true
