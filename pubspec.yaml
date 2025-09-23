@@ -65,7 +65,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_gen_runner: ^5.10.0
-  retrofit_generator: ^9.7.0
+  retrofit_generator: ^10.0.5
   build_runner: ^2.5.4
   json_serializable: ^6.9.5
   injectable_generator:
@@ -81,6 +81,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+
+flutter_gen:
+  output: lib/core/gen # Optional (default: lib/gen/)
 
 # The following section is specific to Flutter packages.
 flutter:

@@ -13,6 +13,7 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/login/data/data_source/login_remote_data_scource.dart'
     as _i207;
@@ -23,21 +24,37 @@ import '../../features/login/presentation/cubit/login_view_model.dart' as _i442;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/login_remote_data_source_impl.dart'
     as _i915;
-import 'modules/dio_module.dart' as _i983;
+import '../modules/dio_module.dart' as _i948;
+import '../modules/shared_preferences_module.dart' as _i744;
+import '../utils/language_cubit.dart' as _i344;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
+    final sharedPreferencesModule = _$SharedPreferencesModule();
     gh.singleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
     );
+    await gh.singletonAsync<_i460.SharedPreferences>(
+      () => sharedPreferencesModule.provideSharedPreferences(),
+      preResolve: true,
+    );
+    gh.singleton<_i744.SharedPrefHelper>(
+      () => _i744.SharedPrefHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i344.LocaleCubit>(
+      () => _i344.LocaleCubit(sharedPrefHelper: gh<_i744.SharedPrefHelper>()),
+    );
     gh.singleton<_i361.Dio>(
-      () => dioModule.provideDio(gh<_i528.PrettyDioLogger>()),
+      () => dioModule.provideDio(
+        gh<_i528.PrettyDioLogger>(),
+        gh<_i744.SharedPrefHelper>(),
+      ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i207.LoginRemoteDataSource>(
@@ -50,10 +67,15 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i191.LoginUseCase(gh<_i184.LoginRepo>()),
     );
     gh.factory<_i442.LoginViewModel>(
-      () => _i442.LoginViewModel(loginUseCase: gh<_i191.LoginUseCase>()),
+      () => _i442.LoginViewModel(
+        loginUseCase: gh<_i191.LoginUseCase>(),
+        sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
+      ),
     );
     return this;
   }
 }
 
-class _$DioModule extends _i983.DioModule {}
+class _$DioModule extends _i948.DioModule {}
+
+class _$SharedPreferencesModule extends _i744.SharedPreferencesModule {}

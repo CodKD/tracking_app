@@ -10,9 +10,13 @@ class LoginResponseDto {
   @JsonKey(name: "token")
   final String? token;
 
+  @JsonKey(name: "error")
+  final String? error;
+
   LoginResponseDto ({
     this.message,
     this.token,
+    this.error,
   });
 
   factory LoginResponseDto.fromJson(Map<String, dynamic> json) {
@@ -27,6 +31,7 @@ class LoginResponseDto {
     return LoginResponseEntity(
       message: message,
       token: token,
+      error: error,
     );
   }
 }

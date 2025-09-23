@@ -5,7 +5,7 @@ import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/core/theme/app_styles.dart';
 import 'package:tracking_app/core/utils/components/custom_button.dart';
-import 'package:tracking_app/gen/assets.gen.dart';
+import 'package:tracking_app/core/gen/assets.gen.dart';
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});
@@ -46,7 +46,9 @@ class OnboardingView extends StatelessWidget {
                     ),
                     16.heightBox,
                     CustomButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //TODO: apply now action
+                      },
                       borderRadius: 100,
                       backgroundColorButton: AppColors.white,
                       borderSide: BorderSide(width: 1,color: AppColors.black),

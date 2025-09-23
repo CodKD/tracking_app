@@ -5,9 +5,9 @@ import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
 import 'package:tracking_app/features/login/presentation/login_view.dart';
-import 'package:tracking_app/gen/assets.gen.dart';
+import 'package:tracking_app/core/gen/assets.gen.dart';
 
-import '../../features/login/presentation/onboarding_view.dart';
+import '../../features/onboarding/onboarding_view.dart';
 
 abstract class Routes {
   static Route generateRoute(RouteSettings settings) {

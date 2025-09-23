@@ -15,9 +15,9 @@ class AppTextFormField extends StatefulWidget {
   final bool isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  bool isObscureText;
+  final bool initialObscureText;
 
-  AppTextFormField({
+  const AppTextFormField({
     super.key,
     this.contentPadding,
     this.focusedBorder,
@@ -28,7 +28,7 @@ class AppTextFormField extends StatefulWidget {
     this.labelText,
     required this.isPassword,
     required this.hintText,
-    this.isObscureText = true,
+    this.initialObscureText = true,
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
@@ -40,6 +40,14 @@ class AppTextFormField extends StatefulWidget {
 }
 
 class _AppTextFormFieldState extends State<AppTextFormField> {
+  late bool isObscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    isObscureText = widget.initialObscureText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -47,7 +55,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       controller: widget.controller,
       decoration: InputDecoration(
         labelText: widget.labelText,
-        labelStyle: widget.labelStyle ?? const TextStyle(color: AppColors.black),
+        labelStyle:
+            widget.labelStyle ?? const TextStyle(color: AppColors.black),
         hintText: widget.hintText,
         hintStyle: widget.hintStyle ?? const TextStyle(color: AppColors.grey),
         isDense: true,
@@ -77,11 +86,12 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         suffixIcon: widget.isPassword
             ? IconButton(
                 onPressed: () {
-                  widget.isObscureText = !widget.isObscureText;
-                  setState(() {});
+                  setState(() {
+                    isObscureText = !isObscureText;
+                  });
                 },
                 icon: Icon(
-                  widget.isObscureText ? Icons.visibility_off : Icons.visibility,
+                  isObscureText ? Icons.visibility_off : Icons.visibility,
                   color: AppColors.grey,
                 ),
               )
@@ -89,7 +99,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         fillColor: widget.backgroundColor,
         filled: true,
       ),
-      obscureText: widget.isPassword ? widget.isObscureText : false,
+      obscureText: widget.isPassword ? isObscureText : false,
       style: TextStyle(fontSize: 14),
       validator: widget.validator,
     );

@@ -90,4 +90,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get continue_btn => 'الاستمرار';
+
+  @override
+  String get ok => 'حسناً';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get success => 'تم بنجاح';
 }

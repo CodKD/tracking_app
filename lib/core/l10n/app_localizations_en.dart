@@ -89,4 +89,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continue_btn => 'Continue';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get success => 'Success';
 }
