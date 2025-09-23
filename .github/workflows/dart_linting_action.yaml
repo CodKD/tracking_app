@@ -21,6 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        #
 
       - name: Run Flutter analyze (lint)
         run: flutter analyze
