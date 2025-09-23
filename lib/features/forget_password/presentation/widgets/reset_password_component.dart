@@ -118,7 +118,7 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                       onPressed: widget.viewModel.resetPassBtnEnabled
                           ? () => widget.viewModel.resetPasswordRequest()
                           : null,
-                      child: Text("Reset Password"),
+                      child: const Text("Reset Password"),
                     ),
                   ],
                 ),

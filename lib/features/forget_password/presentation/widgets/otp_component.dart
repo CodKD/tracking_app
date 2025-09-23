@@ -113,7 +113,8 @@ class OtpComponent extends StatelessWidget {
                     onPressed: viewModel.otpBtnEnabled
                         ? () => viewModel.otpValidationRequest()
                         : null,
-                    child: Text("Continue"),
+
+                    child: const Text("Continue"),
                   ),
                   24.heightBox,
                   // Resend OTP

@@ -5,6 +5,6 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: const Text('Home Tab'));
+    return const Center(child: Text('Home Tab'));
   }
 }

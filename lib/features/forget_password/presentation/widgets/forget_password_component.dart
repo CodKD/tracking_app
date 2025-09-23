@@ -60,7 +60,7 @@ class ForgetPasswordComponent extends StatelessWidget {
                       onPressed: viewModel.forgetPassBtnEnabled
                           ? () => viewModel.forgetPasswordRequest()
                           : null,
-                      child: Text("Send"),
+                      child: const Text("Send"),
                     ),
                   ],
                 ),
@@ -79,7 +79,7 @@ class ForgetPasswordComponent extends StatelessWidget {
           DialogUtils.hideLoading(context);
           // Show success message briefly before navigation
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text("Verification code sent to your email"),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 2),

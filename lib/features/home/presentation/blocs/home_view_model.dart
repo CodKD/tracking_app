@@ -6,11 +6,7 @@ import 'package:tracking_app/features/home/presentation/Tabs/profile_tab/profile
 class HomeViewModel extends ChangeNotifier {
   // hold data
   int currentIndex = 0;
-  List<Widget> pages = [
-    HomeTab(),
-    OrderTab(),
-    ProfileTab(),
-  ];
+  List<Widget> pages = [const HomeTab(), const OrderTab(), const ProfileTab()];
 
   // handle logic
   void setCurrentIndex(int index) {

@@ -14,9 +14,11 @@ abstract class Routes {
       case AppRoutes.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case AppRoutes.forgetPasswordScreen:
-        return MaterialPageRoute(builder: (context) => ForgetPasswordView());
+        return MaterialPageRoute(
+          builder: (context) => const ForgetPasswordView(),
+        );
       default:
-        return MaterialPageRoute(builder: (context) => NotFoundScreen());
+        return MaterialPageRoute(builder: (context) => const NotFoundScreen());
     }
   }
 }
@@ -46,7 +48,7 @@ class NotFoundScreen extends StatelessWidget {
                     animatedTexts: [
                       FadeAnimatedText(
                         "404 Not Found ",
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 50,
                           color: AppColors.white,
@@ -64,11 +66,8 @@ class NotFoundScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 5,
-                  ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
                   child: Text(
                     "Oops! We couldn't find the page you're looking for.",
                     style: TextStyle(
@@ -91,7 +90,7 @@ class NotFoundScreen extends StatelessWidget {
                         AppRoutes.loginScreen,
                       );
                     },
-                    child: Text("Go to Home"),
+                    child: const Text("Go to Home"),
                   ),
                 ),
               ],

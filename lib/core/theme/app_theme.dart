@@ -10,22 +10,21 @@ abstract class AppTheme {
   }) {
     return ThemeData(
       colorScheme: colorScheme,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         centerTitle: false,
         backgroundColor: AppColors.white,
         foregroundColor: AppColors.black,
         elevation: 0,
       ),
-    bottomNavigationBarTheme:
-          BottomNavigationBarThemeData(
-            selectedItemColor: AppColors.pink,
-            unselectedItemColor: AppColors.grey,
-            elevation: 0,
-          ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: AppColors.pink,
+        unselectedItemColor: AppColors.grey,
+        elevation: 0,
+      ),
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(18),
+          padding: const EdgeInsets.all(18),
           backgroundColor: AppColors.pink,
           foregroundColor: AppColors.white,
           disabledBackgroundColor: AppColors.grey,
@@ -37,46 +36,30 @@ abstract class AppTheme {
       ),
 
       inputDecorationTheme: InputDecorationTheme(
-        
         fillColor: AppColors.white,
         filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: BorderSide(
-            color: textFormFieldBorderColor,
-            width: 1,
-          ),
+          borderSide: BorderSide(color: textFormFieldBorderColor, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: BorderSide(
-            color: textFormFieldBorderColor,
-            width: 1,
-          ),
+          borderSide: BorderSide(color: textFormFieldBorderColor, width: 1),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: BorderSide(
-            color: colorScheme.error,
-            width: 1,
-          ),
+          borderSide: BorderSide(color: colorScheme.error, width: 1),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: BorderSide(
-            color: colorScheme.error,
-            width: 1,
-          ),
+          borderSide: BorderSide(color: colorScheme.error, width: 1),
         ),
-        
       ),
 
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           disabledBackgroundColor: AppColors.grey,
           backgroundColor: colorScheme.primary,
           foregroundColor: AppColors.white,
@@ -108,7 +91,7 @@ abstract class AppTheme {
   }
 
   static ThemeData lightTheme = getTheme(
-    colorScheme: ColorScheme(
+    colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.pink,
       onPrimary: AppColors.white,
