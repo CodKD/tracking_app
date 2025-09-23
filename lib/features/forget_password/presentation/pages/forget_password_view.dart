@@ -33,6 +33,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: true,
+      // ignore: deprecated_member_use
       onPopInvoked: (didPop) {
         if (didPop) {
           forgetPasswordViewModel.resetAllFields();
