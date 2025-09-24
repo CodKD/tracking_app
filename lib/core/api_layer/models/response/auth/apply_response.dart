@@ -1,0 +1,103 @@
+import 'package:json_annotation/json_annotation.dart';
+
+import '../../../../../features/auth/apply/domain/entities/apply_entity.dart';
+
+part 'apply_response.g.dart';
+
+@JsonSerializable()
+class ApplyResponse {
+  @JsonKey(name: "message")
+  final String? message;
+  @JsonKey(name: "driver")
+  final DriverDto? driver;
+  @JsonKey(name: "token")
+  final String? token;
+
+  ApplyResponse({this.message, this.driver, this.token});
+
+  factory ApplyResponse.fromJson(Map<String, dynamic> json) {
+    return _$ApplyResponseFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$ApplyResponseToJson(this);
+  }
+}
+
+@JsonSerializable()
+class DriverDto {
+  @JsonKey(name: "country")
+  final String? country;
+  @JsonKey(name: "firstName")
+  final String? firstName;
+  @JsonKey(name: "lastName")
+  final String? lastName;
+  @JsonKey(name: "vehicleType")
+  final String? vehicleType;
+  @JsonKey(name: "vehicleNumber")
+  final String? vehicleNumber;
+  @JsonKey(name: "vehicleLicense")
+  final String? vehicleLicense;
+  @JsonKey(name: "NID")
+  final String? nID;
+  @JsonKey(name: "NIDImg")
+  final String? nIDImg;
+  @JsonKey(name: "email")
+  final String? email;
+  @JsonKey(name: "gender")
+  final String? gender;
+  @JsonKey(name: "phone")
+  final String? phone;
+  @JsonKey(name: "photo")
+  final String? photo;
+  @JsonKey(name: "role")
+  final String? role;
+  @JsonKey(name: "_id")
+  final String? id;
+  @JsonKey(name: "createdAt")
+  final String? createdAt;
+
+  DriverDto({
+    this.country,
+    this.firstName,
+    this.lastName,
+    this.vehicleType,
+    this.vehicleNumber,
+    this.vehicleLicense,
+    this.nID,
+    this.nIDImg,
+    this.email,
+    this.gender,
+    this.phone,
+    this.photo,
+    this.role,
+    this.id,
+    this.createdAt,
+  });
+
+  factory DriverDto.fromJson(Map<String, dynamic> json) {
+    return _$DriverDtoFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$DriverDtoToJson(this);
+  }
+
+  DriverEntity toApplyEntity() => DriverEntity(
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    gender: gender,
+    phone: phone,
+    photo: photo,
+    id: id,
+    country: country,
+    vehicleType: vehicleType,
+    vehicleNumber: vehicleNumber,
+    vehicleLicense: vehicleLicense,
+    nID: nID,
+    nIDImg: nIDImg,
+    role: role,
+    createdAt: createdAt,
+  );
+}

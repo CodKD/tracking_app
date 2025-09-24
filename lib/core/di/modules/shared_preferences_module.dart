@@ -17,6 +17,32 @@ class SharedPrefHelper {
     sharedPreferences =
         await SharedPreferences.getInstance();
   }
+  ///Below method is to set the string value in the SharedPreferences.
+  Future<dynamic> setString({
+    required String key,
+    required String stringValue,
+  }) async {
+    await sharedPreferences.setString(key, stringValue);
+  }
+
+  ///Below method is to get the string value from the SharedPreferences.
+  String? getString({required String key}) {
+    return sharedPreferences.getString(key);
+  }
+
+  ///Below method is to set the boolean value in the SharedPreferences.
+  Future<dynamic> setBoolean({
+    required String key,
+    required bool boolValue,
+  }) async {
+    await sharedPreferences.setBool(key, boolValue);
+  }
+
+  ///Below method is to get the boolean value from the SharedPreferences.
+  bool? getBoolean({required String key}) {
+    return sharedPreferences.getBool(key);
+  }
+
 
   ///Below method is to return the SharedPreference instance.
   SharedPreferences getPreferenceInstance() {
