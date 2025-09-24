@@ -29,7 +29,9 @@ abstract class ApiClient {
   Future<ResetPasswordResponseDto> resetPassword({
     @Body() required ResetPasswordRequestDto resetPasswordRequestDto,
   });
-}
-  @POST(AppConstants.login)
-  Future<HttpResponse<LoginResponseDto>> login({@Body() required LoginRequestDto loginRequestDto});
+
+  @POST('/v1/drivers/signin')
+  Future<HttpResponse<LoginResponseDto>> login({
+    @Body() required LoginRequestDto loginRequestDto,
+  });
 }

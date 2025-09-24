@@ -99,4 +99,62 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get success => 'تم بنجاح';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get please_enter_your_email_to_receive_a_verification_code =>
+      'يرجى إدخال بريدك الإلكتروني لتلقي رمز التحقق لإنشاء كلمة مرور جديدة عبر البريد الإلكتروني';
+
+  @override
+  String get send => 'إرسال';
+
+  @override
+  String get verification_code_sent_to_your_email =>
+      'تم إرسال رمز التحقق إلى بريدك الإلكتروني';
+
+  @override
+  String get email_not_found => 'البريد الإلكتروني غير موجود';
+
+  @override
+  String get try_again => 'حاول مرة أخرى';
+
+  @override
+  String get email_verification => 'التحقق من البريد الإلكتروني';
+
+  @override
+  String get please_enter_the_6_digit_code_sent_to_your_email =>
+      'يرجى إدخال الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني';
+
+  @override
+  String get didnt_receive_the_code => 'ألم تستلم الرمز؟';
+
+  @override
+  String get resend => 'إعادة الإرسال';
+
+  @override
+  String get please_enter_your_new_password => 'يرجى إدخال كلمة المرور الجديدة';
+
+  @override
+  String get new_password => 'كلمة المرور الجديدة';
+
+  @override
+  String get enter_your_new_password => 'ادخل كلمة المرور الجديدة';
+
+  @override
+  String get confirm_your_password => 'تأكيد كلمة المرور';
+
+  @override
+  String get confirm_password => 'تأكيد كلمة المرور';
+
+  @override
+  String get password_reset_success_please_login_again_with_your_new_password =>
+      'تم إعادة تعيين كلمة المرور بنجاح! يرجى تسجيل الدخول مرة أخرى باستخدام كلمة المرور الجديدة.';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get forget_password => 'إعادة تعيين كلمة المرور';
 }

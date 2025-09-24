@@ -98,4 +98,62 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get success => 'Success';
+
+  @override
+  String get reset_password => 'Reset Password';
+
+  @override
+  String get please_enter_your_email_to_receive_a_verification_code =>
+      'Please enter your email to receive a verification code to create a new password via email';
+
+  @override
+  String get send => 'Send';
+
+  @override
+  String get verification_code_sent_to_your_email =>
+      'Verification code sent to your email';
+
+  @override
+  String get email_not_found => 'Email Not Found';
+
+  @override
+  String get try_again => 'Try Again';
+
+  @override
+  String get email_verification => 'Email Verification';
+
+  @override
+  String get please_enter_the_6_digit_code_sent_to_your_email =>
+      'Please enter the 6-digit code sent to your email';
+
+  @override
+  String get didnt_receive_the_code => 'Didn\'t receive the code? ';
+
+  @override
+  String get resend => 'Resend';
+
+  @override
+  String get please_enter_your_new_password => 'Please enter your new password';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get enter_your_new_password => 'Enter your new password';
+
+  @override
+  String get confirm_your_password => 'Confirm your password';
+
+  @override
+  String get confirm_password => 'Confirm Password';
+
+  @override
+  String get password_reset_success_please_login_again_with_your_new_password =>
+      'Password reset successfully! Please login again with your new password.';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get forget_password => 'Forget Password';
 }

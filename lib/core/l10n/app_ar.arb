@@ -27,5 +27,27 @@
   "continue_btn": "الاستمرار",
   "ok": "حسناً",
   "loading": "جاري التحميل...",
-  "success": "تم بنجاح"
+  "success": "تم بنجاح" ,
+  "reset_password": "إعادة تعيين كلمة المرور" ,
+    "please_enter_your_email_to_receive_a_verification_code": "يرجى إدخال بريدك الإلكتروني لتلقي رمز التحقق لإنشاء كلمة مرور جديدة عبر البريد الإلكتروني",
+      "send": "إرسال" ,
+      "verification_code_sent_to_your_email": "تم إرسال رمز التحقق إلى بريدك الإلكتروني",
+  "email_not_found": "البريد الإلكتروني غير موجود",
+  "try_again": "حاول مرة أخرى" ,
+  "email_verification": "التحقق من البريد الإلكتروني",
+  "please_enter_the_6_digit_code_sent_to_your_email": "يرجى إدخال الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
+  "didnt_receive_the_code": "ألم تستلم الرمز؟",
+  "resend": "إعادة الإرسال",
+  "verification_code_sent_to_your_email": "تم إرسال رمز التحقق إلى بريدك الإلكتروني",
+    "please_enter_your_new_password": "يرجى إدخال كلمة المرور الجديدة",
+  "new_password": "كلمة المرور الجديدة",
+  "enter_your_new_password": "ادخل كلمة المرور الجديدة",
+  "confirm_your_password": "تأكيد كلمة المرور",
+  "confirm_password": "تأكيد كلمة المرور" ,
+    "password_reset_success_please_login_again_with_your_new_password": "تم إعادة تعيين كلمة المرور بنجاح! يرجى تسجيل الدخول مرة أخرى باستخدام كلمة المرور الجديدة.",
+  "error": "خطأ" ,
+    "forget_password": "إعادة تعيين كلمة المرور"
+
+
+
   }

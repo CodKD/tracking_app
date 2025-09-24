@@ -51,7 +51,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscuringCharacter: "*",
+      obscuringCharacter: "★",
       controller: widget.controller,
       decoration: InputDecoration(
         labelText: widget.labelText,
@@ -62,7 +62,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         isDense: true,
         contentPadding:
             widget.contentPadding ??
-            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         focusedBorder:
             widget.focusedBorder ??
             OutlineInputBorder(
@@ -71,7 +71,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             ),
         enabledBorder:
             widget.enabledBorder ??
-            OutlineInputBorder(              borderSide: const BorderSide(color: AppColors.grey, width: 1),
+            OutlineInputBorder(
+              borderSide: const BorderSide(color: AppColors.grey, width: 1),
               borderRadius: BorderRadius.circular(4.0),
             ),
         errorBorder: OutlineInputBorder(
@@ -99,7 +100,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         filled: true,
       ),
       obscureText: widget.isPassword ? isObscureText : false,
-      style: TextStyle(fontSize: 14),
+      style: const TextStyle(fontSize: 14),
       validator: widget.validator,
     );
   }

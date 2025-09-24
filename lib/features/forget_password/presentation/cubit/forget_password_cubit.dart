@@ -29,7 +29,8 @@ class ForgetPasswordViewModel extends Cubit<ForgetPassStates> {
   final PageController pageController = PageController(initialPage: 0);
 
   // Forget Password Controllers
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController(
+  );
   final GlobalKey<FormState> forgetPassFormKey = GlobalKey<FormState>();
   bool forgetPassBtnEnabled = false;
 
@@ -46,9 +47,10 @@ class ForgetPasswordViewModel extends Cubit<ForgetPassStates> {
   bool otpBtnEnabled = false;
 
   // Reset Password Controllers
-  final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController(
+  );
+  final TextEditingController confirmPasswordController = TextEditingController(
+  );
   final GlobalKey<FormState> resetPassFormKey = GlobalKey<FormState>();
   bool resetPassBtnEnabled = false;
 
@@ -269,16 +271,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPassStates> {
     _clearOtpFields();
     newPasswordController.clear();
     confirmPasswordController.clear();
-
     forgetPassBtnEnabled = false;
     otpBtnEnabled = false;
     resetPassBtnEnabled = false;
-
-    pageController.animateToPage(
-      0,
-      duration: Duration.zero,
-      curve: Curves.linear,
-    );
     emit(ForgetPassInitState());
   }
 }

@@ -15,3 +15,8 @@ class LoginErrorState extends LoginStates{
   final String message;
   LoginErrorState(this.message);
 }
+
+class LoginRememberMeState extends LoginStates {
+  final bool rememberMe;
+  LoginRememberMeState(this.rememberMe);
+}

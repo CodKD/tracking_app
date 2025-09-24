@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/dialog/dialog.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
-import 'package:tracking_app/core/input_formatter/app_regex.dart';
+import 'package:tracking_app/core/extensions/validation_ext.dart';
 import 'package:tracking_app/core/theme/app_styles.dart';
 import 'package:tracking_app/features/forget_password/presentation/cubit/forget_password_cubit.dart';
+import 'package:tracking_app/features/login/presentation/login_view.dart';
 
 class ResetPasswordComponent extends StatefulWidget {
   final ForgetPasswordViewModel viewModel;
@@ -36,13 +37,13 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Reset Password",
+                      context.l10n.reset_password,
                       style: AppStyles.medium18black,
                       textAlign: TextAlign.center,
                     ),
                     16.heightBox,
                     Text(
-                      "Please enter your new password",
+                      context.l10n.please_enter_your_new_password,
                       style: AppStyles.regular14grey,
                       textAlign: TextAlign.center,
                     ),
@@ -50,19 +51,14 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                     // New Password Field
                     TextFormField(
                       controller: widget.viewModel.newPasswordController,
-                      validator: (value) =>
-                          AppRegex.isPasswordValid(value?.trim() ?? '')
-                          ? null
-                          : context
-                                .l10n
-                                .passwordMustContainUpperLowerAndSpecialCharacter,
+                      validator: (value) => value.validatePassword(context),
                       onChanged: (_) => widget.viewModel.validateResetPassBtn(),
                       style: AppStyles.regular16black,
                       obscureText: !_isNewPasswordVisible,
                       decoration: InputDecoration(
-                        hintText: "Enter your new password",
+                        hintText: context.l10n.enter_your_new_password,
                         hintStyle: AppStyles.regular14grey,
-                        labelText: "New Password",
+                        labelText: context.l10n.new_password,
                         labelStyle: AppStyles.regular14black,
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -82,20 +78,17 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                     // Confirm Password Field
                     TextFormField(
                       controller: widget.viewModel.confirmPasswordController,
-                      validator: (value) =>
-                          AppRegex.isConfirmPasswordValid(
-                            value?.trim() ?? '',
-                            widget.viewModel.newPasswordController.text.trim(),
-                          )
-                          ? null
-                          : context.l10n.passwordsDoNotMatch,
+                      validator: (value) => value.validateConfirmPassword(
+                        widget.viewModel.newPasswordController,
+                        context,
+                      ),
                       onChanged: (_) => widget.viewModel.validateResetPassBtn(),
                       style: AppStyles.regular16black,
                       obscureText: !_isConfirmPasswordVisible,
                       decoration: InputDecoration(
-                        hintText: "Confirm your password",
+                        hintText: context.l10n.confirm_your_password,
                         hintStyle: AppStyles.regular14grey,
-                        labelText: "Confirm Password",
+                        labelText: context.l10n.confirm_password,
                         labelStyle: AppStyles.regular14black,
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -118,7 +111,7 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                       onPressed: widget.viewModel.resetPassBtnEnabled
                           ? () => widget.viewModel.resetPasswordRequest()
                           : null,
-                      child: const Text("Reset Password"),
+                      child: Text(context.l10n.reset_password),
                     ),
                   ],
                 ),
@@ -131,29 +124,37 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
         if (state is ResetPassLoadingState) {
           DialogUtils.showLoading(
             context: context,
-            loadingMessage: "Resetting password...",
+            loadingMessage: context.l10n.loading,
           );
         } else if (state is ResetPassSuccessState) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
-            content:
-                "Password reset successfully! Please login with your new password.",
-            posActions: "OK",
+            content: context
+                .l10n
+                .password_reset_success_please_login_again_with_your_new_password,
+            posActions: context.l10n.ok,
+            posFunction: (context) {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (builder) => const LoginView()),
+                (route) {
+                  return false;
+                },
+              );
+            },
           );
-          Future.delayed(const Duration(seconds: 1), () {
-            // Navigate to login screen and clear navigation stack
-          });
         } else if (state is ResetPassFailureState) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
-            title: "Error",
+            title: context.l10n.error,
             content: state.error,
-            negActions: "OK",
+            negActions: context.l10n.ok,
           );
         }
       },
     );
   }
+
+  /// Navigates to login screen and clears the entire navigation stack
 }

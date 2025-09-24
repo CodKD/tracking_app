@@ -14,12 +14,10 @@ class LoginViewModel extends Cubit<LoginStates> {
   final LoginUseCase loginUseCase;
   final SharedPrefHelper sharedPrefHelper;
   final formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController(
-    text: "adekheel@gmail.com",
-  );
-  final TextEditingController passwordController = TextEditingController(
-    text: "Elevate@123",
-  );
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  bool? rememberMe = false;
 
   LoginViewModel({required this.loginUseCase, required this.sharedPrefHelper})
     : super(LoginInitState());
@@ -44,6 +42,9 @@ class LoginViewModel extends Cubit<LoginStates> {
 
         switch (response) {
           case ApiSuccessResult<LoginResponseEntity>():
+
+            // remember me
+            saveEmail(emailController.text);
             // Save token to SharedPreferences
             await sharedPrefHelper.setValue(
               AppConstants.tokenKey,
@@ -70,4 +71,25 @@ class LoginViewModel extends Cubit<LoginStates> {
     passwordController.dispose();
     return super.close();
   }
+
+  void setRememberMe(bool? value) {
+    rememberMe = value;
+    emit(LoginRememberMeState(rememberMe ?? false));
+  }
+
+  void saveEmail(String email) async {
+    if (rememberMe == true) {
+      await sharedPrefHelper.setValue(AppConstants.savedEmailKey, email);
+    }
+  }
+
+  void loadSavedEmail() {
+    String? savedEmail = sharedPrefHelper.getValue(AppConstants.savedEmailKey);
+    if (savedEmail != null) {
+      emailController.text = savedEmail;
+      rememberMe = true;
+      emit(LoginRememberMeState(rememberMe ?? false));
+    }
+  }
+
 }

@@ -72,13 +72,28 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i744.SharedPrefHelper>(),
       ),
     );
-    gh.singleton<_i225.ApiClient>(() => _i225.ApiClient(gh<_i361.Dio>()));
+    gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
+    gh.factory<_i207.LoginRemoteDataSource>(
+      () => _i915.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i855.ForgetPasswordRemoteDataSource>(
       () => _i1014.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
     gh.factory<_i184.ForgetPasswordRepo>(
       () => _i732.ForgetPasswordRepoImpl(
         gh<_i855.ForgetPasswordRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i184.LoginRepo>(
+      () => _i998.LoginRepoImpl(gh<_i207.LoginRemoteDataSource>()),
+    );
+    gh.factory<_i191.LoginUseCase>(
+      () => _i191.LoginUseCase(gh<_i184.LoginRepo>()),
+    );
+    gh.factory<_i442.LoginViewModel>(
+      () => _i442.LoginViewModel(
+        loginUseCase: gh<_i191.LoginUseCase>(),
+        sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
     );
     gh.factory<_i773.ForgetPasswordUseCase>(
@@ -95,19 +110,6 @@ extension GetItInjectableX on _i174.GetIt {
         forgetPasswordUseCase: gh<_i773.ForgetPasswordUseCase>(),
         verifyResetCodeUseCase: gh<_i309.VerifyResetCodeUseCase>(),
         resetPasswordUseCase: gh<_i123.ResetPasswordUseCase>(),
-    gh.factory<_i207.LoginRemoteDataSource>(
-      () => _i915.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
-    );
-    gh.factory<_i184.LoginRepo>(
-      () => _i998.LoginRepoImpl(gh<_i207.LoginRemoteDataSource>()),
-    );
-    gh.factory<_i191.LoginUseCase>(
-      () => _i191.LoginUseCase(gh<_i184.LoginRepo>()),
-    );
-    gh.factory<_i442.LoginViewModel>(
-      () => _i442.LoginViewModel(
-        loginUseCase: gh<_i191.LoginUseCase>(),
-        sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
     );
     return this;

@@ -271,6 +271,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Success'**
   String get success;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get reset_password;
+
+  /// No description provided for @please_enter_your_email_to_receive_a_verification_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email to receive a verification code to create a new password via email'**
+  String get please_enter_your_email_to_receive_a_verification_code;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @verification_code_sent_to_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent to your email'**
+  String get verification_code_sent_to_your_email;
+
+  /// No description provided for @email_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Not Found'**
+  String get email_not_found;
+
+  /// No description provided for @try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get try_again;
+
+  /// No description provided for @email_verification.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verification'**
+  String get email_verification;
+
+  /// No description provided for @please_enter_the_6_digit_code_sent_to_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the 6-digit code sent to your email'**
+  String get please_enter_the_6_digit_code_sent_to_your_email;
+
+  /// No description provided for @didnt_receive_the_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code? '**
+  String get didnt_receive_the_code;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @please_enter_your_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your new password'**
+  String get please_enter_your_new_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @enter_your_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your new password'**
+  String get enter_your_new_password;
+
+  /// No description provided for @confirm_your_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirm_your_password;
+
+  /// No description provided for @confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirm_password;
+
+  /// No description provided for @password_reset_success_please_login_again_with_your_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset successfully! Please login again with your new password.'**
+  String get password_reset_success_please_login_again_with_your_new_password;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @forget_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forget_password;
 }
 
 class _AppLocalizationsDelegate

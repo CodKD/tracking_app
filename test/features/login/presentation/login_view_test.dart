@@ -58,15 +58,15 @@ class TestLoginWidget extends StatelessWidget {
         bool isLoading = state.toString().contains('LoginLoading');
 
         return Scaffold(
-          appBar: AppBar(title: Text('Login')),
+          appBar: AppBar(title: const Text('Login')),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
               child: Column(
                 children: [
                   TextFormField(
-                    key: Key('email_field'),
-                    decoration: InputDecoration(labelText: 'Email'),
+                    key: const Key('email_field'),
+                    decoration: const InputDecoration(labelText: 'Email'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Email is required';
@@ -74,10 +74,10 @@ class TestLoginWidget extends StatelessWidget {
                       return null;
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
-                    key: Key('password_field'),
-                    decoration: InputDecoration(labelText: 'Password'),
+                    key: const Key('password_field'),
+                    decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -86,18 +86,18 @@ class TestLoginWidget extends StatelessWidget {
                       return null;
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Checkbox(value: false, onChanged: (value) {}),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   if (isLoading)
-                    CircularProgressIndicator()
+                    const CircularProgressIndicator()
                   else
                     ElevatedButton(
-                      key: Key('login_button'),
+                      key: const Key('login_button'),
                       onPressed: () {
                         // Simple test login trigger
                       },
-                      child: Text('Login'),
+                      child: const Text('Login'),
                     ),
                 ],
               ),
@@ -173,8 +173,8 @@ void main() {
       );
 
       // Act
-      final emailField = find.byKey(Key('email_field'));
-      final passwordField = find.byKey(Key('password_field'));
+      final emailField = find.byKey(const Key('email_field'));
+      final passwordField = find.byKey(const Key('password_field'));
 
       await tester.enterText(emailField, 'test@example.com');
       await tester.enterText(passwordField, 'password123');
@@ -197,15 +197,15 @@ void main() {
       );
 
       // Assert - Should show login button
-      expect(find.byKey(Key('login_button')), findsOneWidget);
+      expect(find.byKey(const Key('login_button')), findsOneWidget);
       expect(find.byType(ElevatedButton), findsOneWidget);
 
       // Act - Tap login button
-      await tester.tap(find.byKey(Key('login_button')));
+      await tester.tap(find.byKey(const Key('login_button')));
       await tester.pump();
 
       // Should still have the button
-      expect(find.byKey(Key('login_button')), findsOneWidget);
+      expect(find.byKey(const Key('login_button')), findsOneWidget);
     });
   });
 }

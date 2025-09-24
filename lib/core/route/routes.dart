@@ -20,14 +20,12 @@ abstract class Routes {
         return MaterialPageRoute(
           builder: (context) => const ForgetPasswordView(),
         );
-      default:
-        return MaterialPageRoute(builder: (context) => const NotFoundScreen());
       case AppRoutes.loginView:
-        return MaterialPageRoute(builder: (context) => LoginView());
+        return MaterialPageRoute(builder: (context) => const LoginView());
       case AppRoutes.onBoardingView:
         return MaterialPageRoute(builder: (context) => const OnboardingView());
       default:
-        return MaterialPageRoute(builder: (context) => NotFoundScreen());
+        return MaterialPageRoute(builder: (context) => const NotFoundScreen());
     }
   }
 }

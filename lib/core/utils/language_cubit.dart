@@ -8,7 +8,7 @@ import '../modules/shared_preferences_module.dart';
 class LocaleCubit extends Cubit<Locale> {
     final SharedPrefHelper sharedPrefHelper;
 
-  LocaleCubit({required this.sharedPrefHelper}) : super(const Locale("ar")) {
+  LocaleCubit({required this.sharedPrefHelper}) : super(const Locale("en")) {
     _loadSavedLang();
 
   }

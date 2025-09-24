@@ -20,9 +20,9 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<LoginViewModel>(),
+      create: (context) => getIt<LoginViewModel>()..loadSavedEmail(),
       child: BlocConsumer<LoginViewModel, LoginStates>(
-         listener: (context, state) {
+        listener: (context, state) {
           if (state is LoginErrorState) {
             DialogUtils.hideLoading(context);
             DialogUtils.showMessage(
@@ -30,17 +30,13 @@ class LoginView extends StatelessWidget {
               content: state.message,
               posActions: context.l10n.ok,
             );
-          }
-          else if (state is LoginLoadingState) {
+          } else if (state is LoginLoadingState) {
             DialogUtils.showLoading(
               context: context,
               loadingMessage: context.l10n.loading,
             );
-          }
-          else if (state is LoginSuccessState) {
+          } else if (state is LoginSuccessState) {
             DialogUtils.hideLoading(context);
-            // Close the cubit to dispose resources
-            context.read<LoginViewModel>().close();
             DialogUtils.showMessage(
               context: context,
               content: context.l10n.success,
@@ -57,7 +53,12 @@ class LoginView extends StatelessWidget {
               leading: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: IconButton(
-                  onPressed: () => context.pop(),
+                  onPressed: () {
+                    if (Navigator.canPop(context)) {
+                      context.pop();
+                      context.read<LoginViewModel>().close();
+                    }
+                  },
                   icon: const Icon(Icons.arrow_back_ios),
                 ),
               ),
@@ -78,7 +79,9 @@ class LoginView extends StatelessWidget {
                           labelText: context.l10n.email,
                           isPassword: false,
                           validator: (value) => value.validateEmail(context),
-                          controller: context.read<LoginViewModel>().emailController,
+                          controller: context
+                              .read<LoginViewModel>()
+                              .emailController,
                         ),
                         24.heightBox,
                         AppTextFormField(
@@ -86,33 +89,38 @@ class LoginView extends StatelessWidget {
                           hintText: context.l10n.enter_your_password,
                           labelText: context.l10n.password,
                           validator: (value) => value.validatePassword(context),
-                          suffixIcon: Icon(Icons.visibility_off),
-                          controller: context.read<LoginViewModel>().passwordController,
+                          suffixIcon: const Icon(Icons.visibility_off),
+                          controller: context
+                              .read<LoginViewModel>()
+                              .passwordController,
                         ),
                         11.heightBox,
                         Row(
                           children: [
                             Expanded(
                               child: CheckboxListTile(
-                                value: false,
-                                onChanged: (value) {
-                                  //TODO: Implement remember me functionality
-
-                                },
+                                value: context
+                                    .read<LoginViewModel>()
+                                    .rememberMe,
+                                onChanged: context
+                                    .read<LoginViewModel>()
+                                    .setRememberMe,
                                 title: Text(
                                   context.l10n.remember_me,
                                   style: AppStyles.regular13grey.copyWith(
                                     color: AppColors.black,
                                   ),
                                 ),
-                                controlAffinity: ListTileControlAffinity.leading,
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
                                 contentPadding: EdgeInsets.zero,
                               ),
                             ),
                             TextButton(
                               onPressed: () {
-                                // TODO: Implement forgot password functionality
-
+                                context.pushNamed(
+                                  AppRoutes.forgetPasswordScreen,
+                                );
                               },
                               child: Text(
                                 context.l10n.forgot_password,
@@ -126,7 +134,11 @@ class LoginView extends StatelessWidget {
                         32.heightBox,
                         CustomButton(
                           onPressed: () {
-                            if(context.read<LoginViewModel>().formKey.currentState!.validate()){
+                            if (context
+                                .read<LoginViewModel>()
+                                .formKey
+                                .currentState!
+                                .validate()) {
                               context.read<LoginViewModel>().login();
                             }
                           },
@@ -144,7 +156,6 @@ class LoginView extends StatelessWidget {
             ),
           );
         },
-
       ),
     );
   }

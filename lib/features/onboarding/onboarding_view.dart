@@ -36,7 +36,7 @@ class OnboardingView extends StatelessWidget {
                     24.heightBox,
                     CustomButton(
                       onPressed: () {
-                        context.pushNamed(AppRoutes.loginView);
+                        context.pushReplacementNamed(AppRoutes.loginView);
                       },
                       borderRadius: 100,
                       child: Text(
@@ -51,7 +51,10 @@ class OnboardingView extends StatelessWidget {
                       },
                       borderRadius: 100,
                       backgroundColorButton: AppColors.white,
-                      borderSide: BorderSide(width: 1,color: AppColors.black),
+                      borderSide: const BorderSide(
+                        width: 1,
+                        color: AppColors.black,
+                      ),
                       child: Text(
                         context.l10n.apply_now,
                         style: AppStyles.medium16black,
@@ -60,8 +63,12 @@ class OnboardingView extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
-              Text(context.l10n.version, textAlign: TextAlign.center, style: AppStyles.regular11grey,)
+              const Spacer(),
+              Text(
+                context.l10n.version,
+                textAlign: TextAlign.center,
+                style: AppStyles.regular11grey,
+              ),
             ],
           ),
         ),

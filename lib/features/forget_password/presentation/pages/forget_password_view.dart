@@ -31,40 +31,31 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: true,
-      // ignore: deprecated_member_use
-      onPopInvoked: (didPop) {
-        if (didPop) {
-          forgetPasswordViewModel.resetAllFields();
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: EdgeInsets.only(left: context.width * 0.04),
-            child: IconButton(
-              onPressed: () {
-                forgetPasswordViewModel.resetAllFields();
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back_ios),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: Padding(
+          padding: EdgeInsets.only(left: context.width * 0.04),
+          child: IconButton(
+            onPressed: () {
+              forgetPasswordViewModel.resetAllFields();
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios),
           ),
-          leadingWidth: context.width * 0.09,
-          title: Text('Reset Password', style: AppStyles.appBarTitleStyle),
-          centerTitle: true,
         ),
-        body: PageView(
-          controller: forgetPasswordViewModel.pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            ForgetPasswordComponent(viewModel: forgetPasswordViewModel),
-            OtpComponent(viewModel: forgetPasswordViewModel),
-            ResetPasswordComponent(viewModel: forgetPasswordViewModel),
-          ],
-        ),
+        leadingWidth: context.width * 0.09,
+        title: Text(context.l10n.password, style: AppStyles.appBarTitleStyle),
+        centerTitle: false,
+      ),
+      body: PageView(
+        controller: forgetPasswordViewModel.pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          ForgetPasswordComponent(viewModel: forgetPasswordViewModel),
+          OtpComponent(viewModel: forgetPasswordViewModel),
+          ResetPasswordComponent(viewModel: forgetPasswordViewModel),
+        ],
       ),
     );
   }

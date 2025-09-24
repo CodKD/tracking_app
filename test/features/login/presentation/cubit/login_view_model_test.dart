@@ -82,9 +82,22 @@ void main() {
       expect(viewModel.state, isA<LoginInitState>());
     });
 
-    test('controllers should have default values', () {
-      expect(viewModel.emailController.text, isNotEmpty);
-      expect(viewModel.passwordController.text, isNotEmpty);
+    test('controllers should have empty default values', () {
+      expect(viewModel.emailController.text, isEmpty);
+      expect(viewModel.passwordController.text, isEmpty);
+    });
+
+    test('should load saved email when available', () {
+      // Arrange
+      const savedEmail = 'saved@example.com';
+      fakeSharedPrefHelper.setValue(AppConstants.savedEmailKey, savedEmail);
+
+      // Act
+      viewModel.loadSavedEmail();
+
+      // Assert
+      expect(viewModel.emailController.text, equals(savedEmail));
+      expect(viewModel.rememberMe, isTrue);
     });
 
     test('should create login request entity with correct data', () {
@@ -145,6 +158,46 @@ void main() {
       // Assert
       expect(result, isA<ApiErrorResult<LoginResponseEntity>>());
       expect((result as ApiErrorResult).errorMessage, equals('Login failed'));
+    });
+
+    test('should set remember me value and emit state', () {
+      // Act
+      viewModel.setRememberMe(true);
+
+      // Assert
+      expect(viewModel.rememberMe, isTrue);
+      expect(viewModel.state, isA<LoginRememberMeState>());
+    });
+
+    test('should save email when remember me is enabled', () async {
+      // Arrange
+      const email = 'test@example.com';
+      viewModel.setRememberMe(true);
+
+      // Act
+      viewModel.saveEmail(email);
+      // Wait a bit for async operation to complete
+      await Future.delayed(Duration.zero);
+
+      // Assert
+      expect(
+        fakeSharedPrefHelper.getValue(AppConstants.savedEmailKey),
+        equals(email),
+      );
+    });
+
+    test('should not save email when remember me is disabled', () async {
+      // Arrange
+      const email = 'test@example.com';
+      viewModel.setRememberMe(false);
+
+      // Act
+      viewModel.saveEmail(email);
+      // Wait a bit for async operation to complete
+      await Future.delayed(Duration.zero);
+
+      // Assert
+      expect(fakeSharedPrefHelper.getValue(AppConstants.savedEmailKey), isNull);
     });
 
     test('should dispose without errors', () async {

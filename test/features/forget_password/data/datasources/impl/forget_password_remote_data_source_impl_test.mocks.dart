@@ -3,16 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i9;
+import 'dart:async' as _i10;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i8;
+import 'package:retrofit/retrofit.dart' as _i5;
+import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i9;
 import 'package:tracking_app/features/forget_password/data/models/request/forget_password_request_dto.dart'
-    as _i10;
-import 'package:tracking_app/features/forget_password/data/models/request/reset_password_request_dto.dart'
-    as _i12;
-import 'package:tracking_app/features/forget_password/data/models/request/verify_reset_code_request_dto.dart'
     as _i11;
+import 'package:tracking_app/features/forget_password/data/models/request/reset_password_request_dto.dart'
+    as _i13;
+import 'package:tracking_app/features/forget_password/data/models/request/verify_reset_code_request_dto.dart'
+    as _i12;
 import 'package:tracking_app/features/forget_password/data/models/response/forget_password_response_dto.dart'
     as _i2;
 import 'package:tracking_app/features/forget_password/data/models/response/reset_password_response_dto.dart'
@@ -20,11 +21,15 @@ import 'package:tracking_app/features/forget_password/data/models/response/reset
 import 'package:tracking_app/features/forget_password/data/models/response/verify_reset_code_response_dto.dart'
     as _i3;
 import 'package:tracking_app/features/forget_password/domain/entities/forget_password_response_entity.dart'
-    as _i5;
-import 'package:tracking_app/features/forget_password/domain/entities/reset_password_response_entity.dart'
     as _i6;
-import 'package:tracking_app/features/forget_password/domain/entities/verify_reset_code_entity.dart'
+import 'package:tracking_app/features/forget_password/domain/entities/reset_password_response_entity.dart'
     as _i7;
+import 'package:tracking_app/features/forget_password/domain/entities/verify_reset_code_entity.dart'
+    as _i8;
+import 'package:tracking_app/features/login/data/model/login_request_dto.dart'
+    as _i15;
+import 'package:tracking_app/features/login/data/model/login_response_dto.dart'
+    as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -58,23 +63,29 @@ class _FakeResetPasswordResponseDto_2 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakeForgetPasswordResponseEntity_3 extends _i1.SmartFake
-    implements _i5.ForgetPasswordResponseEntity {
-  _FakeForgetPasswordResponseEntity_3(
+class _FakeHttpResponse_3<T> extends _i1.SmartFake
+    implements _i5.HttpResponse<T> {
+  _FakeHttpResponse_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeForgetPasswordResponseEntity_4 extends _i1.SmartFake
+    implements _i6.ForgetPasswordResponseEntity {
+  _FakeForgetPasswordResponseEntity_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(parent, parentInvocation);
 }
 
-class _FakeResetPasswordResponseEntity_4 extends _i1.SmartFake
-    implements _i6.ResetPasswordResponseEntity {
-  _FakeResetPasswordResponseEntity_4(Object parent, Invocation parentInvocation)
+class _FakeResetPasswordResponseEntity_5 extends _i1.SmartFake
+    implements _i7.ResetPasswordResponseEntity {
+  _FakeResetPasswordResponseEntity_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeVerifyResetCodeResponseEntity_5 extends _i1.SmartFake
-    implements _i7.VerifyResetCodeResponseEntity {
-  _FakeVerifyResetCodeResponseEntity_5(
+class _FakeVerifyResetCodeResponseEntity_6 extends _i1.SmartFake
+    implements _i8.VerifyResetCodeResponseEntity {
+  _FakeVerifyResetCodeResponseEntity_6(
     Object parent,
     Invocation parentInvocation,
   ) : super(parent, parentInvocation);
@@ -83,20 +94,20 @@ class _FakeVerifyResetCodeResponseEntity_5 extends _i1.SmartFake
 /// A class which mocks [ApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiClient extends _i1.Mock implements _i8.ApiClient {
+class MockApiClient extends _i1.Mock implements _i9.ApiClient {
   MockApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.Future<_i2.ForgetPasswordResponseDto> forgetPassword({
-    required _i10.ForgetPasswordRequestDto? forgetPasswordRequestDto,
+  _i10.Future<_i2.ForgetPasswordResponseDto> forgetPassword({
+    required _i11.ForgetPasswordRequestDto? forgetPasswordRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [], {
               #forgetPasswordRequestDto: forgetPasswordRequestDto,
             }),
-            returnValue: _i9.Future<_i2.ForgetPasswordResponseDto>.value(
+            returnValue: _i10.Future<_i2.ForgetPasswordResponseDto>.value(
               _FakeForgetPasswordResponseDto_0(
                 this,
                 Invocation.method(#forgetPassword, [], {
@@ -105,17 +116,17 @@ class MockApiClient extends _i1.Mock implements _i8.ApiClient {
               ),
             ),
           )
-          as _i9.Future<_i2.ForgetPasswordResponseDto>);
+          as _i10.Future<_i2.ForgetPasswordResponseDto>);
 
   @override
-  _i9.Future<_i3.VerifyResetCodeResponseDto> verifyResetCode({
-    required _i11.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
+  _i10.Future<_i3.VerifyResetCodeResponseDto> verifyResetCode({
+    required _i12.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#verifyResetCode, [], {
               #verifyResetCodeRequestDto: verifyResetCodeRequestDto,
             }),
-            returnValue: _i9.Future<_i3.VerifyResetCodeResponseDto>.value(
+            returnValue: _i10.Future<_i3.VerifyResetCodeResponseDto>.value(
               _FakeVerifyResetCodeResponseDto_1(
                 this,
                 Invocation.method(#verifyResetCode, [], {
@@ -124,17 +135,17 @@ class MockApiClient extends _i1.Mock implements _i8.ApiClient {
               ),
             ),
           )
-          as _i9.Future<_i3.VerifyResetCodeResponseDto>);
+          as _i10.Future<_i3.VerifyResetCodeResponseDto>);
 
   @override
-  _i9.Future<_i4.ResetPasswordResponseDto> resetPassword({
-    required _i12.ResetPasswordRequestDto? resetPasswordRequestDto,
+  _i10.Future<_i4.ResetPasswordResponseDto> resetPassword({
+    required _i13.ResetPasswordRequestDto? resetPasswordRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [], {
               #resetPasswordRequestDto: resetPasswordRequestDto,
             }),
-            returnValue: _i9.Future<_i4.ResetPasswordResponseDto>.value(
+            returnValue: _i10.Future<_i4.ResetPasswordResponseDto>.value(
               _FakeResetPasswordResponseDto_2(
                 this,
                 Invocation.method(#resetPassword, [], {
@@ -143,7 +154,25 @@ class MockApiClient extends _i1.Mock implements _i8.ApiClient {
               ),
             ),
           )
-          as _i9.Future<_i4.ResetPasswordResponseDto>);
+          as _i10.Future<_i4.ResetPasswordResponseDto>);
+
+  @override
+  _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>> login({
+    required _i15.LoginRequestDto? loginRequestDto,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
+            returnValue:
+                _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>>.value(
+                  _FakeHttpResponse_3<_i14.LoginResponseDto>(
+                    this,
+                    Invocation.method(#login, [], {
+                      #loginRequestDto: loginRequestDto,
+                    }),
+                  ),
+                ),
+          )
+          as _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>>);
 }
 
 /// A class which mocks [ForgetPasswordResponseDto].
@@ -164,15 +193,15 @@ class MockForgetPasswordResponseDto extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i5.ForgetPasswordResponseEntity toEntity() =>
+  _i6.ForgetPasswordResponseEntity toEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toEntity, []),
-            returnValue: _FakeForgetPasswordResponseEntity_3(
+            returnValue: _FakeForgetPasswordResponseEntity_4(
               this,
               Invocation.method(#toEntity, []),
             ),
           )
-          as _i5.ForgetPasswordResponseEntity);
+          as _i6.ForgetPasswordResponseEntity);
 }
 
 /// A class which mocks [ResetPasswordResponseDto].
@@ -193,15 +222,15 @@ class MockResetPasswordResponseDto extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i6.ResetPasswordResponseEntity toEntity() =>
+  _i7.ResetPasswordResponseEntity toEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toEntity, []),
-            returnValue: _FakeResetPasswordResponseEntity_4(
+            returnValue: _FakeResetPasswordResponseEntity_5(
               this,
               Invocation.method(#toEntity, []),
             ),
           )
-          as _i6.ResetPasswordResponseEntity);
+          as _i7.ResetPasswordResponseEntity);
 }
 
 /// A class which mocks [VerifyResetCodeResponseDto].
@@ -222,13 +251,13 @@ class MockVerifyResetCodeResponseDto extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i7.VerifyResetCodeResponseEntity toEntity() =>
+  _i8.VerifyResetCodeResponseEntity toEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toEntity, []),
-            returnValue: _FakeVerifyResetCodeResponseEntity_5(
+            returnValue: _FakeVerifyResetCodeResponseEntity_6(
               this,
               Invocation.method(#toEntity, []),
             ),
           )
-          as _i7.VerifyResetCodeResponseEntity);
+          as _i8.VerifyResetCodeResponseEntity);
 }

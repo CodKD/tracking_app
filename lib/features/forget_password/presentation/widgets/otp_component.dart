@@ -30,13 +30,15 @@ class OtpComponent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Email Verification",
+                    context.l10n.email_verification,
                     style: AppStyles.medium18black,
                     textAlign: TextAlign.center,
                   ),
                   16.heightBox,
                   Text(
-                    "Please enter the 6-digit code sent to your email",
+                    context
+                        .l10n
+                        .please_enter_the_6_digit_code_sent_to_your_email,
                     style: AppStyles.regular14grey,
                     textAlign: TextAlign.center,
                   ),
@@ -60,7 +62,6 @@ class OtpComponent extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
                           maxLength: 1,
-                          obscureText: true,
                           decoration: InputDecoration(
                             counterText: '',
                             fillColor: isError
@@ -114,18 +115,18 @@ class OtpComponent extends StatelessWidget {
                         ? () => viewModel.otpValidationRequest()
                         : null,
 
-                    child: const Text("Continue"),
+                    child: Text(context.l10n.continue_btn),
                   ),
                   24.heightBox,
                   // Resend OTP
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: "Didn't receive the code? ",
+                      text: context.l10n.didnt_receive_the_code,
                       style: AppStyles.regular16black,
                       children: [
                         TextSpan(
-                          text: "Resend",
+                          text: context.l10n.resend,
                           style: AppStyles.regular16black.copyWith(
                             color: AppColors.pink,
                             fontWeight: FontWeight.w600,
@@ -146,7 +147,7 @@ class OtpComponent extends StatelessWidget {
         if (state is OtpLoadingState) {
           DialogUtils.showLoading(
             context: context,
-            loadingMessage: "Verifying code...",
+            loadingMessage: context.l10n.loading,
           );
         } else if (state is OtpSuccessState) {
           DialogUtils.hideLoading(context);
@@ -155,8 +156,8 @@ class OtpComponent extends StatelessWidget {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
             context: context,
-            content: "OTP has been resent to your email",
-            negActions: "OK",
+            content: context.l10n.verification_code_sent_to_your_email,
+            negActions: context.l10n.ok,
           );
         } else if (state is OtpFailureState) {
           DialogUtils.hideLoading(context);

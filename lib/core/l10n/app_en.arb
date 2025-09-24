@@ -27,5 +27,24 @@
   "continue_btn": "Continue",
   "ok": "Ok",
   "loading": "Loading...",
-  "success": "Success"
-  }
+  "success": "Success",
+  "reset_password": "Reset Password",
+  "please_enter_your_email_to_receive_a_verification_code": "Please enter your email to receive a verification code to create a new password via email",
+  "send": "Send",
+  "verification_code_sent_to_your_email": "Verification code sent to your email",
+  "email_not_found": "Email Not Found",
+  "try_again": "Try Again" ,
+  "email_verification": "Email Verification",
+  "please_enter_the_6_digit_code_sent_to_your_email": "Please enter the 6-digit code sent to your email",
+  "didnt_receive_the_code": "Didn't receive the code? ",
+  "resend": "Resend",
+  "verification_code_sent_to_your_email": "Verification code sent to your email",
+  "please_enter_your_new_password": "Please enter your new password",
+  "new_password": "New Password",
+  "enter_your_new_password": "Enter your new password",
+  "confirm_your_password": "Confirm your password",
+  "confirm_password": "Confirm Password",
+  "password_reset_success_please_login_again_with_your_new_password": "Password reset successfully! Please login again with your new password.",
+  "error": "Error",
+  "forget_password": "Forget Password"
+}

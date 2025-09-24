@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/dialog/dialog.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
-import 'package:tracking_app/core/input_formatter/app_regex.dart';
+import 'package:tracking_app/core/extensions/validation_ext.dart';
 import 'package:tracking_app/core/theme/app_styles.dart';
 import 'package:tracking_app/features/forget_password/presentation/cubit/forget_password_cubit.dart';
 
@@ -28,30 +28,29 @@ class ForgetPasswordComponent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Forget Password",
+                      context.l10n.forget_password,
                       style: AppStyles.medium18black,
                       textAlign: TextAlign.center,
                     ),
                     16.heightBox,
                     Text(
-                      "Please enter your email to receive a link to create a new password via email",
+                      context
+                          .l10n
+                          .please_enter_your_email_to_receive_a_verification_code,
                       style: AppStyles.regular14grey,
                       textAlign: TextAlign.center,
                     ),
                     32.heightBox,
                     TextFormField(
                       controller: viewModel.emailController,
-                      validator: (value) =>
-                          AppRegex.isEmailValid(value?.trim() ?? '')
-                          ? null
-                          : "Please enter a valid email",
+                      validator: (value) => value?.validateEmail(context),
                       onChanged: (_) => viewModel.validateForgetPassBtn(),
                       style: AppStyles.regular16black,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        hintText: "Email",
+                        hintText: context.l10n.email,
                         hintStyle: AppStyles.regular14grey,
-                        labelText: "Email",
+                        labelText: context.l10n.email,
                         labelStyle: AppStyles.regular14black,
                       ),
                     ),
@@ -60,7 +59,7 @@ class ForgetPasswordComponent extends StatelessWidget {
                       onPressed: viewModel.forgetPassBtnEnabled
                           ? () => viewModel.forgetPasswordRequest()
                           : null,
-                      child: const Text("Send"),
+                      child: Text(context.l10n.send),
                     ),
                   ],
                 ),
@@ -73,16 +72,16 @@ class ForgetPasswordComponent extends StatelessWidget {
         if (state is ForgetPassLoadingState) {
           DialogUtils.showLoading(
             context: context,
-            loadingMessage: "Checking email...",
+            loadingMessage: context.l10n.loading,
           );
         } else if (state is ForgetPassSuccessState) {
           DialogUtils.hideLoading(context);
           // Show success message briefly before navigation
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Verification code sent to your email"),
+            SnackBar(
+              content: Text(context.l10n.verification_code_sent_to_your_email),
               backgroundColor: Colors.green,
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
             ),
           );
         } else if (state is ForgetPassFailureState) {
@@ -90,9 +89,8 @@ class ForgetPasswordComponent extends StatelessWidget {
           // Show error message and stay on current screen
           DialogUtils.showMessage(
             context: context,
-            title: "Email Not Found",
-            content: state.error,
-            negActions: "Try Again",
+            content: context.l10n.email_not_found,
+            negActions: context.l10n.try_again,
           );
         }
       },
