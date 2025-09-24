@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/di/di.dart';
-import 'package:tracking_app/core/di/modules/shared_preferences_module.dart';
+import 'package:tracking_app/core/modules/shared_preferences_module.dart';
 import 'package:tracking_app/core/l10n/app_localizations.dart';
 import 'package:tracking_app/core/resources/app_constants.dart';
 import 'core/route/app_routes.dart';
@@ -12,9 +12,9 @@ import 'core/utils/language_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPrefHelper().instantiatePreferences();
-  final token = SharedPrefHelper().getValue(AppConstants.tokenKey);
   await configureDependencies();
+  final sharedPrefHelper = getIt<SharedPrefHelper>();
+  final token = sharedPrefHelper.getValue(AppConstants.tokenKey);
   runApp(MyApp(token: token));
 }
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => BlocProvider(
-        create: (context) => LocaleCubit(),
+        create: (context) => getIt<LocaleCubit>(),
         child: BlocBuilder<LocaleCubit, Locale>(
           builder: (context, locale) {
             return MaterialApp(
@@ -41,7 +41,10 @@ class MyApp extends StatelessWidget {
               locale: locale,
               theme: AppTheme.lightTheme,
               onGenerateRoute: Routes.generateRoute,
-              initialRoute: AppRoutes.homeScreen,
+              initialRoute: AppRoutes.loginView
+              // token != null
+              //     ? AppRoutes.homeScreen
+              //     : AppRoutes.onBoardingView,
             );
           },
         ),
