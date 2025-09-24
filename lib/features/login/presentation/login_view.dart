@@ -39,6 +39,8 @@ class LoginView extends StatelessWidget {
           }
           else if (state is LoginSuccessState) {
             DialogUtils.hideLoading(context);
+            // Close the cubit to dispose resources
+            context.read<LoginViewModel>().close();
             DialogUtils.showMessage(
               context: context,
               content: context.l10n.success,
@@ -93,7 +95,10 @@ class LoginView extends StatelessWidget {
                             Expanded(
                               child: CheckboxListTile(
                                 value: false,
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  //TODO: Implement remember me functionality
+
+                                },
                                 title: Text(
                                   context.l10n.remember_me,
                                   style: AppStyles.regular13grey.copyWith(
@@ -105,7 +110,10 @@ class LoginView extends StatelessWidget {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                // TODO: Implement forgot password functionality
+
+                              },
                               child: Text(
                                 context.l10n.forgot_password,
                                 style: AppStyles.font12blackW400.copyWith(
