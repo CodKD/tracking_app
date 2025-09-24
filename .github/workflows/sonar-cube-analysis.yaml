@@ -42,23 +42,9 @@ jobs:
           sudo apt-get install -y lcov
           # Convert coverage to LCOV format
           genhtml coverage/lcov.info -o coverage/html
-      - name: Create SonarQube properties file
+      - name: Update SonarQube properties for quality gate skip
         run: |
-          cat > sonar-project.properties << EOF
-          sonar.projectKey=tracking_app
-          sonar.organization=codkd
-          sonar.qualitygate.wait=false
-          sonar.sourceEncoding=UTF-8
-          sonar.sources=lib/
-          sonar.tests=test/
-          sonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart,**/generated/**/*
-          sonar.coverage.exclusions=**/*test/**/*,**/*Test.dart,**/test/**/*,**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart
-          sonar.dart.coverage.reportPaths=coverage/lcov.info
-          sonar.language=dart
-          EOF
-
-      - name: Debug - Show properties file
-        run: |
+          echo "sonar.qualitygate.wait=false" >> sonar-project.properties
           echo "Contents of sonar-project.properties:"
           cat sonar-project.properties
 
