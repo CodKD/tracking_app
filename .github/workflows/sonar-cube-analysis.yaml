@@ -44,13 +44,24 @@ jobs:
           genhtml coverage/lcov.info -o coverage/html
       - name: Create SonarQube properties file
         run: |
-          echo "sonar.projectKey=tracking_app" >> sonar-project.properties
-          echo "sonar.qualitygate.wait=false" >> sonar-project.properties
-          echo "sonar.coverage.exclusions=**/*test/**/*,**/*Test.dart,**/test/**/*" >> sonar-project.properties
-          echo "sonar.sources=lib/" >> sonar-project.properties
-          echo "sonar.tests=test/" >> sonar-project.properties
-          echo "sonar.dart.coverage.reportPaths=coverage/lcov.info" >> sonar-project.properties
-          echo "sonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart" >> sonar-project.properties
+          cat > sonar-project.properties << EOF
+          sonar.projectKey=tracking_app
+          sonar.organization=codkd
+          sonar.qualitygate.wait=false
+          sonar.sourceEncoding=UTF-8
+          sonar.sources=lib/
+          sonar.tests=test/
+          sonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart,**/generated/**/*
+          sonar.coverage.exclusions=**/*test/**/*,**/*Test.dart,**/test/**/*,**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart
+          sonar.dart.coverage.reportPaths=coverage/lcov.info
+          sonar.language=dart
+          EOF
+
+      - name: Debug - Show properties file
+        run: |
+          echo "Contents of sonar-project.properties:"
+          cat sonar-project.properties
+
       - name: SonarQube Scan (Skip Quality Gate)
         uses: SonarSource/sonarqube-scan-action@v5
         env:
