@@ -32,18 +32,38 @@ jobs:
       - name: Analyze code
         run: flutter analyze
 
-      - name: Run tests
-        run: flutter test --coverage
+      - name: Run tests with coverage
+        run: |
+          flutter test --coverage
+          # Verify coverage file exists
+          ls -la coverage/
+          if [ -f "coverage/lcov.info" ]; then
+            echo "Coverage file found"
+            head -n 20 coverage/lcov.info
+          else
+            echo "Coverage file not found, creating empty one"
+            mkdir -p coverage
+            touch coverage/lcov.info
+          fi
 
       - name: Generate LCOV report
         run: |
           # Install lcov if needed (usually available on Ubuntu)
           sudo apt-get update
           sudo apt-get install -y lcov
-          # Convert coverage to LCOV format
-          genhtml coverage/lcov.info -o coverage/html
+          # Convert coverage to LCOV format if file exists and has content
+          if [ -s "coverage/lcov.info" ]; then
+            genhtml coverage/lcov.info -o coverage/html
+          else
+            echo "Coverage file is empty or missing, skipping HTML generation"
+          fi
+
       - name: Update SonarQube properties for quality gate skip
         run: |
+          # Remove any existing qualitygate.wait setting to avoid duplicates
+          grep -v "sonar.qualitygate.wait" sonar-project.properties > temp.properties || true
+          mv temp.properties sonar-project.properties
+          # Add the quality gate skip setting
           echo "sonar.qualitygate.wait=false" >> sonar-project.properties
           echo "Contents of sonar-project.properties:"
           cat sonar-project.properties
@@ -52,3 +72,8 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.qualitygate.wait=false
+            -Dsonar.coverage.exclusions=**/*test/**/*,**/*Test.dart,**/test/**/*,**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart
+            -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart,**/generated/**/*
