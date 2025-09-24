@@ -258,16 +258,16 @@ void main() {
       testWidgets('should work with English locale', (tester) async {
         // Arrange
         await tester.pumpWidget(
-          MaterialApp(
-            locale: const Locale('en'),
-            localizationsDelegates: const [
+          const MaterialApp(
+            locale: Locale('en'),
+            localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: const [Locale('en'), Locale('ar')],
-            home: const HomeScreen(),
+            supportedLocales: [Locale('en'), Locale('ar')],
+            home: HomeScreen(),
           ),
         );
 
@@ -278,16 +278,16 @@ void main() {
       testWidgets('should work with Arabic locale', (tester) async {
         // Arrange
         await tester.pumpWidget(
-          MaterialApp(
-            locale: const Locale('ar'),
-            localizationsDelegates: const [
+          const MaterialApp(
+            locale: Locale('ar'),
+            localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: const [Locale('en'), Locale('ar')],
-            home: const HomeScreen(),
+            supportedLocales: [Locale('en'), Locale('ar')],
+            home: HomeScreen(),
           ),
         );
 

@@ -71,8 +71,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             ),
         enabledBorder:
             widget.enabledBorder ??
-            OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.grey, width: 1),
+            OutlineInputBorder(              borderSide: const BorderSide(color: AppColors.grey, width: 1),
               borderRadius: BorderRadius.circular(4.0),
             ),
         errorBorder: OutlineInputBorder(

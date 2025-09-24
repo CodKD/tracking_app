@@ -54,7 +54,7 @@ dependencies:
   image_picker: ^1.0.4
   auto_size_text: ^3.0.0
   animated_text_kit: ^4.2.3
-  firebase_core: ^4.1.0
+  firebase_core: 2.24.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -71,6 +71,7 @@ dev_dependencies:
   injectable_generator:
   bloc_test: ^9.1.7
   test: ^1.25.15
+  mockito: ^5.4.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

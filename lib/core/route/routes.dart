@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
+import 'package:tracking_app/features/forget_password/presentation/pages/forget_password_view.dart';
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
 import 'package:tracking_app/features/login/presentation/login_view.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
@@ -15,6 +16,12 @@ abstract class Routes {
     switch (url.path) {
       case AppRoutes.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
+      case AppRoutes.forgetPasswordScreen:
+        return MaterialPageRoute(
+          builder: (context) => const ForgetPasswordView(),
+        );
+      default:
+        return MaterialPageRoute(builder: (context) => const NotFoundScreen());
       case AppRoutes.loginView:
         return MaterialPageRoute(builder: (context) => LoginView());
       case AppRoutes.onBoardingView:
@@ -50,7 +57,7 @@ class NotFoundScreen extends StatelessWidget {
                     animatedTexts: [
                       FadeAnimatedText(
                         "404 Not Found ",
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 50,
                           color: AppColors.white,
@@ -68,11 +75,8 @@ class NotFoundScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 5,
-                  ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
                   child: Text(
                     "Oops! We couldn't find the page you're looking for.",
                     style: TextStyle(
@@ -95,7 +99,7 @@ class NotFoundScreen extends StatelessWidget {
                         AppRoutes.onBoardingView,
                       );
                     },
-                    child: Text("Go to Home"),
+                    child: const Text("Go to Home"),
                   ),
                 ),
               ],

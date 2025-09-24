@@ -20,6 +20,8 @@ class _ApiClient implements ApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
+  Future<ForgetPasswordResponseDto> forgetPassword({
+    required ForgetPasswordRequestDto forgetPasswordRequestDto,
   Future<HttpResponse<LoginResponseDto>> login({
     required LoginRequestDto loginRequestDto,
   }) async {
@@ -27,6 +29,12 @@ class _ApiClient implements ApiClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(forgetPasswordRequestDto.toJson());
+    final _options = _setStreamType<ForgetPasswordResponseDto>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'v1/drivers/forgotPassword',
     _data.addAll(loginRequestDto.toJson());
     final _options = _setStreamType<HttpResponse<LoginResponseDto>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
@@ -39,6 +47,9 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ForgetPasswordResponseDto _value;
+    try {
+      _value = ForgetPasswordResponseDto.fromJson(_result.data!);
     late LoginResponseDto _value;
     try {
       _value = LoginResponseDto.fromJson(_result.data!);
@@ -46,6 +57,67 @@ class _ApiClient implements ApiClient {
       errorLogger?.logError(e, s, _options);
       rethrow;
     }
+    return _value;
+  }
+
+  @override
+  Future<VerifyResetCodeResponseDto> verifyResetCode({
+    required VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(verifyResetCodeRequestDto.toJson());
+    final _options = _setStreamType<VerifyResetCodeResponseDto>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v1/drivers/verifyResetCode',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late VerifyResetCodeResponseDto _value;
+    try {
+      _value = VerifyResetCodeResponseDto.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ResetPasswordResponseDto> resetPassword({
+    required ResetPasswordRequestDto resetPasswordRequestDto,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(resetPasswordRequestDto.toJson());
+    final _options = _setStreamType<ResetPasswordResponseDto>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v1/drivers/resetPassword',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ResetPasswordResponseDto _value;
+    try {
+      _value = ResetPasswordResponseDto.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
     final httpResponse = HttpResponse(_value, _result);
     return httpResponse;
   }
