@@ -37,8 +37,12 @@ class $AssetsImageGen {
   AssetGenImage get noRoutes =>
       const AssetGenImage('assets/image/no_routes.png');
 
+  /// File path: assets/image/onboarding.png
+  AssetGenImage get onboarding =>
+      const AssetGenImage('assets/image/onboarding.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [noRoutes];
+  List<AssetGenImage> get values => [noRoutes, onboarding];
 }
 
 class $AssetsSvgGen {
