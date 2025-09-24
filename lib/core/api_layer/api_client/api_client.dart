@@ -7,14 +7,16 @@ import 'package:tracking_app/features/forget_password/data/models/request/verify
 import 'package:tracking_app/features/forget_password/data/models/response/forget_password_response_dto.dart';
 import 'package:tracking_app/features/forget_password/data/models/response/reset_password_response_dto.dart';
 import 'package:tracking_app/features/forget_password/data/models/response/verify_reset_code_response_dto.dart';
+import 'package:tracking_app/core/resources/app_constants.dart';
+import 'package:tracking_app/features/login/data/model/login_request_dto.dart';
+import 'package:tracking_app/features/login/data/model/login_response_dto.dart';
 part 'api_client.g.dart';
 
 @singleton
-@RestApi(baseUrl: 'https://flower.elevateegy.com/api/')
+@RestApi(baseUrl: AppConstants.baseUrl)
 abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
-
   @POST('v1/drivers/forgotPassword')
   Future<ForgetPasswordResponseDto> forgetPassword({
     @Body() required ForgetPasswordRequestDto forgetPasswordRequestDto,
@@ -27,4 +29,7 @@ abstract class ApiClient {
   Future<ResetPasswordResponseDto> resetPassword({
     @Body() required ResetPasswordRequestDto resetPasswordRequestDto,
   });
+}
+  @POST(AppConstants.login)
+  Future<HttpResponse<LoginResponseDto>> login({@Body() required LoginRequestDto loginRequestDto});
 }

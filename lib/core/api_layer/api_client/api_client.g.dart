@@ -10,7 +10,7 @@ part of 'api_client.dart';
 
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://flower.elevateegy.com/api/';
+    baseUrl ??= 'https://flower.elevateegy.com/api/v1/';
   }
 
   final Dio _dio;
@@ -22,6 +22,8 @@ class _ApiClient implements ApiClient {
   @override
   Future<ForgetPasswordResponseDto> forgetPassword({
     required ForgetPasswordRequestDto forgetPasswordRequestDto,
+  Future<HttpResponse<LoginResponseDto>> login({
+    required LoginRequestDto loginRequestDto,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -33,6 +35,12 @@ class _ApiClient implements ApiClient {
           .compose(
             _dio.options,
             'v1/drivers/forgotPassword',
+    _data.addAll(loginRequestDto.toJson());
+    final _options = _setStreamType<HttpResponse<LoginResponseDto>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/drivers/signin',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -42,6 +50,9 @@ class _ApiClient implements ApiClient {
     late ForgetPasswordResponseDto _value;
     try {
       _value = ForgetPasswordResponseDto.fromJson(_result.data!);
+    late LoginResponseDto _value;
+    try {
+      _value = LoginResponseDto.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -107,6 +118,8 @@ class _ApiClient implements ApiClient {
       rethrow;
     }
     return _value;
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

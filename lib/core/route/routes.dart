@@ -5,7 +5,10 @@ import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/features/forget_password/presentation/pages/forget_password_view.dart';
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
+import 'package:tracking_app/features/login/presentation/login_view.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
+
+import '../../features/onboarding/onboarding_view.dart';
 
 abstract class Routes {
   static Route generateRoute(RouteSettings settings) {
@@ -19,6 +22,12 @@ abstract class Routes {
         );
       default:
         return MaterialPageRoute(builder: (context) => const NotFoundScreen());
+      case AppRoutes.loginView:
+        return MaterialPageRoute(builder: (context) => LoginView());
+      case AppRoutes.onBoardingView:
+        return MaterialPageRoute(builder: (context) => const OnboardingView());
+      default:
+        return MaterialPageRoute(builder: (context) => NotFoundScreen());
     }
   }
 }
@@ -87,7 +96,7 @@ class NotFoundScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        AppRoutes.loginScreen,
+                        AppRoutes.onBoardingView,
                       );
                     },
                     child: const Text("Go to Home"),
