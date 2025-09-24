@@ -1,4 +1,6 @@
-name: Build
+# This workflow runs SonarQube analysis but skips the quality gate check
+# This allows the build to continue even if quality gate conditions are not met
+name: SonarQube Analysis (Skip Quality Gate)
 on:
   push:
     branches:
@@ -8,7 +10,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   sonarqube:
-    name: SonarQube
+    name: SonarQube Analysis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,19 +22,19 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.35.4
-      
+
       - name: Install dependencies
         run: flutter pub get
-      
+
       - name: Generate files
         run: flutter pub run build_runner build --delete-conflicting-outputs
-      
+
       - name: Analyze code
         run: flutter analyze
-      
+
       - name: Run tests
         run: flutter test --coverage
-      
+
       - name: Generate LCOV report
         run: |
           # Install lcov if needed (usually available on Ubuntu)
@@ -40,17 +42,16 @@ jobs:
           sudo apt-get install -y lcov
           # Convert coverage to LCOV format
           genhtml coverage/lcov.info -o coverage/html
-      - name: SonarQube Scan
+      - name: Create SonarQube properties file
+        run: |
+          echo "sonar.projectKey=tracking_app" >> sonar-project.properties
+          echo "sonar.qualitygate.wait=false" >> sonar-project.properties
+          echo "sonar.coverage.exclusions=**/*test/**/*,**/*Test.dart,**/test/**/*" >> sonar-project.properties
+          echo "sonar.sources=lib/" >> sonar-project.properties
+          echo "sonar.tests=test/" >> sonar-project.properties
+          echo "sonar.dart.coverage.reportPaths=coverage/lcov.info" >> sonar-project.properties
+          echo "sonar.exclusions=**/*.g.dart,**/*.freezed.dart,**/*.mocks.dart" >> sonar-project.properties
+      - name: SonarQube Scan (Skip Quality Gate)
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: SonarQube Scan (Skip Quality Gate)
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-            -Dsonar.qualitygate.wait=false \
-            -Dsonar.coverage.exclusions=**/*Test.java,**/test/**/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
