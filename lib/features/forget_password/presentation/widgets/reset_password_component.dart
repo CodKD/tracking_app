@@ -55,6 +55,7 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                       onChanged: (_) => widget.viewModel.validateResetPassBtn(),
                       style: AppStyles.regular16black,
                       obscureText: !_isNewPasswordVisible,
+                      obscuringCharacter: "★",
                       decoration: InputDecoration(
                         hintText: context.l10n.enter_your_new_password,
                         hintStyle: AppStyles.regular14grey,
@@ -85,6 +86,7 @@ class _ResetPasswordComponentState extends State<ResetPasswordComponent> {
                       onChanged: (_) => widget.viewModel.validateResetPassBtn(),
                       style: AppStyles.regular16black,
                       obscureText: !_isConfirmPasswordVisible,
+                      obscuringCharacter: "★",
                       decoration: InputDecoration(
                         hintText: context.l10n.confirm_your_password,
                         hintStyle: AppStyles.regular14grey,
