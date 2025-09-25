@@ -46,5 +46,8 @@
   "confirm_password": "Confirm Password",
   "password_reset_success_please_login_again_with_your_new_password": "Password reset successfully! Please login again with your new password.",
   "error": "Error",
-  "forget_password": "Forget Password"
+  "forget_password": "Forget Password",
+  "apply_submitted_successfully":"Your application has been submitted!",
+  "apply_submitted_description":"Thank you for providing your application,\nwe will review your application and will\nget back to you soon."
+
 }

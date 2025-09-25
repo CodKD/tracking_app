@@ -157,4 +157,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get forget_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get apply_submitted_successfully => 'تم تقديم الطلب بنجاح';
+
+  @override
+  String get apply_submitted_description =>
+      'شكراً لتقديم طلبك،\nسنقوم بمراجعة طلبك\nوالتواصل معك قريباً.';
 }

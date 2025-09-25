@@ -46,7 +46,9 @@
   "confirm_password": "تأكيد كلمة المرور" ,
     "password_reset_success_please_login_again_with_your_new_password": "تم إعادة تعيين كلمة المرور بنجاح! يرجى تسجيل الدخول مرة أخرى باستخدام كلمة المرور الجديدة.",
   "error": "خطأ" ,
-    "forget_password": "إعادة تعيين كلمة المرور"
+    "forget_password": "إعادة تعيين كلمة المرور",
+    "apply_submitted_successfully":"تم تقديم الطلب بنجاح",
+    "apply_submitted_description":"شكراً لتقديم طلبك،\nسنقوم بمراجعة طلبك\nوالتواصل معك قريباً."
 
 
 

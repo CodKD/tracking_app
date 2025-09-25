@@ -156,4 +156,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get forget_password => 'Forget Password';
+
+  @override
+  String get apply_submitted_successfully =>
+      'Your application has been submitted!';
+
+  @override
+  String get apply_submitted_description =>
+      'Thank you for providing your application,\nwe will review your application and will\nget back to you soon.';
 }

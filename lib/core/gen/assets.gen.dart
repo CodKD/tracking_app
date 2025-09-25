@@ -48,11 +48,17 @@ class $AssetsImageGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/Vector.svg
+  String get vector => 'assets/svg/Vector.svg';
+
+  /// File path: assets/svg/bg.svg
+  String get bg => 'assets/svg/bg.svg';
+
   /// File path: assets/svg/orders.svg
   String get orders => 'assets/svg/orders.svg';
 
   /// List of all assets
-  List<String> get values => [orders];
+  List<String> get values => [vector, bg, orders];
 }
 
 class Assets {
