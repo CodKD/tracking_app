@@ -13,6 +13,15 @@
   "enterAValidEgyptianPhoneNumber": "Enter a valid Egyptian phone number (e.g., 01xxxxxxxxx)",
     "home": "Home",
   "orders": "Orders",
-  "profile": "Profile"
-
+  "profile": "Profile",
+  "apply": "Apply",
+  "country": "Country",
+  "Email": "Email",
+  "FirstName": "First Name",
+  "LastName": "Last Name",
+  "NID": "National ID",
+  "NIDImg": "National ID Image",
+  "VehicleLicense": "Vehicle License",
+  "VehicleNumber": "Vehicle Number",
+  "VehicleType": "Vehicle Type"
   }

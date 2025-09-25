@@ -56,4 +56,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get apply => 'تقديم';
+
+  @override
+  // TODO: implement Country
+  String get Country => 'دولة';
+
+  @override
+  // TODO: implement Email
+  String get Email => 'البريد الالكتروني';
+
+  @override
+  // TODO: implement FirstName
+  String get FirstName => 'الاسم الاول';
+
+  @override
+  // TODO: implement LastName
+  String get LastName => 'الاسم الاخير';
+
+  @override
+  // TODO: implement NID
+  String get NID => 'الرقم القومي';
+
+  @override
+  // TODO: implement NIDImg
+  String get NIDImg => 'صورة الرقم القومي';
+
+  @override
+  // TODO: implement VehicleLicense
+  String get VehicleLicense => 'رخصة السيارة';
+
+  @override
+  // TODO: implement VehicleNumber
+  String get VehicleNumber => 'رقم السيارة';
+
+  @override
+  // TODO: implement VehicleType
+  String get VehicleType => 'نوع السيارة';
 }

@@ -22,6 +22,8 @@ import '../../features/auth/apply/domain/repositories/apply_repository.dart'
     as _i1059;
 import '../../features/auth/apply/domain/usecases/apply_use_case.dart'
     as _i1055;
+import '../../features/auth/apply/presentation/cubit/driver_apply_cubit.dart'
+    as _i310;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source/auth/apply_data_source_impl.dart' as _i196;
 import 'modules/dio_module.dart' as _i983;
@@ -49,6 +51,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1055.ApplyUseCase>(
       () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),
+    );
+    gh.factory<_i310.DriverApplyCubit>(
+      () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),
     );
     return this;
   }

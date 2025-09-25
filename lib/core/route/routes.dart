@@ -15,7 +15,7 @@ abstract class Routes {
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case AppRoutes.applyScreen:
         return MaterialPageRoute(
-          builder: (context) => const DriverApplyScreen(),
+          builder: (context) => const ApplyScreen(),
         );
       default:
         return MaterialPageRoute(builder: (context) => NotFoundScreen());

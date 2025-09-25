@@ -56,4 +56,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  // TODO: implement Country
+  String get Country => 'Country';
+
+  @override
+  // TODO: implement Email
+  String get Email => 'Email';
+
+  @override
+  // TODO: implement FirstName
+  String get FirstName => 'First Name';
+
+  @override
+  // TODO: implement LastName
+  String get LastName => 'Last Name';
+
+  @override
+  // TODO: implement NID
+  String get NID => 'National ID';
+
+  @override
+  // TODO: implement NIDImg
+  String get NIDImg => 'National ID Image';
+
+  @override
+  // TODO: implement VehicleLicense
+  String get VehicleLicense => 'Vehicle License';
+
+  @override
+  // TODO: implement VehicleNumber
+  String get VehicleNumber => 'Vehicle Number';
+
+  @override
+  // TODO: implement VehicleType
+  String get VehicleType => 'Vehicle Type';
 }

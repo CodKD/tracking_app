@@ -187,6 +187,22 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+  String get Country;
+  String get FirstName;
+  String get LastName;
+  String get VehicleType;
+  String get VehicleNumber;
+  String get VehicleLicense;
+  String get NID;
+  String get NIDImg;
+  String get Email;
+
 }
 
 class _AppLocalizationsDelegate
