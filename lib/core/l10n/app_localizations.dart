@@ -259,6 +259,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Vehicle Type'**
   String get vehicle_type;
+
+  /// No description provided for @welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome!!'**
+  String get welcome;
+
+  /// No description provided for @descriptionApplyPage.
+  ///
+  /// In en, this message translates to:
+  /// **'You want to be a delivery man?\nJoin our team'**
+  String get descriptionApplyPage;
+
+  /// No description provided for @descriptionCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select your country'**
+  String get descriptionCountry;
+
+  /// No description provided for @descriptionFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter your First Name'**
+  String get descriptionFirstName;
+
+  /// No description provided for @descriptionLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter your Last Name'**
+  String get descriptionLastName;
+
+  /// No description provided for @vehicleType.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Type'**
+  String get vehicleType;
+
+  /// No description provided for @vehicleNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Number'**
+  String get vehicleNumber;
+
+  /// No description provided for @vehicleLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle License'**
+  String get vehicleLicense;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterEmail;
+
+  /// No description provided for @descriptionEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get descriptionEmail;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @descriptionPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get descriptionPhoneNumber;
+
+  /// No description provided for @descriptionVehicleNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid Vehicle number'**
+  String get descriptionVehicleNumber;
+
+  /// No description provided for @nId.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID'**
+  String get nId;
+
+  /// No description provided for @descriptionNId.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid National ID'**
+  String get descriptionNId;
+
+  /// No description provided for @nIdImg.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID Image'**
+  String get nIdImg;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @passwordError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters,\ninclude 1 uppercase letter, 1 number, and 1 symbol.'**
+  String get passwordError;
+
+  /// No description provided for @confirmPasswordError.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get confirmPasswordError;
+
+  /// No description provided for @uploadVehicleLicenseError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload your vehicle license image'**
+  String get uploadVehicleLicenseError;
+
+  /// No description provided for @uploadIdError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload your ID image'**
+  String get uploadIdError;
+
+  /// No description provided for @nationalIdError.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID must be exactly 14 digits'**
+  String get nationalIdError;
 }
 
 class _AppLocalizationsDelegate

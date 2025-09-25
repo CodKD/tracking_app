@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
-import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/core/utils/components/custom_button.dart';
 import 'package:tracking_app/features/auth/apply/presentation/cubit/driver_apply_cubit.dart';
 import 'package:tracking_app/features/auth/apply/presentation/widgets/apply_bloc_listener.dart';
@@ -21,20 +20,14 @@ class ApplyBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(context.l10n.welcome, style: AppStyles.bold24black),
             Text(
-              "Welcome!!",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              context.l10n.descriptionApplyPage,
+              style: AppStyles.regular16gray,
             ),
-            Text(
-              "You want to be a delivery man?\nJoin our team ",
-              style: AppStyles.medium16black.copyWith(
-                color: AppColors.grey,
-                height: 1.5,
-              ),
-            ),
-            SizedBox(height: 20),
+            20.heightBox,
             ApplyFields(cubit: context.read<DriverApplyCubit>()),
-            SizedBox(height: 20),
+            20.heightBox,
             ChoseGender(),
             BlocBuilder<DriverApplyCubit, DriverApplyState>(
               builder: (context, state) {
@@ -45,9 +38,7 @@ class ApplyBody extends StatelessWidget {
                     validateThenDoApply(context);
                   },
 
-                  child: state is DriverApplyLoading
-                      ? CircularProgressIndicator(color: AppColors.white)
-                      : Text('Apply'),
+                  child: Text(context.l10n.apply),
                   // Text(context.l10n.apply),
                 );
               },

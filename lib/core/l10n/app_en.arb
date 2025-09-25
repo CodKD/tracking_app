@@ -1,6 +1,6 @@
 {
   "appName": "Tracking App",
-  "appVersion":"1.0.0",
+  "appVersion": "1.0.0",
   "pleaseEnterValue": "Please enter value",
   "pleaseEnterName": "Please enter name",
   "nameMustBeMoreThan3Characters": "Name must be more than 3 characters",
@@ -25,5 +25,28 @@
   "n_iD_img": "National ID Image",
   "vehicle_license": "Vehicle License",
   "vehicle_number": "Vehicle Number",
-  "vehicle_type": "Vehicle Type"
-  }
+  "vehicle_type": "Vehicle Type",
+  "welcome": "Welcome!!",
+  "descriptionApplyPage": "You want to be a delivery man?\nJoin our team",
+  "descriptionCountry": "Please select your country",
+  "descriptionFirstName": "Please Enter your First Name",
+  "descriptionLastName": "Please Enter your Last Name",
+  "vehicleType": "Vehicle Type",
+  "vehicleNumber": "Vehicle Number",
+  "vehicleLicense": "Vehicle License",
+  "enterEmail": "Enter your email",
+  "descriptionEmail": "Please enter a valid email address",
+  "phoneNumber": "Phone Number",
+  "descriptionPhoneNumber": "Please enter a valid phone number",
+  "descriptionVehicleNumber": "Please enter a valid Vehicle number",
+  "nId": "National ID",
+  "descriptionNId": "Please enter a valid National ID",
+  "nIdImg": "National ID Image",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "passwordError": "Password must be at least 8 characters,\ninclude 1 uppercase letter, 1 number, and 1 symbol.",
+  "confirmPasswordError": "Passwords do not match",
+  "uploadVehicleLicenseError": "Please upload your vehicle license image",
+  "uploadIdError": "Please upload your ID image",
+  "nationalIdError": "National ID must be exactly 14 digits"
+}

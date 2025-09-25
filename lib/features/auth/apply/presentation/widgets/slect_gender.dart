@@ -21,7 +21,6 @@ class ChoseGender extends StatelessWidget {
         Flexible(
           flex: 2,
           child: RadioListTile(
-
             contentPadding: EdgeInsets.zero,
             title: Text(
               'Female',
@@ -34,7 +33,7 @@ class ChoseGender extends StatelessWidget {
 
             // ignore: deprecated_member_use
             groupValue: cubit.selectedGender,
-                        // ignore: deprecated_member_use
+            // ignore: deprecated_member_use
             onChanged: (value) {
               cubit.selectGender(value!);
             },

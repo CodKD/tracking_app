@@ -11,10 +11,7 @@ class AppRegex {
     ).hasMatch(password);
   }
 
-  static bool isConfirmPasswordValid(
-    String password,
-    String confirmPassword,
-  ) {
+  static bool isConfirmPasswordValid(String password, String confirmPassword) {
     bool isPasswordFormatValid = RegExp(
       r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
     ).hasMatch(password);
@@ -27,12 +24,10 @@ class AppRegex {
 
     return isPasswordFormatValid && doPasswordsMatch;
   }
-
   static bool isPhoneNumberValid(String phoneNumber) {
-    return RegExp(
-      r'^(\+201|01)[0125][0-9]{8}$',
-    ).hasMatch(phoneNumber);
+    return RegExp(r'^(2)(01)[0125][0-9]{8}$').hasMatch(phoneNumber);
   }
+
 
   static bool hasLowerCase(String password) {
     return RegExp(r'^(?=.*[a-z])').hasMatch(password);
@@ -47,9 +42,7 @@ class AppRegex {
   }
 
   static bool hasSpecialCharacter(String password) {
-    return RegExp(
-      r'^(?=.*?[#?!@$%^&*-])',
-    ).hasMatch(password);
+    return RegExp(r'^(?=.*?[#?!@$%^&*-])').hasMatch(password);
   }
 
   static bool hasMinLength(String password) {
@@ -58,5 +51,17 @@ class AppRegex {
 
   static bool hasNameLength(String name) {
     return RegExp(r'^(?=.{3,})').hasMatch(name);
+  }
+
+  // National ID: لازم يكون 14 رقم مثلاً
+  static bool isNIDValid(String nid) {
+    final regex = RegExp(r'^\d{14}$');
+    return regex.hasMatch(nid);
+  }
+
+  // Vehicle Number: وليكن 6 – 10 أرقام أو حروف
+  static bool isVehicleNumberValid(String number) {
+    final regex = RegExp(r'^[A-Za-z0-9]{6,10}$');
+    return regex.hasMatch(number);
   }
 }
