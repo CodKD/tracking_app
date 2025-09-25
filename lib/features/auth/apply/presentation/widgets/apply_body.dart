@@ -5,7 +5,7 @@ import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/core/utils/components/custom_button.dart';
 import 'package:tracking_app/features/auth/apply/presentation/cubit/driver_apply_cubit.dart';
 import 'package:tracking_app/features/auth/apply/presentation/widgets/apply_bloc_listener.dart';
-import 'package:tracking_app/features/auth/apply/presentation/widgets/custom_text_field.dart';
+import 'package:tracking_app/features/auth/apply/presentation/widgets/apply_form.dart';
 import 'package:tracking_app/features/auth/apply/presentation/widgets/slect_gender.dart';
 
 import '../../../../../core/theme/app_styles.dart' show AppStyles;
@@ -33,7 +33,7 @@ class ApplyBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            ApplyFields(),
+            ApplyFields(cubit: context.read<DriverApplyCubit>()),
             SizedBox(height: 20),
             ChoseGender(),
             BlocBuilder<DriverApplyCubit, DriverApplyState>(

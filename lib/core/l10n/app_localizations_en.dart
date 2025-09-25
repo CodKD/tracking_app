@@ -39,7 +39,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailMustBeLikeThisExampleGmailCom =>
-      'Email must be like this \"example@gmail.com';
+      'Email must be like this \nexample@gmail.com';
 
   @override
   String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
@@ -61,38 +61,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get apply => 'Apply';
 
   @override
-  // TODO: implement Country
-  String get Country => 'Country';
+  String get country => 'Country';
 
   @override
-  // TODO: implement Email
-  String get Email => 'Email';
+  String get email => 'Email';
 
   @override
-  // TODO: implement FirstName
-  String get FirstName => 'First Name';
+  String get first_name => 'First Legal Name';
 
   @override
-  // TODO: implement LastName
-  String get LastName => 'Last Name';
+  String get last_name => 'Last Legal Name';
 
   @override
-  // TODO: implement NID
-  String get NID => 'National ID';
+  String get enter_first_name => 'Enter First Legal Name';
 
   @override
-  // TODO: implement NIDImg
-  String get NIDImg => 'National ID Image';
+  String get enter_last_name => 'Enter Last Legal Name';
 
   @override
-  // TODO: implement VehicleLicense
-  String get VehicleLicense => 'Vehicle License';
+  String get nID => 'National ID';
 
   @override
-  // TODO: implement VehicleNumber
-  String get VehicleNumber => 'Vehicle Number';
+  String get n_iD_img => 'National ID Image';
 
   @override
-  // TODO: implement VehicleType
-  String get VehicleType => 'Vehicle Type';
+  String get vehicle_license => 'Vehicle License';
+
+  @override
+  String get vehicle_number => 'Vehicle Number';
+
+  @override
+  String get vehicle_type => 'Vehicle Type';
 }

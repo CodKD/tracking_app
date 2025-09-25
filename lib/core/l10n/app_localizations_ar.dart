@@ -39,7 +39,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get emailMustBeLikeThisExampleGmailCom =>
-      'البريد الالكتروني يجب ان يكون  \"example@gmail.com';
+      'البريد الالكتروني يجب ان يكون  \nexample@gmail.com';
 
   @override
   String get pleaseEnterYourPhoneNumber => 'ادخل رقم الهاتف ';
@@ -61,38 +61,35 @@ class AppLocalizationsAr extends AppLocalizations {
   String get apply => 'تقديم';
 
   @override
-  // TODO: implement Country
-  String get Country => 'دولة';
+  String get country => 'الدولة';
 
   @override
-  // TODO: implement Email
-  String get Email => 'البريد الالكتروني';
+  String get email => 'البريد الإلكتروني';
 
   @override
-  // TODO: implement FirstName
-  String get FirstName => 'الاسم الاول';
+  String get first_name => 'الإسم الأول';
 
   @override
-  // TODO: implement LastName
-  String get LastName => 'الاسم الاخير';
+  String get last_name => 'الإسم الأخير';
 
   @override
-  // TODO: implement NID
-  String get NID => 'الرقم القومي';
+  String get enter_first_name => 'ادخل الاسم القانوني الاول';
 
   @override
-  // TODO: implement NIDImg
-  String get NIDImg => 'صورة الرقم القومي';
+  String get enter_last_name => 'ادخل الاسم القانوني الاخير';
 
   @override
-  // TODO: implement VehicleLicense
-  String get VehicleLicense => 'رخصة السيارة';
+  String get nID => 'الرقم القومي';
 
   @override
-  // TODO: implement VehicleNumber
-  String get VehicleNumber => 'رقم السيارة';
+  String get n_iD_img => 'صورة البطاقة';
 
   @override
-  // TODO: implement VehicleType
-  String get VehicleType => 'نوع السيارة';
+  String get vehicle_license => 'رخصة السيارة';
+
+  @override
+  String get vehicle_number => 'رقم السيارة';
+
+  @override
+  String get vehicle_type => 'نوع السيارة';
 }

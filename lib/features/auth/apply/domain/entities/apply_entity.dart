@@ -1,12 +1,14 @@
+import 'dart:io';
+
 class DriverEntity {
   final String? country;
   final String? firstName;
   final String? lastName;
   final String? vehicleType;
   final String? vehicleNumber;
-  final String? vehicleLicense;
+  final File? vehicleLicense;
   final String? nID;
-  final String? nIDImg;
+  final File? nIDImg;
   final String? email;
   final String? gender;
   final String? phone;

@@ -21,6 +21,7 @@ class ChoseGender extends StatelessWidget {
         Flexible(
           flex: 2,
           child: RadioListTile(
+
             contentPadding: EdgeInsets.zero,
             title: Text(
               'Female',
@@ -31,7 +32,9 @@ class ChoseGender extends StatelessWidget {
             ),
             value: "female",
 
+            // ignore: deprecated_member_use
             groupValue: cubit.selectedGender,
+                        // ignore: deprecated_member_use
             onChanged: (value) {
               cubit.selectGender(value!);
             },
@@ -51,7 +54,9 @@ class ChoseGender extends StatelessWidget {
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             value: "male",
+            // ignore: deprecated_member_use
             groupValue: cubit.selectedGender,
+            // ignore: deprecated_member_use
             onChanged: (value) {
               cubit.selectGender(value!);
             },

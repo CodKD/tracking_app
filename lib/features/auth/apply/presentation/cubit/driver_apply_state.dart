@@ -24,6 +24,12 @@ class DriverApplyGenderSelected extends DriverApplyState {
   DriverApplyGenderSelected(this.gender);
 }
 
+class DriverApplyCountryList extends DriverApplyState {
+  final List<Country> countries;
+
+  DriverApplyCountryList(this.countries);
+}
+
 class DriverApplyCountrySelected extends DriverApplyState {
   final String selectedCountry;
 
@@ -36,18 +42,27 @@ class DriverApplyVehicleType extends DriverApplyState {
   DriverApplyVehicleType(this.vehicleType);
 }
 
-class DriverApplyImagePicked extends DriverApplyState {
+class DriverApplyLicenseImagePicked extends DriverApplyState {
   final String imagePath;
 
-  DriverApplyImagePicked(this.imagePath);
+  DriverApplyLicenseImagePicked(this.imagePath);
+}
+
+class DriverApplyLicenseImageCleared extends DriverApplyState {}
+
+class DriverApplyNIDImagePicked extends DriverApplyState {
+  final String imagePath;
+
+  DriverApplyNIDImagePicked(this.imagePath);
 }
 
 class DriverApplyImageError extends DriverApplyState {
   final String message;
-
   DriverApplyImageError(this.message);
 }
+
 class DriverImageUploadLoading extends DriverApplyState {}
+
 class DriverImageUploadSuccess extends DriverApplyState {
   final String imageUrl;
   DriverImageUploadSuccess(this.imageUrl);
@@ -56,4 +71,16 @@ class DriverImageUploadSuccess extends DriverApplyState {
 class DriverImageUploadError extends DriverApplyState {
   final String message;
   DriverImageUploadError(this.message);
+}
+
+class DriverApplyNIDImageCleared extends DriverApplyState {}
+
+class DriverApplyChangePasswordVisibility extends DriverApplyState {
+  final bool isPasswordObscureText;
+  DriverApplyChangePasswordVisibility(this.isPasswordObscureText);
+}
+
+class DriverApplyChangeConfirmPasswordVisibility extends DriverApplyState {
+  final bool isConfirmPasswordObscureText;
+  DriverApplyChangeConfirmPasswordVisibility(this.isConfirmPasswordObscureText);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 
 class AppTextFormFeild extends StatelessWidget {
@@ -13,6 +14,8 @@ class AppTextFormFeild extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final String? labelTxt;
+  final TextInputType? keyboardType;
 
   const AppTextFormFeild({
     super.key,
@@ -27,21 +30,23 @@ class AppTextFormFeild extends StatelessWidget {
     this.backgroundColor,
     this.controller,
     this.validator,
+    this.labelTxt,
+    this.keyboardType,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscuringCharacter: "*",
+      obscuringCharacter: "★",
+      keyboardType: keyboardType ?? TextInputType.text,
       controller: controller,
       decoration: InputDecoration(
         isDense: true,
+        labelText: labelTxt,
+        labelStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
         contentPadding:
             contentPadding ??
-            EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 18,
-            ),
+            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         focusedBorder:
             focusedBorder ??
             OutlineInputBorder(
@@ -54,29 +59,18 @@ class AppTextFormFeild extends StatelessWidget {
         enabledBorder:
             enabledBorder ??
             OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppColors.grey,
-                width: 1.3,
-              ),
+              borderSide: const BorderSide(color: AppColors.grey, width: 1.3),
               borderRadius: BorderRadius.circular(10.0),
             ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.red,
-            width: 1.3,
-          ),
+          borderSide: const BorderSide(color: Colors.red, width: 1.3),
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.red,
-            width: 1.3,
-          ),
+          borderSide: const BorderSide(color: Colors.red, width: 1.3),
           borderRadius: BorderRadius.circular(10.0),
         ),
-        hintStyle:
-            hintStyle ??
-            const TextStyle(color: AppColors.grey),
+        hintStyle: hintStyle ?? const TextStyle(color: AppColors.grey),
         hintText: hintText,
         suffixIcon: suffixIcon,
         fillColor: backgroundColor,

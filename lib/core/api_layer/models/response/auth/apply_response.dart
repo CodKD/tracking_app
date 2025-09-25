@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../../features/auth/apply/domain/entities/apply_entity.dart';
@@ -12,8 +14,10 @@ class ApplyResponse {
   final DriverDto? driver;
   @JsonKey(name: "token")
   final String? token;
+    @JsonKey(name: "error")
+  final String? error;
 
-  ApplyResponse({this.message, this.driver, this.token});
+  ApplyResponse({this.message, this.driver, this.token, this.error});
 
   factory ApplyResponse.fromJson(Map<String, dynamic> json) {
     return _$ApplyResponseFromJson(json);
@@ -36,12 +40,14 @@ class DriverDto {
   final String? vehicleType;
   @JsonKey(name: "vehicleNumber")
   final String? vehicleNumber;
-  @JsonKey(name: "vehicleLicense")
-  final String? vehicleLicense;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final File? vehicleLicense;
   @JsonKey(name: "NID")
-  final String? nID;
-  @JsonKey(name: "NIDImg")
-  final String? nIDImg;
+      // ignore: non_constant_identifier_names
+  final String? NID;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+      // ignore: non_constant_identifier_names
+  final File? NIDImg;
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "gender")
@@ -64,8 +70,10 @@ class DriverDto {
     this.vehicleType,
     this.vehicleNumber,
     this.vehicleLicense,
-    this.nID,
-    this.nIDImg,
+        // ignore: non_constant_identifier_names
+    this.NID,
+        // ignore: non_constant_identifier_names
+    this.NIDImg,
     this.email,
     this.gender,
     this.phone,
@@ -95,8 +103,8 @@ class DriverDto {
     vehicleType: vehicleType,
     vehicleNumber: vehicleNumber,
     vehicleLicense: vehicleLicense,
-    nID: nID,
-    nIDImg: nIDImg,
+    nID: NID,
+    nIDImg: NIDImg,
     role: role,
     createdAt: createdAt,
   );

@@ -11,7 +11,7 @@ class ApplyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt.get<DriverApplyCubit>(),
+      create: (_) => getIt.get<DriverApplyCubit>()..initialize(),
       child: Scaffold(
         appBar: AppBar(
           leading: const Padding(

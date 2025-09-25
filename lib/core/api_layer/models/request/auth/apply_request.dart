@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'apply_request.g.dart';
@@ -14,12 +16,14 @@ class ApplyRequest {
   final String? vehicleType;
   @JsonKey(name: "vehicleNumber")
   final String? vehicleNumber;
-  @JsonKey(name: "vehicleLicense")
-  final String? vehicleLicense;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final File? vehicleLicense;
   @JsonKey(name: "NID")
-  final String? nID;
-  @JsonKey(name: "NIDImg")
-  final String? nIDImg;
+      // ignore: non_constant_identifier_names
+  final String? NID;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+    // ignore: non_constant_identifier_names
+  final File? NIDImg;
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "password")
@@ -38,8 +42,10 @@ class ApplyRequest {
     this.vehicleType,
     this.vehicleNumber,
     this.vehicleLicense,
-    this.nID,
-    this.nIDImg,
+        // ignore: non_constant_identifier_names
+    this.NID,
+        // ignore: non_constant_identifier_names
+    this.NIDImg,
     this.email,
     this.password,
     this.rePassword,

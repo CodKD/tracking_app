@@ -8,7 +8,7 @@
   "passwordsDoNotMatch": "كلمة المرور غير متطابقه",
   "pleaseEnterYourPassword": "ادخل كلمة المرور",
   "pleaseEnterYourEmail": "ادخل البريد الالكتروني",
-  "emailMustBeLikeThisExampleGmailCom": "البريد الالكتروني يجب ان يكون  \"example@gmail.com",
+  "emailMustBeLikeThisExampleGmailCom": "البريد الالكتروني يجب ان يكون  \nexample@gmail.com",
   "pleaseEnterYourPhoneNumber": "ادخل رقم الهاتف ",
   "enterAValidEgyptianPhoneNumber": "ادخل رفم هاتف مصري  (e.g., 01xxxxxxxxx)" ,
   "home": "الرئيسية",
@@ -16,12 +16,15 @@
   "profile": "الملف الشخصي",
   "apply": "تقديم",
     "country": "الدولة",
-    "Email": "البريد الالكتروني",
-    "FirstName": "الاسم الاول",
-    "LastName": "الاسم الاخير",
-    "NID": "الرقم القومي",
-    "NIDImg": "صورة الرقم القومي",
-    "VehicleLicense": "رخصة السيارة",
-    "VehicleNumber": "رقم السيارة",
-    "VehicleType": "نوع السيارة"
+  "email": "البريد الإلكتروني",
+  "first_name": "الإسم الأول",
+  "last_name": "الإسم الأخير",
+    "enter_first_name": "ادخل الاسم القانوني الاول",
+  "enter_last_name": "ادخل الاسم القانوني الاخير",
+
+  "nID": "الرقم القومي",
+  "n_iD_img": "صورة البطاقة",
+  "vehicle_license": "رخصة السيارة",
+  "vehicle_number": "رقم السيارة",
+  "vehicle_type": "نوع السيارة"
   }

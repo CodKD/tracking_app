@@ -20,14 +20,66 @@ class _ApiClient implements ApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ApplyResponse> apply(ApplyRequest applyRequest) async {
+  Future<ApplyResponse> apply(
+    String email,
+    String password,
+    String rePassword,
+    String firstName,
+    String lastName,
+    String phone,
+    String gender,
+    String NID,
+    String vehicleType,
+    String vehicleNumber,
+    String country,
+    File? vehicleLicense,
+    File? NIDImg,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(applyRequest.toJson());
+    final _data = FormData();
+    _data.fields.add(MapEntry('email', email));
+    _data.fields.add(MapEntry('password', password));
+    _data.fields.add(MapEntry('rePassword', rePassword));
+    _data.fields.add(MapEntry('firstName', firstName));
+    _data.fields.add(MapEntry('lastName', lastName));
+    _data.fields.add(MapEntry('phone', phone));
+    _data.fields.add(MapEntry('gender', gender));
+    _data.fields.add(MapEntry('NID', NID));
+    _data.fields.add(MapEntry('vehicleType', vehicleType));
+    _data.fields.add(MapEntry('vehicleNumber', vehicleNumber));
+    _data.fields.add(MapEntry('country', country));
+    if (vehicleLicense != null) {
+      _data.files.add(
+        MapEntry(
+          'vehicleLicense',
+          MultipartFile.fromFileSync(
+            vehicleLicense.path,
+            filename: vehicleLicense.path.split(Platform.pathSeparator).last,
+          ),
+        ),
+      );
+    }
+    if (NIDImg != null) {
+      _data.files.add(
+        MapEntry(
+          'NIDImg',
+          MultipartFile.fromFileSync(
+            NIDImg.path,
+            filename: NIDImg.path.split(Platform.pathSeparator).last,
+          ),
+        ),
+      );
+    }
     final _options = _setStreamType<ApplyResponse>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'multipart/form-data',
+          )
           .compose(
             _dio.options,
             '/v1/drivers/apply',

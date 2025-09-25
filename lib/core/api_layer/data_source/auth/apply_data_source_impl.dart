@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/api_layer/api_client/api_client.dart';
 import 'package:tracking_app/core/api_layer/api_result/api_result.dart';
@@ -18,8 +17,23 @@ class ApplyDataSourceImpl implements ApplyDataSource {
 
   @override
   Future<ApiResult<DriverEntity>> apply(ApplyRequest applyRequest) async {
+    ApplyResponse? applyResponse;
     try {
-      ApplyResponse applyResponse = await apiClient.apply(applyRequest);
+      applyResponse = await apiClient.apply(
+        applyRequest.email ?? '',
+        applyRequest.password ?? '',
+        applyRequest.rePassword ?? '',
+        applyRequest.firstName ?? '',
+        applyRequest.lastName ?? '',
+        applyRequest.phone ?? '',
+        applyRequest.gender ?? '',
+        applyRequest.NID ?? '',
+        applyRequest.vehicleType ?? '',
+        applyRequest.vehicleNumber ?? '',
+        applyRequest.country ?? '',
+        applyRequest.vehicleLicense,
+        applyRequest.NIDImg,
+      );
       if (applyResponse.token != null) {
         await SharedPrefHelper().setString(
           key: SharedPrefKeys.tokenKey,
@@ -32,15 +46,7 @@ class ApplyDataSourceImpl implements ApplyDataSource {
 
       return ApiSuccessResult(applyResponse.driver!.toApplyEntity());
     } catch (e) {
-      if (e is DioException) {
-        final responseData = e.response?.data;
-        if (responseData != null && responseData is Map<String, dynamic>) {
-          final message = responseData["message"] ?? "Unknown error";
-          return ApiErrorResult<DriverEntity>(message.toString());
-        }
-        return ApiErrorResult<DriverEntity>(e.message ?? e.toString());
-      }
-      return ApiErrorResult<DriverEntity>(e.toString());
+      return ApiErrorResult<DriverEntity>(applyResponse!.error ?? e.toString());
     }
   }
 }

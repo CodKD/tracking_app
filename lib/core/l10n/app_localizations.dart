@@ -155,7 +155,7 @@ abstract class AppLocalizations {
   /// No description provided for @emailMustBeLikeThisExampleGmailCom.
   ///
   /// In en, this message translates to:
-  /// **'Email must be like this \"example@gmail.com'**
+  /// **'Email must be like this \nexample@gmail.com'**
   String get emailMustBeLikeThisExampleGmailCom;
 
   /// No description provided for @pleaseEnterYourPhoneNumber.
@@ -193,16 +193,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Apply'**
   String get apply;
-  String get Country;
-  String get FirstName;
-  String get LastName;
-  String get VehicleType;
-  String get VehicleNumber;
-  String get VehicleLicense;
-  String get NID;
-  String get NIDImg;
-  String get Email;
 
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @first_name.
+  ///
+  /// In en, this message translates to:
+  /// **'First Legal Name'**
+  String get first_name;
+
+  /// No description provided for @last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Legal Name'**
+  String get last_name;
+
+  /// No description provided for @enter_first_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter First Legal Name'**
+  String get enter_first_name;
+
+  /// No description provided for @enter_last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Last Legal Name'**
+  String get enter_last_name;
+
+  /// No description provided for @nID.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID'**
+  String get nID;
+
+  /// No description provided for @n_iD_img.
+  ///
+  /// In en, this message translates to:
+  /// **'National ID Image'**
+  String get n_iD_img;
+
+  /// No description provided for @vehicle_license.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle License'**
+  String get vehicle_license;
+
+  /// No description provided for @vehicle_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Number'**
+  String get vehicle_number;
+
+  /// No description provided for @vehicle_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Type'**
+  String get vehicle_type;
 }
 
 class _AppLocalizationsDelegate
