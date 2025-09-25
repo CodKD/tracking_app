@@ -379,6 +379,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Forget Password'**
   String get forget_password;
+
+  /// No description provided for @apply_submitted_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted!'**
+  String get apply_submitted_successfully;
+
+  /// No description provided for @apply_submitted_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for providing your application,\nwe will review your application and will\nget back to you soon.'**
+  String get apply_submitted_description;
 }
 
 class _AppLocalizationsDelegate

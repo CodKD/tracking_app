@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
               onGenerateRoute: Routes.generateRoute,
               initialRoute: token != null
                   ? AppRoutes.homeScreen
-                  : AppRoutes.onBoardingView,
+                  : AppRoutes.applicationApprovedScreen,
             );
           },
         ),
