@@ -12,55 +12,46 @@ class ApplicationApprovedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: SvgPicture.asset(
-                  Assets.svg.vector,
-                  width: context.width * 0.2,
-                  height: context.height * 0.2,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            100.heightBox,
+            Center(
+              child: SvgPicture.asset(
+                Assets.svg.vector,
+                width: context.width * 0.2,
+                height: context.height * 0.2,
               ),
-              50.heightBox,
-              Text(
-                context.l10n.apply_submitted_successfully,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              15.heightBox,
-              Center(
-                child: Text(
-                  textAlign: TextAlign.center,
-                  context.l10n.apply_submitted_description,
-                ),
-              ),
-              30.heightBox,
-              CustomButton(
-                size: Size(context.width * 0.9, 50),
-                onPressed: () {
-                  Navigator.of(
-                    context,
-                  ).pushReplacementNamed(AppRoutes.loginView);
-                },
-                borderRadius: 100,
+            ),
+            50.heightBox,
+            Text(
+              context.l10n.apply_submitted_successfully,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            15.heightBox,
+            Text(
+              textAlign: TextAlign.center,
+              context.l10n.apply_submitted_description,
+            ),
+            30.heightBox,
+            CustomButton(
+              size: Size(context.width * 0.9, 50),
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.loginView);
+              },
+              borderRadius: 100,
 
-                child: Text(context.l10n.login, style: AppStyles.medium16white),
-              ),
-            ],
-          ),
-          SvgPicture.asset(
-            Assets.svg.bg,
-            width: context.width,
-            fit: BoxFit.fill,
-          ),
-        ],
+              child: Text(context.l10n.login, style: AppStyles.medium16white),
+            ),
+            SvgPicture.asset(
+              Assets.svg.bg,
+              width: context.width,
+              fit: BoxFit.fill,
+            ),
+          ],
+        ),
       ),
     );
   }
