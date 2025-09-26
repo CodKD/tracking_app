@@ -164,4 +164,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nationalIdError => 'National ID must be exactly 14 digits';
+
+  @override
+  String get loading => 'Loading...';
 }

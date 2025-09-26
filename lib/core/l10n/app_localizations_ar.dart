@@ -164,4 +164,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get nationalIdError =>
       'يجب أن يتكون رقم الهوية الوطنية من 14 رقمًا بالضبط';
+
+  @override
+  String get loading => 'جاري التحميل...';
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/features/auth/apply/presentation/cubit/driver_apply_cubit.dart';
 
 class ChoseGender extends StatelessWidget {
-  const ChoseGender({super.key});
+  const ChoseGender({super.key , required this.cubit});
 
+  final DriverApplyCubit cubit;
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<DriverApplyCubit>();
     return Row(
       children: [
         Text(

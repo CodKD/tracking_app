@@ -397,6 +397,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'National ID must be exactly 14 digits'**
   String get nationalIdError;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
 }
 
 class _AppLocalizationsDelegate

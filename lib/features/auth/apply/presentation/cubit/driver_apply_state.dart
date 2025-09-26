@@ -30,6 +30,8 @@ class DriverApplyCountryList extends DriverApplyState {
   DriverApplyCountryList(this.countries);
 }
 
+class DriverApplyCountryListLoading extends DriverApplyState {}
+
 class DriverApplyCountrySelected extends DriverApplyState {
   final String selectedCountry;
 

@@ -28,7 +28,7 @@ class ApplyBody extends StatelessWidget {
             20.heightBox,
             ApplyFields(cubit: context.read<DriverApplyCubit>()),
             20.heightBox,
-            ChoseGender(),
+            ChoseGender(cubit: context.read<DriverApplyCubit>()),
             BlocBuilder<DriverApplyCubit, DriverApplyState>(
               builder: (context, state) {
                 return CustomButton(

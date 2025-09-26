@@ -122,6 +122,7 @@ class DriverApplyCubit extends Cubit<DriverApplyState> {
   }
 
   void initialize() async {
+    emit(DriverApplyCountryListLoading());
     countries = await Country.getSortedCountries();
     emit(DriverApplyCountryList(countries));
   }

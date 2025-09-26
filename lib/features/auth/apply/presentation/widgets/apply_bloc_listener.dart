@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/dialog/dialog.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/features/auth/apply/presentation/cubit/driver_apply_cubit.dart';
 
@@ -16,11 +17,7 @@ class ApplyBlocListener extends StatelessWidget {
           current is DriverApplyError,
       listener: (context, state) {
         if (state case DriverApplyLoading()) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (_) => const Center(child: CircularProgressIndicator()),
-          );
+          DialogUtils.showLoading(context:  context , loadingMessage: context.l10n.loading );
         } else if (state case DriverApplySuccess()) {
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(

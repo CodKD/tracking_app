@@ -48,5 +48,6 @@
   "confirmPasswordError": "Passwords do not match",
   "uploadVehicleLicenseError": "Please upload your vehicle license image",
   "uploadIdError": "Please upload your ID image",
-  "nationalIdError": "National ID must be exactly 14 digits"
+  "nationalIdError": "National ID must be exactly 14 digits",
+  "loading": "Loading..."
 }
