@@ -58,46 +58,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الملف الشخصي';
 
   @override
-  String get welcome_to_flowery_rider_app => 'Welcome To \nFlowery Rider App';
+  String get welcome_to_flowery_rider_app =>
+      'مرحباً بك \n في تطبيق فلاوري للسائق ';
 
   @override
-  String get login => 'Login';
+  String get login => 'تسجيل الدخول';
 
   @override
-  String get apply_now => 'Apply now';
+  String get apply_now => 'التقديم الان';
 
   @override
   String get version => 'v 1.0.0-beta.1';
 
   @override
-  String get enter_your_email => 'Enter your email';
+  String get enter_your_email => 'ادخل العنوان الالكتروني';
 
   @override
-  String get email => 'البريد الإلكتروني';
+  String get email => 'العنوان الالكتروني';
 
   @override
   String get password => 'كلمة المرور';
 
   @override
-  String get enter_your_password => 'Enter your password';
+  String get enter_your_password => 'ادخل كلمة المرور';
 
   @override
-  String get remember_me => 'Remember me';
+  String get remember_me => 'تذكرني';
 
   @override
-  String get forgot_password => 'Forgot password?';
+  String get forgot_password => 'نسيت كلمة المرور؟';
 
   @override
-  String get continue_btn => 'Continue';
+  String get continue_btn => 'الاستمرار';
 
   @override
-  String get ok => 'Ok';
+  String get ok => 'حسناً';
 
   @override
   String get loading => 'جاري التحميل...';
 
   @override
-  String get success => 'Success';
+  String get success => 'تم بنجاح';
 
   @override
   String get reset_password => 'Reset Password';
