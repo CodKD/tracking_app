@@ -36,7 +36,7 @@ class OnboardingView extends StatelessWidget {
                     24.heightBox,
                     CustomButton(
                       onPressed: () {
-                        context.pushReplacementNamed(AppRoutes.loginView);
+                        context.pushNamed(AppRoutes.loginView);
                       },
                       borderRadius: 100,
                       child: Text(
@@ -47,7 +47,7 @@ class OnboardingView extends StatelessWidget {
                     16.heightBox,
                     CustomButton(
                       onPressed: () {
-                        //TODO: apply now action
+                        Navigator.of(context).pushNamed(AppRoutes.applyScreen);
                       },
                       borderRadius: 100,
                       backgroundColorButton: AppColors.white,

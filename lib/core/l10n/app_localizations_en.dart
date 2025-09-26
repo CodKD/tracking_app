@@ -39,7 +39,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailMustBeLikeThisExampleGmailCom =>
-      'Email must be like this \"example@gmail.com';
+      'Email must be like this \nexample@gmail.com';
 
   @override
   String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
@@ -164,4 +164,121 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get apply_submitted_description =>
       'Thank you for providing your application,\nwe will review your application and will\nget back to you soon.';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get first_name => 'First Legal Name';
+
+  @override
+  String get last_name => 'Last Legal Name';
+
+  @override
+  String get enter_first_name => 'Enter First Legal Name';
+
+  @override
+  String get enter_last_name => 'Enter Last Legal Name';
+
+  @override
+  String get nID => 'National ID';
+
+  @override
+  String get n_iD_img => 'National ID Image';
+
+  @override
+  String get vehicle_license => 'Vehicle License';
+
+  @override
+  String get vehicle_number => 'Vehicle Number';
+
+  @override
+  String get vehicle_type => 'Vehicle Type';
+
+  @override
+  String get welcome => 'Welcome!!';
+
+  @override
+  String get descriptionApplyPage =>
+      'You want to be a delivery man?\nJoin our team';
+
+  @override
+  String get descriptionCountry => 'Please select your country';
+
+  @override
+  String get descriptionFirstName => 'Please Enter your First Name';
+
+  @override
+  String get descriptionLastName => 'Please Enter your Last Name';
+
+  @override
+  String get vehicleType => 'Vehicle Type';
+
+  @override
+  String get vehicleNumber => 'Vehicle Number';
+
+  @override
+  String get vehicleLicense => 'Vehicle License';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get descriptionEmail => 'Please enter a valid email address';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get descriptionPhoneNumber => 'Please enter a valid phone number';
+
+  @override
+  String get descriptionVehicleNumber => 'Please enter a valid Vehicle number';
+
+  @override
+  String get nId => 'National ID';
+
+  @override
+  String get descriptionNId => 'Please enter a valid National ID';
+
+  @override
+  String get nIdImg => 'National ID Image';
+
+  @override
+  String get passwordError =>
+      'Password must be at least 8 characters,\ninclude 1 uppercase letter, 1 number, and 1 symbol.';
+
+  @override
+  String get confirmPasswordError => 'Passwords do not match';
+
+  @override
+  String get uploadVehicleLicenseError =>
+      'Please upload your vehicle license image';
+
+  @override
+  String get uploadIdError => 'Please upload your ID image';
+
+  @override
+  String get nationalIdError => 'National ID must be exactly 14 digits';
+
+  @override
+  String get enter_vehicle_number => 'Enter your vehicle number';
+
+  @override
+  String get enter_phone => 'Enter your phone number';
+
+  @override
+  String get enter_mail => 'Enter your email';
+
+  @override
+  String get enter_national_id => 'Enter your national ID';
+
+  @override
+  String get choose_vehicle_license_img => 'choose vehicle license image';
+
+  @override
+  String get choose_national_id_img => 'choose national ID image';
 }

@@ -15,31 +15,45 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart' as _i528;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
-import '../../features/forget_password/data/datasources/contracts/forget_password_remote_data_source.dart'
-    as _i855;
-import '../../features/forget_password/data/datasources/impl/forget_password_remote_data_source_impl.dart'
-    as _i1014;
-import '../../features/forget_password/data/repos_impl/forget_password_repo_impl.dart'
-    as _i732;
-import '../../features/forget_password/domain/repositories/forget_password_repo.dart'
-    as _i184;
-import '../../features/forget_password/domain/usecases/forget_password_use_case.dart'
-    as _i773;
-import '../../features/forget_password/domain/usecases/reset_password_use_case.dart'
-    as _i123;
-import '../../features/forget_password/domain/usecases/varify_reset_code_use_case.dart'
-    as _i309;
-import '../../features/forget_password/presentation/cubit/forget_password_cubit.dart'
-    as _i1056;
-import '../../features/login/data/data_source/login_remote_data_scource.dart'
-    as _i207;
-import '../../features/login/data/repos_impl/login_repo_impl.dart' as _i998;
-import '../../features/login/domain/repos/login_repo.dart' as _i184;
-import '../../features/login/domain/use_cases/login_use_case.dart' as _i191;
-import '../../features/login/presentation/cubit/login_view_model.dart' as _i442;
+import '../../features/auth/apply/data/data_source/contract/apply_data_source.dart'
+    as _i166;
+import '../../features/auth/apply/data/repositories/apply_repo_impl.dart'
+    as _i565;
+import '../../features/auth/apply/domain/repositories/apply_repository.dart'
+    as _i1059;
+import '../../features/auth/apply/domain/usecases/apply_use_case.dart'
+    as _i1055;
+import '../../features/auth/apply/presentation/cubit/driver_apply_cubit.dart'
+    as _i310;
+import '../../features/auth/forget_password/data/datasources/contracts/forget_password_remote_data_source.dart'
+    as _i370;
+import '../../features/auth/forget_password/data/repos_impl/forget_password_repo_impl.dart'
+    as _i206;
+import '../../features/auth/forget_password/domain/repositories/forget_password_repo.dart'
+    as _i924;
+import '../../features/auth/forget_password/domain/usecases/forget_password_use_case.dart'
+    as _i737;
+import '../../features/auth/forget_password/domain/usecases/reset_password_use_case.dart'
+    as _i374;
+import '../../features/auth/forget_password/domain/usecases/varify_reset_code_use_case.dart'
+    as _i176;
+import '../../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart'
+    as _i231;
+import '../../features/auth/login/data/data_source/contract/login_remote_data_scource.dart'
+    as _i1049;
+import '../../features/auth/login/data/repos_impl/login_repo_impl.dart'
+    as _i1013;
+import '../../features/auth/login/domain/repos/login_repo.dart' as _i983;
+import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
+import '../../features/auth/login/presentation/cubit/login_view_model.dart'
+    as _i465;
 import '../api_layer/api_client/api_client.dart' as _i225;
-import '../api_layer/data_source_impl/login_remote_data_source_impl.dart'
-    as _i915;
+import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
+    as _i942;
+import '../api_layer/data_source_impl/auth/forget_password_remote_data_source_impl.dart'
+    as _i594;
+import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
+    as _i640;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -73,44 +87,59 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
-    gh.factory<_i207.LoginRemoteDataSource>(
-      () => _i915.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
+    gh.factory<_i370.ForgetPasswordRemoteDataSource>(
+      () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
-    gh.factory<_i855.ForgetPasswordRemoteDataSource>(
-      () => _i1014.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
-    );
-    gh.factory<_i184.ForgetPasswordRepo>(
-      () => _i732.ForgetPasswordRepoImpl(
-        gh<_i855.ForgetPasswordRemoteDataSource>(),
+    gh.factory<_i166.ApplyDataSource>(
+      () => _i942.ApplyDataSourceImpl(
+        gh<_i225.ApiClient>(),
+        gh<_i744.SharedPrefHelper>(),
       ),
     );
-    gh.factory<_i184.LoginRepo>(
-      () => _i998.LoginRepoImpl(gh<_i207.LoginRemoteDataSource>()),
+    gh.factory<_i924.ForgetPasswordRepo>(
+      () => _i206.ForgetPasswordRepoImpl(
+        gh<_i370.ForgetPasswordRemoteDataSource>(),
+      ),
     );
-    gh.factory<_i191.LoginUseCase>(
-      () => _i191.LoginUseCase(gh<_i184.LoginRepo>()),
+    gh.factory<_i1049.LoginRemoteDataSource>(
+      () => _i640.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
-    gh.factory<_i442.LoginViewModel>(
-      () => _i442.LoginViewModel(
-        loginUseCase: gh<_i191.LoginUseCase>(),
+    gh.factory<_i1059.ApplyRepository>(
+      () => _i565.ApplyRepoImpl(gh<_i166.ApplyDataSource>()),
+    );
+    gh.factory<_i983.LoginRepo>(
+      () => _i1013.LoginRepoImpl(gh<_i1049.LoginRemoteDataSource>()),
+    );
+    gh.factory<_i737.ForgetPasswordUseCase>(
+      () => _i737.ForgetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i374.ResetPasswordUseCase>(
+      () => _i374.ResetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i176.VerifyResetCodeUseCase>(
+      () => _i176.VerifyResetCodeUseCase(gh<_i924.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i50.LoginUseCase>(
+      () => _i50.LoginUseCase(gh<_i983.LoginRepo>()),
+    );
+    gh.factory<_i1055.ApplyUseCase>(
+      () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),
+    );
+    gh.factory<_i231.ForgetPasswordViewModel>(
+      () => _i231.ForgetPasswordViewModel(
+        forgetPasswordUseCase: gh<_i737.ForgetPasswordUseCase>(),
+        verifyResetCodeUseCase: gh<_i176.VerifyResetCodeUseCase>(),
+        resetPasswordUseCase: gh<_i374.ResetPasswordUseCase>(),
+      ),
+    );
+    gh.factory<_i465.LoginViewModel>(
+      () => _i465.LoginViewModel(
+        loginUseCase: gh<_i50.LoginUseCase>(),
         sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
     );
-    gh.factory<_i773.ForgetPasswordUseCase>(
-      () => _i773.ForgetPasswordUseCase(gh<_i184.ForgetPasswordRepo>()),
-    );
-    gh.factory<_i123.ResetPasswordUseCase>(
-      () => _i123.ResetPasswordUseCase(gh<_i184.ForgetPasswordRepo>()),
-    );
-    gh.factory<_i309.VerifyResetCodeUseCase>(
-      () => _i309.VerifyResetCodeUseCase(gh<_i184.ForgetPasswordRepo>()),
-    );
-    gh.factory<_i1056.ForgetPasswordViewModel>(
-      () => _i1056.ForgetPasswordViewModel(
-        forgetPasswordUseCase: gh<_i773.ForgetPasswordUseCase>(),
-        verifyResetCodeUseCase: gh<_i309.VerifyResetCodeUseCase>(),
-        resetPasswordUseCase: gh<_i123.ResetPasswordUseCase>(),
-      ),
+    gh.factory<_i310.DriverApplyCubit>(
+      () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),
     );
     return this;
   }

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
-import 'package:tracking_app/features/application_approved/application_approved_screen.dart';
-import 'package:tracking_app/features/forget_password/presentation/pages/forget_password_view.dart';
+import 'package:tracking_app/features/auth/apply/presentation/view/application_approved_screen.dart';
+import 'package:tracking_app/features/auth/apply/presentation/view/apply_screen.dart';
+import 'package:tracking_app/features/auth/forget_password/presentation/pages/forget_password_view.dart';
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
-import 'package:tracking_app/features/login/presentation/login_view.dart';
+import 'package:tracking_app/features/auth/login/presentation/login_view.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
 
 import '../../features/onboarding/onboarding_view.dart';
@@ -29,6 +30,8 @@ abstract class Routes {
         return MaterialPageRoute(
           builder: (context) => const ApplicationApprovedScreen(),
         );
+      case AppRoutes.applyScreen:
+        return MaterialPageRoute(builder: (context) => const ApplyScreen());
       default:
         return MaterialPageRoute(builder: (context) => const NotFoundScreen());
     }

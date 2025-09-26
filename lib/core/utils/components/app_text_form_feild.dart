@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 
 class AppTextFormField extends StatefulWidget {
@@ -16,6 +17,7 @@ class AppTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool initialObscureText;
+  final TextInputType? keyboardType;
 
   const AppTextFormField({
     super.key,
@@ -33,6 +35,7 @@ class AppTextFormField extends StatefulWidget {
     this.backgroundColor,
     this.controller,
     this.validator,
+    this.keyboardType,
   });
 
   @override
@@ -53,13 +56,13 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
     return TextFormField(
       obscuringCharacter: "★",
       controller: widget.controller,
+      keyboardType: widget.keyboardType ?? TextInputType.text,
       decoration: InputDecoration(
         labelText: widget.labelText,
-        labelStyle:
-            widget.labelStyle ?? const TextStyle(color: AppColors.black),
         hintText: widget.hintText,
         hintStyle: widget.hintStyle ?? const TextStyle(color: AppColors.grey),
         isDense: true,
+        labelStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
         contentPadding:
             widget.contentPadding ??
             const EdgeInsets.symmetric(horizontal: 20, vertical: 18),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:tracking_app/core/api_layer/api_client/endpoints.dart';
 import 'package:tracking_app/core/modules/shared_preferences_module.dart';
 import 'package:tracking_app/core/resources/app_constants.dart';
 
@@ -10,7 +11,7 @@ abstract class DioModule {
   Dio provideDio(PrettyDioLogger logger, SharedPrefHelper sharedPrefHelper) {
     Dio dio = Dio(
       BaseOptions(
-        baseUrl: AppConstants.baseUrl,
+        baseUrl: Endpoints.baseUrl,
         receiveDataWhenStatusError: true,
         connectTimeout: const Duration(seconds: 20),
         receiveTimeout: const Duration(seconds: 20),

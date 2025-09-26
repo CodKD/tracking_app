@@ -41,9 +41,11 @@ class MyApp extends StatelessWidget {
               locale: locale,
               theme: AppTheme.lightTheme,
               onGenerateRoute: Routes.generateRoute,
-              initialRoute: token != null
-                  ? AppRoutes.homeScreen
-                  : AppRoutes.applicationApprovedScreen,
+              initialRoute:  AppRoutes.onBoardingView
+              // token != null
+              //     ? AppRoutes.homeScreen
+              //     : AppRoutes.applicationApprovedScreen,
+
             );
           },
         ),

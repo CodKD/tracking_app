@@ -5,4 +5,5 @@ abstract class AppRoutes {
   static const String onBoardingView = "/onboarding_view";
   static const String applicationApprovedScreen =
       "/application_approved_screen";
+  static const String applyScreen = "/driver_apply_screen";
 }

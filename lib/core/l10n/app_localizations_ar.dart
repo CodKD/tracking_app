@@ -39,7 +39,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get emailMustBeLikeThisExampleGmailCom =>
-      'البريد الالكتروني يجب ان يكون  \"example@gmail.com';
+      'البريد الالكتروني يجب ان يكون  \nexample@gmail.com';
 
   @override
   String get pleaseEnterYourPhoneNumber => 'ادخل رقم الهاتف ';
@@ -58,110 +58,227 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile => 'الملف الشخصي';
 
   @override
-  String get welcome_to_flowery_rider_app =>
-      'مرحباً بك \n في تطبيق فلاوري للسائق ';
+  String get welcome_to_flowery_rider_app => 'Welcome To \nFlowery Rider App';
 
   @override
-  String get login => 'تسجيل الدخول';
+  String get login => 'Login';
 
   @override
-  String get apply_now => 'التقديم الان';
+  String get apply_now => 'Apply now';
 
   @override
   String get version => 'v 1.0.0-beta.1';
 
   @override
-  String get enter_your_email => 'ادخل العنوان الالكتروني';
+  String get enter_your_email => 'Enter your email';
 
   @override
-  String get email => 'العنوان الالكتروني';
+  String get email => 'البريد الإلكتروني';
 
   @override
   String get password => 'كلمة المرور';
 
   @override
-  String get enter_your_password => 'ادخل كلمة المرور';
+  String get enter_your_password => 'Enter your password';
 
   @override
-  String get remember_me => 'تذكرني';
+  String get remember_me => 'Remember me';
 
   @override
-  String get forgot_password => 'نسيت كلمة المرور؟';
+  String get forgot_password => 'Forgot password?';
 
   @override
-  String get continue_btn => 'الاستمرار';
+  String get continue_btn => 'Continue';
 
   @override
-  String get ok => 'حسناً';
+  String get ok => 'Ok';
 
   @override
   String get loading => 'جاري التحميل...';
 
   @override
-  String get success => 'تم بنجاح';
+  String get success => 'Success';
 
   @override
-  String get reset_password => 'إعادة تعيين كلمة المرور';
+  String get reset_password => 'Reset Password';
 
   @override
   String get please_enter_your_email_to_receive_a_verification_code =>
-      'يرجى إدخال بريدك الإلكتروني لتلقي رمز التحقق لإنشاء كلمة مرور جديدة عبر البريد الإلكتروني';
+      'Please enter your email to receive a verification code to create a new password via email';
 
   @override
-  String get send => 'إرسال';
+  String get send => 'Send';
 
   @override
   String get verification_code_sent_to_your_email =>
-      'تم إرسال رمز التحقق إلى بريدك الإلكتروني';
+      'Verification code sent to your email';
 
   @override
-  String get email_not_found => 'البريد الإلكتروني غير موجود';
+  String get email_not_found => 'Email Not Found';
 
   @override
-  String get try_again => 'حاول مرة أخرى';
+  String get try_again => 'Try Again';
 
   @override
-  String get email_verification => 'التحقق من البريد الإلكتروني';
+  String get email_verification => 'Email Verification';
 
   @override
   String get please_enter_the_6_digit_code_sent_to_your_email =>
-      'يرجى إدخال الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني';
+      'Please enter the 6-digit code sent to your email';
 
   @override
-  String get didnt_receive_the_code => 'ألم تستلم الرمز؟';
+  String get didnt_receive_the_code => 'Didn\'t receive the code? ';
 
   @override
-  String get resend => 'إعادة الإرسال';
+  String get resend => 'Resend';
 
   @override
-  String get please_enter_your_new_password => 'يرجى إدخال كلمة المرور الجديدة';
+  String get please_enter_your_new_password => 'Please enter your new password';
 
   @override
-  String get new_password => 'كلمة المرور الجديدة';
+  String get new_password => 'New Password';
 
   @override
-  String get enter_your_new_password => 'ادخل كلمة المرور الجديدة';
+  String get enter_your_new_password => 'Enter your new password';
 
   @override
-  String get confirm_your_password => 'تأكيد كلمة المرور';
+  String get confirm_your_password => 'Confirm your password';
 
   @override
-  String get confirm_password => 'تأكيد كلمة المرور';
+  String get confirm_password => 'Confirm Password';
 
   @override
   String get password_reset_success_please_login_again_with_your_new_password =>
-      'تم إعادة تعيين كلمة المرور بنجاح! يرجى تسجيل الدخول مرة أخرى باستخدام كلمة المرور الجديدة.';
+      'Password reset successfully! Please login again with your new password.';
 
   @override
-  String get error => 'خطأ';
+  String get error => 'Error';
 
   @override
-  String get forget_password => 'إعادة تعيين كلمة المرور';
+  String get forget_password => 'Forget Password';
 
   @override
-  String get apply_submitted_successfully => 'تم تقديم الطلب بنجاح';
+  String get apply_submitted_successfully =>
+      'Your application has been submitted!';
 
   @override
   String get apply_submitted_description =>
-      'شكراً لتقديم طلبك،\nسنقوم بمراجعة طلبك\nوالتواصل معك قريباً.';
+      'Thank you for providing your application,\nwe will review your application and will\nget back to you soon.';
+
+  @override
+  String get apply => 'تقديم';
+
+  @override
+  String get country => 'الدولة';
+
+  @override
+  String get first_name => 'الإسم الأول';
+
+  @override
+  String get last_name => 'الإسم الأخير';
+
+  @override
+  String get enter_first_name => 'ادخل الاسم القانوني الاول';
+
+  @override
+  String get enter_last_name => 'ادخل الاسم القانوني الاخير';
+
+  @override
+  String get nID => 'الرقم القومي';
+
+  @override
+  String get n_iD_img => 'صورة البطاقة';
+
+  @override
+  String get vehicle_license => 'رخصة السيارة';
+
+  @override
+  String get vehicle_number => 'رقم السيارة';
+
+  @override
+  String get vehicle_type => 'نوع السيارة';
+
+  @override
+  String get welcome => 'أهلا وسهلا!!';
+
+  @override
+  String get descriptionApplyPage =>
+      'هل تريد أن تكون سائق توصيل؟\nانضم إلى فريقنا';
+
+  @override
+  String get descriptionCountry => 'الرجاء تحديد بلدك';
+
+  @override
+  String get descriptionFirstName => 'الرجاء إدخال اسمك الأول';
+
+  @override
+  String get descriptionLastName => 'الرجاء إدخال اسمك الأخير';
+
+  @override
+  String get vehicleType => 'نوع المركبة';
+
+  @override
+  String get vehicleNumber => 'رقم المركبة';
+
+  @override
+  String get vehicleLicense => 'رخصة المركبة';
+
+  @override
+  String get enterEmail => 'ادخل البريد الإلكتروني';
+
+  @override
+  String get descriptionEmail => 'من فضلك ادخل بريد إلكتروني صحيح';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get descriptionPhoneNumber => 'من فضلك ادخل رقم هاتف صحيح';
+
+  @override
+  String get descriptionVehicleNumber => 'من فضلك ادخل رقم رخصة صحيح';
+
+  @override
+  String get nId => 'الرقم القومي';
+
+  @override
+  String get descriptionNId => 'من فضلك ادخل الرقم القومي';
+
+  @override
+  String get nIdImg => 'صورة البطاقة';
+
+  @override
+  String get passwordError =>
+      'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، حرف كبير، رقم ورمز.';
+
+  @override
+  String get confirmPasswordError => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get uploadVehicleLicenseError => 'من فضلك قم برفع صورة رخصة المركبة';
+
+  @override
+  String get uploadIdError => 'من فضلك قم برفع صورة البطاقة';
+
+  @override
+  String get nationalIdError =>
+      'يجب أن يتكون رقم الهوية الوطنية من 14 رقمًا بالضبط';
+
+  @override
+  String get enter_vehicle_number => 'ادخل رقم المركبة';
+
+  @override
+  String get enter_phone => 'ادخل رقم الهاتف';
+
+  @override
+  String get enter_mail => 'ادخل البريد الإلكتروني';
+
+  @override
+  String get enter_national_id => 'ادخل الرقم القومي';
+
+  @override
+  String get choose_vehicle_license_img => 'choose vehicle license image';
+
+  @override
+  String get choose_national_id_img => 'choose national ID image';
 }
