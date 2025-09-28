@@ -55,5 +55,9 @@
   "enter_mail": "ادخل البريد الإلكتروني",
   "enter_national_id": "ادخل الرقم القومي",
   "enter_vehicle_license_img": "اختر صورة رخصة المركبة",
-  "enter_national_id_img": "اختر صورة الرقم القومي"
+  "enter_national_id_img": "اختر صورة الرقم القومي",
+  "areYouSureYouWantToLogOut": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "logout": "تسجيل الخروج",
+  "confirmLogout": "تأكيد تسجيل الخروج",
+  "cancel": "إلغاء"
 }

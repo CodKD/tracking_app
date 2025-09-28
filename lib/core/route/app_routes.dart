@@ -6,4 +6,6 @@ abstract class AppRoutes {
   static const String applicationApprovedScreen =
       "/application_approved_screen";
   static const String applyScreen = "/driver_apply_screen";
+  static const String notificationList = "/notification_list";
+  static const String editProfile = "/edit_profile";
 }

@@ -29,25 +29,27 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 813),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => BlocProvider(
-        create: (context) => getIt<LocaleCubit>(),
-        child: BlocBuilder<LocaleCubit, Locale>(
-          builder: (context, locale) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: "Tracking app",
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              locale: locale,
-              theme: AppTheme.lightTheme,
-              onGenerateRoute: Routes.generateRoute,
-              initialRoute: token != null
-                  ? AppRoutes.homeScreen
-                  : AppRoutes.applicationApprovedScreen,
-            );
-          },
-        ),
-      ),
+      builder: (context, child) =>
+          BlocProvider(
+            create: (context) => getIt<LocaleCubit>(),
+            child: BlocBuilder<LocaleCubit, Locale>(
+              builder: (context, locale) {
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: "Tracking app",
+                  localizationsDelegates: AppLocalizations
+                      .localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  locale: locale,
+                  theme: AppTheme.lightTheme,
+                  onGenerateRoute: Routes.generateRoute,
+                  initialRoute: token != null
+                      ? AppRoutes.loginView
+                      : AppRoutes.onBoardingView,
+                );
+              },
+            ),
+          ),
     );
   }
 }

@@ -281,4 +281,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get choose_national_id_img => 'choose national ID image';
+
+  @override
+  String get areYouSureYouWantToLogOut => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get confirmLogout => 'تأكيد تسجيل الخروج';
+
+  @override
+  String get cancel => 'إلغاء';
 }

@@ -1,35 +1,33 @@
-import 'dart:io';
-
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../../features/auth/apply/domain/entities/apply_entity.dart';
+import '../../../../../features/profile/domain/entities/get_logged_driver_entity.dart';
 
-part 'apply_response.g.dart';
+part 'get_logged_driver.g.dart';
 
 @JsonSerializable()
-class ApplyResponse {
+class GetLoggedDriver {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "driver")
   final DriverDto? driver;
-  @JsonKey(name: "token")
-  final String? token;
-  @JsonKey(name: "error")
-  final String? error;
 
-  ApplyResponse({this.message, this.driver, this.token, this.error});
+  GetLoggedDriver({this.message, this.driver});
 
-  factory ApplyResponse.fromJson(Map<String, dynamic> json) {
-    return _$ApplyResponseFromJson(json);
+  factory GetLoggedDriver.fromJson(Map<String, dynamic> json) {
+    return _$GetLoggedDriverFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$ApplyResponseToJson(this);
+    return _$GetLoggedDriverToJson(this);
   }
 }
 
 @JsonSerializable()
 class DriverDto {
+  @JsonKey(name: "role")
+  final String? role;
+  @JsonKey(name: "_id")
+  final String? id;
   @JsonKey(name: "country")
   final String? country;
   @JsonKey(name: "firstName")
@@ -40,14 +38,12 @@ class DriverDto {
   final String? vehicleType;
   @JsonKey(name: "vehicleNumber")
   final String? vehicleNumber;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final File? vehicleLicense;
+  @JsonKey(name: "vehicleLicense")
+  final String? vehicleLicense;
   @JsonKey(name: "NID")
-  // ignore: non_constant_identifier_names
-  final String? NID;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  // ignore: non_constant_identifier_names
-  final File? NIDImg;
+  final String? nID;
+  @JsonKey(name: "NIDImg")
+  final String? nIDImg;
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "gender")
@@ -56,30 +52,24 @@ class DriverDto {
   final String? phone;
   @JsonKey(name: "photo")
   final String? photo;
-  @JsonKey(name: "role")
-  final String? role;
-  @JsonKey(name: "_id")
-  final String? id;
   @JsonKey(name: "createdAt")
   final String? createdAt;
 
   DriverDto({
+    this.role,
+    this.id,
     this.country,
     this.firstName,
     this.lastName,
     this.vehicleType,
     this.vehicleNumber,
     this.vehicleLicense,
-    // ignore: non_constant_identifier_names
-    this.NID,
-    // ignore: non_constant_identifier_names
-    this.NIDImg,
+    this.nID,
+    this.nIDImg,
     this.email,
     this.gender,
     this.phone,
     this.photo,
-    this.role,
-    this.id,
     this.createdAt,
   });
 
@@ -91,21 +81,21 @@ class DriverDto {
     return _$DriverDtoToJson(this);
   }
 
-  DriverEntity toApplyEntity() => DriverEntity(
+  ProfileDriverEntity toGetLoggedDriverEntity() => ProfileDriverEntity(
+    id: id,
     firstName: firstName,
     lastName: lastName,
     email: email,
     gender: gender,
     phone: phone,
     photo: photo,
-    id: id,
-    country: country,
-    vehicleType: vehicleType,
-    vehicleNumber: vehicleNumber,
-    vehicleLicense: vehicleLicense,
-    nID: NID,
-    nIDImg: NIDImg,
     role: role,
     createdAt: createdAt,
+    vehicleLicense: vehicleLicense,
+    nIDImg: nIDImg,
+    country: country,
+    nID: nID,
+    vehicleNumber: vehicleNumber,
+    vehicleType: vehicleType,
   );
 }

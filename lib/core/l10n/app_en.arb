@@ -85,5 +85,9 @@
   "enter_mail": "Enter your email",
   "enter_national_id": "Enter your national ID",
   "choose_vehicle_license_img": "choose vehicle license image",
-  "choose_national_id_img": "choose national ID image"
+  "choose_national_id_img": "choose national ID image",
+  "areYouSureYouWantToLogOut": "Are You Sure You Want To Log Out",
+  "logout": "Logout",
+  "confirmLogout": "Confirm Logout",
+  "cancel" : "Cancel"
 }

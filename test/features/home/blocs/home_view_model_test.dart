@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tracking_app/features/home/presentation/blocs/home_view_model.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/home_tab.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/order_tab/order_tab.dart';
-import 'package:tracking_app/features/home/presentation/Tabs/profile_tab/profile_tab.dart';
+import 'package:tracking_app/features/profile/presentation/view/view.dart';
 
 void main() {
   group('HomeViewModel', () {
