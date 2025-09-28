@@ -46,7 +46,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enterAValidEgyptianPhoneNumber =>
-      'ادخل رفم هاتف مصري  (e.g., 01xxxxxxxxx)';
+      'ادخل رفم هاتف مصري  (e.g., 201xxxxxxxxx)';
 
   @override
   String get home => 'الرئيسية';
