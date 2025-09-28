@@ -60,4 +60,18 @@
   "logout": "تسجيل الخروج",
   "confirmLogout": "تأكيد تسجيل الخروج",
   "cancel": "إلغاء"
+   "welcome_to_flowery_rider_app": "مرحباً بك \n في تطبيق فلاوري للسائق ",
+  "login": "تسجيل الدخول",
+  "apply_now": "التقديم الان",
+  "version": "v 1.0.0-beta.1",
+  "enter_your_email": "ادخل العنوان الالكتروني",
+  "email": "العنوان الالكتروني",
+  "password": "كلمة المرور",
+  "enter_your_password": "ادخل كلمة المرور",
+  "remember_me": "تذكرني",
+  "forgot_password": "نسيت كلمة المرور؟",
+  "continue_btn": "الاستمرار",
+  "ok": "حسناً",
+  "loading": "جاري التحميل...",
+  "success": "تم بنجاح"
 }
