@@ -57,6 +57,8 @@ import '../../features/home/presentation/Tabs/home_tab/domain/repositories/get_p
     as _i1029;
 import '../../features/home/presentation/Tabs/home_tab/domain/usecases/get_pending_use_case.dart'
     as _i226;
+import '../../features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart'
+    as _i526;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -64,6 +66,7 @@ import '../api_layer/data_source_impl/auth/forget_password_remote_data_source_im
     as _i594;
 import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
     as _i640;
+import '../api_layer/firebase/firestore_manager.dart' as _i787;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -77,6 +80,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     final sharedPreferencesModule = _$SharedPreferencesModule();
+    gh.factory<_i787.FirebaseManager>(() => _i787.FirebaseManager());
     gh.singleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
     );
@@ -116,6 +120,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i225.ApiClient>(),
         gh<_i744.SharedPrefHelper>(),
       ),
+    );
+    gh.factory<_i526.HomeTabCubit>(
+      () => _i526.HomeTabCubit(gh<_i226.GetPendingOrdersUseCase>()),
     );
     gh.factory<_i924.ForgetPasswordRepo>(
       () => _i206.ForgetPasswordRepoImpl(

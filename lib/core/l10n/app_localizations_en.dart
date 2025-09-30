@@ -6,7 +6,8 @@ import 'app_localizations.dart';
 
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {
-  AppLocalizationsEn([String locale = 'en']) : super(locale);
+  AppLocalizationsEn([String locale = 'en'])
+    : super(locale);
 
   @override
   String get appName => 'Tracking App';
@@ -25,24 +26,29 @@ class AppLocalizationsEn extends AppLocalizations {
       'Name must be more than 3 characters';
 
   @override
-  String get passwordMustContainUpperLowerAndSpecialCharacter =>
+  String
+  get passwordMustContainUpperLowerAndSpecialCharacter =>
       'Password must contain upper, lower, and special character';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch =>
+      'Passwords do not match';
 
   @override
-  String get pleaseEnterYourPassword => 'Please enter your password';
+  String get pleaseEnterYourPassword =>
+      'Please enter your password';
 
   @override
-  String get pleaseEnterYourEmail => 'Please enter your email';
+  String get pleaseEnterYourEmail =>
+      'Please enter your email';
 
   @override
   String get emailMustBeLikeThisExampleGmailCom =>
       'Email must be like this \nexample@gmail.com';
 
   @override
-  String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
+  String get pleaseEnterYourPhoneNumber =>
+      'Please enter your phone number';
 
   @override
   String get enterAValidEgyptianPhoneNumber =>
@@ -58,7 +64,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
-  String get welcome_to_flowery_rider_app => 'Welcome To \nFlowery Rider App';
+  String get welcome_to_flowery_rider_app =>
+      'Welcome To \nFlowery Rider App';
 
   @override
   String get login => 'Login';
@@ -103,7 +110,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset_password => 'Reset Password';
 
   @override
-  String get please_enter_your_email_to_receive_a_verification_code =>
+  String
+  get please_enter_your_email_to_receive_a_verification_code =>
       'Please enter your email to receive a verification code to create a new password via email';
 
   @override
@@ -123,32 +131,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get email_verification => 'Email Verification';
 
   @override
-  String get please_enter_the_6_digit_code_sent_to_your_email =>
+  String
+  get please_enter_the_6_digit_code_sent_to_your_email =>
       'Please enter the 6-digit code sent to your email';
 
   @override
-  String get didnt_receive_the_code => 'Didn\'t receive the code? ';
+  String get didnt_receive_the_code =>
+      'Didn\'t receive the code? ';
 
   @override
   String get resend => 'Resend';
 
   @override
-  String get please_enter_your_new_password => 'Please enter your new password';
+  String get please_enter_your_new_password =>
+      'Please enter your new password';
 
   @override
   String get new_password => 'New Password';
 
   @override
-  String get enter_your_new_password => 'Enter your new password';
+  String get enter_your_new_password =>
+      'Enter your new password';
 
   @override
-  String get confirm_your_password => 'Confirm your password';
+  String get confirm_your_password =>
+      'Confirm your password';
 
   @override
   String get confirm_password => 'Confirm Password';
 
   @override
-  String get password_reset_success_please_login_again_with_your_new_password =>
+  String
+  get password_reset_success_please_login_again_with_your_new_password =>
       'Password reset successfully! Please login again with your new password.';
 
   @override
@@ -206,13 +220,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'You want to be a delivery man?\nJoin our team';
 
   @override
-  String get descriptionCountry => 'Please select your country';
+  String get descriptionCountry =>
+      'Please select your country';
 
   @override
-  String get descriptionFirstName => 'Please Enter your First Name';
+  String get descriptionFirstName =>
+      'Please Enter your First Name';
 
   @override
-  String get descriptionLastName => 'Please Enter your Last Name';
+  String get descriptionLastName =>
+      'Please Enter your Last Name';
 
   @override
   String get vehicleType => 'Vehicle Type';
@@ -227,22 +244,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterEmail => 'Enter your email';
 
   @override
-  String get descriptionEmail => 'Please enter a valid email address';
+  String get descriptionEmail =>
+      'Please enter a valid email address';
 
   @override
   String get phoneNumber => 'Phone Number';
 
   @override
-  String get descriptionPhoneNumber => 'Please enter a valid phone number';
+  String get descriptionPhoneNumber =>
+      'Please enter a valid phone number';
 
   @override
-  String get descriptionVehicleNumber => 'Please enter a valid Vehicle number';
+  String get descriptionVehicleNumber =>
+      'Please enter a valid Vehicle number';
 
   @override
   String get nId => 'National ID';
 
   @override
-  String get descriptionNId => 'Please enter a valid National ID';
+  String get descriptionNId =>
+      'Please enter a valid National ID';
 
   @override
   String get nIdImg => 'National ID Image';
@@ -252,20 +273,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'Password must be at least 8 characters,\ninclude 1 uppercase letter, 1 number, and 1 symbol.';
 
   @override
-  String get confirmPasswordError => 'Passwords do not match';
+  String get confirmPasswordError =>
+      'Passwords do not match';
 
   @override
   String get uploadVehicleLicenseError =>
       'Please upload your vehicle license image';
 
   @override
-  String get uploadIdError => 'Please upload your ID image';
+  String get uploadIdError =>
+      'Please upload your ID image';
 
   @override
-  String get nationalIdError => 'National ID must be exactly 14 digits';
+  String get nationalIdError =>
+      'National ID must be exactly 14 digits';
 
   @override
-  String get enter_vehicle_number => 'Enter your vehicle number';
+  String get enter_vehicle_number =>
+      'Enter your vehicle number';
 
   @override
   String get enter_phone => 'Enter your phone number';
@@ -274,11 +299,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enter_mail => 'Enter your email';
 
   @override
-  String get enter_national_id => 'Enter your national ID';
+  String get enter_national_id =>
+      'Enter your national ID';
 
   @override
-  String get choose_vehicle_license_img => 'choose vehicle license image';
+  String get choose_vehicle_license_img =>
+      'choose vehicle license image';
 
   @override
-  String get choose_national_id_img => 'choose national ID image';
+  String get choose_national_id_img =>
+      'choose national ID image';
 }

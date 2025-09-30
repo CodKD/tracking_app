@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/api_layer/api_client/api_client.dart';
 import 'package:tracking_app/core/api_layer/api_result/api_result.dart';
@@ -31,10 +32,10 @@ class GetPendingOrdersDataSourceImpl
               'Unknown error',
         );
       }
+    } on DioException catch (e) {
+      return ApiErrorResult(e.message ?? "Unknown Dio error");
     } catch (e) {
-      return ApiErrorResult<PendingDriverOrdersEntity>(
-        e.toString(),
-      );
+      throw Exception("Unexpected error: $e");
     }
   }
 }

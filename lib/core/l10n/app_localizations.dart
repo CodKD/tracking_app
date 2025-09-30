@@ -63,16 +63,21 @@ import 'app_localizations_en.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(
+        locale.toString(),
+      );
 
   final String localeName;
 
   static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+    return Localizations.of<AppLocalizations>(
+      context,
+      AppLocalizations,
+    );
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations>
+  delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,7 +89,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+  static const List<LocalizationsDelegate<dynamic>>
+  localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
         delegate,
         GlobalMaterialLocalizations.delegate,
@@ -132,7 +138,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Password must contain upper, lower, and special character'**
-  String get passwordMustContainUpperLowerAndSpecialCharacter;
+  String
+  get passwordMustContainUpperLowerAndSpecialCharacter;
 
   /// No description provided for @passwordsDoNotMatch.
   ///
@@ -282,7 +289,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Please enter your email to receive a verification code to create a new password via email'**
-  String get please_enter_your_email_to_receive_a_verification_code;
+  String
+  get please_enter_your_email_to_receive_a_verification_code;
 
   /// No description provided for @send.
   ///
@@ -318,7 +326,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Please enter the 6-digit code sent to your email'**
-  String get please_enter_the_6_digit_code_sent_to_your_email;
+  String
+  get please_enter_the_6_digit_code_sent_to_your_email;
 
   /// No description provided for @didnt_receive_the_code.
   ///
@@ -366,7 +375,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Password reset successfully! Please login again with your new password.'**
-  String get password_reset_success_please_login_again_with_your_new_password;
+  String
+  get password_reset_success_please_login_again_with_your_new_password;
 
   /// No description provided for @error.
   ///
@@ -627,7 +637,9 @@ class _AppLocalizationsDelegate
 
   @override
   Future<AppLocalizations> load(Locale locale) {
-    return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
+    return SynchronousFuture<AppLocalizations>(
+      lookupAppLocalizations(locale),
+    );
   }
 
   @override
@@ -635,7 +647,8 @@ class _AppLocalizationsDelegate
       <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_AppLocalizationsDelegate old) => false;
+  bool shouldReload(_AppLocalizationsDelegate old) =>
+      false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
