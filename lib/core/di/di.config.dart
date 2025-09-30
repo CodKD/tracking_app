@@ -47,6 +47,16 @@ import '../../features/auth/login/domain/repos/login_repo.dart' as _i983;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/cubit/login_view_model.dart'
     as _i465;
+import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_panding_orders_data_source_impl.dart'
+    as _i898;
+import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_pending_orders_data_source.dart'
+    as _i643;
+import '../../features/home/presentation/Tabs/home_tab/data/repos_impl.dart/get_pending_repo_impl.dart'
+    as _i914;
+import '../../features/home/presentation/Tabs/home_tab/domain/repositories/get_pending_orders_repo.dart'
+    as _i1029;
+import '../../features/home/presentation/Tabs/home_tab/domain/usecases/get_pending_use_case.dart'
+    as _i226;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -87,6 +97,17 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
+    gh.factory<_i643.GetPendingOrdersDataSource>(
+      () => _i898.GetPendingOrdersDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i1029.GetPendingOrdersRepo>(
+      () => _i914.GetPendingOrdersRepoImpl(
+        gh<_i643.GetPendingOrdersDataSource>(),
+      ),
+    );
+    gh.factory<_i226.GetPendingOrdersUseCase>(
+      () => _i226.GetPendingOrdersUseCase(gh<_i1029.GetPendingOrdersRepo>()),
+    );
     gh.factory<_i370.ForgetPasswordRemoteDataSource>(
       () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );

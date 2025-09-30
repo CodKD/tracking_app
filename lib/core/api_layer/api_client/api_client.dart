@@ -11,6 +11,7 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/forget_password/data/models/response/verify_reset_code_response_dto.dart';
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart';
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart';
+import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart';
 
 import 'endpoints.dart';
 
@@ -33,6 +34,8 @@ abstract class ApiClient {
   Future<ResetPasswordResponseDto> resetPassword({
     @Body() required ResetPasswordRequestDto resetPasswordRequestDto,
   });
+  @GET(Endpoints.pendingDriverOrdersRoute)
+  Future<PendingOrdersResponse> getPendingDriverOrders();
 
   @POST(Endpoints.login)
   Future<HttpResponse<LoginResponseDto>> login({

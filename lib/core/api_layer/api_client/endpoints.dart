@@ -5,4 +5,5 @@ class Endpoints {
   static const String verifyResetCode = '/v1/drivers/verifyResetCode';
   static const String resetPassword = '/v1/drivers/resetPassword';
   static const String login = '/v1/drivers/signin';
+  static const String pendingDriverOrdersRoute = '/v1/orders/pending-orders';
 }
