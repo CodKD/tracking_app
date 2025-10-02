@@ -16,6 +16,16 @@ import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_d
     as _i7;
 import 'package:tracking_app/core/modules/shared_preferences_module.dart'
     as _i17;
+import 'dart:io' as _i19;
+
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:retrofit/retrofit.dart' as _i6;
+import 'package:shared_preferences/shared_preferences.dart' as _i8;
+import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i9;
+import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
+    as _i7;
+import 'package:tracking_app/core/modules/shared_preferences_module.dart'
+    as _i20;
 import 'package:tracking_app/features/auth/forget_password/data/models/request/forget_password_request_dto.dart'
     as _i11;
 import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart'
@@ -32,6 +42,17 @@ import 'package:tracking_app/features/auth/login/data/model/login_request_dto.da
     as _i15;
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
     as _i14;
+    as _i18;
+import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
+    as _i17;
+import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart'
+    as _i5;
+import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart'
+    as _i16;
+import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart'
+    as _i14;
+import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart'
+    as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -65,20 +86,23 @@ class _FakeResetPasswordResponseDto_2 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakeHttpResponse_3<T> extends _i1.SmartFake
-    implements _i5.HttpResponse<T> {
-  _FakeHttpResponse_3(Object parent, Invocation parentInvocation)
+class _FakePendingOrdersResponse_3 extends _i1.SmartFake
+    implements _i5.PendingOrdersResponse {
+  _FakePendingOrdersResponse_3(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeApplyResponse_4 extends _i1.SmartFake implements _i6.ApplyResponse {
-  _FakeApplyResponse_4(Object parent, Invocation parentInvocation)
+class _FakeHttpResponse_4<T> extends _i1.SmartFake
+    implements _i6.HttpResponse<T> {
+  _FakeHttpResponse_4(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 class _FakeGetLoggedDriver_5 extends _i1.SmartFake
     implements _i7.GetLoggedDriver {
   _FakeGetLoggedDriver_5(Object parent, Invocation parentInvocation)
+class _FakeApplyResponse_5 extends _i1.SmartFake implements _i7.ApplyResponse {
+  _FakeApplyResponse_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -156,12 +180,50 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
   @override
   _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>> login({
     required _i15.LoginRequestDto? loginRequestDto,
+
+  @override
+  _i10.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
+      (super.noSuchMethod(
+            Invocation.method(#getPendingDriverOrders, []),
+            returnValue: _i10.Future<_i5.PendingOrdersResponse>.value(
+              _FakePendingOrdersResponse_3(
+                this,
+                Invocation.method(#getPendingDriverOrders, []),
+              ),
+            ),
+          )
+          as _i10.Future<_i5.PendingOrdersResponse>);
+
+  @override
+  _i10.Future<_i14.StartOrderModel?> startOrder(String? orderId) =>
+      (super.noSuchMethod(
+            Invocation.method(#startOrder, [orderId]),
+            returnValue: _i10.Future<_i14.StartOrderModel?>.value(),
+          )
+          as _i10.Future<_i14.StartOrderModel?>);
+
+  @override
+  _i10.Future<_i15.UpdateOrderStateResponse?> updateOrder(
+    String? orderId,
+    _i16.UpdateOrderRequest? updateOrderRequest,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateOrder, [orderId, updateOrderRequest]),
+            returnValue: _i10.Future<_i15.UpdateOrderStateResponse?>.value(),
+          )
+          as _i10.Future<_i15.UpdateOrderStateResponse?>);
+
+  @override
+  _i10.Future<_i6.HttpResponse<_i17.LoginResponseDto>> login({
+    required _i18.LoginRequestDto? loginRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
             returnValue:
                 _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>>.value(
                   _FakeHttpResponse_3<_i14.LoginResponseDto>(
+                _i10.Future<_i6.HttpResponse<_i17.LoginResponseDto>>.value(
+                  _FakeHttpResponse_4<_i17.LoginResponseDto>(
                     this,
                     Invocation.method(#login, [], {
                       #loginRequestDto: loginRequestDto,
@@ -173,6 +235,10 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
 
   @override
   _i10.Future<_i6.ApplyResponse> apply(
+          as _i10.Future<_i6.HttpResponse<_i17.LoginResponseDto>>);
+
+  @override
+  _i10.Future<_i7.ApplyResponse> apply(
     String? email,
     String? password,
     String? rePassword,
@@ -186,6 +252,8 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
     String? country,
     _i16.File? vehicleLicense,
     _i16.File? NIDImg,
+    _i19.File? vehicleLicense,
+    _i19.File? NIDImg,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#apply, [
@@ -205,6 +273,8 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
             ]),
             returnValue: _i10.Future<_i6.ApplyResponse>.value(
               _FakeApplyResponse_4(
+            returnValue: _i10.Future<_i7.ApplyResponse>.value(
+              _FakeApplyResponse_5(
                 this,
                 Invocation.method(#apply, [
                   email,
@@ -238,12 +308,14 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
             ),
           )
           as _i10.Future<_i7.GetLoggedDriver>);
+          as _i10.Future<_i7.ApplyResponse>);
 }
 
 /// A class which mocks [SharedPrefHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSharedPrefHelper extends _i1.Mock implements _i17.SharedPrefHelper {
+class MockSharedPrefHelper extends _i1.Mock implements _i20.SharedPrefHelper {
   MockSharedPrefHelper() {
     _i1.throwOnMissingStub(this);
   }
