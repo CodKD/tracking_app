@@ -19,7 +19,7 @@ void main() {
 
       test('should have 3 pages initialized', () {
         expect(homeViewModel.pages, hasLength(3));
-        expect(homeViewModel.pages[0], isA<HomeTabView>());
+        expect(homeViewModel.pages[0], isA<HomeTab>());
         expect(homeViewModel.pages[1], isA<OrderTab>());
         expect(homeViewModel.pages[2], isA<ProfileTab>());
       });

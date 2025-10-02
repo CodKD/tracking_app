@@ -59,6 +59,18 @@ import '../../features/home/presentation/Tabs/home_tab/domain/usecases/get_pendi
     as _i226;
 import '../../features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart'
     as _i526;
+import '../../features/order_details/data/data_sources/start_order_data_sources_repo.dart'
+    as _i910;
+import '../../features/order_details/data/data_sources/start_order_data_sources_repo_impl.dart'
+    as _i296;
+import '../../features/order_details/data/repo/start_order_repo_impl.dart'
+    as _i1032;
+import '../../features/order_details/domain/repo/start_order_repo.dart'
+    as _i750;
+import '../../features/order_details/domain/use_cases/start_order_usecase.dart'
+    as _i1044;
+import '../../features/order_details/presentation/view_model/start_order_cubit.dart'
+    as _i330;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -66,7 +78,6 @@ import '../api_layer/data_source_impl/auth/forget_password_remote_data_source_im
     as _i594;
 import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
     as _i640;
-import '../api_layer/firebase/firestore_manager.dart' as _i787;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -80,7 +91,6 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     final sharedPreferencesModule = _$SharedPreferencesModule();
-    gh.factory<_i787.FirebaseManager>(() => _i787.FirebaseManager());
     gh.singleton<_i528.PrettyDioLogger>(
       () => dioModule.providePrettyDioLogger(),
     );
@@ -129,6 +139,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i370.ForgetPasswordRemoteDataSource>(),
       ),
     );
+    gh.factory<_i910.OrderDetailsDataSourcesRepo>(
+      () => _i296.StartOrderDataSourcesRepoImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i1049.LoginRemoteDataSource>(
       () => _i640.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
@@ -150,6 +163,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i983.LoginRepo>()),
     );
+    gh.factory<_i750.OrderDetailsRepo>(
+      () => _i1032.StarOrderRepoImpl(gh<_i910.OrderDetailsDataSourcesRepo>()),
+    );
     gh.factory<_i1055.ApplyUseCase>(
       () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),
     );
@@ -165,6 +181,12 @@ extension GetItInjectableX on _i174.GetIt {
         loginUseCase: gh<_i50.LoginUseCase>(),
         sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
+    );
+    gh.factory<_i1044.StartOrderUseCase>(
+      () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
+    );
+    gh.factory<_i330.StartOrderCubit>(
+      () => _i330.StartOrderCubit(gh<_i1044.StartOrderUseCase>()),
     );
     gh.factory<_i310.DriverApplyCubit>(
       () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),

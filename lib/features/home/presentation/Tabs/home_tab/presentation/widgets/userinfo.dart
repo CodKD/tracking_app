@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
-class StoreInfo extends StatelessWidget {
+
+class UserWithAddress extends StatelessWidget {
   final String title;
   final String name;
   final String address;
-  final String img;
+  final IconData iconImg;
 
 
-  const StoreInfo({
+  const UserWithAddress({
     super.key,
     required this.title,
     required this.name,
     required this.address,
-    required this.img,
+    required this.iconImg,
 
   });
 
@@ -32,7 +33,7 @@ class StoreInfo extends StatelessWidget {
 
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: Colors.grey.shade300,
+              color: Colors.grey[300]!,
               width: 3.0,
             ),
           ),
@@ -40,17 +41,10 @@ class StoreInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.pink,
-                  child:  ClipOval( // Ensures that the image is clipped to a circle
-    child: Image.network(
-    img,
-    fit: BoxFit.cover, // This will ensure the image covers the circle
-    width: 40, // Width and height can be adjusted; should be 2 * radius
-    height: 40,
-    ),
-    ),
-                //Icon(iconImg,color: Colors.white,),
+                radius: 20,
+                backgroundColor: Colors.pink,
+                child:
+               Icon(iconImg,color: Colors.white,),
               ),
               const SizedBox(width: 16),
               Expanded(

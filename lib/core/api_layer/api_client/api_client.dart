@@ -12,6 +12,9 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart';
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart';
+import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart';
+import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart';
+import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart';
 
 import 'endpoints.dart';
 
@@ -36,7 +39,14 @@ abstract class ApiClient {
   });
   @GET(Endpoints.pendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getPendingDriverOrders();
+ @PUT('${Endpoints.startOrder}/{orderId}')
+  Future<StartOrderModel?> startOrder(
+      @Path() String orderId,);
 
+  @PUT('${Endpoints.updateOrder}/{orderId}')
+  Future<UpdateOrderStateResponse?> updateOrder(
+      @Path() String orderId,
+      @Body() UpdateOrderRequest updateOrderRequest,);
   @POST(Endpoints.login)
   Future<HttpResponse<LoginResponseDto>> login({
     @Body() required LoginRequestDto loginRequestDto,

@@ -1,14 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/domain/entities/pending_orders_entity.dart';
 
-
-part 'pending_orders_response.g.dart'; // هذا الملف سيتم إنشاؤه تلقائيًا
-
-/// --------------------------------------------------------------------------------
-/// PendingOrdersResponse
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable(explicitToJson: true)
 class PendingOrdersResponse {
   PendingOrdersResponse({
     this.message,
@@ -16,34 +8,43 @@ class PendingOrdersResponse {
     this.orders,
   });
 
-  factory PendingOrdersResponse.fromJson(Map<String, dynamic> json) => _$PendingOrdersResponseFromJson(json);
+  PendingOrdersResponse.fromJson(dynamic json) {
+    message = json['message'];
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    if (json['orders'] != null) {
+      orders = [];
+      json['orders'].forEach((v) {
+        orders?.add(Orders.fromJson(v));
+      });
+    }
+  }
 
-  @JsonKey(name: 'message')
-  final String? message;
+  String? message;
+  Metadata? metadata;
+  List<Orders>? orders;
 
-  @JsonKey(name: 'metadata')
-  final Metadata? metadata;
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['message'] = message;
+    if (metadata != null) {
+      map['metadata'] = metadata?.toJson();
+    }
+    if (orders != null) {
+      map['orders'] = orders?.map((v) => v.toJson()).toList();
+    }
+    return map;
+  }
 
-  @JsonKey(name: 'orders')
-  final List<Orders>? orders;
-
-  Map<String, dynamic> toJson() => _$PendingOrdersResponseToJson(this);
-
-  // دالة التحويل إلى الـ Entity تبقى كما هي
   PendingDriverOrdersEntity toPendingDriverOrderEntity() {
     return PendingDriverOrdersEntity(
       metadata: metadata,
-      orders: orders, // تحتاج إلى تعديل بسيط في طبقة الـ Entity لتقبل Orders كنوع
+      orders: orders,
       message: message,
     );
   }
 }
 
-/// --------------------------------------------------------------------------------
-/// Orders
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable(explicitToJson: true)
 class Orders {
   Orders({
     this.id,
@@ -59,57 +60,74 @@ class Orders {
     this.orderNumber,
     this.v,
     this.store,
+    this.driver
   });
 
-  factory Orders.fromJson(Map<String, dynamic> json) => _$OrdersFromJson(json);
+  Orders.fromJson(dynamic json) {
+    id = json['_id'];
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    if (json['orderItems'] != null) {
+      orderItems = [];
+      json['orderItems'].forEach((v) {
+        orderItems?.add(OrderItems.fromJson(v));
+      });
+    }
+    totalPrice = json['totalPrice'];
+    paymentType = json['paymentType'];
+    isPaid = json['isPaid'];
+    isDelivered = json['isDelivered'];
+    state = json['state'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    orderNumber = json['orderNumber'];
+    v = json['__v'];
+    store = json['store'] != null ? Store.fromJson(json['store']) : null;
+    driver = json['driver'] != null ? Driver.fromJson(json['driver']) : null;
+  }
 
-  @JsonKey(name: '_id')
-  final String? id;
+  String? id;
+  User? user;
+  List<OrderItems>? orderItems;
+  num? totalPrice;
+  String? paymentType;
+  bool? isPaid;
+  bool? isDelivered;
+  String? state;
+  String? createdAt;
+  String? updatedAt;
+  String? orderNumber;
+  num? v;
+  Store? store;
+  Driver? driver;
 
-  @JsonKey(name: 'user')
-  final User? user;
-
-  @JsonKey(name: 'orderItems')
-  final List<OrderItems>? orderItems;
-
-  @JsonKey(name: 'totalPrice')
-  final num? totalPrice;
-
-  @JsonKey(name: 'paymentType')
-  final String? paymentType;
-
-  @JsonKey(name: 'isPaid')
-  final bool? isPaid;
-
-  @JsonKey(name: 'isDelivered')
-  final bool? isDelivered;
-
-  @JsonKey(name: 'state')
-  final String? state;
-
-  @JsonKey(name: 'createdAt')
-  final String? createdAt;
-
-  @JsonKey(name: 'updatedAt')
-  final String? updatedAt;
-
-  @JsonKey(name: 'orderNumber')
-  final String? orderNumber;
-
-  @JsonKey(name: '__v')
-  final num? v;
-
-  @JsonKey(name: 'store')
-  final Store? store;
-
-  Map<String, dynamic> toJson() => _$OrdersToJson(this);
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['_id'] = id;
+    if (user != null) {
+      map['user'] = user?.toJson();
+    }
+    if (orderItems != null) {
+      map['orderItems'] = orderItems?.map((v) => v.toJson()).toList();
+    }
+    map['totalPrice'] = totalPrice;
+    map['paymentType'] = paymentType;
+    map['isPaid'] = isPaid;
+    map['isDelivered'] = isDelivered;
+    map['state'] = state;
+    map['createdAt'] = createdAt;
+    map['updatedAt'] = updatedAt;
+    map['orderNumber'] = orderNumber;
+    map['__v'] = v;
+    if (store != null) {
+      map['store'] = store?.toJson();
+    }
+    if (driver != null) {
+      map['driver'] = driver?.toJson();
+    }
+    return map;
+  }
 }
 
-/// --------------------------------------------------------------------------------
-/// Store
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable()
 class Store {
   Store({
     this.name,
@@ -119,31 +137,31 @@ class Store {
     this.latLong,
   });
 
-  factory Store.fromJson(Map<String, dynamic> json) => _$StoreFromJson(json);
+  Store.fromJson(dynamic json) {
+    name = json['name'];
+    image = json['image'];
+    address = json['address'];
+    phoneNumber = json['phoneNumber'];
+    latLong = json['latLong'];
+  }
 
-  @JsonKey(name: 'name')
-  final String? name;
+  String? name;
+  String? image;
+  String? address;
+  String? phoneNumber;
+  String? latLong;
 
-  @JsonKey(name: 'image')
-  final String? image;
-
-  @JsonKey(name: 'address')
-  final String? address;
-
-  @JsonKey(name: 'phoneNumber')
-  final String? phoneNumber;
-
-  @JsonKey(name: 'latLong')
-  final String? latLong;
-
-  Map<String, dynamic> toJson() => _$StoreToJson(this);
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['name'] = name;
+    map['image'] = image;
+    map['address'] = address;
+    map['phoneNumber'] = phoneNumber;
+    map['latLong'] = latLong;
+    return map;
+  }
 }
 
-/// --------------------------------------------------------------------------------
-/// OrderItems
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable(explicitToJson: true)
 class OrderItems {
   OrderItems({
     this.product,
@@ -152,28 +170,31 @@ class OrderItems {
     this.id,
   });
 
-  factory OrderItems.fromJson(Map<String, dynamic> json) => _$OrderItemsFromJson(json);
+  OrderItems.fromJson(dynamic json) {
+    product =
+        json['product'] != null ? Product.fromJson(json['product']) : null;
+    price = json['price'];
+    quantity = json['quantity'];
+    id = json['_id'];
+  }
 
-  @JsonKey(name: 'product')
-  final Product? product;
+  Product? product;
+  num? price;
+  num? quantity;
+  String? id;
 
-  @JsonKey(name: 'price')
-  final num? price;
-
-  @JsonKey(name: 'quantity')
-  final num? quantity;
-
-  @JsonKey(name: '_id')
-  final String? id;
-
-  Map<String, dynamic> toJson() => _$OrderItemsToJson(this);
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    if (product != null) {
+      map['product'] = product?.toJson();
+    }
+    map['price'] = price;
+    map['quantity'] = quantity;
+    map['_id'] = id;
+    return map;
+  }
 }
 
-/// --------------------------------------------------------------------------------
-/// Product
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable()
 class Product {
   Product({
     this.id,
@@ -194,64 +215,65 @@ class Product {
     this.sold,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+  Product.fromJson(dynamic json) {
+    id = json['_id'];
+    title = json['title'];
+    slug = json['slug'];
+    description = json['description'];
+    imgCover = json['imgCover'];
+    images = json['images'] != null ? json['images'].cast<String>() : [];
+    price = json['price'];
+    priceAfterDiscount = json['priceAfterDiscount'];
+    quantity = json['quantity'];
+    category = json['category'];
+    occasion = json['occasion'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    v = json['__v'];
+    discount = json['discount'];
+    sold = json['sold'];
+  }
 
-  @JsonKey(name: '_id')
-  final String? id;
+  String? id;
+  String? title;
+  String? slug;
+  String? description;
+  String? imgCover;
+  List<String>? images;
+  num? price;
+  num? priceAfterDiscount;
+  num? quantity;
+  String? category;
+  String? occasion;
+  String? createdAt;
+  String? updatedAt;
+  num? v;
+  num? discount;
+  num? sold;
 
-  @JsonKey(name: 'title')
-  final String? title;
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['_id'] = id;
+    map['title'] = title;
+    map['slug'] = slug;
+    map['description'] = description;
+    map['imgCover'] = imgCover;
+    map['images'] = images;
+    map['price'] = price;
+    map['priceAfterDiscount'] = priceAfterDiscount;
+    map['quantity'] = quantity;
+    map['category'] = category;
+    map['occasion'] = occasion;
+    map['createdAt'] = createdAt;
+    map['updatedAt'] = updatedAt;
+    map['__v'] = v;
+    map['discount'] = discount;
+    map['sold'] = sold;
+    return map;
+  }
 
-  @JsonKey(name: 'slug')
-  final String? slug;
-
-  @JsonKey(name: 'description')
-  final String? description;
-
-  @JsonKey(name: 'imgCover')
-  final String? imgCover;
-
-  @JsonKey(name: 'images')
-  final List<String>? images;
-
-  @JsonKey(name: 'price')
-  final num? price;
-
-  @JsonKey(name: 'priceAfterDiscount')
-  final num? priceAfterDiscount;
-
-  @JsonKey(name: 'quantity')
-  final num? quantity;
-
-  @JsonKey(name: 'category')
-  final String? category;
-
-  @JsonKey(name: 'occasion')
-  final String? occasion;
-
-  @JsonKey(name: 'createdAt')
-  final String? createdAt;
-
-  @JsonKey(name: 'updatedAt')
-  final String? updatedAt;
-
-  @JsonKey(name: '__v')
-  final num? v;
-
-  @JsonKey(name: 'discount')
-  final num? discount;
-
-  @JsonKey(name: 'sold')
-  final num? sold;
-
-  Map<String, dynamic> toJson() => _$ProductToJson(this);
 }
 
-/// --------------------------------------------------------------------------------
-/// User
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable()
 class User {
   User({
     this.id,
@@ -264,40 +286,40 @@ class User {
     this.passwordChangedAt,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  User.fromJson(dynamic json) {
+    id = json['_id'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    email = json['email'];
+    gender = json['gender'];
+    phone = json['phone'];
+    photo = json['photo'];
+    passwordChangedAt = json['passwordChangedAt'];
+  }
 
-  @JsonKey(name: '_id')
-  final String? id;
+  String? id;
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? gender;
+  String? phone;
+  String? photo;
+  String? passwordChangedAt;
 
-  @JsonKey(name: 'firstName')
-  final String? firstName;
-
-  @JsonKey(name: 'lastName')
-  final String? lastName;
-
-  @JsonKey(name: 'email')
-  final String? email;
-
-  @JsonKey(name: 'gender')
-  final String? gender;
-
-  @JsonKey(name: 'phone')
-  final String? phone;
-
-  @JsonKey(name: 'photo')
-  final String? photo;
-
-  @JsonKey(name: 'passwordChangedAt')
-  final String? passwordChangedAt;
-
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['_id'] = id;
+    map['firstName'] = firstName;
+    map['lastName'] = lastName;
+    map['email'] = email;
+    map['gender'] = gender;
+    map['phone'] = phone;
+    map['photo'] = photo;
+    map['passwordChangedAt'] = passwordChangedAt;
+    return map;
+  }
 }
 
-/// --------------------------------------------------------------------------------
-/// Metadata
-/// --------------------------------------------------------------------------------
-
-@JsonSerializable()
 class Metadata {
   Metadata({
     this.currentPage,
@@ -306,19 +328,80 @@ class Metadata {
     this.limit,
   });
 
-  factory Metadata.fromJson(Map<String, dynamic> json) => _$MetadataFromJson(json);
+  Metadata.fromJson(dynamic json) {
+    currentPage = json['currentPage'];
+    totalPages = json['totalPages'];
+    totalItems = json['totalItems'];
+    limit = json['limit'];
+  }
 
-  @JsonKey(name: 'currentPage')
-  final num? currentPage;
+  num? currentPage;
+  num? totalPages;
+  num? totalItems;
+  num? limit;
 
-  @JsonKey(name: 'totalPages')
-  final num? totalPages;
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['currentPage'] = currentPage;
+    map['totalPages'] = totalPages;
+    map['totalItems'] = totalItems;
+    map['limit'] = limit;
+    return map;
+  }
+}
 
-  @JsonKey(name: 'totalItems')
-  final num? totalItems;
+class Driver {
+  Driver({
+    this.firstName,
+    this.lastName,
+    this.vehicleType,
+    this.email,
+    this.phone,
+    this.photo,
+    this.id,
+    this.lat,
+    this.long,
 
-  @JsonKey(name: 'limit')
-  final num? limit;
+  });
 
-  Map<String, dynamic> toJson() => _$MetadataToJson(this);
+  Driver.fromJson(dynamic json) {
+
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    vehicleType = json['vehicleType'];
+    email = json['email'];
+    phone = json['phone'];
+    photo = json['photo'];
+    id = json['_id'];
+    lat = json['lat'];
+    long = json['long'];
+  }
+
+
+  String? firstName;
+  String? lastName;
+  String? vehicleType;
+  String? email;
+  String? phone;
+  String? photo;
+  String? lat;
+  String? long;
+  String? id;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['firstName'] = firstName;
+    map['lastName'] = lastName;
+    map['vehicleType'] = vehicleType;
+
+    map['email'] = email;
+
+    map['phone'] = phone;
+    map['photo'] = photo;
+    map['lat'] = lat;
+    map['long'] = long;
+    map['_id'] = id;
+
+    return map;
+  }
 }

@@ -1,4 +1,4 @@
-// dart format width=80
+// dart format width=58
 
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
@@ -37,7 +37,11 @@ class $AssetsIconGen {
       const AssetGenImage('assets/icon/profile_icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [homeIcon, orderIcon, profileIcon];
+  List<AssetGenImage> get values => [
+    homeIcon,
+    orderIcon,
+    profileIcon,
+  ];
 }
 
 class $AssetsImageGen {
@@ -52,7 +56,10 @@ class $AssetsImageGen {
       const AssetGenImage('assets/image/onboarding.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [noRoutes, onboarding];
+  List<AssetGenImage> get values => [
+    noRoutes,
+    onboarding,
+  ];
 }
 
 class $AssetsSvgGen {
@@ -64,11 +71,32 @@ class $AssetsSvgGen {
   /// File path: assets/svg/bg.svg
   String get bg => 'assets/svg/bg.svg';
 
+  /// File path: assets/svg/call.svg
+  String get call => 'assets/svg/call.svg';
+
+  /// File path: assets/svg/location.svg
+  String get location => 'assets/svg/location.svg';
+
+  /// File path: assets/svg/orderSuccessfullyIcon.svg
+  String get orderSuccessfullyIcon =>
+      'assets/svg/orderSuccessfullyIcon.svg';
+
   /// File path: assets/svg/orders.svg
   String get orders => 'assets/svg/orders.svg';
 
+  /// File path: assets/svg/whatsapp.svg
+  String get whatsapp => 'assets/svg/whatsapp.svg';
+
   /// List of all assets
-  List<String> get values => [vector, bg, orders];
+  List<String> get values => [
+    vector,
+    bg,
+    call,
+    location,
+    orderSuccessfullyIcon,
+    orders,
+    whatsapp,
+  ];
 }
 
 class Assets {
@@ -147,8 +175,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;

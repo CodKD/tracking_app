@@ -4,7 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i12;
-import 'dart:io' as _i18;
+import 'dart:io' as _i21;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:retrofit/retrofit.dart' as _i6;
@@ -30,11 +30,17 @@ import 'package:tracking_app/features/auth/forget_password/domain/entities/reset
 import 'package:tracking_app/features/auth/forget_password/domain/entities/verify_reset_code_entity.dart'
     as _i10;
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart'
-    as _i17;
+    as _i20;
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
-    as _i16;
+    as _i19;
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart'
     as _i5;
+import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart'
+    as _i18;
+import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart'
+    as _i16;
+import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart'
+    as _i17;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -186,14 +192,33 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
           as _i12.Future<_i5.PendingOrdersResponse>);
 
   @override
-  _i12.Future<_i6.HttpResponse<_i16.LoginResponseDto>> login({
-    required _i17.LoginRequestDto? loginRequestDto,
+  _i12.Future<_i16.StartOrderModel?> startOrder(String? orderId) =>
+      (super.noSuchMethod(
+            Invocation.method(#startOrder, [orderId]),
+            returnValue: _i12.Future<_i16.StartOrderModel?>.value(),
+          )
+          as _i12.Future<_i16.StartOrderModel?>);
+
+  @override
+  _i12.Future<_i17.UpdateOrderStateResponse?> updateOrder(
+    String? orderId,
+    _i18.UpdateOrderRequest? updateOrderRequest,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateOrder, [orderId, updateOrderRequest]),
+            returnValue: _i12.Future<_i17.UpdateOrderStateResponse?>.value(),
+          )
+          as _i12.Future<_i17.UpdateOrderStateResponse?>);
+
+  @override
+  _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>> login({
+    required _i20.LoginRequestDto? loginRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
             returnValue:
-                _i12.Future<_i6.HttpResponse<_i16.LoginResponseDto>>.value(
-                  _FakeHttpResponse_4<_i16.LoginResponseDto>(
+                _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>>.value(
+                  _FakeHttpResponse_4<_i19.LoginResponseDto>(
                     this,
                     Invocation.method(#login, [], {
                       #loginRequestDto: loginRequestDto,
@@ -201,7 +226,7 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
                   ),
                 ),
           )
-          as _i12.Future<_i6.HttpResponse<_i16.LoginResponseDto>>);
+          as _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>>);
 
   @override
   _i12.Future<_i7.ApplyResponse> apply(
@@ -216,8 +241,8 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
     String? vehicleType,
     String? vehicleNumber,
     String? country,
-    _i18.File? vehicleLicense,
-    _i18.File? NIDImg,
+    _i21.File? vehicleLicense,
+    _i21.File? NIDImg,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#apply, [
