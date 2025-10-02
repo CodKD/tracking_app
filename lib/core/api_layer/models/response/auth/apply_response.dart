@@ -14,7 +14,7 @@ class ApplyResponse {
   final DriverDto? driver;
   @JsonKey(name: "token")
   final String? token;
-    @JsonKey(name: "error")
+  @JsonKey(name: "error")
   final String? error;
 
   ApplyResponse({this.message, this.driver, this.token, this.error});
@@ -43,10 +43,10 @@ class DriverDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   final File? vehicleLicense;
   @JsonKey(name: "NID")
-      // ignore: non_constant_identifier_names
+  // ignore: non_constant_identifier_names
   final String? NID;
   @JsonKey(includeFromJson: false, includeToJson: false)
-      // ignore: non_constant_identifier_names
+  // ignore: non_constant_identifier_names
   final File? NIDImg;
   @JsonKey(name: "email")
   final String? email;
@@ -70,9 +70,9 @@ class DriverDto {
     this.vehicleType,
     this.vehicleNumber,
     this.vehicleLicense,
-        // ignore: non_constant_identifier_names
+    // ignore: non_constant_identifier_names
     this.NID,
-        // ignore: non_constant_identifier_names
+    // ignore: non_constant_identifier_names
     this.NIDImg,
     this.email,
     this.gender,

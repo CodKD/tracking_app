@@ -9,6 +9,8 @@ import 'package:tracking_app/features/auth/forget_password/presentation/pages/fo
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
 import 'package:tracking_app/features/auth/login/presentation/login_view.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
+import 'package:tracking_app/features/profile/presentation/view/edit_profile.dart';
+import 'package:tracking_app/features/profile/presentation/view/notification_list.dart';
 import 'package:tracking_app/features/order_details/presentation/pages/order_details_view.dart';
 
 import '../../features/onboarding/onboarding_view.dart';
@@ -29,6 +31,12 @@ abstract class Routes {
         return MaterialPageRoute(builder: (context) => const OrderDetailsView());
       case AppRoutes.onBoardingView:
         return MaterialPageRoute(builder: (context) => const OnboardingView());
+      case AppRoutes.notificationList:
+        return MaterialPageRoute(
+          builder: (context) => const NotificationList(),
+        );
+      case AppRoutes.editProfile:
+        return MaterialPageRoute(builder: (context) => const EditProfile());
       case AppRoutes.applicationApprovedScreen:
         return MaterialPageRoute(
           builder: (context) => const ApplicationApprovedScreen(),

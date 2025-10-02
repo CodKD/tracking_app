@@ -743,6 +743,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'choose national ID image'**
   String get choose_national_id_img;
+
+  /// No description provided for @areYouSureYouWantToLogOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Are You Sure You Want To Log Out'**
+  String get areYouSureYouWantToLogOut;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @confirmLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Logout'**
+  String get confirmLogout;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

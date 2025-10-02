@@ -4,6 +4,14 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i12;
+import 'dart:io' as _i18;
+
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:retrofit/retrofit.dart' as _i5;
+import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i11;
+import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
+    as _i6;
+import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart'
 import 'dart:io' as _i21;
 
 import 'package:mockito/mockito.dart' as _i1;
@@ -30,6 +38,9 @@ import 'package:tracking_app/features/auth/forget_password/domain/entities/reset
 import 'package:tracking_app/features/auth/forget_password/domain/entities/verify_reset_code_entity.dart'
     as _i10;
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart'
+    as _i17;
+import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
+    as _i16;
     as _i20;
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
     as _i19;
@@ -88,6 +99,12 @@ class _FakeHttpResponse_4<T> extends _i1.SmartFake
 
 class _FakeApplyResponse_5 extends _i1.SmartFake implements _i7.ApplyResponse {
   _FakeApplyResponse_5(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeGetLoggedDriver_5 extends _i1.SmartFake
+    implements _i7.GetLoggedDriver {
+  _FakeGetLoggedDriver_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -179,6 +196,10 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
           as _i12.Future<_i4.ResetPasswordResponseDto>);
 
   @override
+  _i12.Future<_i5.HttpResponse<_i16.LoginResponseDto>> login({
+    required _i17.LoginRequestDto? loginRequestDto,
+
+  @override
   _i12.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
       (super.noSuchMethod(
             Invocation.method(#getPendingDriverOrders, []),
@@ -217,6 +238,8 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
       (super.noSuchMethod(
             Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
             returnValue:
+                _i12.Future<_i5.HttpResponse<_i16.LoginResponseDto>>.value(
+                  _FakeHttpResponse_3<_i16.LoginResponseDto>(
                 _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>>.value(
                   _FakeHttpResponse_4<_i19.LoginResponseDto>(
                     this,
@@ -226,6 +249,10 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
                   ),
                 ),
           )
+          as _i12.Future<_i5.HttpResponse<_i16.LoginResponseDto>>);
+
+  @override
+  _i12.Future<_i6.ApplyResponse> apply(
           as _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>>);
 
   @override
@@ -241,6 +268,8 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
     String? vehicleType,
     String? vehicleNumber,
     String? country,
+    _i18.File? vehicleLicense,
+    _i18.File? NIDImg,
     _i21.File? vehicleLicense,
     _i21.File? NIDImg,
   ) =>
@@ -260,6 +289,8 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               vehicleLicense,
               NIDImg,
             ]),
+            returnValue: _i12.Future<_i6.ApplyResponse>.value(
+              _FakeApplyResponse_4(
             returnValue: _i12.Future<_i7.ApplyResponse>.value(
               _FakeApplyResponse_5(
                 this,
@@ -281,6 +312,20 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               ),
             ),
           )
+          as _i12.Future<_i6.ApplyResponse>);
+
+  @override
+  _i12.Future<_i7.GetLoggedDriver> getLoggedUserData() =>
+      (super.noSuchMethod(
+            Invocation.method(#getLoggedUserData, []),
+            returnValue: _i12.Future<_i7.GetLoggedDriver>.value(
+              _FakeGetLoggedDriver_5(
+                this,
+                Invocation.method(#getLoggedUserData, []),
+              ),
+            ),
+          )
+          as _i12.Future<_i7.GetLoggedDriver>);
           as _i12.Future<_i7.ApplyResponse>);
 }
 

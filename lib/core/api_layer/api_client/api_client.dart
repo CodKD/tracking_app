@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart';
 import 'package:tracking_app/features/auth/forget_password/data/models/request/forget_password_request_dto.dart';
 import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart';
 import 'package:tracking_app/features/auth/forget_password/data/models/request/verify_reset_code_request_dto.dart';
@@ -25,14 +26,17 @@ part 'api_client.g.dart';
 abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
+
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponseDto> forgetPassword({
     @Body() required ForgetPasswordRequestDto forgetPasswordRequestDto,
   });
+
   @POST(Endpoints.verifyResetCode)
   Future<VerifyResetCodeResponseDto> verifyResetCode({
     @Body() required VerifyResetCodeRequestDto verifyResetCodeRequestDto,
   });
+
   @PUT(Endpoints.resetPassword)
   Future<ResetPasswordResponseDto> resetPassword({
     @Body() required ResetPasswordRequestDto resetPasswordRequestDto,
@@ -71,4 +75,12 @@ abstract class ApiClient {
     // ignore: non_constant_identifier_names
     @Part(name: "NIDImg") File? NIDImg,
   );
+
+  @GET(Endpoints.getLoggedDriver)
+  Future<GetLoggedDriver> getLoggedUserData();
+
+  // @PUT('v1/auth/editProfile')
+  // Future<UpdateProfileResponseDto> editProfile(
+  //   @Body() UpdateProfileRequestDto request,
+  // );
 }

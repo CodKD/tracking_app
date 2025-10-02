@@ -47,6 +47,15 @@ import '../../features/auth/login/domain/repos/login_repo.dart' as _i983;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/cubit/login_view_model.dart'
     as _i465;
+import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
+    as _i1052;
+import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
+    as _i430;
+import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
+    as _i201;
+import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
+    as _i228;
+import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
 import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_panding_orders_data_source_impl.dart'
     as _i898;
 import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_pending_orders_data_source.dart'
@@ -78,6 +87,8 @@ import '../api_layer/data_source_impl/auth/forget_password_remote_data_source_im
     as _i594;
 import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
     as _i640;
+import '../api_layer/data_source_impl/profile/get_logged_driver_data_source_impl.dart'
+    as _i81;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -151,6 +162,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i983.LoginRepo>(
       () => _i1013.LoginRepoImpl(gh<_i1049.LoginRemoteDataSource>()),
     );
+    gh.factory<_i201.GetLoggedDriverDataRepo>(
+      () => _i430.GetLoggedDriverDataRepoImpl(
+        gh<_i1052.GetLoggedDriverDataSource>(),
+      ),
+    );
     gh.factory<_i737.ForgetPasswordUseCase>(
       () => _i737.ForgetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
     );
@@ -163,11 +179,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i983.LoginRepo>()),
     );
-    gh.factory<_i750.OrderDetailsRepo>(
-      () => _i1032.StarOrderRepoImpl(gh<_i910.OrderDetailsDataSourcesRepo>()),
+    gh.factory<_i228.GetLoggedDriverDataUseCase>(
+      () =>
+          _i228.GetLoggedDriverDataUseCase(gh<_i201.GetLoggedDriverDataRepo>()),
     );
     gh.factory<_i1055.ApplyUseCase>(
       () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),
+    );
+    gh.factory<_i1017.ProfileCubit>(
+      () => _i1017.ProfileCubit(gh<_i228.GetLoggedDriverDataUseCase>()),
     );
     gh.factory<_i231.ForgetPasswordViewModel>(
       () => _i231.ForgetPasswordViewModel(

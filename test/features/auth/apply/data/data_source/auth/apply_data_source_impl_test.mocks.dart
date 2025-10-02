@@ -4,6 +4,18 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i10;
+import 'dart:io' as _i16;
+
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:retrofit/retrofit.dart' as _i5;
+import 'package:shared_preferences/shared_preferences.dart' as _i8;
+import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i9;
+import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
+    as _i6;
+import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart'
+    as _i7;
+import 'package:tracking_app/core/modules/shared_preferences_module.dart'
+    as _i17;
 import 'dart:io' as _i19;
 
 import 'package:mockito/mockito.dart' as _i1;
@@ -27,6 +39,9 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/forget_password/data/models/response/verify_reset_code_response_dto.dart'
     as _i3;
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart'
+    as _i15;
+import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
+    as _i14;
     as _i18;
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
     as _i17;
@@ -83,6 +98,9 @@ class _FakeHttpResponse_4<T> extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
+class _FakeGetLoggedDriver_5 extends _i1.SmartFake
+    implements _i7.GetLoggedDriver {
+  _FakeGetLoggedDriver_5(Object parent, Invocation parentInvocation)
 class _FakeApplyResponse_5 extends _i1.SmartFake implements _i7.ApplyResponse {
   _FakeApplyResponse_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
@@ -160,6 +178,10 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
           as _i10.Future<_i4.ResetPasswordResponseDto>);
 
   @override
+  _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>> login({
+    required _i15.LoginRequestDto? loginRequestDto,
+
+  @override
   _i10.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
       (super.noSuchMethod(
             Invocation.method(#getPendingDriverOrders, []),
@@ -198,6 +220,8 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
       (super.noSuchMethod(
             Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
             returnValue:
+                _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>>.value(
+                  _FakeHttpResponse_3<_i14.LoginResponseDto>(
                 _i10.Future<_i6.HttpResponse<_i17.LoginResponseDto>>.value(
                   _FakeHttpResponse_4<_i17.LoginResponseDto>(
                     this,
@@ -207,6 +231,10 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
                   ),
                 ),
           )
+          as _i10.Future<_i5.HttpResponse<_i14.LoginResponseDto>>);
+
+  @override
+  _i10.Future<_i6.ApplyResponse> apply(
           as _i10.Future<_i6.HttpResponse<_i17.LoginResponseDto>>);
 
   @override
@@ -222,6 +250,8 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
     String? vehicleType,
     String? vehicleNumber,
     String? country,
+    _i16.File? vehicleLicense,
+    _i16.File? NIDImg,
     _i19.File? vehicleLicense,
     _i19.File? NIDImg,
   ) =>
@@ -241,6 +271,8 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
               vehicleLicense,
               NIDImg,
             ]),
+            returnValue: _i10.Future<_i6.ApplyResponse>.value(
+              _FakeApplyResponse_4(
             returnValue: _i10.Future<_i7.ApplyResponse>.value(
               _FakeApplyResponse_5(
                 this,
@@ -262,12 +294,27 @@ class MockApiClient extends _i1.Mock implements _i9.ApiClient {
               ),
             ),
           )
+          as _i10.Future<_i6.ApplyResponse>);
+
+  @override
+  _i10.Future<_i7.GetLoggedDriver> getLoggedUserData() =>
+      (super.noSuchMethod(
+            Invocation.method(#getLoggedUserData, []),
+            returnValue: _i10.Future<_i7.GetLoggedDriver>.value(
+              _FakeGetLoggedDriver_5(
+                this,
+                Invocation.method(#getLoggedUserData, []),
+              ),
+            ),
+          )
+          as _i10.Future<_i7.GetLoggedDriver>);
           as _i10.Future<_i7.ApplyResponse>);
 }
 
 /// A class which mocks [SharedPrefHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
+class MockSharedPrefHelper extends _i1.Mock implements _i17.SharedPrefHelper {
 class MockSharedPrefHelper extends _i1.Mock implements _i20.SharedPrefHelper {
   MockSharedPrefHelper() {
     _i1.throwOnMissingStub(this);
