@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart';
 import 'custom_card_address.dart';
 import 'custom_card_order_details.dart';
@@ -32,10 +33,10 @@ class OrderDetailsViewBody extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Text('Status : ',
+                     Text('${context.l10n.status} : ',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.green
@@ -53,10 +54,10 @@ class OrderDetailsViewBody extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const Text('Order ID : ',
+                     Text('${context.l10n.order_id} : ',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.black)),
@@ -99,7 +100,7 @@ class OrderDetailsViewBody extends StatelessWidget {
               // go to pickup location view
             },
             noIcon: true,
-            title: 'Pickup address',
+            title: context.l10n.pickup_address,
             title2: orderDetails.store?.name ?? '',
             phone: orderDetails.store?.phoneNumber ?? '',
             name: orderDetails.store?.name ?? '',
@@ -118,7 +119,7 @@ class OrderDetailsViewBody extends StatelessWidget {
              // go to pickup location view
             },
             noIcon: false,
-            title: 'User address',
+            title: context.l10n.user_address,
             title2:
                 '${orderDetails.user?.firstName} ${orderDetails.user?.lastName}',
             phone: orderDetails.user?.phone ?? '',
@@ -133,9 +134,9 @@ class OrderDetailsViewBody extends StatelessWidget {
             height: 24,
           ),
         ),
-        const SliverToBoxAdapter(
-          child: Text('Order details',
-              style: TextStyle(
+         SliverToBoxAdapter(
+          child: Text(context.l10n.order_details,
+              style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.black)),
@@ -167,9 +168,9 @@ class OrderDetailsViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Row(
                 children: [
-                  const Text(
-                    'Total',
-                    style: TextStyle(
+                   Text(
+                    context.l10n.total,
+                    style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
@@ -205,9 +206,9 @@ class OrderDetailsViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Row(
                 children: [
-                  const Text(
-                    'Payment method',
-                    style: TextStyle(
+                   Text(
+                    context.l10n.payment_method,
+                    style: const TextStyle(
                         color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                   const Spacer(),

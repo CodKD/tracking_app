@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:tracking_app/core/api_layer/firebase/firestore_manager.dart';
 import 'package:tracking_app/core/extensions/navigator_extensions.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/resources/app_constants.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/utils/caching/caching_helper.dart';
@@ -39,23 +40,23 @@ class _OrderCardState extends State<OrderCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Flower order",
-              style: TextStyle(
+             Text(
+              context.l10n.flower_order,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              '24 Km - 30 mins to deliver',
+              context.l10n.distance_to_deliver,
               style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 8),
             
             const SizedBox(height: 16),
             StoreInfo(
-              title: 'store address',
+              title: context.l10n.store_address,
               name:
                   widget.orderPending.store?.name
                       .toString() ??
@@ -69,7 +70,7 @@ class _OrderCardState extends State<OrderCard> {
             ),
             const SizedBox(height: 16),
             StoreInfo(
-              title: 'user address',
+              title: context.l10n.user_address,
               name:
                   "${widget.orderPending.user?.firstName} ${widget.orderPending.user?.lastName}",
               address:
@@ -115,9 +116,9 @@ class _OrderCardState extends State<OrderCard> {
 
                     onPressed: widget.onReject,
 
-                    child: const Text(
-                      'Reject',
-                      style: TextStyle(
+                    child:  Text(
+                      context.l10n.reject,
+                      style: const TextStyle(
                         color: Colors.pink,
                         fontSize: 12,
                       ),
@@ -178,13 +179,15 @@ class _OrderCardState extends State<OrderCard> {
                                       .orderPendingId,
                                 ),
                                 OrderStateModel(
-                                  state: 'Accepted',
+                                  // ignore: use_build_context_synchronously
+                                  state: context.l10n.accepted,
                                   updatedAt: DateTime.now()
                                       .microsecondsSinceEpoch
                                       .toString(),
                                 ),
                               );
 
+                              // ignore: use_build_context_synchronously
                               context.pushReplacementNamed(
                                 AppRoutes
                                     .orderDetailsScreen,
@@ -194,6 +197,7 @@ class _OrderCardState extends State<OrderCard> {
                                 isButtonDisabled = false;
                               });
                               ScaffoldMessenger.of(
+                                // ignore: use_build_context_synchronously
                                 context,
                               ).showSnackBar(
                                 SnackBar(
@@ -218,9 +222,9 @@ class _OrderCardState extends State<OrderCard> {
                           ? Colors.grey
                           : Colors.pink,
                     ),
-                    child: const Text(
-                      'Accept',
-                      style: TextStyle(
+                    child:  Text(
+                      context.l10n.accept,
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),

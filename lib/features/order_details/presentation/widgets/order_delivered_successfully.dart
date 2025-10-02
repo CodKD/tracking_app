@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tracking_app/core/extensions/navigator_extensions.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/utils/caching/caching_helper.dart';
@@ -24,9 +25,9 @@ class OrderDeliveredSuccessfully extends StatelessWidget {
               const SizedBox(
                 height: 32,
               ),
-              const Text(
-                'Thank you!!',
-                style: TextStyle(
+               Text(
+                context.l10n.thank_you,
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 24,
                     fontWeight: FontWeight.w600),
@@ -34,16 +35,16 @@ class OrderDeliveredSuccessfully extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              const Text(
-                'The order delivered ',
-                style: TextStyle(
+               Text(
+                context.l10n.order_delivered,
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 24,
                     fontWeight: FontWeight.w600),
               ),
-              const Text(
-                'successfully ',
-                style: TextStyle(
+               Text(
+                context.l10n.successfully,
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 24,
                     fontWeight: FontWeight.w600),
@@ -63,7 +64,7 @@ class OrderDeliveredSuccessfully extends StatelessWidget {
                      );
 
                      context.pushReplacementNamed(AppRoutes.homeScreen);
-                  }, child: const Text('Done'),)
+                  }, child:  Text(context.l10n.done),)
             ],
           ),
         ),

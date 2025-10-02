@@ -102,6 +102,64 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ok => 'حسناً';
 
   @override
+  String get notAvailableForDelivery => 'غير متاح لليصول';
+
+  @override
+  String get flower_order => 'طلب الزهور';
+
+  @override
+  String get distance_to_deliver =>
+      '24 كم - 30 دقائق لليصول';
+
+  @override
+  String get store_address => 'Store Address';
+
+  @override
+  String get user_address => 'User Address';
+
+  @override
+  String get reject => 'رفض';
+
+  @override
+  String get accepted => 'مقبول';
+
+  @override
+  String get accept => 'قبول';
+
+  @override
+  String get no_orders => 'لا يوجد طلبات';
+
+  @override
+  String get thank_you => 'شكرا لكم!!';
+
+  @override
+  String get order_delivered => 'تم تسليم الطلب';
+
+  @override
+  String get successfully => 'ناجح';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get status => 'الحالة';
+
+  @override
+  String get order_id => 'رقم الطلب';
+
+  @override
+  String get pickup_address => 'عنوان استلام';
+
+  @override
+  String get order_details => 'تفاصيل الطلب';
+
+  @override
+  String get total => 'المجموع';
+
+  @override
+  String get payment_method => 'طريقة الدفع';
+
+  @override
   String get loading => 'جاري التحميل...';
 
   @override

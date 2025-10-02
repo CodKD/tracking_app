@@ -101,6 +101,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ok => 'Ok';
 
   @override
+  String get notAvailableForDelivery =>
+      'Not available for delivery';
+
+  @override
+  String get flower_order => 'Flower order';
+
+  @override
+  String get distance_to_deliver =>
+      '24 Km - 30 mins to deliver';
+
+  @override
+  String get store_address => 'Store Address';
+
+  @override
+  String get user_address => 'User Address';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
+  String get accepted => 'Accepted';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get no_orders => 'No Orders';
+
+  @override
+  String get thank_you => 'Thank you!!';
+
+  @override
+  String get order_delivered => 'The order delivered';
+
+  @override
+  String get successfully => 'successfully';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get order_id => 'Order ID';
+
+  @override
+  String get pickup_address => 'Pickup address';
+
+  @override
+  String get order_details => 'Order details';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get payment_method => 'Payment method';
+
+  @override
   String get loading => 'Loading...';
 
   @override

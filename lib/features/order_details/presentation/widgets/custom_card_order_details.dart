@@ -21,7 +21,6 @@ class CustomCardOrderDetails extends StatelessWidget {
         contentPadding: const EdgeInsets.all(10),
         minTileHeight: 8,
         minVerticalPadding: 10,
-        // horizontalTitleGap: 8,
         title: Text(
           productInfo?.product?.title??'',
           maxLines: 1,

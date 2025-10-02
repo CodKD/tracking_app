@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:tracking_app/core/api_layer/firebase/firestore_manager.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/utils/caching/caching_helper.dart';
 import 'package:tracking_app/features/order_details/presentation/widgets/order_delivered_successfully.dart';
 import 'package:tracking_app/features/order_details/presentation/widgets/skeleton_order_details.dart';
@@ -80,7 +81,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                       } else if (snapshot.hasError) {
                         return Center(
                           child:
-                              Center(child: Text('Error: ${snapshot.error}')),
+                              Center(child: Text('${context.l10n.error} : ${snapshot.error}')),
                         );
                       } else if (snapshot.hasData) {
 

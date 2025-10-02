@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/domain/entities/pending_orders_entity.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/presentation/widgets/available_for_delivery.dart';
@@ -51,17 +52,7 @@ class _HomeViewState extends State<HomeTab> {
         create: (context) => viewModel..getHomeData(),
         child: Column(
             children: [
-              // CustomAppBar(
-              //   title: 'Flowery Rider',
-              //   color: ColorManager.pink,
-              //   isAvailable: isAvailable,
-              //   onChanged: (value) {
-              //     setState(() {
-              //       isAvailable = value;
-              //       if(isAvailable==true) viewModel.getHomeData();
-              //     });
-              //   },
-              // ),
+            
               isAvailable
                   ? BlocConsumer<HomeTabCubit, HomeTabState>(
                       listener: (context, state) {
@@ -125,7 +116,7 @@ class _HomeViewState extends State<HomeTab> {
                                     savedToken: savedToken),
                               );
                       } else {
-                        return const Center(child: Text('Error'));
+                        return  Center(child: Text(context.l10n.error));
                       }
                     })
                   : const Expanded(child: AvailableForDelivery()),
