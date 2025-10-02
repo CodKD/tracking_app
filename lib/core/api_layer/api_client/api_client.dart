@@ -1,9 +1,12 @@
+import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart';
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart';
+import 'package:tracking_app/core/api_layer/models/response/profile/update_photo_response_dto.dart';
+import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart';
 import 'package:tracking_app/features/auth/forget_password/data/models/request/forget_password_request_dto.dart';
 import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart';
 import 'package:tracking_app/features/auth/forget_password/data/models/request/verify_reset_code_request_dto.dart';
@@ -66,8 +69,12 @@ abstract class ApiClient {
   @GET(Endpoints.getLoggedDriver)
   Future<GetLoggedDriver> getLoggedUserData();
 
-  // @PUT('v1/auth/editProfile')
-  // Future<UpdateProfileResponseDto> editProfile(
-  //   @Body() UpdateProfileRequestDto request,
-  // );
+  @PUT(Endpoints.editProfile)
+  Future<UpdateProfileResponseDto> editProfile(
+    @Body() UpdateProfileRequestDto request,
+  );
+
+  @PUT(Endpoints.uploadPhoto)
+  @MultiPart()
+  Future<UpdatePhotoResponseDto> changePhoto(@Part(name: "photo") File photo);
 }

@@ -293,4 +293,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get oldPassword => 'Old Password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get enterOldPassword => 'Enter old password';
+
+  @override
+  String get enterNewPassword => 'Enter new password';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get profileUpdatedSuccessfully => 'Profile updated successfully';
+
+  @override
+  String get passwordChangedSuccessfully => 'Password changed successfully';
+
+  @override
+  String get currentOrders => 'Current Orders';
+
+  @override
+  String get pastOrders => 'Past Orders';
+
+  @override
+  String get orderDetails => 'Order Details';
+
+  @override
+  String get orderId => 'Order ID';
+
+  @override
+  String get customerName => 'Customer Name';
+
+  @override
+  String get customerPhone => 'Customer Phone';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get orderStatus => 'Order Status';
+
+  @override
+  String get totalAmount => 'Total Amount';
+
+  @override
+  String get items => 'Items';
+
+  @override
+  String get photo_updated_successfully => 'Photo updated successfully';
+
+  @override
+  String get changePhoto => 'Change Photo';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get update => 'Update';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
 }

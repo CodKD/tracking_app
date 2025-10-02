@@ -12,7 +12,7 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ProfileCubit>()..getLoggedDriverData(),
+      create: (context) => getIt<ProfileCubit>()..getLoggedUserData(),
       child: SafeArea(
         child: Column(
           children: [
