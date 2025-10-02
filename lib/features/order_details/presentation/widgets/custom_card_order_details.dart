@@ -15,6 +15,7 @@ class CustomCardOrderDetails extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(0),
       child: ListTile(
+        // ignore: deprecated_member_use
         splashColor: Colors.pink.withOpacity(.5),
         onTap: () {
         },

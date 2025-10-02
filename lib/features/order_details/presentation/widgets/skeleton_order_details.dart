@@ -24,6 +24,7 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
+                // ignore: deprecated_member_use
                 color: Colors.pink.withOpacity(.1),
                 borderRadius: BorderRadius.circular(12)),
             child: const Column(

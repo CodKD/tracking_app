@@ -9,7 +9,7 @@ import 'package:tracking_app/features/order_details/presentation/widgets/order_d
 import 'package:tracking_app/features/order_details/presentation/widgets/skeleton_order_details.dart';
 import '../../data/models/request/update_order_request.dart';
 import '../view_model/start_order_cubit.dart';
-import '../widgets/order_detailsV_view_body.dart';
+import '../widgets/order_details_view_body.dart';
 
 class OrderDetailsView extends StatefulWidget {
   const OrderDetailsView({
