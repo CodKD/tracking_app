@@ -27,7 +27,7 @@ class FakeHomeTabCubit extends Cubit<HomeTabState> implements HomeTabCubit {
   List<Orders>? displayedOrders;
 }
 
-/// Mock HomeTab View بدون GetIt + استبدال الصور بـ AssetImage
+
 class _MockHomeTabView extends StatelessWidget {
   const _MockHomeTabView();
 
@@ -66,7 +66,7 @@ class _MockHomeTabView extends StatelessWidget {
   }
 }
 
-/// HttpOverrides عشان يمنع أي call للإنترنت في التست
+
 class _FakeHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {

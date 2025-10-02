@@ -102,18 +102,7 @@ class FirebaseUtils {
     }
   }
 
-  // static Future<void> updateLatLongDriver(String orderId,
-  //     Driver driver) async {
-  //   try {
-  //     var document =
-  //     FirebaseFirestore.instance.collection('OrdersInfo').doc(orderId);
-  //     await document.update({"driver": driver.toJson()});
-  //
-  //     log('Order state updated successfully.');
-  //   } catch (e) {
-  //     log('Error updating order state: $e');
-  //   }
-  // }
+
 }
 
 class OrderStateModel {
@@ -158,9 +147,3 @@ class LatLongLocation {
   }
 
 }
-  // factory LatLongLocation.fromJson(Map<String, dynamic> json) {
-  //   return LatLongLocation(
-  //     lat: json['lat'] as String,
-  //     long: json['long'] as String,
-  //   );
-  // }}
