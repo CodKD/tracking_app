@@ -3,23 +3,24 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
 import 'package:tracking_app/core/utils/launch_url.dart';
 
-class CustomCardAddress extends StatelessWidget {
-  const CustomCardAddress(
+
+
+class CustomCardDetails extends StatelessWidget {
+  const CustomCardDetails(
       {super.key,
       required this.title,
       required this.phone,
       this.name,
-      required this.location,
+      required this.subTitle,
       required this.title2,
       required this.urlImage,
-      required this.noIcon,
-      this.onTap});
+      required this.noIcon, this.onTap});
 
   final String title;
   final String title2;
   final String phone;
   final String? name;
-  final String location;
+  final String subTitle;
   final String urlImage;
   final bool noIcon;
   final void Function()? onTap;
@@ -29,27 +30,28 @@ class CustomCardAddress extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),
-        ),
+        Text(title,
+           style: const TextStyle(
+             fontWeight: FontWeight.bold
+           ),),
         const SizedBox(
-          height: 16,
+          height: 8,
         ),
         Card(
-         color: Colors.grey[200],
-         elevation: 4,
+          color: Colors.white,
+          elevation: 5,
           margin: const EdgeInsets.all(0),
           child: ListTile(
             contentPadding: const EdgeInsets.all(10),
             minTileHeight: 8,
             minVerticalPadding: 10,
             onTap: onTap,
+            // horizontalTitleGap: 8,
             title: Text(
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
               title2,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              style: const TextStyle(
+             fontWeight: FontWeight.bold
+           ),
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -68,7 +70,6 @@ class CustomCardAddress extends StatelessWidget {
                   width: 8,
                 ),
                 InkWell(
-              
                   onTap: () {
                     CustomLaunchUrl.launchUrlWhatsapp(
                       numPhone: phone,
@@ -89,14 +90,10 @@ class CustomCardAddress extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
-              child:
-              
-             urlImage.isNotEmpty
-                 ? Image.network(
-                     urlImage,
-                     fit: BoxFit.fill,
-                   )
-                 : const SizedBox(),
+              child: Image.network(
+                urlImage,
+                fit: BoxFit.fill,
+              ),
             ),
             subtitle: Row(
               children: [
@@ -112,9 +109,8 @@ class CustomCardAddress extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  location,
+                      subTitle,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   maxLines: 1,
                 )),
               ],
