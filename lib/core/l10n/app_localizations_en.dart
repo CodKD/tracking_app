@@ -404,10 +404,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get save => 'Save';
 
   @override
-  String get profileUpdatedSuccessfully => 'Profile updated successfully';
+  String get profileUpdatedSuccessfully =>
+      'Profile updated successfully';
 
   @override
-  String get passwordChangedSuccessfully => 'Password changed successfully';
+  String get passwordChangedSuccessfully =>
+      'Password changed successfully';
 
   @override
   String get currentOrders => 'Current Orders';
@@ -440,7 +442,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get items => 'Items';
 
   @override
-  String get photo_updated_successfully => 'Photo updated successfully';
+  String get photo_updated_successfully =>
+      'Photo updated successfully';
 
   @override
   String get changePhoto => 'Change Photo';

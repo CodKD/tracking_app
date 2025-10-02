@@ -394,19 +394,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newPassword => 'كلمة المرور الجديدة';
 
   @override
-  String get enterOldPassword => 'ادخل كلمة المرور القديمة';
+  String get enterOldPassword =>
+      'ادخل كلمة المرور القديمة';
 
   @override
-  String get enterNewPassword => 'ادخل كلمة المرور الجديدة';
+  String get enterNewPassword =>
+      'ادخل كلمة المرور الجديدة';
 
   @override
   String get save => 'حفظ';
 
   @override
-  String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+  String get profileUpdatedSuccessfully =>
+      'تم تحديث الملف الشخصي بنجاح';
 
   @override
-  String get passwordChangedSuccessfully => 'تم تغيير كلمة المرور بنجاح';
+  String get passwordChangedSuccessfully =>
+      'تم تغيير كلمة المرور بنجاح';
 
   @override
   String get currentOrders => 'الطلبات الحالية';
@@ -439,7 +443,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get items => 'العناصر';
 
   @override
-  String get photo_updated_successfully => 'تم تحديث الصورة بنجاح';
+  String get photo_updated_successfully =>
+      'تم تحديث الصورة بنجاح';
 
   @override
   String get changePhoto => 'Change Photo';

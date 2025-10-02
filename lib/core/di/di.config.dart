@@ -168,11 +168,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i370.ForgetPasswordRemoteDataSource>(),
       ),
     );
+    gh.factory<_i910.OrderDetailsDataSourcesRepo>(
+      () => _i296.StartOrderDataSourcesRepoImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i234.UpdateProfileRepo>(
       () =>
           _i249.UpdateProfileRepoImpl(gh<_i62.UpdateDriverProfileDataSource>()),
-    gh.factory<_i910.OrderDetailsDataSourcesRepo>(
-      () => _i296.StartOrderDataSourcesRepoImpl(gh<_i225.ApiClient>()),
     );
     gh.factory<_i1049.LoginRemoteDataSource>(
       () => _i640.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
@@ -229,14 +230,15 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
     );
+    gh.factory<_i1044.StartOrderUseCase>(
+      () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
+    );
     gh.factory<_i1017.ProfileCubit>(
       () => _i1017.ProfileCubit(
         gh<_i228.GetLoggedDriverDataUseCase>(),
         gh<_i345.UpdateDriverPhotoUseCase>(),
         gh<_i662.UpdateDriverProfileUseCase>(),
       ),
-    gh.factory<_i1044.StartOrderUseCase>(
-      () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
     );
     gh.factory<_i330.StartOrderCubit>(
       () => _i330.StartOrderCubit(gh<_i1044.StartOrderUseCase>()),

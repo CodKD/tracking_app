@@ -54,7 +54,6 @@ dependencies:
   image_picker: ^1.0.4
   auto_size_text: ^3.0.0
   animated_text_kit: ^4.2.3
-  skeletonizer: ^2.1.0+1
   image: ^4.1.7
   firebase_core: ^4.1.1
 
