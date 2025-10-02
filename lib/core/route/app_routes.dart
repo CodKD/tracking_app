@@ -6,4 +6,5 @@ abstract class AppRoutes {
   static const String applicationApprovedScreen =
       "/application_approved_screen";
   static const String applyScreen = "/driver_apply_screen";
+  static const String orderDetailsScreen = "/order_details_screen";
 }
