@@ -54,26 +54,6 @@ class MyApp extends StatelessWidget {
                 );
               },
             ),
-          ),
-      builder: (context, child) => BlocProvider(
-        create: (context) => getIt<LocaleCubit>(),
-        child: BlocBuilder<LocaleCubit, Locale>(
-          builder: (context, locale) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: "Tracking app",
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              locale: locale,
-              theme: AppTheme.lightTheme, 
-              onGenerateRoute: Routes.generateRoute,
-              initialRoute: token != null
-                  ? AppRoutes.homeScreen
-                  : AppRoutes.applicationApprovedScreen,
-            );
-          },
-        ),
-      ),
-    );
+          ),    );
   }
 }

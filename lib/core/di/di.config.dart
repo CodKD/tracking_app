@@ -47,15 +47,6 @@ import '../../features/auth/login/domain/repos/login_repo.dart' as _i983;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/cubit/login_view_model.dart'
     as _i465;
-import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
-    as _i1052;
-import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
-    as _i430;
-import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
-    as _i201;
-import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
-    as _i228;
-import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
 import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_panding_orders_data_source_impl.dart'
     as _i898;
 import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_pending_orders_data_source.dart'
@@ -80,6 +71,15 @@ import '../../features/order_details/domain/use_cases/start_order_usecase.dart'
     as _i1044;
 import '../../features/order_details/presentation/view_model/start_order_cubit.dart'
     as _i330;
+import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
+    as _i1052;
+import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
+    as _i430;
+import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
+    as _i201;
+import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
+    as _i228;
+import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -142,6 +142,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i744.SharedPrefHelper>(),
       ),
     );
+    gh.factory<_i1052.GetLoggedDriverDataSource>(
+      () => _i81.GetLoggedDriverDataSourceImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i526.HomeTabCubit>(
       () => _i526.HomeTabCubit(gh<_i226.GetPendingOrdersUseCase>()),
     );
@@ -182,6 +185,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i228.GetLoggedDriverDataUseCase>(
       () =>
           _i228.GetLoggedDriverDataUseCase(gh<_i201.GetLoggedDriverDataRepo>()),
+    );
+    gh.factory<_i750.OrderDetailsRepo>(
+      () => _i1032.StarOrderRepoImpl(gh<_i910.OrderDetailsDataSourcesRepo>()),
     );
     gh.factory<_i1055.ApplyUseCase>(
       () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),

@@ -366,10 +366,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'choose vehicle license image';
 
   @override
-  String get choose_national_id_img => 'choose national ID image';
+  String get choose_national_id_img =>
+      'choose national ID image';
 
   @override
-  String get areYouSureYouWantToLogOut => 'Are You Sure You Want To Log Out';
+  String get areYouSureYouWantToLogOut =>
+      'Are You Sure You Want To Log Out';
 
   @override
   String get logout => 'Logout';
@@ -379,6 +381,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
-  String get choose_national_id_img =>
-      'choose national ID image';
 }

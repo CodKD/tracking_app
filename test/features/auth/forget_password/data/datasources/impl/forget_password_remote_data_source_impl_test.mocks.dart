@@ -3,28 +3,22 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i12;
-import 'dart:io' as _i18;
-
-import 'package:mockito/mockito.dart' as _i1;
-import 'package:retrofit/retrofit.dart' as _i5;
-import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i11;
-import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
-    as _i6;
-import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart'
-import 'dart:io' as _i21;
+import 'dart:async' as _i13;
+import 'dart:io' as _i22;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:retrofit/retrofit.dart' as _i6;
-import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i11;
+import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i12;
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
     as _i7;
+import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart'
+    as _i8;
 import 'package:tracking_app/features/auth/forget_password/data/models/request/forget_password_request_dto.dart'
-    as _i13;
-import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart'
-    as _i15;
-import 'package:tracking_app/features/auth/forget_password/data/models/request/verify_reset_code_request_dto.dart'
     as _i14;
+import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart'
+    as _i16;
+import 'package:tracking_app/features/auth/forget_password/data/models/request/verify_reset_code_request_dto.dart'
+    as _i15;
 import 'package:tracking_app/features/auth/forget_password/data/models/response/forget_password_response_dto.dart'
     as _i2;
 import 'package:tracking_app/features/auth/forget_password/data/models/response/reset_password_response_dto.dart'
@@ -32,26 +26,23 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/forget_password/data/models/response/verify_reset_code_response_dto.dart'
     as _i3;
 import 'package:tracking_app/features/auth/forget_password/domain/entities/forget_password_response_entity.dart'
-    as _i8;
-import 'package:tracking_app/features/auth/forget_password/domain/entities/reset_password_response_entity.dart'
     as _i9;
-import 'package:tracking_app/features/auth/forget_password/domain/entities/verify_reset_code_entity.dart'
+import 'package:tracking_app/features/auth/forget_password/domain/entities/reset_password_response_entity.dart'
     as _i10;
+import 'package:tracking_app/features/auth/forget_password/domain/entities/verify_reset_code_entity.dart'
+    as _i11;
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart'
-    as _i17;
+    as _i21;
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
-    as _i16;
     as _i20;
-import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
-    as _i19;
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart'
     as _i5;
 import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart'
-    as _i18;
+    as _i19;
 import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart'
-    as _i16;
-import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart'
     as _i17;
+import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart'
+    as _i18;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -102,29 +93,29 @@ class _FakeApplyResponse_5 extends _i1.SmartFake implements _i7.ApplyResponse {
     : super(parent, parentInvocation);
 }
 
-class _FakeGetLoggedDriver_5 extends _i1.SmartFake
-    implements _i7.GetLoggedDriver {
-  _FakeGetLoggedDriver_5(Object parent, Invocation parentInvocation)
+class _FakeGetLoggedDriver_6 extends _i1.SmartFake
+    implements _i8.GetLoggedDriver {
+  _FakeGetLoggedDriver_6(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeForgetPasswordResponseEntity_6 extends _i1.SmartFake
-    implements _i8.ForgetPasswordResponseEntity {
-  _FakeForgetPasswordResponseEntity_6(
+class _FakeForgetPasswordResponseEntity_7 extends _i1.SmartFake
+    implements _i9.ForgetPasswordResponseEntity {
+  _FakeForgetPasswordResponseEntity_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(parent, parentInvocation);
 }
 
-class _FakeResetPasswordResponseEntity_7 extends _i1.SmartFake
-    implements _i9.ResetPasswordResponseEntity {
-  _FakeResetPasswordResponseEntity_7(Object parent, Invocation parentInvocation)
+class _FakeResetPasswordResponseEntity_8 extends _i1.SmartFake
+    implements _i10.ResetPasswordResponseEntity {
+  _FakeResetPasswordResponseEntity_8(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeVerifyResetCodeResponseEntity_8 extends _i1.SmartFake
-    implements _i10.VerifyResetCodeResponseEntity {
-  _FakeVerifyResetCodeResponseEntity_8(
+class _FakeVerifyResetCodeResponseEntity_9 extends _i1.SmartFake
+    implements _i11.VerifyResetCodeResponseEntity {
+  _FakeVerifyResetCodeResponseEntity_9(
     Object parent,
     Invocation parentInvocation,
   ) : super(parent, parentInvocation);
@@ -133,20 +124,20 @@ class _FakeVerifyResetCodeResponseEntity_8 extends _i1.SmartFake
 /// A class which mocks [ApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiClient extends _i1.Mock implements _i11.ApiClient {
+class MockApiClient extends _i1.Mock implements _i12.ApiClient {
   MockApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i12.Future<_i2.ForgetPasswordResponseDto> forgetPassword({
-    required _i13.ForgetPasswordRequestDto? forgetPasswordRequestDto,
+  _i13.Future<_i2.ForgetPasswordResponseDto> forgetPassword({
+    required _i14.ForgetPasswordRequestDto? forgetPasswordRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [], {
               #forgetPasswordRequestDto: forgetPasswordRequestDto,
             }),
-            returnValue: _i12.Future<_i2.ForgetPasswordResponseDto>.value(
+            returnValue: _i13.Future<_i2.ForgetPasswordResponseDto>.value(
               _FakeForgetPasswordResponseDto_0(
                 this,
                 Invocation.method(#forgetPassword, [], {
@@ -155,17 +146,17 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               ),
             ),
           )
-          as _i12.Future<_i2.ForgetPasswordResponseDto>);
+          as _i13.Future<_i2.ForgetPasswordResponseDto>);
 
   @override
-  _i12.Future<_i3.VerifyResetCodeResponseDto> verifyResetCode({
-    required _i14.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
+  _i13.Future<_i3.VerifyResetCodeResponseDto> verifyResetCode({
+    required _i15.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#verifyResetCode, [], {
               #verifyResetCodeRequestDto: verifyResetCodeRequestDto,
             }),
-            returnValue: _i12.Future<_i3.VerifyResetCodeResponseDto>.value(
+            returnValue: _i13.Future<_i3.VerifyResetCodeResponseDto>.value(
               _FakeVerifyResetCodeResponseDto_1(
                 this,
                 Invocation.method(#verifyResetCode, [], {
@@ -174,17 +165,17 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               ),
             ),
           )
-          as _i12.Future<_i3.VerifyResetCodeResponseDto>);
+          as _i13.Future<_i3.VerifyResetCodeResponseDto>);
 
   @override
-  _i12.Future<_i4.ResetPasswordResponseDto> resetPassword({
-    required _i15.ResetPasswordRequestDto? resetPasswordRequestDto,
+  _i13.Future<_i4.ResetPasswordResponseDto> resetPassword({
+    required _i16.ResetPasswordRequestDto? resetPasswordRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [], {
               #resetPasswordRequestDto: resetPasswordRequestDto,
             }),
-            returnValue: _i12.Future<_i4.ResetPasswordResponseDto>.value(
+            returnValue: _i13.Future<_i4.ResetPasswordResponseDto>.value(
               _FakeResetPasswordResponseDto_2(
                 this,
                 Invocation.method(#resetPassword, [], {
@@ -193,55 +184,49 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               ),
             ),
           )
-          as _i12.Future<_i4.ResetPasswordResponseDto>);
+          as _i13.Future<_i4.ResetPasswordResponseDto>);
 
   @override
-  _i12.Future<_i5.HttpResponse<_i16.LoginResponseDto>> login({
-    required _i17.LoginRequestDto? loginRequestDto,
-
-  @override
-  _i12.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
+  _i13.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
       (super.noSuchMethod(
             Invocation.method(#getPendingDriverOrders, []),
-            returnValue: _i12.Future<_i5.PendingOrdersResponse>.value(
+            returnValue: _i13.Future<_i5.PendingOrdersResponse>.value(
               _FakePendingOrdersResponse_3(
                 this,
                 Invocation.method(#getPendingDriverOrders, []),
               ),
             ),
           )
-          as _i12.Future<_i5.PendingOrdersResponse>);
+          as _i13.Future<_i5.PendingOrdersResponse>);
 
   @override
-  _i12.Future<_i16.StartOrderModel?> startOrder(String? orderId) =>
+  _i13.Future<_i17.StartOrderModel?> startOrder(String? orderId) =>
       (super.noSuchMethod(
             Invocation.method(#startOrder, [orderId]),
-            returnValue: _i12.Future<_i16.StartOrderModel?>.value(),
+            returnValue: _i13.Future<_i17.StartOrderModel?>.value(),
           )
-          as _i12.Future<_i16.StartOrderModel?>);
+          as _i13.Future<_i17.StartOrderModel?>);
 
   @override
-  _i12.Future<_i17.UpdateOrderStateResponse?> updateOrder(
+  _i13.Future<_i18.UpdateOrderStateResponse?> updateOrder(
     String? orderId,
-    _i18.UpdateOrderRequest? updateOrderRequest,
+    _i19.UpdateOrderRequest? updateOrderRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#updateOrder, [orderId, updateOrderRequest]),
-            returnValue: _i12.Future<_i17.UpdateOrderStateResponse?>.value(),
+            returnValue: _i13.Future<_i18.UpdateOrderStateResponse?>.value(),
           )
-          as _i12.Future<_i17.UpdateOrderStateResponse?>);
+          as _i13.Future<_i18.UpdateOrderStateResponse?>);
 
   @override
-  _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>> login({
-    required _i20.LoginRequestDto? loginRequestDto,
+  _i13.Future<_i6.HttpResponse<_i20.LoginResponseDto>> login({
+    required _i21.LoginRequestDto? loginRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
             returnValue:
-                _i12.Future<_i5.HttpResponse<_i16.LoginResponseDto>>.value(
-                  _FakeHttpResponse_3<_i16.LoginResponseDto>(
-                _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>>.value(
-                  _FakeHttpResponse_4<_i19.LoginResponseDto>(
+                _i13.Future<_i6.HttpResponse<_i20.LoginResponseDto>>.value(
+                  _FakeHttpResponse_4<_i20.LoginResponseDto>(
                     this,
                     Invocation.method(#login, [], {
                       #loginRequestDto: loginRequestDto,
@@ -249,14 +234,10 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
                   ),
                 ),
           )
-          as _i12.Future<_i5.HttpResponse<_i16.LoginResponseDto>>);
+          as _i13.Future<_i6.HttpResponse<_i20.LoginResponseDto>>);
 
   @override
-  _i12.Future<_i6.ApplyResponse> apply(
-          as _i12.Future<_i6.HttpResponse<_i19.LoginResponseDto>>);
-
-  @override
-  _i12.Future<_i7.ApplyResponse> apply(
+  _i13.Future<_i7.ApplyResponse> apply(
     String? email,
     String? password,
     String? rePassword,
@@ -268,10 +249,8 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
     String? vehicleType,
     String? vehicleNumber,
     String? country,
-    _i18.File? vehicleLicense,
-    _i18.File? NIDImg,
-    _i21.File? vehicleLicense,
-    _i21.File? NIDImg,
+    _i22.File? vehicleLicense,
+    _i22.File? NIDImg,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#apply, [
@@ -289,9 +268,7 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               vehicleLicense,
               NIDImg,
             ]),
-            returnValue: _i12.Future<_i6.ApplyResponse>.value(
-              _FakeApplyResponse_4(
-            returnValue: _i12.Future<_i7.ApplyResponse>.value(
+            returnValue: _i13.Future<_i7.ApplyResponse>.value(
               _FakeApplyResponse_5(
                 this,
                 Invocation.method(#apply, [
@@ -312,21 +289,20 @@ class MockApiClient extends _i1.Mock implements _i11.ApiClient {
               ),
             ),
           )
-          as _i12.Future<_i6.ApplyResponse>);
+          as _i13.Future<_i7.ApplyResponse>);
 
   @override
-  _i12.Future<_i7.GetLoggedDriver> getLoggedUserData() =>
+  _i13.Future<_i8.GetLoggedDriver> getLoggedUserData() =>
       (super.noSuchMethod(
             Invocation.method(#getLoggedUserData, []),
-            returnValue: _i12.Future<_i7.GetLoggedDriver>.value(
-              _FakeGetLoggedDriver_5(
+            returnValue: _i13.Future<_i8.GetLoggedDriver>.value(
+              _FakeGetLoggedDriver_6(
                 this,
                 Invocation.method(#getLoggedUserData, []),
               ),
             ),
           )
-          as _i12.Future<_i7.GetLoggedDriver>);
-          as _i12.Future<_i7.ApplyResponse>);
+          as _i13.Future<_i8.GetLoggedDriver>);
 }
 
 /// A class which mocks [ForgetPasswordResponseDto].
@@ -347,15 +323,15 @@ class MockForgetPasswordResponseDto extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i8.ForgetPasswordResponseEntity toEntity() =>
+  _i9.ForgetPasswordResponseEntity toEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toEntity, []),
-            returnValue: _FakeForgetPasswordResponseEntity_6(
+            returnValue: _FakeForgetPasswordResponseEntity_7(
               this,
               Invocation.method(#toEntity, []),
             ),
           )
-          as _i8.ForgetPasswordResponseEntity);
+          as _i9.ForgetPasswordResponseEntity);
 }
 
 /// A class which mocks [ResetPasswordResponseDto].
@@ -376,15 +352,15 @@ class MockResetPasswordResponseDto extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i9.ResetPasswordResponseEntity toEntity() =>
+  _i10.ResetPasswordResponseEntity toEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toEntity, []),
-            returnValue: _FakeResetPasswordResponseEntity_7(
+            returnValue: _FakeResetPasswordResponseEntity_8(
               this,
               Invocation.method(#toEntity, []),
             ),
           )
-          as _i9.ResetPasswordResponseEntity);
+          as _i10.ResetPasswordResponseEntity);
 }
 
 /// A class which mocks [VerifyResetCodeResponseDto].
@@ -405,13 +381,13 @@ class MockVerifyResetCodeResponseDto extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i10.VerifyResetCodeResponseEntity toEntity() =>
+  _i11.VerifyResetCodeResponseEntity toEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toEntity, []),
-            returnValue: _FakeVerifyResetCodeResponseEntity_8(
+            returnValue: _FakeVerifyResetCodeResponseEntity_9(
               this,
               Invocation.method(#toEntity, []),
             ),
           )
-          as _i10.VerifyResetCodeResponseEntity);
+          as _i11.VerifyResetCodeResponseEntity);
 }
