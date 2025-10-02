@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart';
+import 'package:tracking_app/features/home/presentation/Tabs/home_tab/presentation/widgets/store_info.dart';
 import 'custom_card_address.dart';
 import 'custom_card_order_details.dart';
 
@@ -114,20 +115,15 @@ class OrderDetailsViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: CustomCardAddress(
-            onTap: () {
-             // go to pickup location view
-            },
-            noIcon: false,
-            title: context.l10n.user_address,
-            title2:
-                '${orderDetails.user?.firstName} ${orderDetails.user?.lastName}',
-            phone: orderDetails.user?.phone ?? '',
-            name:
-                '${orderDetails.user?.firstName} ${orderDetails.user?.lastName}',
-            location: orderDetails.user?.phone ?? '',
-            urlImage: orderDetails.user?.photo ?? '',
-          ),
+          child: StoreInfo(
+              title: context.l10n.user_address,
+              name:
+                  "${orderDetails.user?.firstName} ${orderDetails.user?.lastName}",
+              address:
+                  orderDetails.user?.phone ?? "",
+              img:
+                  "https://flower.elevateegy.com/uploads/${orderDetails.user?.photo}",
+            ),
         ),
         const SliverToBoxAdapter(
           child: SizedBox(

@@ -90,10 +90,12 @@ class CustomCardAddress extends StatelessWidget {
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
               child:
               
-              Image.network(
-                urlImage ,
-                fit: BoxFit.fill,
-              ),
+             urlImage.isNotEmpty
+                 ? Image.network(
+                     urlImage,
+                     fit: BoxFit.fill,
+                   )
+                 : const SizedBox(),
             ),
             subtitle: Row(
               children: [

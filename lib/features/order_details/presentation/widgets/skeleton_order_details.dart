@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:tracking_app/features/home/presentation/Tabs/home_tab/presentation/widgets/store_info.dart';
 
 import 'custom_card_address.dart';
 
@@ -45,20 +46,7 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
                 SizedBox(
                   height: 8,
                 ),
-                Row(
-                  children: [
-                    Text('Order ID : ',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
-                    Text('orderDetails.orderNumber ?? ''',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
-                  ],
-                ),
+               
                 SizedBox(
                   height: 8,
                 ),
@@ -89,15 +77,24 @@ class _OrderDetailsSkeletonState extends State<OrderDetailsSkeleton> {
           const SizedBox(
             height: 16,
           ),
-          const CustomCardAddress(
-            noIcon: true,
-            title: 'Pickup address',
-            title2: 'orderDetails.store?.name ?? ''',
-            phone: 'orderDetails.store?',
-            name: 'orderDetails..name ?? ''',
-            location: 'orderDetails.store?.address ?? ''',
-            urlImage:"https://flower.elevateegy.com/uploads/default-profile.png" ,
-          ),
+           const StoreInfo(
+              title: "Pickup address",
+              name:
+                  "Elevate test",
+              address:
+                   "Test address",
+              img:
+                  "https://flower.elevateegy.com/uploads/default-profile.png",
+            ),
+          // const CustomCardAddress(
+          //   noIcon: true,
+          //   title: 'Pickup address',
+          //   title2: 'orderDetails.store?.name ?? ''',
+          //   phone: 'orderDetails.store?',
+          //   name: 'orderDetails..name ?? ''',
+          //   location: 'orderDetails.store?.address ?? ''',
+          //   urlImage:"https://flower.elevateegy.com/uploads/default-profile.png" ,
+          // ),
           const SizedBox(
             height: 16,
           ),
