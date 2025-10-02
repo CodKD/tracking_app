@@ -73,12 +73,22 @@ import '../../features/order_details/presentation/view_model/start_order_cubit.d
     as _i330;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
     as _i1052;
+import '../../features/profile/data/data_source/update_driver_profile_data_source.dart'
+    as _i62;
 import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
     as _i430;
+import '../../features/profile/data/repositories/update_profile_repo_impl.dart'
+    as _i249;
 import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
     as _i201;
+import '../../features/profile/domain/repositories/update_profile_repo.dart'
+    as _i234;
 import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
     as _i228;
+import '../../features/profile/domain/usecases/update_driver_photo_use_case.dart'
+    as _i345;
+import '../../features/profile/domain/usecases/update_driver_profile_use_case.dart'
+    as _i662;
 import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
@@ -89,6 +99,8 @@ import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
     as _i640;
 import '../api_layer/data_source_impl/profile/get_logged_driver_data_source_impl.dart'
     as _i81;
+import '../api_layer/data_source_impl/profile/update_driver_profile_data_source_impl.dart'
+    as _i933;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -136,6 +148,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i370.ForgetPasswordRemoteDataSource>(
       () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
+    gh.factory<_i62.UpdateDriverProfileDataSource>(
+      () => _i933.UpdateDriverProfileDataSourceImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i166.ApplyDataSource>(
       () => _i942.ApplyDataSourceImpl(
         gh<_i225.ApiClient>(),
@@ -153,6 +168,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i370.ForgetPasswordRemoteDataSource>(),
       ),
     );
+    gh.factory<_i234.UpdateProfileRepo>(
+      () =>
+          _i249.UpdateProfileRepoImpl(gh<_i62.UpdateDriverProfileDataSource>()),
     gh.factory<_i910.OrderDetailsDataSourcesRepo>(
       () => _i296.StartOrderDataSourcesRepoImpl(gh<_i225.ApiClient>()),
     );
@@ -192,8 +210,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1055.ApplyUseCase>(
       () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),
     );
-    gh.factory<_i1017.ProfileCubit>(
-      () => _i1017.ProfileCubit(gh<_i228.GetLoggedDriverDataUseCase>()),
+    gh.factory<_i345.UpdateDriverPhotoUseCase>(
+      () => _i345.UpdateDriverPhotoUseCase(gh<_i234.UpdateProfileRepo>()),
+    );
+    gh.factory<_i662.UpdateDriverProfileUseCase>(
+      () => _i662.UpdateDriverProfileUseCase(gh<_i234.UpdateProfileRepo>()),
     );
     gh.factory<_i231.ForgetPasswordViewModel>(
       () => _i231.ForgetPasswordViewModel(
@@ -208,6 +229,12 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
     );
+    gh.factory<_i1017.ProfileCubit>(
+      () => _i1017.ProfileCubit(
+        gh<_i228.GetLoggedDriverDataUseCase>(),
+        gh<_i345.UpdateDriverPhotoUseCase>(),
+        gh<_i662.UpdateDriverProfileUseCase>(),
+      ),
     gh.factory<_i1044.StartOrderUseCase>(
       () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
     );

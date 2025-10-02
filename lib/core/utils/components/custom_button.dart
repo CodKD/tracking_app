@@ -29,9 +29,7 @@ class CustomButton extends StatelessWidget {
         backgroundColor: backgroundColorButton,
         minimumSize: size,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusGeometry.circular(
-            borderRadius,
-          ),
+          borderRadius: BorderRadiusGeometry.circular(borderRadius),
         ),
         elevation: elevation,
       ),

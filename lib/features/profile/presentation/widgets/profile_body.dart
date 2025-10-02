@@ -146,6 +146,18 @@ class ProfileBody extends StatelessWidget {
             );
           case ProfileInitial():
             throw UnimplementedError();
+          case UpdateUserProfileLoading():
+            throw UnimplementedError();
+          case UpdateUserProfileSuccess():
+            throw UnimplementedError();
+          case UpdateUserProfileError():
+            throw UnimplementedError();
+          case PhotoChangedLoadingState():
+            throw UnimplementedError();
+          case PhotoChangedSuccess():
+            throw UnimplementedError();
+          case PhotoChangedError():
+            throw UnimplementedError();
         }
       },
     );

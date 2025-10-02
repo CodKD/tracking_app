@@ -380,4 +380,82 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cancel => 'إلغاء';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get changePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get oldPassword => 'كلمة المرور القديمة';
+
+  @override
+  String get newPassword => 'كلمة المرور الجديدة';
+
+  @override
+  String get enterOldPassword => 'ادخل كلمة المرور القديمة';
+
+  @override
+  String get enterNewPassword => 'ادخل كلمة المرور الجديدة';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+
+  @override
+  String get passwordChangedSuccessfully => 'تم تغيير كلمة المرور بنجاح';
+
+  @override
+  String get currentOrders => 'الطلبات الحالية';
+
+  @override
+  String get pastOrders => 'الطلبات السابقة';
+
+  @override
+  String get orderDetails => 'تفاصيل الطلب';
+
+  @override
+  String get orderId => 'رقم الطلب';
+
+  @override
+  String get customerName => 'اسم العميل';
+
+  @override
+  String get customerPhone => 'هاتف العميل';
+
+  @override
+  String get deliveryAddress => 'عنوان التوصيل';
+
+  @override
+  String get orderStatus => 'حالة الطلب';
+
+  @override
+  String get totalAmount => 'المبلغ الإجمالي';
+
+  @override
+  String get items => 'العناصر';
+
+  @override
+  String get photo_updated_successfully => 'تم تحديث الصورة بنجاح';
+
+  @override
+  String get changePhoto => 'Change Photo';
+
+  @override
+  String get change => 'تغيير';
+
+  @override
+  String get update => 'تحديث';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'أنثى';
 }
