@@ -6,7 +6,6 @@ import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/utils/caching/caching_helper.dart';
-import 'package:tracking_app/core/utils/components/custom_button.dart';
 
 
 class OrderDeliveredSuccessfully extends StatelessWidget {
@@ -52,7 +51,15 @@ class OrderDeliveredSuccessfully extends StatelessWidget {
               const SizedBox(
                 height: 48,
               ),
-              CustomButton(
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.pink,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                 minimumSize: const Size(double.infinity, 50),
+              
+                ),
                   onPressed: () {
                   CacheService.deleteItem(key: CacheConstants.orderPendingId);
                      CacheService.deleteItem(key: CacheConstants.currentStep);
@@ -64,7 +71,12 @@ class OrderDeliveredSuccessfully extends StatelessWidget {
                      );
 
                      context.pushReplacementNamed(AppRoutes.homeScreen);
-                  }, child:  Text(context.l10n.done),)
+                  }, child:  Text(context.l10n.done,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),)
             ],
           ),
         ),
