@@ -17,5 +17,6 @@ class ChangePasswordError extends ResetPasswordState {
 class ChangePasswordSuccess extends ResetPasswordState {
   ChangePasswordEntity changePasswordEntity;
 
-  ChangePasswordSuccess({required this.changePasswordEntity});
+  ChangePasswordSuccess({required
+  this.changePasswordEntity});
 }
