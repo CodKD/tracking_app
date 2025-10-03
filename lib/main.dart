@@ -49,8 +49,8 @@ class MyApp extends StatelessWidget {
                   theme: AppTheme.lightTheme,
                   onGenerateRoute: Routes.generateRoute,
                   initialRoute: token != null
-                      ? AppRoutes.loginView
-                      : AppRoutes.onBoardingView,
+                      ? AppRoutes.homeScreen
+                      : AppRoutes.loginView,
                 );
               },
             ),

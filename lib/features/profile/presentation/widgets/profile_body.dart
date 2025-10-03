@@ -22,7 +22,9 @@ class ProfileBody extends StatelessWidget {
       builder: (context, state) {
         switch (state) {
           case GetLoggedDriverDataLoading():
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           case GetLoggedDriverDataError():
             return Center(child: Text(state.message));
           case GetLoggedDriverDataSuccess():
@@ -32,8 +34,13 @@ class ProfileBody extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.grey.shade300, width: 1),
+                      borderRadius: BorderRadius.circular(
+                        16,
+                      ),
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                        width: 1,
+                      ),
                       boxShadow: [
                         const BoxShadow(
                           color: Colors.black12,
@@ -44,14 +51,18 @@ class ProfileBody extends StatelessWidget {
                     ),
                     child: ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.editProfile);
+                        Navigator.of(context).pushNamed(
+                          AppRoutes.editProfile,
+                        );
                       },
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
+                      contentPadding:
+                          const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
                       leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(100.r),
+                        borderRadius:
+                            BorderRadius.circular(100.r),
                         child: Image.network(
                           state.driver.photo ?? "",
                           fit: BoxFit.cover,
@@ -65,16 +76,19 @@ class ProfileBody extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
                         children: [
                           Text(
                             state.driver.email ?? '',
-                            style: AppStyles.regular16black,
+                            style:
+                                AppStyles.regular16black,
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             state.driver.phone ?? '',
-                            style: AppStyles.regular16black,
+                            style:
+                                AppStyles.regular16black,
                           ),
                         ],
                       ),
@@ -89,8 +103,13 @@ class ProfileBody extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.grey.shade300, width: 1),
+                      borderRadius: BorderRadius.circular(
+                        16,
+                      ),
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                        width: 1,
+                      ),
                       boxShadow: [
                         const BoxShadow(
                           color: Colors.black12,
@@ -101,28 +120,36 @@ class ProfileBody extends StatelessWidget {
                     ),
                     child: ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.editProfile);
+                        Navigator.of(context).pushNamed(
+                          AppRoutes.editProfile,
+                        );
                       },
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
+                      contentPadding:
+                          const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
                       title: Text(
                         "Vehicle info",
                         style: AppStyles.font20BlackW500,
                         overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
                         children: [
                           Text(
-                            state.driver.vehicleType!.hexToString(),
-                            style: AppStyles.regular16black,
+                            state.driver.vehicleType
+                                    !.hexToString(),
+                            style:
+                                AppStyles.regular16black,
                           ),
                           SizedBox(height: 4.h),
                           Text(
-                            state.driver.vehicleNumber ?? '',
-                            style: AppStyles.regular16black,
+                            state.driver.vehicleNumber ??
+                                '',
+                            style:
+                                AppStyles.regular16black,
                           ),
                         ],
                       ),
@@ -133,13 +160,17 @@ class ProfileBody extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 1.5.heightPercent(context)),
+                  SizedBox(
+                    height: 1.5.heightPercent(context),
+                  ),
                   const ListTileHeader(),
                   const Spacer(),
                   Text(
                     context.l10n.appVersion,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium,
                   ),
                 ],
               ),
