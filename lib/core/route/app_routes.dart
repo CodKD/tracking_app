@@ -8,4 +8,5 @@ abstract class AppRoutes {
   static const String applyScreen = "/driver_apply_screen";
   static const String notificationList = "/notification_list";
   static const String editProfile = "/edit_profile";
+  static const String resetPassword = "/reset_assword";
 }

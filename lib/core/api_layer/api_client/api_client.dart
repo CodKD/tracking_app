@@ -16,6 +16,8 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart';
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart';
 
+import '../models/request/change_password_request_body.dart';
+import '../models/response/profile/change_password_response_dto.dart';
 import 'endpoints.dart';
 
 part 'api_client.g.dart';
@@ -77,4 +79,9 @@ abstract class ApiClient {
   @PUT(Endpoints.uploadPhoto)
   @MultiPart()
   Future<UpdatePhotoResponseDto> changePhoto(@Part(name: "photo") File photo);
+
+  @PATCH(Endpoints.resetPassword)
+  Future<ChangePasswordResponseDto> changePassword(
+    @Body() ChangePasswordRequestBody request,
+  );
 }
