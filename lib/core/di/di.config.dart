@@ -47,42 +47,26 @@ import '../../features/auth/login/domain/repos/login_repo.dart' as _i983;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/cubit/login_view_model.dart'
     as _i465;
-import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_panding_orders_data_source_impl.dart'
-    as _i898;
-import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_pending_orders_data_source.dart'
-    as _i643;
-import '../../features/home/presentation/Tabs/home_tab/data/repos_impl.dart/get_pending_repo_impl.dart'
-    as _i914;
-import '../../features/home/presentation/Tabs/home_tab/domain/repositories/get_pending_orders_repo.dart'
-    as _i1029;
-import '../../features/home/presentation/Tabs/home_tab/domain/usecases/get_pending_use_case.dart'
-    as _i226;
-import '../../features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart'
-    as _i526;
-import '../../features/order_details/data/data_sources/start_order_data_sources_repo.dart'
-    as _i910;
-import '../../features/order_details/data/data_sources/start_order_data_sources_repo_impl.dart'
-    as _i296;
-import '../../features/order_details/data/repo/start_order_repo_impl.dart'
-    as _i1032;
-import '../../features/order_details/domain/repo/start_order_repo.dart'
-    as _i750;
-import '../../features/order_details/domain/use_cases/start_order_usecase.dart'
-    as _i1044;
-import '../../features/order_details/presentation/view_model/start_order_cubit.dart'
-    as _i330;
+import '../../features/profile/data/data_source/change_password_remote_data_source.dart'
+    as _i970;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
     as _i1052;
 import '../../features/profile/data/data_source/update_driver_profile_data_source.dart'
     as _i62;
+import '../../features/profile/data/repositories/change_password_repo_impl.dart'
+    as _i691;
 import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
     as _i430;
 import '../../features/profile/data/repositories/update_profile_repo_impl.dart'
     as _i249;
+import '../../features/profile/domain/repositories/change_password_repo.dart'
+    as _i200;
 import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
     as _i201;
 import '../../features/profile/domain/repositories/update_profile_repo.dart'
     as _i234;
+import '../../features/profile/domain/usecases/change_password_use_case.dart'
+    as _i590;
 import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
     as _i228;
 import '../../features/profile/domain/usecases/update_driver_photo_use_case.dart'
@@ -97,6 +81,8 @@ import '../api_layer/data_source_impl/auth/forget_password_remote_data_source_im
     as _i594;
 import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
     as _i640;
+import '../api_layer/data_source_impl/profile/change_password_remote_data_source_impl.dart'
+    as _i881;
 import '../api_layer/data_source_impl/profile/get_logged_driver_data_source_impl.dart'
     as _i81;
 import '../api_layer/data_source_impl/profile/update_driver_profile_data_source_impl.dart'
@@ -147,6 +133,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i370.ForgetPasswordRemoteDataSource>(
       () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i970.ChangePasswordRemoteDataSource>(
+      () => _i881.ChangePasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
     gh.factory<_i62.UpdateDriverProfileDataSource>(
       () => _i933.UpdateDriverProfileDataSourceImpl(gh<_i225.ApiClient>()),
@@ -201,6 +190,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i983.LoginRepo>()),
     );
+    gh.factory<_i200.ChangPasswordRepo>(
+      () => _i691.ChangPasswordRepoImpl(
+        gh<_i970.ChangePasswordRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i228.GetLoggedDriverDataUseCase>(
       () =>
           _i228.GetLoggedDriverDataUseCase(gh<_i201.GetLoggedDriverDataRepo>()),
@@ -230,8 +224,8 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
     );
-    gh.factory<_i1044.StartOrderUseCase>(
-      () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
+    gh.factory<_i590.ChangePasswordUseCase>(
+      () => _i590.ChangePasswordUseCase(gh<_i200.ChangPasswordRepo>()),
     );
     gh.factory<_i1017.ProfileCubit>(
       () => _i1017.ProfileCubit(
@@ -239,9 +233,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i345.UpdateDriverPhotoUseCase>(),
         gh<_i662.UpdateDriverProfileUseCase>(),
       ),
-    );
-    gh.factory<_i330.StartOrderCubit>(
-      () => _i330.StartOrderCubit(gh<_i1044.StartOrderUseCase>()),
     );
     gh.factory<_i310.DriverApplyCubit>(
       () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),
