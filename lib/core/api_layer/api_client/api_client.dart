@@ -13,6 +13,7 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart';
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart';
 
+import '../../../features/profile/domain/entities/vehicle.dart';
 import 'endpoints.dart';
 
 part 'api_client.g.dart';
@@ -70,4 +71,6 @@ abstract class ApiClient {
   // Future<UpdateProfileResponseDto> editProfile(
   //   @Body() UpdateProfileRequestDto request,
   // );
+  @GET(Endpoints.vehicle)
+  Future<VehicleEntity> getVehicleInfo();
 }

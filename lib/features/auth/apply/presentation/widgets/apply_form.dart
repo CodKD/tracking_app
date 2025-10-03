@@ -61,7 +61,7 @@ class ApplyFields extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DropdownButtonFormField<String>(
-              initialValue: cubit.selectedCountry.isEmpty
+              value: cubit.selectedCountry.isEmpty
                   ? null
                   : cubit.selectedCountry,
               decoration: InputDecoration(
@@ -150,7 +150,7 @@ class ApplyFields extends StatelessWidget {
             ),
             15.heightBox,
             DropdownButtonFormField<String>(
-              initialValue: cubit.selectedVehicleType.isEmpty
+              value: cubit.selectedVehicleType.isEmpty
                   ? null
                   : cubit.selectedVehicleType,
               decoration: InputDecoration(

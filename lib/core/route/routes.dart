@@ -32,6 +32,7 @@ abstract class Routes {
         return MaterialPageRoute(
           builder: (context) => const NotificationList(),
         );
+
       case AppRoutes.editProfile:
         return MaterialPageRoute(builder: (context) => const EditProfile());
       case AppRoutes.applicationApprovedScreen:

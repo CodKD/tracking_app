@@ -49,6 +49,7 @@ import '../../features/auth/login/presentation/cubit/login_view_model.dart'
     as _i465;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
     as _i1052;
+import '../../features/profile/data/data_source/get_vehicl_info.dart' as _i140;
 import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
     as _i430;
 import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
@@ -65,6 +66,8 @@ import '../api_layer/data_source_impl/auth/login_remote_data_source_impl.dart'
     as _i640;
 import '../api_layer/data_source_impl/profile/get_logged_driver_data_source_impl.dart'
     as _i81;
+import '../api_layer/data_source_impl/profile/vehicle_data_sourse_imp.dart'
+    as _i1059;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -98,6 +101,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
+    gh.factory<_i140.GetVehicleInfo>(
+      () => _i1059.VehicleDataSourceImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i370.ForgetPasswordRemoteDataSource>(
       () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
