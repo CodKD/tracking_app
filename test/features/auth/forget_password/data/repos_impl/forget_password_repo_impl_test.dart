@@ -39,7 +39,7 @@ void main() {
     group('forgetPassword', () {
       test(
         'should return ApiSuccessResult<ForgetPasswordResponseEntity> when forgetPassword succeeds',
-        () async {
+            () async {
           // arrange
           final mockEntity = ForgetPasswordResponseEntity(message: 'success');
           when(
@@ -64,7 +64,7 @@ void main() {
 
       test(
         'should return ApiErrorResult<ForgetPasswordResponseEntity> when forgetPassword fails',
-        () async {
+            () async {
           // arrange
           const mockError = 'Failed to send reset email';
           when(
@@ -90,7 +90,7 @@ void main() {
     group('verifyResetCode', () {
       test(
         'should return ApiSuccessResult<VerifyResetCodeResponseEntity> when verifyResetCode succeeds',
-        () async {
+            () async {
           // arrange
           final mockEntity = VerifyResetCodeResponseEntity(status: 'success');
           when(
@@ -122,7 +122,7 @@ void main() {
 
       test(
         'should return ApiErrorResult<VerifyResetCodeResponseEntity> when verifyResetCode fails',
-        () async {
+            () async {
           // arrange
           const mockError = 'Invalid reset code';
           when(
@@ -152,7 +152,7 @@ void main() {
     group('resetPassword', () {
       test(
         'should return ApiSuccessResult<ResetPasswordResponseEntity> when resetPassword succeeds',
-        () async {
+            () async {
           // arrange
           final mockEntity = ResetPasswordResponseEntity(message: 'success');
           when(
@@ -184,7 +184,7 @@ void main() {
 
       test(
         'should return ApiErrorResult<ResetPasswordResponseEntity> when resetPassword fails',
-        () async {
+            () async {
           // arrange
           const mockError = 'Failed to reset password';
           when(
