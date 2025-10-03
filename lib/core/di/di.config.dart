@@ -74,8 +74,6 @@ import '../../features/profile/domain/usecases/update_driver_photo_use_case.dart
 import '../../features/profile/domain/usecases/update_driver_profile_use_case.dart'
     as _i662;
 import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
-import '../../features/profile/presentation/view_model/reset/reset_cubit.dart'
-    as _i698;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -235,9 +233,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i345.UpdateDriverPhotoUseCase>(),
         gh<_i662.UpdateDriverProfileUseCase>(),
       ),
-    );
-    gh.factory<_i698.ResetPasswordCubit>(
-      () => _i698.ResetPasswordCubit(gh<_i590.ChangePasswordUseCase>()),
     );
     gh.factory<_i310.DriverApplyCubit>(
       () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),
