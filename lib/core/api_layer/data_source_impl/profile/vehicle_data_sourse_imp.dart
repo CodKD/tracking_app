@@ -11,6 +11,7 @@ import '../../models/response/profile/get_logged_driver.dart';
 @Injectable(as: GetVehicleInfo)
 class VehicleDataSourceImpl implements GetVehicleInfo {
   late ApiClient apiClient;
+
   VehicleDataSourceImpl(this.apiClient);
 
   @override
@@ -33,6 +34,7 @@ class VehicleDataSourceImpl implements GetVehicleInfo {
       return ApiErrorResult<ProfileDriverEntity>(e.toString());
     }
   }
+
   @override
   Future<ApiResult<VehicleEntity>> getVehicleInfo() async {
     try {
@@ -50,4 +52,4 @@ class VehicleDataSourceImpl implements GetVehicleInfo {
       return ApiErrorResult<VehicleEntity>(e.toString());
     }
   }
- }
+}

@@ -4,7 +4,8 @@ import '../../../../core/api_layer/api_result/api_result.dart';
 import '../repositories/vehicle_repository.dart';
 
 class UpdateVehicleInfoUseCase {
-  VehicleRepository vehicleRepository ;
+  VehicleRepository vehicleRepository;
+
   UpdateVehicleInfoUseCase(this.vehicleRepository);
 
   Future<ApiResult<VehicleEntity>> call() async {

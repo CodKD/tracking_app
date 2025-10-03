@@ -56,7 +56,13 @@ import '../../features/profile/domain/repositories/get_logged_driver_data_repo.d
     as _i201;
 import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
     as _i228;
+import '../../features/profile/domain/usecases/GetVehicleInfoUseCase.dart'
+    as _i725;
+import '../../features/profile/domain/usecases/UpdateVehicleInfoUseCase.dart'
+    as _i514;
 import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
+import '../../features/profile/presentation/view_model/edit_vehicle_view_modle/edit_vehicle_view_model.dart'
+    as _i345;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -90,6 +96,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i744.SharedPrefHelper>(
       () => _i744.SharedPrefHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i345.EditVehicleViewModel>(
+      () => _i345.EditVehicleViewModel(
+        gh<_i725.GetVehicleInfoUseCase>(),
+        gh<_i514.UpdateVehicleInfoUseCase>(),
+      ),
     );
     gh.factory<_i344.LocaleCubit>(
       () => _i344.LocaleCubit(sharedPrefHelper: gh<_i744.SharedPrefHelper>()),
