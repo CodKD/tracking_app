@@ -122,6 +122,17 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
+    gh.factory<_i643.GetPendingOrdersDataSource>(
+      () => _i898.GetPendingOrdersDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i1029.GetPendingOrdersRepo>(
+      () => _i914.GetPendingOrdersRepoImpl(
+        gh<_i643.GetPendingOrdersDataSource>(),
+      ),
+    );
+    gh.factory<_i226.GetPendingOrdersUseCase>(
+      () => _i226.GetPendingOrdersUseCase(gh<_i1029.GetPendingOrdersRepo>()),
+    );
     gh.factory<_i370.ForgetPasswordRemoteDataSource>(
       () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
@@ -140,10 +151,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1052.GetLoggedDriverDataSource>(
       () => _i81.GetLoggedDriverDataSourceImpl(gh<_i225.ApiClient>()),
     );
+    gh.factory<_i526.HomeTabCubit>(
+      () => _i526.HomeTabCubit(gh<_i226.GetPendingOrdersUseCase>()),
+    );
     gh.factory<_i924.ForgetPasswordRepo>(
       () => _i206.ForgetPasswordRepoImpl(
         gh<_i370.ForgetPasswordRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i910.OrderDetailsDataSourcesRepo>(
+      () => _i296.StartOrderDataSourcesRepoImpl(gh<_i225.ApiClient>()),
     );
     gh.factory<_i234.UpdateProfileRepo>(
       () =>
@@ -183,6 +200,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i228.GetLoggedDriverDataUseCase>(
       () =>
           _i228.GetLoggedDriverDataUseCase(gh<_i201.GetLoggedDriverDataRepo>()),
+    );
+    gh.factory<_i750.OrderDetailsRepo>(
+      () => _i1032.StarOrderRepoImpl(gh<_i910.OrderDetailsDataSourcesRepo>()),
     );
     gh.factory<_i1055.ApplyUseCase>(
       () => _i1055.ApplyUseCase(gh<_i1059.ApplyRepository>()),

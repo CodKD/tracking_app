@@ -10,7 +10,6 @@ import 'package:tracking_app/core/errors/failures.dart';
 import 'package:tracking_app/core/keys/shared_key.dart';
 import 'package:tracking_app/core/modules/shared_preferences_module.dart';
 import 'package:tracking_app/features/auth/apply/domain/entities/apply_entity.dart';
-
 import 'apply_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([ApiClient, SharedPrefHelper])

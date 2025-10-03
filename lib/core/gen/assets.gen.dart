@@ -1,4 +1,4 @@
-// dart format width=80
+// dart format width=58
 
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
@@ -25,11 +25,13 @@ class $AssetsIconGen {
   const $AssetsIconGen();
 
   /// File path: assets/icon/Alarm_clock_icon.png
-  AssetGenImage get alarmClockIcon =>
-      const AssetGenImage('assets/icon/Alarm_clock_icon.png');
+  AssetGenImage get alarmClockIcon => const AssetGenImage(
+    'assets/icon/Alarm_clock_icon.png',
+  );
 
   /// File path: assets/icon/add_icon.png
-  AssetGenImage get addIcon => const AssetGenImage('assets/icon/add_icon.png');
+  AssetGenImage get addIcon =>
+      const AssetGenImage('assets/icon/add_icon.png');
 
   /// File path: assets/icon/address_icon.png
   AssetGenImage get addressIcon =>
@@ -40,12 +42,15 @@ class $AssetsIconGen {
       const AssetGenImage('assets/icon/arrow-drop.png');
 
   /// File path: assets/icon/arrow_back_icon.png
-  AssetGenImage get arrowBackIcon =>
-      const AssetGenImage('assets/icon/arrow_back_icon.png');
+  AssetGenImage get arrowBackIcon => const AssetGenImage(
+    'assets/icon/arrow_back_icon.png',
+  );
 
   /// File path: assets/icon/britain_flag_icon.png
   AssetGenImage get britainFlagIcon =>
-      const AssetGenImage('assets/icon/britain_flag_icon.png');
+      const AssetGenImage(
+        'assets/icon/britain_flag_icon.png',
+      );
 
   /// File path: assets/icon/call_icon.png
   AssetGenImage get callIcon =>
@@ -60,8 +65,9 @@ class $AssetsIconGen {
       const AssetGenImage('assets/icon/cart_icon.png');
 
   /// File path: assets/icon/category_icon.png
-  AssetGenImage get categoryIcon =>
-      const AssetGenImage('assets/icon/category_icon.png');
+  AssetGenImage get categoryIcon => const AssetGenImage(
+    'assets/icon/category_icon.png',
+  );
 
   /// File path: assets/icon/chat_icon.png
   AssetGenImage get chatIcon =>
@@ -69,15 +75,18 @@ class $AssetsIconGen {
 
   /// File path: assets/icon/check_circle_icon.png
   AssetGenImage get checkCircleIcon =>
-      const AssetGenImage('assets/icon/check_circle_icon.png');
+      const AssetGenImage(
+        'assets/icon/check_circle_icon.png',
+      );
 
   /// File path: assets/icon/check_icon.png
   AssetGenImage get checkIcon =>
       const AssetGenImage('assets/icon/check_icon.png');
 
   /// File path: assets/icon/check_list_icon.png
-  AssetGenImage get checkListIcon =>
-      const AssetGenImage('assets/icon/check_list_icon.png');
+  AssetGenImage get checkListIcon => const AssetGenImage(
+    'assets/icon/check_list_icon.png',
+  );
 
   /// File path: assets/icon/delete_icon.png
   AssetGenImage get deleteIcon =>
@@ -85,23 +94,27 @@ class $AssetsIconGen {
 
   /// File path: assets/icon/delivery_boy_icon.png
   AssetGenImage get deliveryBoyIcon =>
-      const AssetGenImage('assets/icon/delivery_boy_icon.png');
+      const AssetGenImage(
+        'assets/icon/delivery_boy_icon.png',
+      );
 
   /// File path: assets/icon/diamond_icon.png
   AssetGenImage get diamondIcon =>
       const AssetGenImage('assets/icon/diamond_icon.png');
 
   /// File path: assets/icon/egypt_flag_icon.png
-  AssetGenImage get egyptFlagIcon =>
-      const AssetGenImage('assets/icon/egypt_flag_icon.png');
+  AssetGenImage get egyptFlagIcon => const AssetGenImage(
+    'assets/icon/egypt_flag_icon.png',
+  );
 
   /// File path: assets/icon/error_icon.png
   AssetGenImage get errorIcon =>
       const AssetGenImage('assets/icon/error_icon.png');
 
   /// File path: assets/icon/fact_check_icon.png
-  AssetGenImage get factCheckIcon =>
-      const AssetGenImage('assets/icon/fact_check_icon.png');
+  AssetGenImage get factCheckIcon => const AssetGenImage(
+    'assets/icon/fact_check_icon.png',
+  );
 
   /// File path: assets/icon/home_icon.png
   AssetGenImage get homeIcon =>
@@ -159,7 +172,11 @@ class $AssetsImageGen {
       const AssetGenImage('assets/image/profile_d.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [noRoutes, onboarding, profileD];
+  List<AssetGenImage> get values => [
+    noRoutes,
+    onboarding,
+    profileD,
+  ];
 }
 
 class $AssetsSvgGen {
@@ -177,11 +194,15 @@ class $AssetsSvgGen {
   /// File path: assets/svg/bg.svg
   String get bg => 'assets/svg/bg.svg';
 
+  /// File path: assets/svg/call.svg
+  String get call => 'assets/svg/call.svg';
+
   /// File path: assets/svg/cammera.svg
   String get cammera => 'assets/svg/cammera.svg';
 
   /// File path: assets/svg/circle_flower.svg
-  String get circleFlower => 'assets/svg/circle_flower.svg';
+  String get circleFlower =>
+      'assets/svg/circle_flower.svg';
 
   /// File path: assets/svg/delete.svg
   String get delete => 'assets/svg/delete.svg';
@@ -201,8 +222,15 @@ class $AssetsSvgGen {
   /// File path: assets/svg/map.svg
   String get map => 'assets/svg/map.svg';
 
+  /// File path: assets/svg/orderSuccessfullyIcon.svg
+  String get orderSuccessfullyIcon =>
+      'assets/svg/orderSuccessfullyIcon.svg';
+
   /// File path: assets/svg/orders.svg
   String get orders => 'assets/svg/orders.svg';
+
+  /// File path: assets/svg/whatsapp.svg
+  String get whatsapp => 'assets/svg/whatsapp.svg';
 
   /// List of all assets
   List<String> get values => [
@@ -210,6 +238,7 @@ class $AssetsSvgGen {
     vector,
     arrowDown,
     bg,
+    call,
     cammera,
     circleFlower,
     delete,
@@ -218,7 +247,9 @@ class $AssetsSvgGen {
     gift,
     location,
     map,
+    orderSuccessfullyIcon,
     orders,
+    whatsapp,
   ];
 }
 
@@ -298,8 +329,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;

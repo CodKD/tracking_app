@@ -12,6 +12,7 @@ import 'package:tracking_app/core/gen/assets.gen.dart';
 import 'package:tracking_app/features/profile/presentation/view/edit_profile.dart';
 import 'package:tracking_app/features/profile/presentation/view/notification_list.dart';
 import 'package:tracking_app/features/profile/presentation/view/reset_password.dart';
+import 'package:tracking_app/features/order_details/presentation/pages/order_details_view.dart';
 
 import '../../features/onboarding/onboarding_view.dart';
 
@@ -27,6 +28,8 @@ abstract class Routes {
         );
       case AppRoutes.loginView:
         return MaterialPageRoute(builder: (context) => const LoginView());
+       case AppRoutes.orderDetailsScreen:
+        return MaterialPageRoute(builder: (context) => const OrderDetailsView());
       case AppRoutes.onBoardingView:
         return MaterialPageRoute(builder: (context) => const OnboardingView());
       case AppRoutes.notificationList:

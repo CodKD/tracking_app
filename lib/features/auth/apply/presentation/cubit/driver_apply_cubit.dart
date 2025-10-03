@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/api_layer/api_result/api_result.dart';
 import 'package:tracking_app/core/api_layer/models/request/auth/apply_request.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/resources/country.dart';
 import 'package:tracking_app/features/auth/apply/domain/entities/apply_entity.dart';
 import 'package:tracking_app/features/auth/apply/domain/usecases/apply_use_case.dart';
@@ -142,11 +143,7 @@ class DriverApplyCubit extends Cubit<DriverApplyState> {
         phone: "+${phoneNumberController.text}",
         gender: selectedGender,
         NID: nIDController.text,
-        vehicleType: selectedVehicleType.codeUnits
-            .map((e) => e.toRadixString(16).padLeft(2, '0'))
-            .join()
-            .padRight(24, '0')
-            .substring(0, 24),
+        vehicleType: selectedVehicleType.toHex(),
         vehicleNumber: vehicleNumberController.text,
         country: selectedCountry,
         NIDImg: nIDImg,
