@@ -56,6 +56,30 @@ import '../../features/profile/domain/repositories/get_logged_driver_data_repo.d
 import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
     as _i228;
 import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
+import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_panding_orders_data_source_impl.dart'
+    as _i898;
+import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_pending_orders_data_source.dart'
+    as _i643;
+import '../../features/home/presentation/Tabs/home_tab/data/repos_impl.dart/get_pending_repo_impl.dart'
+    as _i914;
+import '../../features/home/presentation/Tabs/home_tab/domain/repositories/get_pending_orders_repo.dart'
+    as _i1029;
+import '../../features/home/presentation/Tabs/home_tab/domain/usecases/get_pending_use_case.dart'
+    as _i226;
+import '../../features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart'
+    as _i526;
+import '../../features/order_details/data/data_sources/start_order_data_sources_repo.dart'
+    as _i910;
+import '../../features/order_details/data/data_sources/start_order_data_sources_repo_impl.dart'
+    as _i296;
+import '../../features/order_details/data/repo/start_order_repo_impl.dart'
+    as _i1032;
+import '../../features/order_details/domain/repo/start_order_repo.dart'
+    as _i750;
+import '../../features/order_details/domain/use_cases/start_order_usecase.dart'
+    as _i1044;
+import '../../features/order_details/presentation/view_model/start_order_cubit.dart'
+    as _i330;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -98,6 +122,17 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
+    gh.factory<_i643.GetPendingOrdersDataSource>(
+      () => _i898.GetPendingOrdersDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i1029.GetPendingOrdersRepo>(
+      () => _i914.GetPendingOrdersRepoImpl(
+        gh<_i643.GetPendingOrdersDataSource>(),
+      ),
+    );
+    gh.factory<_i226.GetPendingOrdersUseCase>(
+      () => _i226.GetPendingOrdersUseCase(gh<_i1029.GetPendingOrdersRepo>()),
+    );
     gh.factory<_i370.ForgetPasswordRemoteDataSource>(
       () => _i594.ForgetPasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
@@ -107,13 +142,16 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i744.SharedPrefHelper>(),
       ),
     );
-    gh.factory<_i1052.GetLoggedDriverDataSource>(
-      () => _i81.GetLoggedDriverDataSourceImpl(gh<_i225.ApiClient>()),
+    gh.factory<_i526.HomeTabCubit>(
+      () => _i526.HomeTabCubit(gh<_i226.GetPendingOrdersUseCase>()),
     );
     gh.factory<_i924.ForgetPasswordRepo>(
       () => _i206.ForgetPasswordRepoImpl(
         gh<_i370.ForgetPasswordRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i910.OrderDetailsDataSourcesRepo>(
+      () => _i296.StartOrderDataSourcesRepoImpl(gh<_i225.ApiClient>()),
     );
     gh.factory<_i1049.LoginRemoteDataSource>(
       () => _i640.LoginRemoteDataSourceImpl(gh<_i225.ApiClient>()),
@@ -163,6 +201,12 @@ extension GetItInjectableX on _i174.GetIt {
         loginUseCase: gh<_i50.LoginUseCase>(),
         sharedPrefHelper: gh<_i744.SharedPrefHelper>(),
       ),
+    );
+    gh.factory<_i1044.StartOrderUseCase>(
+      () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
+    );
+    gh.factory<_i330.StartOrderCubit>(
+      () => _i330.StartOrderCubit(gh<_i1044.StartOrderUseCase>()),
     );
     gh.factory<_i310.DriverApplyCubit>(
       () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),
