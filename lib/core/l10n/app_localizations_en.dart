@@ -462,4 +462,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get female => 'Female';
+
+  @override
+  String get confirm_new_password =>
+      'Confirm New Password';
 }

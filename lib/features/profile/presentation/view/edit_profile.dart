@@ -253,7 +253,7 @@ class EditProfileView extends StatelessWidget {
                       controller: TextEditingController(text: "********"),
                       suffixIcon: TextButton(
                         onPressed: () {
-                          context.pushNamed(AppRoutes.notificationList);
+                          context.pushNamed(AppRoutes.resetPassword);
                         },
                         child: Text(context.l10n.change),
                       ),
