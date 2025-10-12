@@ -12,10 +12,12 @@ class MyOrderDetailsView extends StatefulWidget {
   final Orders orders;
 
   @override
-  State<MyOrderDetailsView> createState() => _OrderDetailsViewState();
+  State<MyOrderDetailsView> createState() =>
+      _OrderDetailsViewState();
 }
 
-class _OrderDetailsViewState extends State<MyOrderDetailsView> {
+class _OrderDetailsViewState
+    extends State<MyOrderDetailsView> {
   @override
   void initState() {
     super.initState();
@@ -23,34 +25,16 @@ class _OrderDetailsViewState extends State<MyOrderDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.grey,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Order details",style: TextStyle(color: Colors.black,fontSize: 17,),),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Align(
-                alignment: Alignment.topLeft,
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Expanded(
-              child: MyOrderDetailsViewBody(
-                orders: widget.orders,
-              ),
-            ),
-          ],
+        child: MyOrderDetailsViewBody(
+          orders: widget.orders,
         ),
       ),
-    ));
+    );
   }
 }

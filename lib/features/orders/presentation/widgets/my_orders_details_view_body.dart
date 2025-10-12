@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
+import 'package:tracking_app/features/order_details/presentation/widgets/custom_card_address.dart';
+import 'package:tracking_app/features/order_details/presentation/widgets/custom_card_details.dart';
 import 'package:tracking_app/features/orders/presentation/widgets/custom_card_order_details_for_my_orders_page.dart';
 import '../../data/models/my_orders_response.dart';
-import 'custom_card_address_for_my_orders_view.dart';
 
 class MyOrderDetailsViewBody extends StatelessWidget {
   const MyOrderDetailsViewBody({
@@ -17,11 +19,7 @@ class MyOrderDetailsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 0,
-          ),
-        ),
+        
         SliverToBoxAdapter(
           child: Container(
             padding: const EdgeInsets.all(16),
@@ -57,10 +55,12 @@ class MyOrderDetailsViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: CustomCardAddressForMyOrdersView(
-            onTap: () {},
+          child: CustomCardAddress(
+            onTap: () {
+              // go to pickup location view
+            },
             noIcon: true,
-            title: 'Pickup address',
+            title: context.l10n.pickup_address,
             title2: orders.store?.name ?? '',
             phone: orders.store?.phoneNumber ?? '',
             name: orders.store?.name ?? '',
@@ -74,19 +74,53 @@ class MyOrderDetailsViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: CustomCardAddressForMyOrdersView(
-            onTap: () {},
-            noIcon: false,
-            title: 'User address',
-            title2:
-                '${orders.order?.user?.firstName} ${orders.order?.user?.lastName}',
+          child: CustomCardDetails(
+          noIcon: true,
+            title: context.l10n.pickup_address,
+            title2: orders.order?.user?.firstName ?? '',
             phone: orders.order?.user?.phone ?? '',
-            name:
-                '${orders.order?.user?.firstName} ${orders.order?.user?.lastName}',
-            location: orders.order?.user?.phone ?? '',
-            urlImage: orders.order?.user?.photo ?? '',
+            name: orders.order?.user?.firstName ?? '',
+            urlImage: "https://flower.elevateegy.com/uploads/${orders.order?.user?.photo}",
+           subTitle: orders.order?.user?.phone ?? '',
+              
+            ),
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 24,
           ),
         ),
+        // SliverToBoxAdapter(
+        //   child: CustomCardAddressForMyOrdersView(
+        //     onTap: () {},
+        //     noIcon: true,
+        //     title: 'Pickup address',
+        //     title2: orders.store?.name ?? '',
+        //     phone: orders.store?.phoneNumber ?? '',
+        //     name: orders.store?.name ?? '',
+        //     location: orders.store?.address ?? '',
+        //     urlImage: orders.store?.image ?? '',
+        //   ),
+        // ),
+        // const SliverToBoxAdapter(
+        //   child: SizedBox(
+        //     height: 24,
+        //   ),
+        // ),
+        // SliverToBoxAdapter(
+        //   child: CustomCardAddressForMyOrdersView(
+        //     onTap: () {},
+        //     noIcon: false,
+        //     title: 'User address',
+        //     title2:
+        //         '${orders.order?.user?.firstName} ${orders.order?.user?.lastName}',
+        //     phone: orders.order?.user?.phone ?? '',
+        //     name:
+        //         '${orders.order?.user?.firstName} ${orders.order?.user?.lastName}',
+        //     location: orders.order?.user?.phone ?? '',
+        //     urlImage: orders.order?.user?.photo ?? '',
+        //   ),
+        // ),
         const SliverToBoxAdapter(
           child: SizedBox(
             height: 24,
