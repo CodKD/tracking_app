@@ -134,5 +134,6 @@
   "update": "Update",
   "gender": "Gender",
   "male": "Male",
-  "female": "Female"
+  "female": "Female",
+  "confirm_new_password": "Confirm New Password"
 }

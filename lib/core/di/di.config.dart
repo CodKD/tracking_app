@@ -47,6 +47,30 @@ import '../../features/auth/login/domain/repos/login_repo.dart' as _i983;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/cubit/login_view_model.dart'
     as _i465;
+import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_panding_orders_data_source_impl.dart'
+    as _i898;
+import '../../features/home/presentation/Tabs/home_tab/data/datasources/get_pending_orders_data_source.dart'
+    as _i643;
+import '../../features/home/presentation/Tabs/home_tab/data/repos_impl.dart/get_pending_repo_impl.dart'
+    as _i914;
+import '../../features/home/presentation/Tabs/home_tab/domain/repositories/get_pending_orders_repo.dart'
+    as _i1029;
+import '../../features/home/presentation/Tabs/home_tab/domain/usecases/get_pending_use_case.dart'
+    as _i226;
+import '../../features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart'
+    as _i526;
+import '../../features/order_details/data/data_sources/start_order_data_sources_repo.dart'
+    as _i910;
+import '../../features/order_details/data/data_sources/start_order_data_sources_repo_impl.dart'
+    as _i296;
+import '../../features/order_details/data/repo/start_order_repo_impl.dart'
+    as _i1032;
+import '../../features/order_details/domain/repo/start_order_repo.dart'
+    as _i750;
+import '../../features/order_details/domain/use_cases/start_order_usecase.dart'
+    as _i1044;
+import '../../features/order_details/presentation/view_model/start_order_cubit.dart'
+    as _i330;
 import '../../features/profile/data/data_source/change_password_remote_data_source.dart'
     as _i970;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
@@ -74,6 +98,8 @@ import '../../features/profile/domain/usecases/update_driver_photo_use_case.dart
 import '../../features/profile/domain/usecases/update_driver_profile_use_case.dart'
     as _i662;
 import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
+import '../../features/profile/presentation/view_model/reset/reset_cubit.dart'
+    as _i698;
 import '../api_layer/api_client/api_client.dart' as _i225;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
@@ -227,12 +253,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i590.ChangePasswordUseCase>(
       () => _i590.ChangePasswordUseCase(gh<_i200.ChangPasswordRepo>()),
     );
+    gh.factory<_i1044.StartOrderUseCase>(
+      () => _i1044.StartOrderUseCase(gh<_i750.OrderDetailsRepo>()),
+    );
     gh.factory<_i1017.ProfileCubit>(
       () => _i1017.ProfileCubit(
         gh<_i228.GetLoggedDriverDataUseCase>(),
         gh<_i345.UpdateDriverPhotoUseCase>(),
         gh<_i662.UpdateDriverProfileUseCase>(),
       ),
+    );
+    gh.factory<_i330.StartOrderCubit>(
+      () => _i330.StartOrderCubit(gh<_i1044.StartOrderUseCase>()),
+    );
+    gh.factory<_i698.ResetPasswordCubit>(
+      () => _i698.ResetPasswordCubit(gh<_i590.ChangePasswordUseCase>()),
     );
     gh.factory<_i310.DriverApplyCubit>(
       () => _i310.DriverApplyCubit(gh<_i1055.ApplyUseCase>()),

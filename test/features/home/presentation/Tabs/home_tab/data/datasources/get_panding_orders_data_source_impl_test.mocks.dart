@@ -3,16 +3,20 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i13;
-import 'dart:io' as _i22;
+import 'dart:async' as _i14;
+import 'dart:io' as _i23;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:retrofit/retrofit.dart' as _i6;
-import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i12;
+import 'package:tracking_app/core/api_layer/api_client/api_client.dart' as _i13;
+import 'package:tracking_app/core/api_layer/models/request/change_password_request_body.dart'
+    as _i25;
 import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart'
-    as _i23;
+    as _i24;
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
     as _i7;
+import 'package:tracking_app/core/api_layer/models/response/profile/change_password_response_dto.dart'
+    as _i11;
 import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart'
     as _i8;
 import 'package:tracking_app/core/api_layer/models/response/profile/update_photo_response_dto.dart'
@@ -20,11 +24,11 @@ import 'package:tracking_app/core/api_layer/models/response/profile/update_photo
 import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart'
     as _i9;
 import 'package:tracking_app/features/auth/forget_password/data/models/request/forget_password_request_dto.dart'
-    as _i14;
-import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart'
-    as _i16;
-import 'package:tracking_app/features/auth/forget_password/data/models/request/verify_reset_code_request_dto.dart'
     as _i15;
+import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart'
+    as _i17;
+import 'package:tracking_app/features/auth/forget_password/data/models/request/verify_reset_code_request_dto.dart'
+    as _i16;
 import 'package:tracking_app/features/auth/forget_password/data/models/response/forget_password_response_dto.dart'
     as _i2;
 import 'package:tracking_app/features/auth/forget_password/data/models/response/reset_password_response_dto.dart'
@@ -32,19 +36,19 @@ import 'package:tracking_app/features/auth/forget_password/data/models/response/
 import 'package:tracking_app/features/auth/forget_password/data/models/response/verify_reset_code_response_dto.dart'
     as _i3;
 import 'package:tracking_app/features/auth/login/data/model/login_request_dto.dart'
-    as _i21;
+    as _i22;
 import 'package:tracking_app/features/auth/login/data/model/login_response_dto.dart'
-    as _i20;
+    as _i21;
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/models/pending_orders_response.dart'
     as _i5;
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/domain/entities/pending_orders_entity.dart'
-    as _i11;
+    as _i12;
 import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart'
-    as _i19;
+    as _i20;
 import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart'
-    as _i17;
-import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart'
     as _i18;
+import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart'
+    as _i19;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -113,29 +117,35 @@ class _FakeUpdatePhotoResponseDto_8 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakePendingDriverOrdersEntity_9 extends _i1.SmartFake
-    implements _i11.PendingDriverOrdersEntity {
-  _FakePendingDriverOrdersEntity_9(Object parent, Invocation parentInvocation)
+class _FakeChangePasswordResponseDto_9 extends _i1.SmartFake
+    implements _i11.ChangePasswordResponseDto {
+  _FakeChangePasswordResponseDto_9(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakePendingDriverOrdersEntity_10 extends _i1.SmartFake
+    implements _i12.PendingDriverOrdersEntity {
+  _FakePendingDriverOrdersEntity_10(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [ApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiClient extends _i1.Mock implements _i12.ApiClient {
+class MockApiClient extends _i1.Mock implements _i13.ApiClient {
   MockApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i13.Future<_i2.ForgetPasswordResponseDto> forgetPassword({
-    required _i14.ForgetPasswordRequestDto? forgetPasswordRequestDto,
+  _i14.Future<_i2.ForgetPasswordResponseDto> forgetPassword({
+    required _i15.ForgetPasswordRequestDto? forgetPasswordRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [], {
               #forgetPasswordRequestDto: forgetPasswordRequestDto,
             }),
-            returnValue: _i13.Future<_i2.ForgetPasswordResponseDto>.value(
+            returnValue: _i14.Future<_i2.ForgetPasswordResponseDto>.value(
               _FakeForgetPasswordResponseDto_0(
                 this,
                 Invocation.method(#forgetPassword, [], {
@@ -144,17 +154,17 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
               ),
             ),
           )
-          as _i13.Future<_i2.ForgetPasswordResponseDto>);
+          as _i14.Future<_i2.ForgetPasswordResponseDto>);
 
   @override
-  _i13.Future<_i3.VerifyResetCodeResponseDto> verifyResetCode({
-    required _i15.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
+  _i14.Future<_i3.VerifyResetCodeResponseDto> verifyResetCode({
+    required _i16.VerifyResetCodeRequestDto? verifyResetCodeRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#verifyResetCode, [], {
               #verifyResetCodeRequestDto: verifyResetCodeRequestDto,
             }),
-            returnValue: _i13.Future<_i3.VerifyResetCodeResponseDto>.value(
+            returnValue: _i14.Future<_i3.VerifyResetCodeResponseDto>.value(
               _FakeVerifyResetCodeResponseDto_1(
                 this,
                 Invocation.method(#verifyResetCode, [], {
@@ -163,17 +173,17 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
               ),
             ),
           )
-          as _i13.Future<_i3.VerifyResetCodeResponseDto>);
+          as _i14.Future<_i3.VerifyResetCodeResponseDto>);
 
   @override
-  _i13.Future<_i4.ResetPasswordResponseDto> resetPassword({
-    required _i16.ResetPasswordRequestDto? resetPasswordRequestDto,
+  _i14.Future<_i4.ResetPasswordResponseDto> resetPassword({
+    required _i17.ResetPasswordRequestDto? resetPasswordRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [], {
               #resetPasswordRequestDto: resetPasswordRequestDto,
             }),
-            returnValue: _i13.Future<_i4.ResetPasswordResponseDto>.value(
+            returnValue: _i14.Future<_i4.ResetPasswordResponseDto>.value(
               _FakeResetPasswordResponseDto_2(
                 this,
                 Invocation.method(#resetPassword, [], {
@@ -182,49 +192,49 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
               ),
             ),
           )
-          as _i13.Future<_i4.ResetPasswordResponseDto>);
+          as _i14.Future<_i4.ResetPasswordResponseDto>);
 
   @override
-  _i13.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
+  _i14.Future<_i5.PendingOrdersResponse> getPendingDriverOrders() =>
       (super.noSuchMethod(
             Invocation.method(#getPendingDriverOrders, []),
-            returnValue: _i13.Future<_i5.PendingOrdersResponse>.value(
+            returnValue: _i14.Future<_i5.PendingOrdersResponse>.value(
               _FakePendingOrdersResponse_3(
                 this,
                 Invocation.method(#getPendingDriverOrders, []),
               ),
             ),
           )
-          as _i13.Future<_i5.PendingOrdersResponse>);
+          as _i14.Future<_i5.PendingOrdersResponse>);
 
   @override
-  _i13.Future<_i17.StartOrderModel?> startOrder(String? orderId) =>
+  _i14.Future<_i18.StartOrderModel?> startOrder(String? orderId) =>
       (super.noSuchMethod(
             Invocation.method(#startOrder, [orderId]),
-            returnValue: _i13.Future<_i17.StartOrderModel?>.value(),
+            returnValue: _i14.Future<_i18.StartOrderModel?>.value(),
           )
-          as _i13.Future<_i17.StartOrderModel?>);
+          as _i14.Future<_i18.StartOrderModel?>);
 
   @override
-  _i13.Future<_i18.UpdateOrderStateResponse?> updateOrder(
+  _i14.Future<_i19.UpdateOrderStateResponse?> updateOrder(
     String? orderId,
-    _i19.UpdateOrderRequest? updateOrderRequest,
+    _i20.UpdateOrderRequest? updateOrderRequest,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#updateOrder, [orderId, updateOrderRequest]),
-            returnValue: _i13.Future<_i18.UpdateOrderStateResponse?>.value(),
+            returnValue: _i14.Future<_i19.UpdateOrderStateResponse?>.value(),
           )
-          as _i13.Future<_i18.UpdateOrderStateResponse?>);
+          as _i14.Future<_i19.UpdateOrderStateResponse?>);
 
   @override
-  _i13.Future<_i6.HttpResponse<_i20.LoginResponseDto>> login({
-    required _i21.LoginRequestDto? loginRequestDto,
+  _i14.Future<_i6.HttpResponse<_i21.LoginResponseDto>> login({
+    required _i22.LoginRequestDto? loginRequestDto,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#login, [], {#loginRequestDto: loginRequestDto}),
             returnValue:
-                _i13.Future<_i6.HttpResponse<_i20.LoginResponseDto>>.value(
-                  _FakeHttpResponse_4<_i20.LoginResponseDto>(
+                _i14.Future<_i6.HttpResponse<_i21.LoginResponseDto>>.value(
+                  _FakeHttpResponse_4<_i21.LoginResponseDto>(
                     this,
                     Invocation.method(#login, [], {
                       #loginRequestDto: loginRequestDto,
@@ -232,10 +242,10 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
                   ),
                 ),
           )
-          as _i13.Future<_i6.HttpResponse<_i20.LoginResponseDto>>);
+          as _i14.Future<_i6.HttpResponse<_i21.LoginResponseDto>>);
 
   @override
-  _i13.Future<_i7.ApplyResponse> apply(
+  _i14.Future<_i7.ApplyResponse> apply(
     String? email,
     String? password,
     String? rePassword,
@@ -247,8 +257,8 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
     String? vehicleType,
     String? vehicleNumber,
     String? country,
-    _i22.File? vehicleLicense,
-    _i22.File? NIDImg,
+    _i23.File? vehicleLicense,
+    _i23.File? NIDImg,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#apply, [
@@ -266,7 +276,7 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
               vehicleLicense,
               NIDImg,
             ]),
-            returnValue: _i13.Future<_i7.ApplyResponse>.value(
+            returnValue: _i14.Future<_i7.ApplyResponse>.value(
               _FakeApplyResponse_5(
                 this,
                 Invocation.method(#apply, [
@@ -287,48 +297,63 @@ class MockApiClient extends _i1.Mock implements _i12.ApiClient {
               ),
             ),
           )
-          as _i13.Future<_i7.ApplyResponse>);
+          as _i14.Future<_i7.ApplyResponse>);
 
   @override
-  _i13.Future<_i8.GetLoggedDriver> getLoggedUserData() =>
+  _i14.Future<_i8.GetLoggedDriver> getLoggedUserData() =>
       (super.noSuchMethod(
             Invocation.method(#getLoggedUserData, []),
-            returnValue: _i13.Future<_i8.GetLoggedDriver>.value(
+            returnValue: _i14.Future<_i8.GetLoggedDriver>.value(
               _FakeGetLoggedDriver_6(
                 this,
                 Invocation.method(#getLoggedUserData, []),
               ),
             ),
           )
-          as _i13.Future<_i8.GetLoggedDriver>);
+          as _i14.Future<_i8.GetLoggedDriver>);
 
   @override
-  _i13.Future<_i9.UpdateProfileResponseDto> editProfile(
-    _i23.UpdateProfileRequestDto? request,
+  _i14.Future<_i9.UpdateProfileResponseDto> editProfile(
+    _i24.UpdateProfileRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#editProfile, [request]),
-            returnValue: _i13.Future<_i9.UpdateProfileResponseDto>.value(
+            returnValue: _i14.Future<_i9.UpdateProfileResponseDto>.value(
               _FakeUpdateProfileResponseDto_7(
                 this,
                 Invocation.method(#editProfile, [request]),
               ),
             ),
           )
-          as _i13.Future<_i9.UpdateProfileResponseDto>);
+          as _i14.Future<_i9.UpdateProfileResponseDto>);
 
   @override
-  _i13.Future<_i10.UpdatePhotoResponseDto> changePhoto(_i22.File? photo) =>
+  _i14.Future<_i10.UpdatePhotoResponseDto> changePhoto(_i23.File? photo) =>
       (super.noSuchMethod(
             Invocation.method(#changePhoto, [photo]),
-            returnValue: _i13.Future<_i10.UpdatePhotoResponseDto>.value(
+            returnValue: _i14.Future<_i10.UpdatePhotoResponseDto>.value(
               _FakeUpdatePhotoResponseDto_8(
                 this,
                 Invocation.method(#changePhoto, [photo]),
               ),
             ),
           )
-          as _i13.Future<_i10.UpdatePhotoResponseDto>);
+          as _i14.Future<_i10.UpdatePhotoResponseDto>);
+
+  @override
+  _i14.Future<_i11.ChangePasswordResponseDto> changePassword(
+    _i25.ChangePasswordRequestBody? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#changePassword, [request]),
+            returnValue: _i14.Future<_i11.ChangePasswordResponseDto>.value(
+              _FakeChangePasswordResponseDto_9(
+                this,
+                Invocation.method(#changePassword, [request]),
+              ),
+            ),
+          )
+          as _i14.Future<_i11.ChangePasswordResponseDto>);
 }
 
 /// A class which mocks [PendingOrdersResponse].
@@ -367,13 +392,13 @@ class MockPendingOrdersResponse extends _i1.Mock
           as Map<String, dynamic>);
 
   @override
-  _i11.PendingDriverOrdersEntity toPendingDriverOrderEntity() =>
+  _i12.PendingDriverOrdersEntity toPendingDriverOrderEntity() =>
       (super.noSuchMethod(
             Invocation.method(#toPendingDriverOrderEntity, []),
-            returnValue: _FakePendingDriverOrdersEntity_9(
+            returnValue: _FakePendingDriverOrdersEntity_10(
               this,
               Invocation.method(#toPendingDriverOrderEntity, []),
             ),
           )
-          as _i11.PendingDriverOrdersEntity);
+          as _i12.PendingDriverOrdersEntity);
 }

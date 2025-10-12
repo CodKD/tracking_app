@@ -115,5 +115,8 @@
   "update": "تحديث",
   "gender": "الجنس",
   "male": "ذكر",
-  "female": "أنثى"
+  "female": "أنثى",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "new_password": "كلمة المرور الجديدة",
+  "confirm_new_password": "تأكيد كلمة المرور الجديدة"
 }

@@ -20,10 +20,12 @@ class ResetPasswordForm extends StatefulWidget {
   });
 
   @override
-  ResetPasswordFormState createState() => ResetPasswordFormState();
+  ResetPasswordFormState createState() =>
+      ResetPasswordFormState();
 }
 
-class ResetPasswordFormState extends State<ResetPasswordForm> {
+class ResetPasswordFormState
+    extends State<ResetPasswordForm> {
   bool _passwordVisible = false;
   bool _newPasswordVisible = false;
   bool _confirmPasswordVisible = false;
@@ -35,10 +37,11 @@ class ResetPasswordFormState extends State<ResetPasswordForm> {
       child: Column(
         children: [
           Text(
-            context.l10n.passwordMustContainUpperLowerAndSpecialCharacter,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium!.copyWith(color: AppColors.grey),
+            context
+                .l10n
+                .passwordMustContainUpperLowerAndSpecialCharacter,
+            style: Theme.of(context).textTheme.bodyMedium!
+                .copyWith(color: AppColors.grey),
           ),
           SizedBox(height: 2.heightPercent(context)),
           AppTextFormField(
@@ -48,7 +51,9 @@ class ResetPasswordFormState extends State<ResetPasswordForm> {
 
             suffixIcon: InkWell(
               child: Icon(
-                _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                _passwordVisible
+                    ? Icons.visibility
+                    : Icons.visibility_off,
               ),
               onTap: () {
                 setState(() {
@@ -65,11 +70,14 @@ class ResetPasswordFormState extends State<ResetPasswordForm> {
 
             suffixIcon: InkWell(
               child: Icon(
-                _newPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                _newPasswordVisible
+                    ? Icons.visibility
+                    : Icons.visibility_off,
               ),
               onTap: () {
                 setState(() {
-                  _newPasswordVisible = !_newPasswordVisible;
+                  _newPasswordVisible =
+                      !_newPasswordVisible;
                 });
               },
             ),
@@ -78,7 +86,7 @@ class ResetPasswordFormState extends State<ResetPasswordForm> {
           SizedBox(height: 2.heightPercent(context)),
           AppTextFormField(
             controller: widget.confirmPasswordController,
-            hintText: context.l10n.confirm_password,
+            hintText: context.l10n.confirm_new_password,
 
             suffixIcon: InkWell(
               child: Icon(
@@ -88,7 +96,8 @@ class ResetPasswordFormState extends State<ResetPasswordForm> {
               ),
               onTap: () {
                 setState(() {
-                  _confirmPasswordVisible = !_confirmPasswordVisible;
+                  _confirmPasswordVisible =
+                      !_confirmPasswordVisible;
                 });
               },
             ),

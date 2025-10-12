@@ -1,10 +1,9 @@
 part of 'reset_cubit.dart';
 
-import '../../../domain/entities/change_password_entity.dart';
-
 sealed class ResetPasswordState {}
 
-final class ResetPasswordInitial extends ResetPasswordState {}
+final class ResetPasswordInitial
+    extends ResetPasswordState {}
 
 class ChangePasswordLoading extends ResetPasswordState {}
 
@@ -17,6 +16,7 @@ class ChangePasswordError extends ResetPasswordState {
 class ChangePasswordSuccess extends ResetPasswordState {
   ChangePasswordEntity changePasswordEntity;
 
-  ChangePasswordSuccess({required
-  this.changePasswordEntity});
+  ChangePasswordSuccess({
+    required this.changePasswordEntity,
+  });
 }
