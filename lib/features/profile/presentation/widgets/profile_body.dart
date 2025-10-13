@@ -121,7 +121,7 @@ class ProfileBody extends StatelessWidget {
                     child: ListTile(
                       onTap: () {
                         Navigator.of(context).pushNamed(
-                          AppRoutes.editProfile,
+                          AppRoutes.editeVehicalInfo,
                         );
                       },
                       contentPadding:
@@ -139,8 +139,8 @@ class ProfileBody extends StatelessWidget {
                             CrossAxisAlignment.start,
                         children: [
                           Text(
-                            state.driver.vehicleType
-                                    !.hexToString(),
+                            state.driver.vehicleType!
+                                .hexToString(),
                             style:
                                 AppStyles.regular16black,
                           ),

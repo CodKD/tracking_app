@@ -354,6 +354,21 @@ class MockApiClient extends _i1.Mock implements _i13.ApiClient {
             ),
           )
           as _i14.Future<_i11.ChangePasswordResponseDto>);
+
+  @override
+  _i14.Future<_i9.UpdateProfileResponseDto> editVehical(
+    _i24.UpdateProfileRequestDto? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#editVehical, [request]),
+            returnValue: _i14.Future<_i9.UpdateProfileResponseDto>.value(
+              _FakeUpdateProfileResponseDto_7(
+                this,
+                Invocation.method(#editVehical, [request]),
+              ),
+            ),
+          )
+          as _i14.Future<_i9.UpdateProfileResponseDto>);
 }
 
 /// A class which mocks [PendingOrdersResponse].
