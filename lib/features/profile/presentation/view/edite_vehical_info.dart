@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,32 +50,24 @@ class _EditVehicleView extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
-            // Loading state
             if (state is GetVehiclesLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-
-            // Error state
             if (state is GetVehiclesError) {
               return Center(
                 child: Text("Error: ${state.message}"),
               );
-            }
-
-            // Success state
-            if (state is GetVehiclesSuccess ||
+            } else if (state is GetVehiclesSuccess ||
                 state is GetLoggedDriverDataSuccess ||
                 state is ProfileInitial) {
               final vehicles = state is GetVehiclesSuccess
                   ? state.vehicles
                   : cubit.vehicles;
-
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Dropdown vehicle type
                     DropdownButtonFormField<String>(
                       items: vehicles
                           .map(
@@ -103,9 +94,7 @@ class _EditVehicleView extends StatelessWidget {
                             );
                       },
                     ),
-                    const SizedBox(height: 24),
-
-                    // Vehicle Number
+                    SizedBox(height: 23.h),
                     AppTextFormField(
                       controller:
                           cubit.vehicleNumberController,
@@ -120,7 +109,7 @@ class _EditVehicleView extends StatelessWidget {
                           : null,
                       isPassword: false,
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: 23.h),
                     BlocBuilder<
                       ProfileCubit,
                       ProfileState
@@ -234,9 +223,9 @@ class _EditVehicleView extends StatelessWidget {
                   ],
                 ),
               );
+            } else {
+              return const Text("Unknown state");
             }
-
-            return const SizedBox.shrink();
           },
         ),
       ),

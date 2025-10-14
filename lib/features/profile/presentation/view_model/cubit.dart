@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:image/image.dart' as img;
 import 'package:tracking_app/core/api_layer/api_result/api_result.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/features/profile/domain/entities/get_logged_driver_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/update_photo_response_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/update_profile_request_entity.dart';
@@ -138,7 +139,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  // Change user photo using image picker and convert to PNG
   Future<void> changeUserPhoto() async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
@@ -229,7 +229,7 @@ class ProfileCubit extends Cubit<ProfileState> {
               email: emailController.text.trim(),
               phone: phoneController.text.trim(),
               vehicleType: vehicleTypeController.text
-                  .trim(),
+                  .hexToString(),
               vehicleNumber: vehicleNumberController.text
                   .trim(),
               vehicleLicense: vehicleLicense,
@@ -266,7 +266,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  // Update user profile data
   Future<void> updateUserProfile() async {
     emit(UpdateUserProfileLoading());
     try {
