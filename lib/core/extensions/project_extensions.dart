@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:tracking_app/core/l10n/app_localizations.dart';
 
@@ -22,7 +22,8 @@ extension BuildContextExtension on BuildContext {
   void closeKeyboard() => FocusScope.of(this).unfocus();
 
   bool get hasParentRoute =>
-      ModalRoute.of(this)?.impliesAppBarDismissal ?? false;
+      ModalRoute.of(this)?.impliesAppBarDismissal ??
+      false;
 
   /// Usage -> context.<extension name>
 }
@@ -36,18 +37,63 @@ extension WidgetSizedBoxFromNumExtension on num {
   /// width usage -> 16.widthBox
 }
 
-extension HexToString on String {
-  String hexToString() {
-    // Remove trailing zeros
-    String cleanHex = replaceAll(RegExp(r'0+$'), '');
+extension StringHexConverter on String {
+  /// Converts a string to a 24-character hexadecimal string
+  /// Pads with zeros if needed, truncates if too long
+  String toHex() {
+    String hex = codeUnits
+        .map((e) => e.toRadixString(16).padLeft(2, '0'))
+        .join();
 
-    // Convert hex string to list of bytes
-    List<int> bytes = [];
-    for (int i = 0; i < cleanHex.length; i += 2) {
-      bytes.add(int.parse(cleanHex.substring(i, i + 2), radix: 16));
+    // Ensure exactly 24 characters
+    if (hex.length < 24) {
+      // Pad with zeros on the right
+      return hex.padRight(24, '0');
+    } else if (hex.length > 24) {
+      // Truncate to 24 characters
+      return hex.substring(0, 24);
     }
+    return hex;
+  }
 
-    // Convert bytes to UTF-8 string
-    return utf8.decode(bytes);
+  /// Converts a hexadecimal string back to the original string
+  /// Removes trailing zeros that were added for padding
+  String hexToString() {
+    try {
+      if (isEmpty) {
+        return '';
+      }
+
+      // Remove trailing zeros (padding)
+      String hex = replaceAll(RegExp(r'0+$'), '');
+
+      if (hex.isEmpty) {
+        return '';
+      }
+
+      // If length is not even, pad with 0
+      hex = hex.length.isOdd ? '0$hex' : hex;
+
+      // Convert hex pairs to bytes
+      List<int> bytes = [];
+      for (int i = 0; i < hex.length; i += 2) {
+        if (i + 1 < hex.length) {
+          String hexPair = hex.substring(i, i + 2);
+          int? byte = int.tryParse(hexPair, radix: 16);
+          if (byte != null) {
+            bytes.add(byte);
+          }
+        }
+      }
+
+      if (bytes.isEmpty) {
+        return '';
+      }
+
+      // Decode as UTF-8 with error handling
+      return utf8.decode(bytes, allowMalformed: true);
+    } catch (e) {
+      return '';
+    }
   }
 }

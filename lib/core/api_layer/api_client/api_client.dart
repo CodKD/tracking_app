@@ -21,6 +21,8 @@ import 'package:tracking_app/features/order_details/data/models/response/start_o
 import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart';
 import 'package:tracking_app/features/orders/data/models/my_orders_response.dart';
 
+import '../models/request/change_password_request_body.dart';
+import '../models/response/profile/change_password_response_dto.dart';
 import 'endpoints.dart';
 
 part 'api_client.g.dart';
@@ -93,4 +95,9 @@ abstract class ApiClient {
   @PUT(Endpoints.uploadPhoto)
   @MultiPart()
   Future<UpdatePhotoResponseDto> changePhoto(@Part(name: "photo") File photo);
+
+  @PATCH(Endpoints.resetPassword)
+  Future<ChangePasswordResponseDto> changePassword(
+    @Body() ChangePasswordRequestBody request,
+  );
 }

@@ -166,7 +166,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get success => 'تم بنجاح';
 
   @override
-  String get reset_password => 'Reset Password';
+  String get reset_password => 'إعادة تعيين كلمة المرور';
 
   @override
   String
@@ -206,7 +206,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'Please enter your new password';
 
   @override
-  String get new_password => 'New Password';
+  String get new_password => 'كلمة المرور الجديدة';
 
   @override
   String get enter_your_new_password =>
@@ -463,4 +463,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get female => 'أنثى';
+
+  @override
+  String get confirm_new_password =>
+      'تأكيد كلمة المرور الجديدة';
 }

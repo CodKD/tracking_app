@@ -34,7 +34,7 @@ Future<void> logoutUser(BuildContext context) async {
 
     Navigator.pushNamedAndRemoveUntil(
       context,
-      AppRoutes.loginView,
+      AppRoutes.onBoardingView,
       (route) => false,
     );
   }
