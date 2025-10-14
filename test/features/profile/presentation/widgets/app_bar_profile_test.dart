@@ -11,7 +11,7 @@ void main() {
       const MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: [Locale('en')],
-        home: Scaffold(body: AppBarProfile()),
+        home: Scaffold(body: AppBarProfile(title: 'edite profile',)),
       ),
     );
 

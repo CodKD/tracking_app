@@ -467,4 +467,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get confirm_new_password =>
       'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get edit_vehical_info => 'تعديل معلومات المركبة';
 }

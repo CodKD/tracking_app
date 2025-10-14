@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:tracking_app/core/api_layer/models/response/profile/all_vehical_response.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/update_photo_response_dto.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart';
@@ -115,4 +116,7 @@ abstract class ApiClient {
   Future<UpdateProfileResponseDto> editVehical(
     @Body() UpdateProfileRequestDto request,
   );
+
+  @GET(Endpoints.allVehicles)
+  Future<AllVehicalResponse> getAllVehicles();
 }

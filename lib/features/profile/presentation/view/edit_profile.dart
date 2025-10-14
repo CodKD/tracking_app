@@ -24,13 +24,13 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user =
+    final driver =
         ModalRoute.of(context)?.settings.arguments
             as ProfileDriverEntity?;
     return BlocProvider(
       create: (context) =>
-          getIt<ProfileCubit>()..initializeWithUser(user),
-      child: EditProfileView(gender: user?.gender ?? ""),
+          getIt<ProfileCubit>()..initializeWithUser(driver),
+      child: EditProfileView(gender: driver?.gender ?? ""),
     );
   }
 }
