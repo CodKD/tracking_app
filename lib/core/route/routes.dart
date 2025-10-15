@@ -15,6 +15,7 @@ import 'package:tracking_app/features/profile/presentation/view/reset_password.d
 import 'package:tracking_app/features/order_details/presentation/pages/order_details_view.dart';
 
 import '../../features/onboarding/onboarding_view.dart';
+import '../../features/profile/domain/entities/get_logged_driver_entity.dart';
 import '../../features/profile/presentation/view/edite_vehical_info.dart';
 
 abstract class Routes {
@@ -48,7 +49,11 @@ abstract class Routes {
         );
       case AppRoutes.editProfile:
         return MaterialPageRoute(
-          builder: (context) => const EditProfile(),
+          builder: (context) {
+            final args =
+                settings.arguments as ProfileDriverEntity;
+            return EditProfile(driver: args);
+          },
         );
       case AppRoutes.applicationApprovedScreen:
         return MaterialPageRoute(
@@ -61,7 +66,11 @@ abstract class Routes {
         );
       case AppRoutes.editeVehicalInfo:
         return MaterialPageRoute(
-          builder: (context) => const EditeVehicalInfo(),
+          builder: (context) {
+            final args =
+                settings.arguments as ProfileDriverEntity;
+            return EditeVehicalInfo(driver: args);
+          },
         );
       case AppRoutes.applyScreen:
         return MaterialPageRoute(

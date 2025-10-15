@@ -142,7 +142,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> changeUserPhoto() async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery,
+        source: ImageSource.camera,
         maxWidth: 1080,
         maxHeight: 1080,
         imageQuality: 85,

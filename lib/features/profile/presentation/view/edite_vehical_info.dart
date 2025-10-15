@@ -11,14 +11,15 @@ import 'package:tracking_app/features/profile/presentation/view_model/cubit.dart
 import '../../../../core/di/di.dart';
 
 class EditeVehicalInfo extends StatelessWidget {
-  const EditeVehicalInfo({super.key});
+  const EditeVehicalInfo({
+    super.key,
+    required this.driver,
+  });
+
+  final ProfileDriverEntity driver;
 
   @override
   Widget build(BuildContext context) {
-    final driver =
-        ModalRoute.of(context)?.settings.arguments
-            as ProfileDriverEntity?;
-
     return BlocProvider(
       create: (context) {
         final cubit = getIt<ProfileCubit>();
@@ -49,182 +50,228 @@ class _EditVehicleView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<ProfileCubit, ProfileState>(
+          buildWhen: (previous, current) =>
+              current is GetVehiclesLoading ||
+              current is GetVehiclesError ||
+              current is GetVehiclesSuccess ||
+              current is ProfileInitial ||
+              current is GetLoggedDriverDataSuccess,
           builder: (context, state) {
-            if (state is GetVehiclesLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is GetVehiclesError) {
-              return Center(
-                child: Text("Error: ${state.message}"),
-              );
-            } else if (state is GetVehiclesSuccess ||
-                state is GetLoggedDriverDataSuccess ||
-                state is ProfileInitial) {
-              final vehicles = state is GetVehiclesSuccess
-                  ? state.vehicles
-                  : cubit.vehicles;
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    DropdownButtonFormField<String>(
-                      items: vehicles
-                          .map(
-                            (e) => DropdownMenuItem(
-                              value: e,
-                              child: Text(e),
-                            ),
-                          )
-                          .toList(),
-                      decoration: InputDecoration(
-                        labelText:
-                            context.l10n.vehicle_type,
-                        labelStyle: TextStyle(
-                          color: AppColors.grey,
-                          fontSize: 14.sp,
+            switch (state) {
+              case GetVehiclesLoading():
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              case GetVehiclesError():
+                return Center(child: Text(state.message));
+              case GetLoggedDriverDataError():
+                return Center(child: Text(state.message));
+              case GetLoggedDriverDataLoading():
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              case GetVehiclesSuccess():
+                final vehicles = state.vehicles;
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      DropdownButtonFormField<String>(
+                        items: vehicles
+                            .map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e),
+                              ),
+                            )
+                            .toList(),
+                        decoration: InputDecoration(
+                          labelText:
+                              context.l10n.vehicle_type,
+                          labelStyle: TextStyle(
+                            color: AppColors.grey,
+                            fontSize: 14.sp,
+                          ),
+                          border:
+                              const OutlineInputBorder(),
                         ),
-                        border:
-                            const OutlineInputBorder(),
+                        onChanged: (value) {
+                          cubit.vehicleTypeController =
+                              TextEditingController(
+                                text: value,
+                              );
+                        },
                       ),
-                      onChanged: (value) {
-                        cubit.vehicleTypeController =
-                            TextEditingController(
-                              text: value,
-                            );
-                      },
-                    ),
-                    SizedBox(height: 23.h),
-                    AppTextFormField(
-                      controller:
-                          cubit.vehicleNumberController,
-                      hintText: context
-                          .l10n
-                          .enter_vehicle_number,
-                      labelText:
-                          context.l10n.vehicle_number,
-                      validator: (v) =>
-                          (v == null || v.isEmpty)
-                          ? context.l10n.vehicleNumber
-                          : null,
-                      isPassword: false,
-                    ),
-                    SizedBox(height: 23.h),
-                    BlocBuilder<
-                      ProfileCubit,
-                      ProfileState
-                    >(
-                      builder: (context, state) {
-                        return FormField<File>(
-                          validator: (value) {
-                            if (cubit.vehicleLicense ==
-                                null) {
-                              return context
-                                  .l10n
-                                  .uploadVehicleLicenseError;
-                            }
-                            return null;
-                          },
-                          builder: (field) {
-                            return InkWell(
-                              onTap: () {
-                                cubit
-                                    .pickVehicleLicenseImage();
-                              },
-                              child: IgnorePointer(
-                                child: TextFormField(
-                                  keyboardType:
-                                      TextInputType
-                                          .number,
-                                  decoration: InputDecoration(
-                                    labelText: context
-                                        .l10n
-                                        .vehicleLicense,
-                                    labelStyle: TextStyle(
-                                      color:
-                                          AppColors.grey,
-                                      fontSize: 14.sp,
-                                    ),
-                                    hintText: context
-                                        .l10n
-                                        .choose_vehicle_license_img,
-                                    hintStyle: TextStyle(
-                                      color:
-                                          AppColors.grey,
-                                      fontSize: 14.sp,
-                                    ),
-                                    border:
-                                        const OutlineInputBorder(),
-                                    errorText:
-                                        field.hasError
-                                        ? field.errorText
-                                        : null,
-                                    suffixIcon:
-                                        cubit.vehicleLicense ==
-                                            null
-                                        ? const Icon(
-                                            Icons
-                                                .file_upload,
-                                          )
-                                        : IconButton(
-                                            icon: const Icon(
-                                              Icons.close,
-                                              color: Colors
-                                                  .red,
-                                            ),
-                                            onPressed: () {
-                                              cubit
-                                                  .clearVehicleLicense();
-                                            },
+                      SizedBox(height: 23.h),
+                      AppTextFormField(
+                        controller:
+                            cubit.vehicleNumberController,
+                        hintText: context
+                            .l10n
+                            .enter_vehicle_number,
+                        labelText:
+                            context.l10n.vehicle_number,
+                        validator: (v) =>
+                            (v == null || v.isEmpty)
+                            ? context.l10n.vehicleNumber
+                            : null,
+                        isPassword: false,
+                      ),
+                      SizedBox(height: 23.h),
+                      BlocBuilder<
+                        ProfileCubit,
+                        ProfileState
+                      >(
+                        builder: (context, state) {
+                          return FormField<File>(
+                            validator: (value) {
+                              if (cubit.vehicleLicense ==
+                                  null) {
+                                return context
+                                    .l10n
+                                    .uploadVehicleLicenseError;
+                              }
+                              return null;
+                            },
+                            builder: (field) {
+                              return InkWell(
+                                onTap: () {
+                                  cubit
+                                      .pickVehicleLicenseImage();
+                                },
+                                child: IgnorePointer(
+                                  child: TextFormField(
+                                    keyboardType:
+                                        TextInputType
+                                            .number,
+                                    decoration: InputDecoration(
+                                      labelText: context
+                                          .l10n
+                                          .vehicleLicense,
+                                      labelStyle:
+                                          TextStyle(
+                                            color:
+                                                AppColors
+                                                    .grey,
+                                            fontSize:
+                                                14.sp,
                                           ),
-                                  ),
-                                  readOnly: true,
-                                  style: TextStyle(
-                                    color: AppColors.grey,
-                                    fontSize: 12.sp,
-                                    backgroundColor:
-                                        cubit.vehicleLicense !=
-                                            null
-                                        ? AppColors
-                                              .pink
-                                              .shade200
-                                        : Colors
-                                              .transparent,
-                                  ),
-                                  controller: TextEditingController(
-                                    text:
-                                        cubit.vehicleLicense !=
-                                            null
-                                        ? cubit.getFileName(
-                                            cubit
-                                                .vehicleLicense!
-                                                .path,
-                                          )
-                                        : '',
+                                      hintText: context
+                                          .l10n
+                                          .choose_vehicle_license_img,
+                                      hintStyle:
+                                          TextStyle(
+                                            color:
+                                                AppColors
+                                                    .grey,
+                                            fontSize:
+                                                14.sp,
+                                          ),
+                                      border:
+                                          const OutlineInputBorder(),
+                                      errorText:
+                                          field.hasError
+                                          ? field
+                                                .errorText
+                                          : null,
+                                      suffixIcon:
+                                          cubit.vehicleLicense ==
+                                              null
+                                          ? const Icon(
+                                              Icons
+                                                  .file_upload,
+                                            )
+                                          : IconButton(
+                                              icon: const Icon(
+                                                Icons
+                                                    .close,
+                                                color: Colors
+                                                    .red,
+                                              ),
+                                              onPressed: () {
+                                                cubit
+                                                    .clearVehicleLicense();
+                                              },
+                                            ),
+                                    ),
+                                    readOnly: true,
+                                    style: TextStyle(
+                                      color:
+                                          AppColors.grey,
+                                      fontSize: 12.sp,
+                                      backgroundColor:
+                                          cubit.vehicleLicense !=
+                                              null
+                                          ? AppColors
+                                                .pink
+                                                .shade200
+                                          : Colors
+                                                .transparent,
+                                    ),
+                                    controller: TextEditingController(
+                                      text:
+                                          cubit.vehicleLicense !=
+                                              null
+                                          ? cubit.getFileName(
+                                              cubit
+                                                  .vehicleLicense!
+                                                  .path,
+                                            )
+                                          : '',
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
+                              );
+                            },
+                          );
+                        },
+                      ),
 
-                    // Vehicle License
-                    const SizedBox(height: 32),
+                      // Vehicle License
+                      const SizedBox(height: 32),
 
-                    // Update Button
-                    CustomButton(
-                      size: Size(double.infinity, 48.h),
-                      borderRadius: 25.r,
-                      child: Text(context.l10n.update),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return const Text("Unknown state");
+                      // Update Button
+                      CustomButton(
+                        size: Size(double.infinity, 48.h),
+                        borderRadius: 25.r,
+                        child: Text(context.l10n.update),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                );
+              case GetLoggedDriverDataSuccess():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case PhotoChangedLoadingState():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case PhotoChangedSuccess():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case PhotoChangedError():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case UpdateUserProfileLoading():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case UpdateUserProfileSuccess():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case UpdateUserProfileError():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case DriverApplyLicenseImagePicked():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case DriverApplyImageError():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case DriverApplyLicenseImageCleared():
+                // TODO: Handle this case.
+                throw UnimplementedError();
+              case ProfileInitial():
+                // TODO: Handle this case.
+                throw UnimplementedError();
             }
           },
         ),
