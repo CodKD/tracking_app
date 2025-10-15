@@ -159,6 +159,14 @@ class $AssetsIconGen {
 class $AssetsImageGen {
   const $AssetsImageGen();
 
+  /// File path: assets/image/cancelled.png
+  AssetGenImage get cancelled =>
+      const AssetGenImage('assets/image/cancelled.png');
+
+  /// File path: assets/image/completed.png
+  AssetGenImage get completed =>
+      const AssetGenImage('assets/image/completed.png');
+
   /// File path: assets/image/no_routes.png
   AssetGenImage get noRoutes =>
       const AssetGenImage('assets/image/no_routes.png');
@@ -173,6 +181,8 @@ class $AssetsImageGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    cancelled,
+    completed,
     noRoutes,
     onboarding,
     profileD,

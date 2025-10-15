@@ -11,4 +11,5 @@ class Endpoints {
   static const String pendingDriverOrdersRoute = '/v1/orders/pending-orders';
   static const String startOrder = '/v1/orders/start';
   static const String updateOrder = "/v1/orders/state";
+  static const String getMyOrders = '/v1/orders/driver-orders';
 }
