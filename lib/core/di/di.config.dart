@@ -73,7 +73,7 @@ import '../../features/order_details/presentation/view_model/start_order_cubit.d
     as _i330;
 import '../../features/profile/data/data_source/change_password_remote_data_source.dart'
     as _i970;
-import '../../features/profile/data/data_source/get_all_Vehicles_data_source.dart'
+import '../../features/profile/data/data_source/get_all_vehicles_data_source.dart'
     as _i624;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
     as _i1052;

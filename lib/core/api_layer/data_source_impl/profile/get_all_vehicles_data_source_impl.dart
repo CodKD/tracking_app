@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/api_layer/api_client/api_client.dart';
-import 'package:tracking_app/features/profile/data/data_source/get_all_Vehicles_data_source.dart';
+import 'package:tracking_app/features/profile/data/data_source/get_all_vehicles_data_source.dart';
 
 import '../../models/response/profile/all_vehical_response.dart';
 
