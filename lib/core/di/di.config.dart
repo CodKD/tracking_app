@@ -75,6 +75,17 @@ import '../../features/profile/data/data_source/change_password_remote_data_sour
     as _i970;
 import '../../features/profile/data/data_source/get_all_vehicles_data_source.dart'
     as _i624;
+import '../../features/orders/data/data_sources/my_orders_online_data_source.dart'
+    as _i131;
+import '../../features/orders/data/data_sources/my_orders_online_data_source_impl.dart'
+    as _i291;
+import '../../features/orders/data/repositories/my_orders_repo_impl.dart'
+    as _i917;
+import '../../features/orders/domain/repositories/my_orders_repo.dart' as _i456;
+import '../../features/orders/domain/use_cases/my_orders_use_case.dart'
+    as _i1055;
+import '../../features/orders/presentation/manager/my_orders_view_model.dart'
+    as _i29;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
     as _i1052;
 import '../../features/profile/data/data_source/update_driver_profile_data_source.dart'
@@ -212,6 +223,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i837.UpdateVehicalRepo>(
       () =>
           _i803.UpdateVehicalRepoImpl(gh<_i62.UpdateDriverProfileDataSource>()),
+    gh.factory<_i131.MyOrdersOnlineDataSource>(
+      () => _i291.MyOrdersOnlineDataSourceImpl(gh<_i225.ApiClient>()),
     );
     gh.factory<_i234.UpdateProfileRepo>(
       () =>
@@ -248,6 +261,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i207.GetAllVehiclesRepoImpl(
         getAllVehiclesDataSource: gh<_i624.GetAllVehiclesDataSource>(),
       ),
+    gh.factory<_i456.MyOrdersRepo>(
+      () => _i917.MyOrdersRepoImpl(gh<_i131.MyOrdersOnlineDataSource>()),
+    );
+    gh.factory<_i1055.MyOrdersUseCase>(
+      () => _i1055.MyOrdersUseCase(gh<_i456.MyOrdersRepo>()),
     );
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i983.LoginRepo>()),
@@ -259,6 +277,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i691.ChangPasswordRepoImpl(
         gh<_i970.ChangePasswordRemoteDataSource>(),
       ),
+    gh.factory<_i29.MyOrdersViewModel>(
+      () => _i29.MyOrdersViewModel(gh<_i1055.MyOrdersUseCase>()),
     );
     gh.factory<_i228.GetLoggedDriverDataUseCase>(
       () =>
