@@ -16,6 +16,8 @@ import 'package:tracking_app/features/order_details/presentation/pages/order_det
 import 'package:tracking_app/features/pick_up_location/presentation/view/pick_up_location_view.dart';
 
 import '../../features/onboarding/onboarding_view.dart';
+import '../../features/profile/domain/entities/get_logged_driver_entity.dart';
+import '../../features/profile/presentation/view/edite_vehical_info.dart';
 
 abstract class Routes {
   static Route generateRoute(RouteSettings settings) {
@@ -53,6 +55,11 @@ abstract class Routes {
         );
       case AppRoutes.editProfile:
         return MaterialPageRoute(
+          builder: (context) {
+            final args =
+                settings.arguments as ProfileDriverEntity;
+            return EditProfile(driver: args);
+          },
           builder: (context) => const EditProfile(),
         );
       case AppRoutes.applicationApprovedScreen:
@@ -63,6 +70,16 @@ abstract class Routes {
       case AppRoutes.resetPassword:
         return MaterialPageRoute(
           builder: (context) => const ResetPassword(),
+        );
+      case AppRoutes.editeVehicalInfo:
+        return MaterialPageRoute(
+          builder: (context) {
+            final args =
+                settings.arguments as ProfileDriverEntity;
+            return EditeVehicalInfo(driver: args);
+          },
+
+          builder: (context) => const EditeVehicalInfo(),
         );
       case AppRoutes.applyScreen:
         return MaterialPageRoute(

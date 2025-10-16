@@ -10,23 +10,26 @@ import 'package:tracking_app/features/profile/domain/repositories/update_profile
 
 @Injectable(as: UpdateProfileRepo)
 class UpdateProfileRepoImpl implements UpdateProfileRepo {
-  UpdateDriverProfileDataSource updateDriverProfileDataSource;
+  UpdateDriverProfileDataSource
+  updateDriverProfileDataSource;
 
-  UpdateProfileRepoImpl(this.updateDriverProfileDataSource);
+  UpdateProfileRepoImpl(
+    this.updateDriverProfileDataSource,
+  );
 
   @override
-  Future<ApiResult<UpdateProfileResponseEntity>> updateDriverProfile(
+  Future<ApiResult<UpdateProfileResponseEntity>>
+  updateDriverProfile(
     UpdateProfileRequestEntity updateProfileRequestEntity,
   ) async {
-    return await updateDriverProfileDataSource.updateDriverProfile(
-      updateProfileRequestEntity,
-    );
+    return await updateDriverProfileDataSource
+        .updateDriverProfile(updateProfileRequestEntity);
   }
 
   @override
-  Future<ApiResult<UpdatePhotoResponseEntity>> updateDriverPhoto(
-    File photo,
-  ) async {
-    return await updateDriverProfileDataSource.updateDriverPhoto(photo);
+  Future<ApiResult<UpdatePhotoResponseEntity>>
+  updateDriverPhoto(File photo) async {
+    return await updateDriverProfileDataSource
+        .updateDriverPhoto(photo);
   }
 }

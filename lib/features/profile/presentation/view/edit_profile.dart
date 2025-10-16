@@ -20,14 +20,26 @@ import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/route/app_routes.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
+  const EditProfile({super.key, required this.driver});
+
+  final ProfileDriverEntity driver;
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        ModalRoute.of(context)?.settings.arguments as ProfileDriverEntity?;
+
     return BlocProvider(
-      create: (context) => getIt<ProfileCubit>()..initializeWithUser(user),
+      create: (context) =>
+          getIt<ProfileCubit>()
+            ..initializeWithUser(driver),
+      child: EditProfileView(
+        gender: driver.gender ?? "",
+      ),
+    final user =
+        ModalRoute.of(context)?.settings.arguments
+            as ProfileDriverEntity?;
+    return BlocProvider(
+      create: (context) =>
+          getIt<ProfileCubit>()..initializeWithUser(user),
       child: EditProfileView(gender: user?.gender ?? ""),
     );
   }
@@ -62,34 +74,48 @@ class EditProfileView extends StatelessWidget {
                 context: context,
                 loadingMessage: context.l10n.loading,
               );
-            } else if (state is UpdateUserProfileSuccess) {
+            } else if (state
+                is UpdateUserProfileSuccess) {
               Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  backgroundColor: AppTheme.lightTheme.primaryColor,
-                  content: Text(context.l10n.profileUpdatedSuccessfully),
+                  backgroundColor:
+                      AppTheme.lightTheme.primaryColor,
+                  content: Text(
+                    context
+                        .l10n
+                        .profileUpdatedSuccessfully,
+                  ),
                 ),
               );
-              Navigator.pushReplacementNamed(context, AppRoutes.loginView);
+              Navigator.pushReplacementNamed(
+                context,
+                AppRoutes.loginView,
+              );
             } else if (state is PhotoChangedSuccess) {
               Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  backgroundColor: AppTheme.lightTheme.primaryColor,
-                  content: Text(context.l10n.photo_updated_successfully),
+                  backgroundColor:
+                      AppTheme.lightTheme.primaryColor,
+                  content: Text(
+                    context
+                        .l10n
+                        .photo_updated_successfully,
+                  ),
                 ),
               );
               Navigator.of(context).pop(true);
             } else if (state is UpdateUserProfileError) {
               Navigator.of(context).pop(false);
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
             } else if (state is PhotoChangedError) {
               Navigator.of(context).pop(false);
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
             }
           },
           builder: (context, state) {
@@ -97,43 +123,70 @@ class EditProfileView extends StatelessWidget {
               child: Form(
                 key: formKey,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment:
+                      MainAxisAlignment.start,
                   children: [
                     Align(
                       alignment: Alignment.center,
                       child: Stack(
                         children: [
-                          BlocBuilder<ProfileCubit, ProfileState>(
+                          BlocBuilder<
+                            ProfileCubit,
+                            ProfileState
+                          >(
                             builder: (context, state) {
-                              final cubit = context.read<ProfileCubit>();
+                              final cubit = context
+                                  .read<ProfileCubit>();
                               return ClipRRect(
-                                borderRadius: BorderRadius.circular(100.r),
+                                borderRadius:
+                                    BorderRadius.circular(
+                                      100.r,
+                                    ),
 
-                                child: cubit.selectedImageFile != null
+                                child:
+                                    cubit.selectedImageFile !=
+                                        null
                                     ? Image.file(
-                                        cubit.selectedImageFile!,
+                                        cubit
+                                            .selectedImageFile!,
                                         width: 100.w,
                                         height: 100.h,
                                         fit: BoxFit.fill,
                                       )
-                                    : cubit.photo.isNotEmpty
+                                    : cubit
+                                          .photo
+                                          .isNotEmpty
                                     ? CachedNetworkImage(
-                                        imageUrl: cubit.photo,
+                                        imageUrl:
+                                            cubit.photo,
                                         fit: BoxFit.fill,
                                         width: 100.w,
                                         height: 100.h,
-                                        placeholder: (context, url) =>
-                                            const Center(
+                                        placeholder:
+                                            (
+                                              context,
+                                              url,
+                                            ) => const Center(
                                               child:
                                                   CircularProgressIndicator(),
                                             ),
-                                        errorWidget: (context, url, error) =>
-                                            const Center(
-                                              child: Icon(Icons.error),
+                                        errorWidget:
+                                            (
+                                              context,
+                                              url,
+                                              error,
+                                            ) => const Center(
+                                              child: Icon(
+                                                Icons
+                                                    .error,
+                                              ),
                                             ),
                                       )
                                     : Image.asset(
-                                        Assets.image.profileD.path,
+                                        Assets
+                                            .image
+                                            .profileD
+                                            .path,
                                         width: 100.w,
                                         height: 100.h,
                                         fit: BoxFit.fill,
@@ -147,36 +200,50 @@ class EditProfileView extends StatelessWidget {
                             width: 30.w,
                             height: 30.h,
                             child: Container(
-                              padding: const EdgeInsets.all(3),
+                              padding:
+                                  const EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 color: AppColors.white,
-                                borderRadius: BorderRadius.circular(100.r),
+                                borderRadius:
+                                    BorderRadius.circular(
+                                      100.r,
+                                    ),
                               ),
                               child: GestureDetector(
                                 onTap: () {
                                   context
-                                      .read<ProfileCubit>()
+                                      .read<
+                                        ProfileCubit
+                                      >()
                                       .changeUserPhoto();
                                 },
-                                child: SvgPicture.asset(Assets.svg.cammera),
+                                child: SvgPicture.asset(
+                                  Assets.svg.cammera,
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 3.heightPercent(context)),
+                    SizedBox(
+                      height: 3.heightPercent(context),
+                    ),
                     Row(
                       children: [
                         Expanded(
                           child: AppTextFormField(
-                            hintText: context.l10n.first_name,
+                            hintText:
+                                context.l10n.first_name,
                             controller: context
                                 .read<ProfileCubit>()
                                 .firstNameController,
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return context.l10n.descriptionFirstName;
+                              if (value == null ||
+                                  value.isEmpty) {
+                                return context
+                                    .l10n
+                                    .descriptionFirstName;
                               }
                               if (value.length < 2) {
                                 return context
@@ -188,16 +255,22 @@ class EditProfileView extends StatelessWidget {
                             isPassword: false,
                           ),
                         ),
-                        SizedBox(width: 6.widthPercent(context)),
+                        SizedBox(
+                          width: 6.widthPercent(context),
+                        ),
                         Expanded(
                           child: AppTextFormField(
-                            hintText: context.l10n.last_name,
+                            hintText:
+                                context.l10n.last_name,
                             controller: context
                                 .read<ProfileCubit>()
                                 .lastNameController,
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return context.l10n.descriptionLastName;
+                              if (value == null ||
+                                  value.isEmpty) {
+                                return context
+                                    .l10n
+                                    .descriptionLastName;
                               }
                               if (value.length < 2) {
                                 return context
@@ -211,64 +284,102 @@ class EditProfileView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 2.heightPercent(context)),
+                    SizedBox(
+                      height: 2.heightPercent(context),
+                    ),
                     AppTextFormField(
                       hintText: context.l10n.email,
-                      controller: context.read<ProfileCubit>().emailController,
+                      controller: context
+                          .read<ProfileCubit>()
+                          .emailController,
                       isPassword: false,
                       validator: (value) {
                         if (value == null ||
                             value.isEmpty ||
-                            !AppRegex.isEmailValid(value)) {
-                          return context.l10n.descriptionEmail;
+                            !AppRegex.isEmailValid(
+                              value,
+                            )) {
+                          return context
+                              .l10n
+                              .descriptionEmail;
                         }
-                        if (!AppRegex.isEmailValid(value)) {
-                          return context.l10n.descriptionEmail;
+                        if (!AppRegex.isEmailValid(
+                          value,
+                        )) {
+                          return context
+                              .l10n
+                              .descriptionEmail;
                         }
                         return null;
                       },
                     ),
-                    SizedBox(height: 2.heightPercent(context)),
+                    SizedBox(
+                      height: 2.heightPercent(context),
+                    ),
                     AppTextFormField(
-                      controller: context.read<ProfileCubit>().phoneController,
+                      controller: context
+                          .read<ProfileCubit>()
+                          .phoneController,
                       isPassword: false,
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: false,
-                      ),
+                      keyboardType:
+                          const TextInputType.numberWithOptions(
+                            decimal: false,
+                          ),
                       hintText: context.l10n.enter_phone,
                       validator: (value) {
                         if (value == null || value.isEmpty
                         //!AppRegex.isPhoneNumberValid(value)
                         ) {
-                          return context.l10n.descriptionPhoneNumber;
+                          return context
+                              .l10n
+                              .descriptionPhoneNumber;
                         }
-                        if (!AppRegex.isPhoneNumberValid(value)) {
-                          return context.l10n.enterAValidEgyptianPhoneNumber;
+                        if (!AppRegex.isPhoneNumberValid(
+                          value,
+                        )) {
+                          return context
+                              .l10n
+                              .enterAValidEgyptianPhoneNumber;
                         }
                         return null;
                       },
                     ),
-                    SizedBox(height: 2.heightPercent(context)),
+                    SizedBox(
+                      height: 2.heightPercent(context),
+                    ),
                     AppTextFormField(
-                      controller: TextEditingController(text: "********"),
+                      controller: TextEditingController(
+                        text: "********",
+                      ),
                       suffixIcon: TextButton(
                         onPressed: () {
-                          context.pushNamed(AppRoutes.resetPassword);
+                          context.pushNamed(
+                            AppRoutes.resetPassword,
+                          );
                         },
                         child: Text(context.l10n.change),
                       ),
                       isPassword: false,
-                      hintText: context.l10n.pleaseEnterYourPassword,
+                      hintText: context
+                          .l10n
+                          .pleaseEnterYourPassword,
                     ),
-                    SizedBox(height: 1.5.heightPercent(context)),
-                    ChoseGenderProfile(selectedGender: gender),
+                    SizedBox(
+                      height: 1.5.heightPercent(context),
+                    ),
+                    ChoseGenderProfile(
+                      selectedGender: gender,
+                    ),
                     CustomButton(
                       size: Size(double.infinity, 48.h),
                       borderRadius: 25.r,
                       child: Text(context.l10n.update),
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          context.read<ProfileCubit>().updateUserProfile();
+                        if (formKey.currentState!
+                            .validate()) {
+                          context
+                              .read<ProfileCubit>()
+                              .updateUserProfile();
                         }
                       },
                     ),

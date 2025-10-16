@@ -218,11 +218,9 @@ class _OrderCardState extends State<OrderCard> {
                       ),
                     
 
-                      backgroundColor: isButtonDisabled
-                          ? Colors.grey
-                          : Colors.pink,
+                      backgroundColor:  Colors.pink,
                     ),
-                    child:  Text(
+                    child: isButtonDisabled ? const CircularProgressIndicator(color: Colors.white,) :  Text(
                       context.l10n.accept,
                       style: const TextStyle(
                         color: Colors.white,

@@ -145,6 +145,8 @@ class _HomeViewState extends State<HomeTab> {
                                   viewModel: viewModel,
                                   savedToken: savedToken,
                                 ),
+                                    viewModel: viewModel,
+                                    ),
                               );
                       } else {
                         return Center(

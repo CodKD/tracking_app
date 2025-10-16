@@ -466,4 +466,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get confirm_new_password =>
       'Confirm New Password';
+
+  @override
+  String get edit_vehical_info => 'Edit Vehical Info';
 }
