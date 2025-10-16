@@ -20,9 +20,7 @@ class HomeTab extends StatefulWidget {
 
 class _HomeViewState extends State<HomeTab> {
   late HomeTabCubit viewModel;
-  String savedToken = ''; // Initialize with empty string
-  List<Orders> ordersViewed =
-      []; // Initialize with empty list
+  late List<Orders> ordersViewed;
   bool isRefreshIndicator = true;
   bool isAvailable = true;
 
@@ -52,50 +50,36 @@ class _HomeViewState extends State<HomeTab> {
       child: BlocProvider(
         create: (context) => viewModel..getHomeData(),
         child: Column(
-          children: [
-            isAvailable
-                ? BlocConsumer<
-                    HomeTabCubit,
-                    HomeTabState
-                  >(
-                    listener: (context, state) {
+            children: [
+            
+              isAvailable
+                  ? BlocConsumer<HomeTabCubit, HomeTabState>(
+                      listener: (context, state) {
                       if (state is HomeTabSuccess) {
                         isRefreshIndicator = true;
                       }
-                    },
-                    builder: (context, state) {
+                    }, builder: (context, state) {
                       if (state is HomeTabLoading) {
-                        return const Expanded(
-                          child: SkeletonHome(),
-                        );
-                      } else if (state
-                          is HomeTabSuccess) {
-                        PendingDriverOrdersEntity
-                        pendingDriverOrdersEntity = state
-                            .pendingDriverOrdersEntity;
+                        return const Expanded(child: SkeletonHome());
+                      } else if (state is HomeTabSuccess) {
+                        PendingDriverOrdersEntity pendingDriverOrdersEntity =
+                            state.pendingDriverOrdersEntity;
                         List<Orders> orders =
-                            pendingDriverOrdersEntity
-                                .orders ??
-                            [];
-
+                            pendingDriverOrdersEntity.orders ?? [];
+        
                         return orders.isNotEmpty
                             ? Expanded(
                                 child: Stack(
-                                  clipBehavior:
-                                      Clip.antiAlias,
+                                  clipBehavior: Clip.antiAlias,
                                   children: [
                                     ListView.builder(
-                                      itemCount:
-                                          orders.length,
+                                      itemCount: orders.length,
                                       itemBuilder: (context, index) {
                                         return OrderCard(
-                                          orderPending:
-                                              orders[index],
+                                          orderPending: orders[index],
                                           onReject: () {
-                                            viewModel
-                                                .rejectOrderFromScreen(
-                                                  orders[index],
-                                                );
+                                            viewModel.rejectOrderFromScreen(
+                                                orders[index]);
                                           },
                                         );
                                       },
@@ -105,61 +89,38 @@ class _HomeViewState extends State<HomeTab> {
                                       bottom: 25,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors
-                                              .pink
+                                          color: Colors.pink
                                               // ignore: deprecated_member_use
-                                              .withOpacity(
-                                                .6,
-                                              ),
-                                          borderRadius:
-                                              const BorderRadius.all(
-                                                Radius.circular(
-                                                  50,
-                                                ),
-                                              ),
+                                              .withOpacity(.6),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(50)),
                                         ),
-                                        padding:
-                                            const EdgeInsets.symmetric(
-                                              horizontal:
-                                                  16,
-                                              vertical: 8,
-                                            ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 8),
                                         child: Text(
-                                          orders.length
-                                              .toString(),
+                                          orders.length.toString(),
                                           style: const TextStyle(
-                                            color: Colors
-                                                .white,
-                                            fontWeight:
-                                                FontWeight
-                                                    .bold,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    )
                                   ],
                                 ),
                               )
                             : Expanded(
                                 child: RefreshHome(
-                                  viewModel: viewModel,
-                                  savedToken: savedToken,
-                                ),
                                     viewModel: viewModel,
                                     ),
                               );
                       } else {
-                        return Center(
-                          child: Text(context.l10n.error),
-                        );
+                        return  Center(child: Text(context.l10n.error));
                       }
-                    },
-                  )
-                : const Expanded(
-                    child: AvailableForDelivery(),
-                  ),
-          ],
-        ),
+                    })
+                  : const Expanded(child: AvailableForDelivery()),
+            ],
+          ),
       ),
     );
   }

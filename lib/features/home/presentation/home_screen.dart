@@ -22,19 +22,14 @@ class _HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations locale = AppLocalizations.of(
-      context,
-    )!;
+    final AppLocalizations locale = AppLocalizations.of(context)!;
     return Consumer<HomeViewModel>(
       builder: (context, viewModel, child) {
         return Scaffold(
           // indexed stack for save tab state across navigation
           body: SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 16.w,
-                vertical: 16.h,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: IndexedStack(
                 index: viewModel.currentIndex,
                 children: viewModel.pages,
@@ -46,29 +41,19 @@ class _HomeScreenBody extends StatelessWidget {
             currentIndex: viewModel.currentIndex,
             onTap: viewModel.setCurrentIndex,
             elevation: 0,
-            selectedItemColor: Theme.of(
-              context,
-            ).primaryColor,
+            selectedItemColor: Theme.of(context).primaryColor,
             unselectedItemColor: Colors.grey,
             items: [
               BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(Assets.icon.homeIcon.path),
-                ),
+                icon: ImageIcon(AssetImage(Assets.icon.homeIcon.path)),
                 label: locale.home,
               ),
               BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(Assets.icon.orderIcon.path),
-                ),
+                icon: ImageIcon(AssetImage(Assets.icon.orderIcon.path)),
                 label: locale.orders,
               ),
               BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage(
-                    Assets.icon.profileIcon.path,
-                  ),
-                ),
+                icon: ImageIcon(AssetImage(Assets.icon.profileIcon.path)),
                 label: locale.profile,
               ),
             ],

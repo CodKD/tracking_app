@@ -36,12 +36,6 @@ migrate_working_dir/
 # Symbolication related
 app.*.symbols
 
-# generated files
-*.g.dart - Generated files from build_runner (json_serializable, etc.)
-*.freezed.dart - Generated files from freezed
-*.mocks.dart - Generated mock files from mockito/build_runner
-
-
 # Obfuscation related
 app.*.map.json
 
