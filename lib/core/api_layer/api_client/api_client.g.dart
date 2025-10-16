@@ -441,7 +441,7 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<UpdateProfileResponseDto> editVehical(
-    UpdateProfileRequestDto request,
+    UpdateVehicalRequestDto request,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

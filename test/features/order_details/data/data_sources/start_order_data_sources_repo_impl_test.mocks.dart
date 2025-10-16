@@ -13,6 +13,8 @@ import 'package:tracking_app/core/api_layer/models/request/change_password_reque
     as _i25;
 import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart'
     as _i24;
+import 'package:tracking_app/core/api_layer/models/request/update_vehical_request_dto.dart'
+    as _i26;
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
     as _i7;
 import 'package:tracking_app/core/api_layer/models/response/profile/all_vehical_response.dart'
@@ -357,7 +359,7 @@ class MockApiClient extends _i1.Mock implements _i13.ApiClient {
 
   @override
   _i14.Future<_i9.UpdateProfileResponseDto> editVehical(
-    _i24.UpdateProfileRequestDto? request,
+    _i26.UpdateVehicalRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#editVehical, [request]),

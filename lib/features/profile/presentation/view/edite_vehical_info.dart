@@ -234,7 +234,11 @@ class _EditVehicleView extends StatelessWidget {
                         size: Size(double.infinity, 48.h),
                         borderRadius: 25.r,
                         child: Text(context.l10n.update),
-                        onPressed: () {},
+                        onPressed: () {
+                          context
+                              .read<ProfileCubit>()
+                              .updateVehicleInfo();
+                        },
                       ),
                     ],
                   ),

@@ -11,10 +11,12 @@ import 'package:tracking_app/features/profile/domain/entities/get_logged_driver_
 import 'package:tracking_app/features/profile/domain/entities/update_photo_response_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/update_profile_request_entity.dart';
 import 'package:tracking_app/features/profile/domain/entities/update_profile_response_entity.dart';
+import 'package:tracking_app/features/profile/domain/entities/update_vehical_request_entity.dart';
 import 'package:tracking_app/features/profile/domain/usecases/get_all_vehicles_use_case.dart';
 import 'package:tracking_app/features/profile/domain/usecases/get_logged_driver_data_use_case.dart';
 import 'package:tracking_app/features/profile/domain/usecases/update_driver_photo_use_case.dart';
 import 'package:tracking_app/features/profile/domain/usecases/update_driver_profile_use_case.dart';
+import 'package:tracking_app/features/profile/domain/usecases/update_vehical_use_case.dart';
 
 part 'states.dart';
 
@@ -22,6 +24,7 @@ part 'states.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit(
     this.getLoggedUserDataUseCase,
+    this.updateVehicalUseCase,
     // this.changePasswordUseCase,
     this.updateDriverPhotoUseCase,
     this.updateDriverProfileUseCase,
@@ -36,6 +39,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   // ChangePasswordUseCase changePasswordUseCase;
   UpdateDriverPhotoUseCase updateDriverPhotoUseCase;
+  UpdateVehicalUseCase updateVehicalUseCase;
 
   // edit profile data
   TextEditingController firstNameController =
@@ -221,20 +225,15 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(UpdateUserProfileLoading());
 
     try {
-      final result = await updateDriverProfileUseCase
-          .invoke(
-            UpdateProfileRequestEntity(
-              firstName: firstNameController.text.trim(),
-              lastName: lastNameController.text.trim(),
-              email: emailController.text.trim(),
-              phone: phoneController.text.trim(),
-              vehicleType: vehicleTypeController.text
-                  .hexToString(),
-              vehicleNumber: vehicleNumberController.text
-                  .trim(),
-              vehicleLicense: vehicleLicense,
-            ),
-          );
+      final result = await updateVehicalUseCase.invoke(
+        UpdateVehicalRequestEntity(
+          vehicleType: vehicleTypeController.text
+              .hexToString(),
+          vehicleNumber: vehicleNumberController.text
+              .trim(),
+          vehicleLicense: vehicleLicense,
+        ),
+      );
 
       switch (result) {
         case ApiSuccessResult<

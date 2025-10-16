@@ -14,6 +14,8 @@ import 'package:tracking_app/core/api_layer/models/request/change_password_reque
     as _i26;
 import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart'
     as _i25;
+import 'package:tracking_app/core/api_layer/models/request/update_vehical_request_dto.dart'
+    as _i27;
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart'
     as _i7;
 import 'package:tracking_app/core/api_layer/models/response/profile/all_vehical_response.dart'
@@ -27,7 +29,7 @@ import 'package:tracking_app/core/api_layer/models/response/profile/update_photo
 import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart'
     as _i9;
 import 'package:tracking_app/core/modules/shared_preferences_module.dart'
-    as _i27;
+    as _i28;
 import 'package:tracking_app/features/auth/forget_password/data/models/request/forget_password_request_dto.dart'
     as _i16;
 import 'package:tracking_app/features/auth/forget_password/data/models/request/reset_password_request_dto.dart'
@@ -366,7 +368,7 @@ class MockApiClient extends _i1.Mock implements _i14.ApiClient {
 
   @override
   _i15.Future<_i9.UpdateProfileResponseDto> editVehical(
-    _i25.UpdateProfileRequestDto? request,
+    _i27.UpdateVehicalRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#editVehical, [request]),
@@ -396,7 +398,7 @@ class MockApiClient extends _i1.Mock implements _i14.ApiClient {
 /// A class which mocks [SharedPrefHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPrefHelper extends _i1.Mock implements _i27.SharedPrefHelper {
+class MockSharedPrefHelper extends _i1.Mock implements _i28.SharedPrefHelper {
   MockSharedPrefHelper() {
     _i1.throwOnMissingStub(this);
   }

@@ -1,4 +1,5 @@
 import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart';
+import 'package:tracking_app/core/api_layer/models/request/update_vehical_request_dto.dart';
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart';
 import 'dart:io';
 import 'package:dio/dio.dart';
@@ -114,7 +115,7 @@ abstract class ApiClient {
 
   @PUT(Endpoints.editVehical)
   Future<UpdateProfileResponseDto> editVehical(
-    @Body() UpdateProfileRequestDto request,
+    @Body() UpdateVehicalRequestDto request,
   );
 
   @GET(Endpoints.allVehicles)
