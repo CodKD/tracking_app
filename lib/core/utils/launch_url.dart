@@ -12,11 +12,28 @@ class CustomLaunchUrl {
       {required numPhone,
       required String name,
      }) async {
-    var url = "https://web.whatsapp.com/send?phone=+$numPhone&text=$name";
+// String num='966';
+    var androidUrl =
+        "whatsapp://send?phone=+$numPhone&text=Flowery rider \n $name\n"
+        // " $linkImage$urlPreview "
+        ;
+    var iosUrl = "https://wa.me/$numPhone?text=${Uri.parse(name)}";
+    var desktopUrl =
+        "https://wa.me/$numPhone/?text=${Uri.parse(name)}&type=+$numPhone&app_absent=1";
+    var webUrl = "https://web.whatsapp.com/send?phone=+$numPhone&text=$name";
 
     try {
-
-        await launchUrl(Uri.parse(url));
+      if (Platform.isIOS) {
+        await launchUrl(
+          Uri.parse(iosUrl),
+        );
+      } else if (Platform.isAndroid) {
+        await launchUrl(Uri.parse(androidUrl));
+      } else if (Platform.isWindows) {
+        await launchUrl(Uri.parse(desktopUrl));
+      } else {
+        await launchUrl(Uri.parse(webUrl));
+      }
     } catch (e) {
       debugPrint(e.toString());
     }
