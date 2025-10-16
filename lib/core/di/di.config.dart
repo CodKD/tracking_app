@@ -82,22 +82,30 @@ import '../../features/orders/domain/use_cases/my_orders_use_case.dart'
     as _i1055;
 import '../../features/orders/presentation/manager/my_orders_view_model.dart'
     as _i29;
+import '../../features/profile/data/data_source/change_password_remote_data_source.dart'
+    as _i970;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
     as _i1052;
 import '../../features/profile/data/data_source/update_driver_profile_data_source.dart'
     as _i62;
+import '../../features/profile/data/data_source/update_vehical_info_data_source.dart'
+    as _i1057;
 import '../../features/profile/data/repositories/change_password_repo_impl.dart'
     as _i691;
 import '../../features/profile/data/repositories/get_logged_driver_data_repo_impl.dart'
     as _i430;
 import '../../features/profile/data/repositories/update_profile_repo_impl.dart'
     as _i249;
+import '../../features/profile/data/repositories/update_vehical_repo_impl.dart'
+    as _i803;
 import '../../features/profile/domain/repositories/change_password_repo.dart'
     as _i200;
 import '../../features/profile/domain/repositories/get_logged_driver_data_repo.dart'
     as _i201;
 import '../../features/profile/domain/repositories/update_profile_repo.dart'
     as _i234;
+import '../../features/profile/domain/repositories/update_vehical_repo.dart'
+    as _i837;
 import '../../features/profile/domain/usecases/change_password_use_case.dart'
     as _i590;
 import '../../features/profile/domain/usecases/get_logged_driver_data_use_case.dart'
@@ -106,6 +114,8 @@ import '../../features/profile/domain/usecases/update_driver_photo_use_case.dart
     as _i345;
 import '../../features/profile/domain/usecases/update_driver_profile_use_case.dart'
     as _i662;
+import '../../features/profile/domain/usecases/update_vehical_use_case.dart'
+    as _i86;
 import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
 import '../../features/profile/presentation/view_model/reset/reset_cubit.dart'
     as _i698;
@@ -122,6 +132,8 @@ import '../api_layer/data_source_impl/profile/get_logged_driver_data_source_impl
     as _i81;
 import '../api_layer/data_source_impl/profile/update_driver_profile_data_source_impl.dart'
     as _i933;
+import '../api_layer/data_source_impl/profile/update_vehical_info_data_source_impl.dart'
+    as _i1046;
 import '../modules/dio_module.dart' as _i948;
 import '../modules/shared_preferences_module.dart' as _i744;
 import '../utils/language_cubit.dart' as _i344;
@@ -172,6 +184,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i970.ChangePasswordRemoteDataSource>(
       () => _i881.ChangePasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
     );
+    gh.factory<_i1057.UpdateVehicalInfoDataSource>(
+      () => _i1046.UpdateVehicalInfoDataSourceImpl(gh<_i225.ApiClient>()),
+    );
     gh.factory<_i62.UpdateDriverProfileDataSource>(
       () => _i933.UpdateDriverProfileDataSourceImpl(gh<_i225.ApiClient>()),
     );
@@ -197,6 +212,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i131.MyOrdersOnlineDataSource>(
       () => _i291.MyOrdersOnlineDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i837.UpdateVehicalRepo>(
+      () =>
+          _i803.UpdateVehicalRepoImpl(gh<_i62.UpdateDriverProfileDataSource>()),
     );
     gh.factory<_i234.UpdateProfileRepo>(
       () =>
@@ -236,6 +255,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i29.MyOrdersViewModel>(
       () => _i29.MyOrdersViewModel(gh<_i1055.MyOrdersUseCase>()),
+    );
+    gh.factory<_i86.UpdateVehicalUseCase>(
+      () => _i86.UpdateVehicalUseCase(gh<_i837.UpdateVehicalRepo>()),
+    );
+    gh.factory<_i200.ChangPasswordRepo>(
+      () => _i691.ChangPasswordRepoImpl(
+        gh<_i970.ChangePasswordRemoteDataSource>(),
+      ),
     );
     gh.factory<_i228.GetLoggedDriverDataUseCase>(
       () =>

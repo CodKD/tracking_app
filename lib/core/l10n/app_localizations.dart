@@ -929,6 +929,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm New Password'**
   String get confirm_new_password;
+
+  /// No description provided for @edit_vehical_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Vehical Info'**
+  String get edit_vehical_info;
 }
 
 class _AppLocalizationsDelegate
