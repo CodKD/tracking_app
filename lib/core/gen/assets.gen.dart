@@ -159,6 +159,17 @@ class $AssetsIconGen {
 class $AssetsImageGen {
   const $AssetsImageGen();
 
+  /// File path: assets/image/driver_location.png
+  AssetGenImage get driverLocation => const AssetGenImage(
+    'assets/image/driver_location.png',
+  );
+
+  /// File path: assets/image/flowery_location.png
+  AssetGenImage get floweryLocation =>
+      const AssetGenImage(
+        'assets/image/flowery_location.png',
+      );
+
   /// File path: assets/image/no_routes.png
   AssetGenImage get noRoutes =>
       const AssetGenImage('assets/image/no_routes.png');
@@ -171,11 +182,19 @@ class $AssetsImageGen {
   AssetGenImage get profileD =>
       const AssetGenImage('assets/image/profile_d.jpg');
 
+  /// File path: assets/image/user_location.png
+  AssetGenImage get userLocation => const AssetGenImage(
+    'assets/image/user_location.png',
+  );
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    driverLocation,
+    floweryLocation,
     noRoutes,
     onboarding,
     profileD,
+    userLocation,
   ];
 }
 
@@ -184,6 +203,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/Camera.svg
   String get camera => 'assets/svg/Camera.svg';
+
+  /// File path: assets/svg/Flowery logo.svg
+  String get floweryLogo => 'assets/svg/Flowery logo.svg';
 
   /// File path: assets/svg/Vector.svg
   String get vector => 'assets/svg/Vector.svg';
@@ -229,12 +251,16 @@ class $AssetsSvgGen {
   /// File path: assets/svg/orders.svg
   String get orders => 'assets/svg/orders.svg';
 
+  /// File path: assets/svg/user_photo.svg
+  String get userPhoto => 'assets/svg/user_photo.svg';
+
   /// File path: assets/svg/whatsapp.svg
   String get whatsapp => 'assets/svg/whatsapp.svg';
 
   /// List of all assets
   List<String> get values => [
     camera,
+    floweryLogo,
     vector,
     arrowDown,
     bg,
@@ -249,6 +275,7 @@ class $AssetsSvgGen {
     map,
     orderSuccessfullyIcon,
     orders,
+    userPhoto,
     whatsapp,
   ];
 }
