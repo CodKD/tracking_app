@@ -49,14 +49,14 @@ dependencies:
   fluttertoast: ^8.2.12
   connectivity_plus: ^6.1.4
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.2.0
   cached_network_image: ^3.4.1
   image_picker: ^1.0.4
   auto_size_text: ^3.0.0
   animated_text_kit: ^4.2.3
   image: ^4.1.7
   firebase_core: ^4.1.1
-
+  google_maps_flutter: ^2.13.1
+  flutter_svg : ^2.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

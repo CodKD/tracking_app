@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tracking_app/core/di/di.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/route/app_routes.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
@@ -9,12 +11,15 @@ import 'package:tracking_app/features/auth/forget_password/presentation/pages/fo
 import 'package:tracking_app/features/home/presentation/home_screen.dart';
 import 'package:tracking_app/features/auth/login/presentation/login_view.dart';
 import 'package:tracking_app/core/gen/assets.gen.dart';
+import 'package:tracking_app/features/pick_up_location/presentation/cubit/pick_up_location_cubit.dart';
 import 'package:tracking_app/features/profile/presentation/view/edit_profile.dart';
 import 'package:tracking_app/features/profile/presentation/view/notification_list.dart';
 import 'package:tracking_app/features/profile/presentation/view/reset_password.dart';
 import 'package:tracking_app/features/order_details/presentation/pages/order_details_view.dart';
-
+import 'package:tracking_app/features/pick_up_location/presentation/view/pick_up_location_view.dart';
+import 'package:tracking_app/features/profile/presentation/view_model/cubit.dart';
 import '../../features/onboarding/onboarding_view.dart';
+import '../../features/profile/domain/entities/get_logged_driver_entity.dart';
 import '../../features/profile/presentation/view/edite_vehical_info.dart';
 
 abstract class Routes {
@@ -38,6 +43,24 @@ abstract class Routes {
         return MaterialPageRoute(
           builder: (context) => const OrderDetailsView(),
         );
+      case AppRoutes.pickUpLocationView:
+        return MaterialPageRoute(
+          builder: (context) {
+            final Map<String, dynamic> args =
+                settings.arguments
+                    as Map<String, dynamic>? ??
+                {};
+
+            return BlocProvider(
+              create: (context) =>
+                  getIt<PickUpLocationCubit>()
+                    ..initializeLocation(
+                      args['isUserLocation'],
+                    ),
+              child: PickUpLocationViewBody(args: args),
+            );
+          },
+        );
       case AppRoutes.onBoardingView:
         return MaterialPageRoute(
           builder: (context) => const OnboardingView(),
@@ -48,7 +71,18 @@ abstract class Routes {
         );
       case AppRoutes.editProfile:
         return MaterialPageRoute(
-          builder: (context) => const EditProfile(),
+          builder: (context) {
+            final args =
+                settings.arguments as ProfileDriverEntity;
+            return BlocProvider(
+              create: (context) =>
+                  getIt<ProfileCubit>()
+                    ..initializeWithUser(args),
+              child: EditProfileView(
+                gender: args.gender ?? "",
+              ),
+            );
+          },
         );
       case AppRoutes.applicationApprovedScreen:
         return MaterialPageRoute(
@@ -61,7 +95,9 @@ abstract class Routes {
         );
       case AppRoutes.editeVehicalInfo:
         return MaterialPageRoute(
-          builder: (context) => const EditeVehicalInfo(),
+          builder: (context) {
+            return const EditeVehicalInfo();
+          },
         );
       case AppRoutes.applyScreen:
         return MaterialPageRoute(

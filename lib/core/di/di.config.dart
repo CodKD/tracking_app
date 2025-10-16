@@ -82,6 +82,8 @@ import '../../features/orders/domain/use_cases/my_orders_use_case.dart'
     as _i1055;
 import '../../features/orders/presentation/manager/my_orders_view_model.dart'
     as _i29;
+import '../../features/pick_up_location/presentation/cubit/pick_up_location_cubit.dart'
+    as _i946;
 import '../../features/profile/data/data_source/change_password_remote_data_source.dart'
     as _i970;
 import '../../features/profile/data/data_source/get_logged_driver_data_source.dart'
@@ -120,6 +122,7 @@ import '../../features/profile/presentation/view_model/cubit.dart' as _i1017;
 import '../../features/profile/presentation/view_model/reset/reset_cubit.dart'
     as _i698;
 import '../api_layer/api_client/api_client.dart' as _i225;
+import '../api_layer/api_client/google_maps_api_client.dart' as _i281;
 import '../api_layer/data_source_impl/auth/apply_data_source_impl.dart'
     as _i942;
 import '../api_layer/data_source_impl/auth/forget_password_remote_data_source_impl.dart'
@@ -167,6 +170,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i225.ApiClient>(() => _i225.ApiClient.new(gh<_i361.Dio>()));
+    gh.singleton<_i281.GoogleMapsApiClient>(
+      () => _i281.GoogleMapsApiClient.new(gh<_i361.Dio>()),
+    );
     gh.factory<_i643.GetPendingOrdersDataSource>(
       () => _i898.GetPendingOrdersDataSourceImpl(gh<_i225.ApiClient>()),
     );
@@ -183,6 +189,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i970.ChangePasswordRemoteDataSource>(
       () => _i881.ChangePasswordRemoteDataSourceImpl(gh<_i225.ApiClient>()),
+    );
+    gh.factory<_i946.PickUpLocationCubit>(
+      () => _i946.PickUpLocationCubit(gh<_i281.GoogleMapsApiClient>()),
     );
     gh.factory<_i1057.UpdateVehicalInfoDataSource>(
       () => _i1046.UpdateVehicalInfoDataSourceImpl(gh<_i225.ApiClient>()),
