@@ -21,6 +21,7 @@ import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/model
 import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart';
 import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart';
 import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart';
+import 'package:tracking_app/features/orders/data/models/my_orders_response.dart';
 
 import '../models/request/change_password_request_body.dart';
 import '../models/response/profile/change_password_response_dto.dart';
@@ -69,6 +70,8 @@ abstract class ApiClient {
     @Body() UpdateOrderRequest updateOrderRequest,
   );
 
+   @GET(Endpoints.getMyOrders)
+  Future<MyOrdersResponse> getMyOrders();
   @POST(Endpoints.login)
   Future<HttpResponse<LoginResponseDto>> login({
     @Body() required LoginRequestDto loginRequestDto,
