@@ -13,6 +13,7 @@ import 'package:tracking_app/features/profile/presentation/view/edit_profile.dar
 import 'package:tracking_app/features/profile/presentation/view/notification_list.dart';
 import 'package:tracking_app/features/profile/presentation/view/reset_password.dart';
 import 'package:tracking_app/features/order_details/presentation/pages/order_details_view.dart';
+import 'package:tracking_app/features/pick_up_location/presentation/view/pick_up_location_view.dart';
 
 import '../../features/onboarding/onboarding_view.dart';
 import '../../features/profile/domain/entities/get_logged_driver_entity.dart';
@@ -38,6 +39,11 @@ abstract class Routes {
       case AppRoutes.orderDetailsScreen:
         return MaterialPageRoute(
           builder: (context) => const OrderDetailsView(),
+        );
+      case AppRoutes.pickUpLocationView:
+        return MaterialPageRoute(
+          builder: (context) =>
+              const PickUpLocationView(),
         );
       case AppRoutes.onBoardingView:
         return MaterialPageRoute(
