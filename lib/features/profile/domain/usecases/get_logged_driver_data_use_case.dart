@@ -7,10 +7,13 @@ import 'package:tracking_app/features/profile/domain/repositories/get_logged_dri
 class GetLoggedDriverDataUseCase {
   GetLoggedDriverDataRepo getLoggedDriverDataRepo;
 
-  GetLoggedDriverDataUseCase(this.getLoggedDriverDataRepo);
+  GetLoggedDriverDataUseCase(
+    this.getLoggedDriverDataRepo,
+  );
 
   Future<ApiResult<ProfileDriverEntity>> call() async {
-    final result = await getLoggedDriverDataRepo.getLoggedDriverData();
+    final result = await getLoggedDriverDataRepo
+        .getLoggedDriverData();
     return result;
   }
 }

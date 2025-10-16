@@ -135,5 +135,6 @@
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
-  "confirm_new_password": "Confirm New Password"
+  "confirm_new_password": "Confirm New Password",
+  "edit_vehical_info": "Edit Vehical Info"
 }

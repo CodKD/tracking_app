@@ -16,4 +16,5 @@ abstract class AppRoutes {
       "/order_details_screen";
   static const String pickUpLocationView =
       "/pick_up_location_view";
+  static const String editeVehicalInfo = "/edite_vehical_info";
 }

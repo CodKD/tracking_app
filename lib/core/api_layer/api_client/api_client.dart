@@ -1,9 +1,11 @@
 import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart';
+import 'package:tracking_app/core/api_layer/models/request/update_vehical_request_dto.dart';
 import 'package:tracking_app/core/api_layer/models/response/auth/apply_response.dart';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:tracking_app/core/api_layer/models/response/profile/all_vehical_response.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/get_logged_driver.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/update_photo_response_dto.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart';
@@ -19,6 +21,7 @@ import 'package:tracking_app/features/home/presentation/Tabs/home_tab/data/model
 import 'package:tracking_app/features/order_details/data/models/request/update_order_request.dart';
 import 'package:tracking_app/features/order_details/data/models/response/start_order_model.dart';
 import 'package:tracking_app/features/order_details/data/models/response/update_order_state_response.dart';
+import 'package:tracking_app/features/orders/data/models/my_orders_response.dart';
 
 import '../models/request/change_password_request_body.dart';
 import '../models/response/profile/change_password_response_dto.dart';
@@ -34,28 +37,41 @@ abstract class ApiClient {
 
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponseDto> forgetPassword({
-    @Body() required ForgetPasswordRequestDto forgetPasswordRequestDto,
+    @Body()
+    required ForgetPasswordRequestDto
+    forgetPasswordRequestDto,
   });
 
   @POST(Endpoints.verifyResetCode)
   Future<VerifyResetCodeResponseDto> verifyResetCode({
-    @Body() required VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+    @Body()
+    required VerifyResetCodeRequestDto
+    verifyResetCodeRequestDto,
   });
 
   @PUT(Endpoints.resetPassword)
   Future<ResetPasswordResponseDto> resetPassword({
-    @Body() required ResetPasswordRequestDto resetPasswordRequestDto,
+    @Body()
+    required ResetPasswordRequestDto
+    resetPasswordRequestDto,
   });
+
   @GET(Endpoints.pendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getPendingDriverOrders();
- @PUT('${Endpoints.startOrder}/{orderId}')
+
+  @PUT('${Endpoints.startOrder}/{orderId}')
   Future<StartOrderModel?> startOrder(
-      @Path() String orderId,);
+    @Path() String orderId,
+  );
 
   @PUT('${Endpoints.updateOrder}/{orderId}')
   Future<UpdateOrderStateResponse?> updateOrder(
-      @Path() String orderId,
-      @Body() UpdateOrderRequest updateOrderRequest,);
+    @Path() String orderId,
+    @Body() UpdateOrderRequest updateOrderRequest,
+  );
+
+   @GET(Endpoints.getMyOrders)
+  Future<MyOrdersResponse> getMyOrders();
   @POST(Endpoints.login)
   Future<HttpResponse<LoginResponseDto>> login({
     @Body() required LoginRequestDto loginRequestDto,
@@ -91,10 +107,22 @@ abstract class ApiClient {
 
   @PUT(Endpoints.uploadPhoto)
   @MultiPart()
-  Future<UpdatePhotoResponseDto> changePhoto(@Part(name: "photo") File photo);
+  Future<UpdatePhotoResponseDto> changePhoto(
+    @Part(name: "photo") File photo,
+  );
 
   @PATCH(Endpoints.resetPassword)
   Future<ChangePasswordResponseDto> changePassword(
     @Body() ChangePasswordRequestBody request,
+  );
+
+  @PUT(Endpoints.editVehical)
+  Future<UpdateProfileResponseDto> editVehical(
+    @Body() UpdateVehicalRequestDto request,
+  );
+
+  @GET(Endpoints.allVehicles)
+  Future<AllVehicalResponse> getAllVehicles();
+    @Body() UpdateProfileRequestDto request,
   );
 }
