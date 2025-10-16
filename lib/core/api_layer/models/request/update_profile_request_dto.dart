@@ -21,7 +21,9 @@ class UpdateProfileRequestDto {
     this.phone,
   });
 
-  factory UpdateProfileRequestDto.fromJson(Map<String, dynamic> json) {
+  factory UpdateProfileRequestDto.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return _$UpdateProfileRequestDtoFromJson(json);
   }
 
@@ -30,7 +32,8 @@ class UpdateProfileRequestDto {
   }
 
   UpdateProfileRequestEntity toEntity() {
-    UpdateProfileRequestEntity updateProfileRequestEntity =
+    UpdateProfileRequestEntity
+    updateProfileRequestEntity =
         UpdateProfileRequestEntity(
           phone: phone,
           lastName: lastName,

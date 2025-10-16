@@ -20,7 +20,6 @@ class HomeTab extends StatefulWidget {
 
 class _HomeViewState extends State<HomeTab> {
   late HomeTabCubit viewModel;
-  late String savedToken;
   late List<Orders> ordersViewed;
   bool isRefreshIndicator = true;
   bool isAvailable = true;
@@ -113,7 +112,7 @@ class _HomeViewState extends State<HomeTab> {
                             : Expanded(
                                 child: RefreshHome(
                                     viewModel: viewModel,
-                                    savedToken: savedToken),
+                                    ),
                               );
                       } else {
                         return  Center(child: Text(context.l10n.error));

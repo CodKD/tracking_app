@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tracking_app/core/api_layer/api_client/api_client.dart';
 import 'package:tracking_app/core/api_layer/api_result/api_result.dart';
+import 'package:tracking_app/core/api_layer/models/request/update_vehical_request_dto.dart';
+import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart';
+import 'package:tracking_app/features/profile/domain/entities/update_profile_response_entity.dart';
+import 'package:tracking_app/features/profile/domain/entities/update_vehical_request_entity.dart';
 import 'package:tracking_app/core/api_layer/models/request/update_profile_request_dto.dart';
 import 'package:tracking_app/core/api_layer/models/response/profile/update_profile_response_dto.dart';
 import 'package:tracking_app/features/profile/domain/entities/update_profile_request_entity.dart';
@@ -18,6 +22,12 @@ class UpdateVehicalInfoDataSourceImpl
   @override
   Future<ApiResult<UpdateProfileResponseEntity>>
   updateVehicalInfo(
+    UpdateVehicalRequestEntity request,
+  ) async {
+    try {
+      UpdateProfileResponseDto updateProfileResponseDto =
+          await apiClient.editVehical(
+            UpdateVehicalRequestDto.fromEntity(request),
     UpdateProfileRequestEntity request,
   ) async {
     try {

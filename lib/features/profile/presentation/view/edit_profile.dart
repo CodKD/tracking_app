@@ -20,10 +20,20 @@ import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/route/app_routes.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
+  const EditProfile({super.key, required this.driver});
+
+  final ProfileDriverEntity driver;
 
   @override
   Widget build(BuildContext context) {
+
+    return BlocProvider(
+      create: (context) =>
+          getIt<ProfileCubit>()
+            ..initializeWithUser(driver),
+      child: EditProfileView(
+        gender: driver.gender ?? "",
+      ),
     final user =
         ModalRoute.of(context)?.settings.arguments
             as ProfileDriverEntity?;
