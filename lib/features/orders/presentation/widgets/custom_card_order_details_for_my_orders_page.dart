@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tracking_app/core/gen/assets.gen.dart';
 import '../../data/models/my_orders_response.dart';
 
 class CustomCardOrderDetailsForMyOrdersPage extends StatelessWidget {
@@ -37,10 +38,9 @@ class CustomCardOrderDetailsForMyOrdersPage extends StatelessWidget {
         leading: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
-          child: Image.asset(
-            "assets/images/image 2.png",
-            height: 45,
-            fit: BoxFit.fill,
+          child: Image(image: 
+          AssetImage(Assets.image.imageNull.path)
+          ,
           ),
         ),
         subtitle: Text(

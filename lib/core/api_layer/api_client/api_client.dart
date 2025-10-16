@@ -123,4 +123,6 @@ abstract class ApiClient {
 
   @GET(Endpoints.allVehicles)
   Future<AllVehicalResponse> getAllVehicles();
+    @Body() UpdateProfileRequestDto request,
+  );
 }
