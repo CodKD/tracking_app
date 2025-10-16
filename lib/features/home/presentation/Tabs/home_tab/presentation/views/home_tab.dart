@@ -20,7 +20,7 @@ class HomeTab extends StatefulWidget {
 
 class _HomeViewState extends State<HomeTab> {
   late HomeTabCubit viewModel;
-  late String savedToken;
+   String savedToken = '';
   late List<Orders> ordersViewed;
   bool isRefreshIndicator = true;
   bool isAvailable = true;
