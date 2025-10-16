@@ -55,6 +55,7 @@ class _MockHomeTabView extends StatelessWidget {
                   )
                 :  RefreshHome(
                     viewModel: viewModel, // dummy
+                    savedToken: 'fake',
                   );
           } else {
             return const AvailableForDelivery();
