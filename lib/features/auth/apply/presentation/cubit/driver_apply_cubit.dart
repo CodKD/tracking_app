@@ -15,7 +15,8 @@ part 'driver_apply_state.dart';
 
 @injectable
 class DriverApplyCubit extends Cubit<DriverApplyState> {
-  DriverApplyCubit(this.applyUseCase) : super(DriverApplyInitial());
+  DriverApplyCubit(this.applyUseCase)
+    : super(DriverApplyInitial());
   final ApplyUseCase applyUseCase;
 
   List<Country> countries = [];
@@ -23,20 +24,33 @@ class DriverApplyCubit extends Cubit<DriverApplyState> {
   bool isPasswordObscureText = true;
   bool isConfirmPasswordObscureText = true;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController nIDController = TextEditingController();
-  TextEditingController vehicleTypeController = TextEditingController();
-  TextEditingController vehicleNumberController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-  TextEditingController nIDImgController = TextEditingController();
-  TextEditingController vehicleLicenseController = TextEditingController();
+  TextEditingController emailController =
+      TextEditingController();
+  TextEditingController passwordController =
+      TextEditingController();
+  TextEditingController confirmPasswordController =
+      TextEditingController();
+  TextEditingController firstNameController =
+      TextEditingController();
+  TextEditingController lastNameController =
+      TextEditingController();
+  TextEditingController phoneNumberController =
+      TextEditingController();
+  TextEditingController nIDController =
+      TextEditingController();
+  TextEditingController vehicleTypeController =
+      TextEditingController();
+  TextEditingController vehicleNumberController =
+      TextEditingController();
+  TextEditingController countryController =
+      TextEditingController();
+  TextEditingController nIDImgController =
+      TextEditingController();
+  TextEditingController vehicleLicenseController =
+      TextEditingController();
 
-  GlobalKey<FormState> applyFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> applyFormKey =
+      GlobalKey<FormState>();
 
   String? selectedGender;
   DriverEntity driver = DriverEntity();
@@ -52,13 +66,20 @@ class DriverApplyCubit extends Cubit<DriverApplyState> {
 
   void changePasswordVisibility() {
     isPasswordObscureText = !isPasswordObscureText;
-    emit(DriverApplyChangePasswordVisibility(isPasswordObscureText));
+    emit(
+      DriverApplyChangePasswordVisibility(
+        isPasswordObscureText,
+      ),
+    );
   }
 
   void changeConfirmPasswordVisibility() {
-    isConfirmPasswordObscureText = !isConfirmPasswordObscureText;
+    isConfirmPasswordObscureText =
+        !isConfirmPasswordObscureText;
     emit(
-      DriverApplyChangeConfirmPasswordVisibility(isConfirmPasswordObscureText),
+      DriverApplyChangeConfirmPasswordVisibility(
+        isConfirmPasswordObscureText,
+      ),
     );
   }
 
@@ -66,7 +87,9 @@ class DriverApplyCubit extends Cubit<DriverApplyState> {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
-    return pickedFile != null ? File(pickedFile.path) : null;
+    return pickedFile != null
+        ? File(pickedFile.path)
+        : null;
     // if (pickedFile != null) {
     //   imageFile = File(pickedFile.path);
     //   emit(DriverApplyLicenseImagePicked(pickedFile.path));
@@ -89,8 +112,12 @@ class DriverApplyCubit extends Cubit<DriverApplyState> {
     final pickedFile = await pickImage();
     if (pickedFile != null) {
       vehicleLicense = File(pickedFile.path);
-      vehicleLicenseController.text = getFileName(vehicleLicense!.path);
-      emit(DriverApplyLicenseImagePicked(pickedFile.path));
+      vehicleLicenseController.text = getFileName(
+        vehicleLicense!.path,
+      );
+      emit(
+        DriverApplyLicenseImagePicked(pickedFile.path),
+      );
     } else {
       emit(DriverApplyImageError("No image selected"));
     }

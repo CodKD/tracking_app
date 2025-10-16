@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_app/core/di/di.dart';
+import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/extensions/spacer_media_quiey.dart';
 import 'package:tracking_app/features/profile/presentation/view_model/cubit.dart';
 import 'package:tracking_app/features/profile/presentation/widgets/app_bar_profile.dart';
@@ -12,11 +13,14 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ProfileCubit>()..getLoggedUserData(),
+      create: (context) =>
+          getIt<ProfileCubit>()..getLoggedUserData(),
       child: SafeArea(
         child: Column(
           children: [
-            const AppBarProfile(),
+            AppBarProfile(
+              title: context.l10n.editProfile,
+            ),
             SizedBox(height: 3.heightPercent(context)),
             const ProfileBody(),
           ],

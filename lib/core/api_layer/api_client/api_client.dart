@@ -35,23 +35,32 @@ abstract class ApiClient {
 
   @POST(Endpoints.forgetPassword)
   Future<ForgetPasswordResponseDto> forgetPassword({
-    @Body() required ForgetPasswordRequestDto forgetPasswordRequestDto,
+    @Body()
+    required ForgetPasswordRequestDto
+    forgetPasswordRequestDto,
   });
 
   @POST(Endpoints.verifyResetCode)
   Future<VerifyResetCodeResponseDto> verifyResetCode({
-    @Body() required VerifyResetCodeRequestDto verifyResetCodeRequestDto,
+    @Body()
+    required VerifyResetCodeRequestDto
+    verifyResetCodeRequestDto,
   });
 
   @PUT(Endpoints.resetPassword)
   Future<ResetPasswordResponseDto> resetPassword({
-    @Body() required ResetPasswordRequestDto resetPasswordRequestDto,
+    @Body()
+    required ResetPasswordRequestDto
+    resetPasswordRequestDto,
   });
+
   @GET(Endpoints.pendingDriverOrdersRoute)
   Future<PendingOrdersResponse> getPendingDriverOrders();
- @PUT('${Endpoints.startOrder}/{orderId}')
+
+  @PUT('${Endpoints.startOrder}/{orderId}')
   Future<StartOrderModel?> startOrder(
-      @Path() String orderId,);
+    @Path() String orderId,
+  );
 
   @PUT('${Endpoints.updateOrder}/{orderId}')
   Future<UpdateOrderStateResponse?> updateOrder(
@@ -94,10 +103,17 @@ abstract class ApiClient {
 
   @PUT(Endpoints.uploadPhoto)
   @MultiPart()
-  Future<UpdatePhotoResponseDto> changePhoto(@Part(name: "photo") File photo);
+  Future<UpdatePhotoResponseDto> changePhoto(
+    @Part(name: "photo") File photo,
+  );
 
   @PATCH(Endpoints.resetPassword)
   Future<ChangePasswordResponseDto> changePassword(
     @Body() ChangePasswordRequestBody request,
+  );
+
+  @PUT(Endpoints.editVehical)
+  Future<UpdateProfileResponseDto> editVehical(
+    @Body() UpdateProfileRequestDto request,
   );
 }

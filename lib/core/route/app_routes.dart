@@ -10,4 +10,5 @@ abstract class AppRoutes {
   static const String editProfile = "/edit_profile";
   static const String resetPassword = "/reset_assword";
   static const String orderDetailsScreen = "/order_details_screen";
+  static const String editeVehicalInfo = "/edite_vehical_info";
 }
