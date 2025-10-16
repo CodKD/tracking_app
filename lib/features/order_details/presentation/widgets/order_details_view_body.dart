@@ -29,15 +29,17 @@ class OrderDetailsViewBody extends StatelessWidget {
         location: orderDetails.store?.address ?? '',
         svgIconPath: Assets.svg.floweryLogo,
         urlImage: orderDetails.store?.image,
-        latLng: orderDetails.store?.latLong
+        latLng: orderDetails.store?.latLong,
       ),
       InfoModel(
-        title: '${orderDetails.user?.firstName}  ${orderDetails.user?.lastName ?? ""}',
+        title:
+            '${orderDetails.user?.firstName}  ${orderDetails.user?.lastName ?? ""}',
         phone: orderDetails.user?.phone ?? "",
         location: "20th st, Sheikh Zayed, Giza",
         svgIconPath: Assets.svg.userPhoto,
         urlImage: orderDetails.user?.photo,
-        latLng: null,      ),
+        latLng: null,
+      ),
     ];
     return CustomScrollView(
       slivers: [
@@ -136,6 +138,7 @@ class OrderDetailsViewBody extends StatelessWidget {
                 arguments: {
                   "infoModels": storeInfoModel,
                   "selectedIndex": 0, // Store card first
+                  "isUserLocation": false,
                 },
               );
             },
@@ -161,18 +164,19 @@ class OrderDetailsViewBody extends StatelessWidget {
                 arguments: {
                   "infoModels": storeInfoModel,
                   "selectedIndex": 1, // User card first
+                  "isUserLocation": true,
                 },
               );
             },
-          noIcon: true,
+            noIcon: true,
             title: context.l10n.pickup_address,
             title2: orderDetails.user?.firstName ?? '',
             phone: orderDetails.user?.phone ?? '',
             name: orderDetails.user?.firstName ?? '',
-            urlImage: "https://flower.elevateegy.com/uploads/${orderDetails.user?.photo}",
-           subTitle: orderDetails.user?.phone ?? '',
-              
-            ),
+            urlImage:
+                "https://flower.elevateegy.com/uploads/${orderDetails.user?.photo}",
+            subTitle: orderDetails.user?.phone ?? '',
+          ),
         ),
         const SliverToBoxAdapter(
           child: SizedBox(height: 24),

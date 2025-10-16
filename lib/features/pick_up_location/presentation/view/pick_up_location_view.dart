@@ -2,33 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tracking_app/core/di/di.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/core/theme/app_colors.dart';
 import 'package:tracking_app/features/order_details/data/models/info_model.dart';
-import 'package:tracking_app/features/order_details/presentation/widgets/custom_card_address.dart';
 import 'package:tracking_app/features/order_details/presentation/widgets/info_card_address.dart';
 import 'package:tracking_app/features/pick_up_location/presentation/cubit/pick_up_location_cubit.dart';
 import 'package:tracking_app/features/pick_up_location/presentation/cubit/pick_up_location_states.dart';
-
-class PickUpLocationView extends StatelessWidget {
-  const PickUpLocationView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final Map<String, dynamic> args =
-        ModalRoute.of(context)?.settings.arguments
-            as Map<String, dynamic>? ??
-        {};
-
-    return BlocProvider(
-      create: (context) =>
-          getIt<PickUpLocationCubit>()
-            ..initializeLocation(),
-      child: PickUpLocationViewBody(args: args),
-    );
-  }
-}
 
 class PickUpLocationViewBody extends StatelessWidget {
   const PickUpLocationViewBody({
@@ -40,8 +19,6 @@ class PickUpLocationViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('🔍 PickUpLocationViewBody - Args: $args');
-
     return Scaffold(
       body:
           BlocConsumer<
@@ -49,9 +26,6 @@ class PickUpLocationViewBody extends StatelessWidget {
             PickUpLocationStates
           >(
             listener: (context, state) {
-              debugPrint(
-                '🔍 State changed: ${state.runtimeType}',
-              );
               if (state is PickUpLocationError) {
                 ScaffoldMessenger.of(
                   context,
@@ -64,9 +38,6 @@ class PickUpLocationViewBody extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              debugPrint(
-                '🔍 Current state in builder: ${state.runtimeType}',
-              );
               return Stack(
                 children: [
                   // Google Map
@@ -152,26 +123,10 @@ class PickUpLocationViewBody extends StatelessWidget {
     PickUpLocationSuccess state,
     Map<String, dynamic> args,
   ) {
-    // Debug logging
-    debugPrint('🔍 Bottom Sheet - Args received: $args');
-    debugPrint(
-      '🔍 Bottom Sheet - infoModels key exists: ${args.containsKey("infoModels")}',
-    );
-    debugPrint(
-      '🔍 Bottom Sheet - selectedIndex: ${args["selectedIndex"]}',
-    );
-
     final List<InfoModel>? infoModels =
         args["infoModels"] as List<InfoModel>?;
     final int selectedIndex =
         args["selectedIndex"] as int? ?? 0;
-
-    debugPrint(
-      '🔍 Bottom Sheet - infoModels is null: ${infoModels == null}',
-    );
-    debugPrint(
-      '🔍 Bottom Sheet - infoModels length: ${infoModels?.length}',
-    );
 
     // Show error message if no data
     if (infoModels == null || infoModels.isEmpty) {
@@ -225,16 +180,24 @@ class PickUpLocationViewBody extends StatelessWidget {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Handle bar
-            Container(
-              margin: const EdgeInsets.only(top: 12),
-              width: 60,
-              height: 4,
-              decoration: BoxDecoration(
-                color: AppColors.pink,
-                borderRadius: BorderRadius.circular(2),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 12),
+                  width: 60,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: AppColors.pink,
+                    borderRadius: BorderRadius.circular(
+                      2,
+                    ),
+                  ),
+                ),
+              ],
             ),
 
             20.heightBox,
@@ -244,6 +207,7 @@ class PickUpLocationViewBody extends StatelessWidget {
               // Store/Flower card first
               const Text(
                 "Pickup Address",
+                textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -253,6 +217,7 @@ class PickUpLocationViewBody extends StatelessWidget {
               const SizedBox(height: 16),
               InfoCardAddress(
                 infoModel: infoModels[0], // Store info
+                isUser: false,
               ),
               20.heightBox,
               const Text(
@@ -266,7 +231,8 @@ class PickUpLocationViewBody extends StatelessWidget {
               const SizedBox(height: 16),
               if (infoModels.length > 1)
                 InfoCardAddress(
-                  infoModel: infoModels[1], // User info
+                  infoModel: infoModels[1],
+                  isUser: true, // User info
                 ),
             ] else ...[
               // User card first
@@ -282,6 +248,7 @@ class PickUpLocationViewBody extends StatelessWidget {
               if (infoModels.length > 1)
                 InfoCardAddress(
                   infoModel: infoModels[1], // User info
+                  isUser: true,
                 ),
               20.heightBox,
               const Text(
@@ -295,6 +262,7 @@ class PickUpLocationViewBody extends StatelessWidget {
               const SizedBox(height: 16),
               InfoCardAddress(
                 infoModel: infoModels[0], // Store info
+                isUser: false,
               ),
             ],
 

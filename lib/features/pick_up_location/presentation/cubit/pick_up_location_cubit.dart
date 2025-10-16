@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -22,13 +24,16 @@ class PickUpLocationCubit
     29.967028692169325,
   );
 
-
-
-
   // Static driver location
   static const LatLng driverLocation = LatLng(
     31.272279,
     30.007319,
+  );
+
+  // Static driver location
+  static const LatLng userLocation = LatLng(
+    31.27082513964296,
+    29.994602643902656,
   );
 
   GoogleMapController? _mapController;
@@ -37,12 +42,17 @@ class PickUpLocationCubit
     _mapController = controller;
   }
 
-  Future<void> initializeLocation() async {
+  Future<void> initializeLocation(
+    bool isUserLocation,
+  ) async {
     emit(PickUpLocationLoading());
 
     try {
       // Use static driver location directly
-      await _updateLocationData(driverLocation);
+      await _updateLocationData(
+        driverLocation,
+        isUserLocation,
+      );
     } catch (e) {
       emit(
         PickUpLocationError(
@@ -54,6 +64,7 @@ class PickUpLocationCubit
 
   Future<void> _updateLocationData(
     LatLng staticDriverLocation,
+    bool isUserLocation,
   ) async {
     try {
       // Get route from Google Directions API
@@ -61,8 +72,9 @@ class PickUpLocationCubit
           await _googleMapsApiClient.getDirections(
             origin:
                 '${staticDriverLocation.latitude},${staticDriverLocation.longitude}',
-            destination:
-                '${floweryLocation.latitude},${floweryLocation.longitude}',
+            destination: isUserLocation
+                ? '${userLocation.latitude},${userLocation.longitude}'
+                : '${floweryLocation.latitude},${floweryLocation.longitude}',
             mode: 'driving',
             key: AppConstants.googleMapsApiKey,
           );
@@ -88,6 +100,8 @@ class PickUpLocationCubit
       Set<Marker> markers = await _createMarkers(
         staticDriverLocation,
         floweryLocation,
+        userLocation,
+        isUserLocation,
       );
 
       // Create polylines
@@ -122,17 +136,23 @@ class PickUpLocationCubit
     } catch (e) {
       debugPrint('Error updating location data: $e');
       // Fallback to basic markers without route - still show distance and markers
-      _createBasicMarkersOnly(staticDriverLocation);
+      _createBasicMarkersOnly(
+        staticDriverLocation,
+        isUserLocation,
+      );
     }
   }
 
   Future<void> _createBasicMarkersOnly(
     LatLng staticDriverLocation,
+    bool isUserLocation,
   ) async {
     try {
       Set<Marker> markers = await _createMarkers(
         staticDriverLocation,
         floweryLocation,
+        userLocation,
+        isUserLocation,
       );
 
       // Calculate basic distance using Haversine formula
@@ -181,16 +201,19 @@ class PickUpLocationCubit
   Future<Set<Marker>> _createMarkers(
     LatLng staticDriverLocation,
     LatLng floweryLocation,
+    LatLng? userLocation,
+    bool isUserLocation,
   ) async {
     Set<Marker> markers = {};
 
     try {
-      // Create driver marker (user location icon)
-      BitmapDescriptor driverIcon =
-          await SvgToIcon.fromPngAsset(
-            'assets/image/user_location.png',
-            width: 60,
-          );
+      // Create driver marker with driver icon
+      BitmapDescriptor
+      driverIcon = await SvgToIcon.fromPngAsset(
+        'assets/image/driver_location.png', // Driver icon
+        width: 80,
+        imageScale: 4,
+      );
 
       markers.add(
         Marker(
@@ -198,27 +221,36 @@ class PickUpLocationCubit
           position: staticDriverLocation,
           icon: driverIcon,
           infoWindow: const InfoWindow(
-            title: 'Your location',
-            snippet: 'Driver position',
+            title: 'Driver Location',
+            snippet: 'Current driver position',
           ),
         ),
       );
 
-      // Create flowery location marker
-      BitmapDescriptor floweryIcon =
+      // Create second marker based on isUserLocation
+      BitmapDescriptor secondIcon =
           await SvgToIcon.fromPngAsset(
-            'assets/image/flowery_location.png',
-            width: 60,
+            isUserLocation
+                ? 'assets/image/user_location.png'
+                : 'assets/image/flowery_location.png',
+            width: 80,
+            imageScale: 4,
           );
 
       markers.add(
         Marker(
-          markerId: const MarkerId('flowery'),
-          position: floweryLocation,
-          icon: floweryIcon,
-          infoWindow: const InfoWindow(
-            title: 'Flowery',
-            snippet: '20th st, Sheikh Zayed, Giza',
+          markerId: const MarkerId('destination'),
+          position: isUserLocation
+              ? userLocation!
+              : floweryLocation,
+          icon: secondIcon,
+          infoWindow: InfoWindow(
+            title: isUserLocation
+                ? 'User Location'
+                : 'Flowery Store',
+            snippet: isUserLocation
+                ? 'Delivery destination'
+                : 'Pickup location',
           ),
         ),
       );
@@ -239,9 +271,11 @@ class PickUpLocationCubit
       markers.add(
         Marker(
           markerId: const MarkerId('flowery'),
-          position: floweryLocation,
-          infoWindow: const InfoWindow(
-            title: 'Flowery',
+          position: isUserLocation
+              ? userLocation!
+              : floweryLocation,
+          infoWindow: InfoWindow(
+            title: isUserLocation ? 'User' : 'Flowery',
             snippet: '20th st, Sheikh Zayed, Giza',
           ),
         ),
@@ -290,11 +324,15 @@ class PickUpLocationCubit
     }
   }
 
-  Future<void> requestLocationPermission() async {
-    await initializeLocation();
+  Future<void> requestLocationPermission(
+    bool isUserLocation,
+  ) async {
+    await initializeLocation(isUserLocation);
   }
 
-  Future<void> enableLocationService() async {
-    await initializeLocation();
+  Future<void> enableLocationService(
+    bool isUserLocation,
+  ) async {
+    await initializeLocation(isUserLocation);
   }
 }

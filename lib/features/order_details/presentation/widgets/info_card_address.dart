@@ -10,10 +10,12 @@ class InfoCardAddress extends StatelessWidget {
     super.key,
     required this.infoModel,
     this.onTap,
+    required this.isUser,
   });
 
   final InfoModel infoModel;
   final void Function()? onTap;
+  final isUser ;
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +77,11 @@ class InfoCardAddress extends StatelessWidget {
           ),
           child: infoModel.urlImage != null
               ? CachedNetworkImage(
-                imageUrl: 
-                infoModel.urlImage!,
-                 fit: BoxFit.fill)
+                imageUrl: isUser
+                    ? 'https://flower.elevateegy.com/uploads/${infoModel.urlImage!}'
+                    : 'https://www.elevateegy.com/elevate.png',
+                fit: BoxFit.fill,
+              )
               : SvgPicture.asset(
                   infoModel.svgIconPath!,
                   fit: BoxFit.fill,

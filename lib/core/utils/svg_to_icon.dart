@@ -1,5 +1,4 @@
 import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -7,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class SvgToIcon {
   static Future<BitmapDescriptor> fromPngAsset(
     String assetPath, {
-    int width = 100,
+    int width = 80,
     double imageScale =
         3.0, // Default to 3x for better quality
   }) async {
