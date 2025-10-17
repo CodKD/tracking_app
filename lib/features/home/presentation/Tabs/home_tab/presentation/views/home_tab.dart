@@ -143,7 +143,6 @@ class _HomeViewState extends State<HomeTab> {
                             : Expanded(
                                 child: RefreshHome(
                                   viewModel: viewModel,
-                                  savedToken: savedToken,
                                 ),
                                 
                               );

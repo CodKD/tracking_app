@@ -22,6 +22,8 @@ import 'package:tracking_app/features/order_details/data/models/response/update_
 import 'package:tracking_app/features/orders/data/models/my_orders_response.dart';
 
 import '../models/request/change_password_request_body.dart';
+import '../models/request/update_vehical_request_dto.dart';
+import '../models/response/profile/all_vehical_response.dart';
 import '../models/response/profile/change_password_response_dto.dart';
 import 'endpoints.dart';
 
@@ -64,10 +66,13 @@ abstract class ApiClient {
 
   @PUT('${Endpoints.updateOrder}/{orderId}')
   Future<UpdateOrderStateResponse?> updateOrder(
-      @Path() String orderId,
-      @Body() UpdateOrderRequest updateOrderRequest,);
-   @GET(Endpoints.getMyOrders)
+    @Path() String orderId,
+    @Body() UpdateOrderRequest updateOrderRequest,
+  );
+
+  @GET(Endpoints.getMyOrders)
   Future<MyOrdersResponse> getMyOrders();
+
   @POST(Endpoints.login)
   Future<HttpResponse<LoginResponseDto>> login({
     @Body() required LoginRequestDto loginRequestDto,
@@ -114,6 +119,9 @@ abstract class ApiClient {
 
   @PUT(Endpoints.editVehical)
   Future<UpdateProfileResponseDto> editVehical(
-    @Body() UpdateProfileRequestDto request,
+      @Body() UpdateVehicalRequestDto request,
   );
+
+  @GET(Endpoints.allVehicles)
+  Future<AllVehicalResponse> getAllVehicles();
 }

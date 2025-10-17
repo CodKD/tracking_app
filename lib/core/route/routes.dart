@@ -17,7 +17,6 @@ import 'package:tracking_app/features/profile/presentation/view/notification_lis
 import 'package:tracking_app/features/profile/presentation/view/reset_password.dart';
 import 'package:tracking_app/features/order_details/presentation/pages/order_details_view.dart';
 import 'package:tracking_app/features/pick_up_location/presentation/view/pick_up_location_view.dart';
-import 'package:tracking_app/features/profile/presentation/view_model/cubit.dart';
 import '../../features/onboarding/onboarding_view.dart';
 import '../../features/profile/domain/entities/get_logged_driver_entity.dart';
 import '../../features/profile/presentation/view/edite_vehical_info.dart';
@@ -73,15 +72,8 @@ abstract class Routes {
         return MaterialPageRoute(
           builder: (context) {
             final args =
-                settings.arguments as ProfileDriverEntity;
-            return BlocProvider(
-              create: (context) =>
-                  getIt<ProfileCubit>()
-                    ..initializeWithUser(args),
-              child: EditProfileView(
-                gender: args.gender ?? "",
-              ),
-            );
+            settings.arguments as ProfileDriverEntity;
+            return EditProfile(driver: args);
           },
         );
       case AppRoutes.applicationApprovedScreen:
@@ -96,7 +88,9 @@ abstract class Routes {
       case AppRoutes.editeVehicalInfo:
         return MaterialPageRoute(
           builder: (context) {
-            return const EditeVehicalInfo();
+            final args =
+            settings.arguments as ProfileDriverEntity;
+            return EditeVehicalInfo(driver: args);
           },
         );
       case AppRoutes.applyScreen:

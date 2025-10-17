@@ -1,21 +1,49 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/components/app_text_form_feild.dart';
+import 'package:tracking_app/core/theme/app_colors.dart';
+import 'package:tracking_app/core/utils/components/app_text_form_feild.dart';
+import 'package:tracking_app/core/utils/components/custom_button.dart';
+import 'package:tracking_app/features/profile/domain/entities/get_logged_driver_entity.dart';
+import 'package:tracking_app/features/profile/presentation/view_model/cubit.dart';
+import '../../../../core/di/di.dart';
 
 class EditeVehicalInfo extends StatelessWidget {
-  const EditeVehicalInfo({super.key});
+  const EditeVehicalInfo({
+    super.key,
+    required this.driver,
+  });
+
+  final ProfileDriverEntity driver;
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) {
+        final cubit = getIt<ProfileCubit>();
+        cubit.initializeVehicle(driver);
+        cubit.loadVehicles();
+        return cubit;
+      },
+      child: const _EditVehicleView(),
+    );
+  }
+}
+
+class _EditVehicleView extends StatelessWidget {
+  const _EditVehicleView();
+
+  @override
+  Widget build(BuildContext context) {
+    final cubit = context.read<ProfileCubit>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.edit_vehical_info),
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
@@ -23,7 +51,7 @@ class EditeVehicalInfo extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<ProfileCubit, ProfileState>(
           buildWhen: (previous, current) =>
-              current is GetVehiclesLoading ||
+          current is GetVehiclesLoading ||
               current is GetVehiclesError ||
               current is GetVehiclesSuccess ||
               current is ProfileInitial ||
@@ -49,14 +77,14 @@ class EditeVehicalInfo extends StatelessWidget {
                     children: [
                       DropdownButtonFormField<String>(
                         value:
-                            vehicles.contains(
-                              cubit
-                                  .vehicleTypeController
-                                  .text,
-                            )
+                        vehicles.contains(
+                          cubit
+                              .vehicleTypeController
+                              .text,
+                        )
                             ? cubit
-                                  .vehicleTypeController
-                                  .text
+                            .vehicleTypeController
+                            .text
                             : null,
 
                         items: vehicles.map((e) {
@@ -75,9 +103,9 @@ class EditeVehicalInfo extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 14.sp,
                                     color:
-                                        AppColors.black,
+                                    AppColors.black,
                                     fontWeight:
-                                        FontWeight.w500,
+                                    FontWeight.w500,
                                   ),
                                 ),
                               ],
@@ -86,7 +114,7 @@ class EditeVehicalInfo extends StatelessWidget {
                         }).toList(),
                         decoration: InputDecoration(
                           labelText:
-                              context.l10n.vehicle_type,
+                          context.l10n.vehicle_type,
                           labelStyle: TextStyle(
                             color: AppColors.grey,
                             fontSize: 13.sp,
@@ -95,39 +123,39 @@ class EditeVehicalInfo extends StatelessWidget {
                           filled: true,
                           fillColor: Colors.grey.shade100,
                           contentPadding:
-                              EdgeInsets.symmetric(
-                                vertical: 14.h,
-                                horizontal: 16.w,
-                              ),
+                          EdgeInsets.symmetric(
+                            vertical: 14.h,
+                            horizontal: 16.w,
+                          ),
                           enabledBorder:
-                              OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(
-                                      16,
-                                    ),
-                                borderSide: BorderSide(
-                                  color: Colors
-                                      .grey
-                                      .shade300,
-                                  width: 1,
-                                ),
-                              ),
+                          OutlineInputBorder(
+                            borderRadius:
+                            BorderRadius.circular(
+                              16,
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors
+                                  .grey
+                                  .shade300,
+                              width: 1,
+                            ),
+                          ),
                           focusedBorder:
-                              OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(
-                                      16,
-                                    ),
-                                borderSide:
-                                    const BorderSide(
-                                      color:
-                                          AppColors.pink,
-                                      width: 1.5,
-                                    ),
-                              ),
+                          OutlineInputBorder(
+                            borderRadius:
+                            BorderRadius.circular(
+                              16,
+                            ),
+                            borderSide:
+                            const BorderSide(
+                              color:
+                              AppColors.pink,
+                              width: 1.5,
+                            ),
+                          ),
                           errorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.circular(16),
+                            BorderRadius.circular(16),
                             borderSide: const BorderSide(
                               color: Colors.redAccent,
                               width: 1,
@@ -142,7 +170,7 @@ class EditeVehicalInfo extends StatelessWidget {
                         ),
                         dropdownColor: Colors.white,
                         borderRadius:
-                            BorderRadius.circular(16),
+                        BorderRadius.circular(16),
                         onChanged: (value) {
                           cubit.vehicleTypeController =
                               TextEditingController(
@@ -153,22 +181,22 @@ class EditeVehicalInfo extends StatelessWidget {
                       SizedBox(height: 23.h),
                       AppTextFormField(
                         controller:
-                            cubit.vehicleNumberController,
+                        cubit.vehicleNumberController,
                         hintText: context
                             .l10n
                             .enter_vehicle_number,
                         labelText:
-                            context.l10n.vehicle_number,
+                        context.l10n.vehicle_number,
                         validator: (v) =>
-                            (v == null || v.isEmpty)
+                        (v == null || v.isEmpty)
                             ? context.l10n.vehicleNumber
                             : null,
                         isPassword: false,
                       ),
                       SizedBox(height: 23.h),
                       BlocBuilder<
-                        ProfileCubit,
-                        ProfileState
+                          ProfileCubit,
+                          ProfileState
                       >(
                         builder: (context, state) {
                           return FormField<File>(
@@ -192,18 +220,18 @@ class EditeVehicalInfo extends StatelessWidget {
                                     readOnly: true,
                                     controller: TextEditingController(
                                       text:
-                                          cubit.vehicleLicense !=
-                                              null
+                                      cubit.vehicleLicense !=
+                                          null
                                           ? cubit.getFileName(
-                                              cubit
-                                                  .vehicleLicense!
-                                                  .path,
-                                            )
+                                        cubit
+                                            .vehicleLicense!
+                                            .path,
+                                      )
                                           : '',
                                     ),
                                     style: TextStyle(
                                       color:
-                                          AppColors.grey,
+                                      AppColors.grey,
                                       fontSize: 12.sp,
                                     ),
                                     decoration: InputDecoration(
@@ -214,108 +242,108 @@ class EditeVehicalInfo extends StatelessWidget {
                                           .l10n
                                           .choose_vehicle_license_img,
                                       labelStyle:
-                                          TextStyle(
-                                            color:
-                                                AppColors
-                                                    .grey,
-                                            fontSize:
-                                                14.sp,
-                                          ),
+                                      TextStyle(
+                                        color:
+                                        AppColors
+                                            .grey,
+                                        fontSize:
+                                        14.sp,
+                                      ),
                                       hintStyle: TextStyle(
                                         color: AppColors
                                             .grey
                                             .withOpacity(
-                                              0.7,
-                                            ),
+                                          0.7,
+                                        ),
                                         fontSize: 14.sp,
                                       ),
                                       errorText:
-                                          field.hasError
+                                      field.hasError
                                           ? field
-                                                .errorText
+                                          .errorText
                                           : null,
                                       contentPadding:
-                                          EdgeInsets.symmetric(
-                                            horizontal:
-                                                14.w,
-                                            vertical:
-                                                12.h,
-                                          ),
+                                      EdgeInsets.symmetric(
+                                        horizontal:
+                                        14.w,
+                                        vertical:
+                                        12.h,
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(
-                                              12.r,
-                                            ),
+                                        BorderRadius.circular(
+                                          12.r,
+                                        ),
                                         borderSide: BorderSide(
                                           color: AppColors
                                               .grey
                                               .withOpacity(
-                                                0.4,
-                                              ),
+                                            0.4,
+                                          ),
                                           width: 1.2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(
-                                              12.r,
-                                            ),
+                                        BorderRadius.circular(
+                                          12.r,
+                                        ),
                                         borderSide:
-                                            const BorderSide(
-                                              color:
-                                                  AppColors
-                                                      .pink,
-                                              width: 1.6,
-                                            ),
+                                        const BorderSide(
+                                          color:
+                                          AppColors
+                                              .pink,
+                                          width: 1.6,
+                                        ),
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(
-                                              12.r,
-                                            ),
+                                        BorderRadius.circular(
+                                          12.r,
+                                        ),
                                         borderSide:
-                                            const BorderSide(
-                                              color: Colors
-                                                  .red,
-                                              width: 1.4,
-                                            ),
+                                        const BorderSide(
+                                          color: Colors
+                                              .red,
+                                          width: 1.4,
+                                        ),
                                       ),
                                       focusedErrorBorder:
-                                          OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(
-                                                  12.r,
-                                                ),
-                                            borderSide:
-                                                const BorderSide(
-                                                  color: Colors
-                                                      .red,
-                                                  width:
-                                                      1.6,
-                                                ),
-                                          ),
+                                      OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(
+                                          12.r,
+                                        ),
+                                        borderSide:
+                                        const BorderSide(
+                                          color: Colors
+                                              .red,
+                                          width:
+                                          1.6,
+                                        ),
+                                      ),
                                       suffixIcon:
-                                          cubit.vehicleLicense ==
-                                              null
+                                      cubit.vehicleLicense ==
+                                          null
                                           ? const Icon(
-                                              Icons
-                                                  .file_upload,
-                                              color:
-                                                  AppColors
-                                                      .pink,
-                                            )
+                                        Icons
+                                            .file_upload,
+                                        color:
+                                        AppColors
+                                            .pink,
+                                      )
                                           : IconButton(
-                                              icon: const Icon(
-                                                Icons
-                                                    .close,
-                                                color: Colors
-                                                    .red,
-                                              ),
-                                              onPressed: () {
-                                                cubit
-                                                    .clearVehicleLicense();
-                                              },
-                                            ),
+                                        icon: const Icon(
+                                          Icons
+                                              .close,
+                                          color: Colors
+                                              .red,
+                                        ),
+                                        onPressed: () {
+                                          cubit
+                                              .clearVehicleLicense();
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -343,39 +371,42 @@ class EditeVehicalInfo extends StatelessWidget {
                   ),
                 );
               case GetLoggedDriverDataSuccess():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case PhotoChangedLoadingState():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case PhotoChangedSuccess():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case PhotoChangedError():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case UpdateUserProfileLoading():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case UpdateUserProfileSuccess():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case UpdateUserProfileError():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case DriverApplyLicenseImagePicked():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case DriverApplyImageError():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case DriverApplyLicenseImageCleared():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
               case ProfileInitial():
-                // TODO: Handle this case.
+              // TODO: Handle this case.
                 throw UnimplementedError();
             }
           },
+        ),
+      ),
+    );
   }
 }

@@ -1,26 +1,22 @@
 import 'package:injectable/injectable.dart';
-
+import 'package:tracking_app/features/profile/data/data_source/update_vehical_info_data_source.dart';
+import 'package:tracking_app/features/profile/domain/entities/update_vehical_request_entity.dart';
 import '../../../../core/api_layer/api_result/api_result.dart';
-import '../../domain/entities/update_profile_request_entity.dart';
 import '../../domain/entities/update_profile_response_entity.dart';
 import '../../domain/repositories/update_vehical_repo.dart';
-import '../data_source/update_driver_profile_data_source.dart';
 
 @Injectable(as: UpdateVehicalRepo)
 class UpdateVehicalRepoImpl implements UpdateVehicalRepo {
-  UpdateDriverProfileDataSource
-  updateDriverProfileDataSource;
+  UpdateVehicalInfoDataSource updateVehicalInfoDataSource;
 
-  UpdateVehicalRepoImpl(
-    this.updateDriverProfileDataSource,
-  );
+  UpdateVehicalRepoImpl(this.updateVehicalInfoDataSource);
 
   @override
   Future<ApiResult<UpdateProfileResponseEntity>>
   updateVehicalInfo(
-    UpdateProfileRequestEntity updateProfileRequestEntity,
-  ) async {
-    return await updateDriverProfileDataSource
-        .updateDriverProfile(updateProfileRequestEntity);
+      UpdateVehicalRequestEntity updateVehicalRequestEntity,
+      ) async {
+    return await updateVehicalInfoDataSource
+        .updateVehicalInfo(updateVehicalRequestEntity);
   }
 }

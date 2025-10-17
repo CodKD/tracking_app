@@ -20,17 +20,20 @@ import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/route/app_routes.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
+  const EditProfile({super.key, required this.driver});
+
+  final ProfileDriverEntity driver;
 
   @override
   Widget build(BuildContext context) {
-    final user =
-        ModalRoute.of(context)?.settings.arguments
-            as ProfileDriverEntity?;
+
     return BlocProvider(
       create: (context) =>
-          getIt<ProfileCubit>()..initializeWithUser(user),
-      child: EditProfileView(gender: user?.gender ?? ""),
+      getIt<ProfileCubit>()
+        ..initializeWithUser(driver),
+      child: EditProfileView(
+        gender: driver.gender ?? "",
+      ),
     );
   }
 }
@@ -65,12 +68,12 @@ class EditProfileView extends StatelessWidget {
                 loadingMessage: context.l10n.loading,
               );
             } else if (state
-                is UpdateUserProfileSuccess) {
+            is UpdateUserProfileSuccess) {
               Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor:
-                      AppTheme.lightTheme.primaryColor,
+                  AppTheme.lightTheme.primaryColor,
                   content: Text(
                     context
                         .l10n
@@ -87,7 +90,7 @@ class EditProfileView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor:
-                      AppTheme.lightTheme.primaryColor,
+                  AppTheme.lightTheme.primaryColor,
                   content: Text(
                     context
                         .l10n
@@ -114,73 +117,73 @@ class EditProfileView extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   mainAxisAlignment:
-                      MainAxisAlignment.start,
+                  MainAxisAlignment.start,
                   children: [
                     Align(
                       alignment: Alignment.center,
                       child: Stack(
                         children: [
                           BlocBuilder<
-                            ProfileCubit,
-                            ProfileState
+                              ProfileCubit,
+                              ProfileState
                           >(
                             builder: (context, state) {
                               final cubit = context
                                   .read<ProfileCubit>();
                               return ClipRRect(
                                 borderRadius:
-                                    BorderRadius.circular(
-                                      100.r,
-                                    ),
+                                BorderRadius.circular(
+                                  100.r,
+                                ),
 
                                 child:
-                                    cubit.selectedImageFile !=
-                                        null
+                                cubit.selectedImageFile !=
+                                    null
                                     ? Image.file(
-                                        cubit
-                                            .selectedImageFile!,
-                                        width: 100.w,
-                                        height: 100.h,
-                                        fit: BoxFit.fill,
-                                      )
+                                  cubit
+                                      .selectedImageFile!,
+                                  width: 100.w,
+                                  height: 100.h,
+                                  fit: BoxFit.fill,
+                                )
                                     : cubit
-                                          .photo
-                                          .isNotEmpty
+                                    .photo
+                                    .isNotEmpty
                                     ? CachedNetworkImage(
-                                        imageUrl:
-                                            cubit.photo,
-                                        fit: BoxFit.fill,
-                                        width: 100.w,
-                                        height: 100.h,
-                                        placeholder:
-                                            (
-                                              context,
-                                              url,
-                                            ) => const Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
-                                        errorWidget:
-                                            (
-                                              context,
-                                              url,
-                                              error,
-                                            ) => const Center(
-                                              child: Icon(
-                                                Icons
-                                                    .error,
-                                              ),
-                                            ),
-                                      )
+                                  imageUrl:
+                                  cubit.photo,
+                                  fit: BoxFit.fill,
+                                  width: 100.w,
+                                  height: 100.h,
+                                  placeholder:
+                                      (
+                                      context,
+                                      url,
+                                      ) => const Center(
+                                    child:
+                                    CircularProgressIndicator(),
+                                  ),
+                                  errorWidget:
+                                      (
+                                      context,
+                                      url,
+                                      error,
+                                      ) => const Center(
+                                    child: Icon(
+                                      Icons
+                                          .error,
+                                    ),
+                                  ),
+                                )
                                     : Image.asset(
-                                        Assets
-                                            .image
-                                            .profileD
-                                            .path,
-                                        width: 100.w,
-                                        height: 100.h,
-                                        fit: BoxFit.fill,
-                                      ),
+                                  Assets
+                                      .image
+                                      .profileD
+                                      .path,
+                                  width: 100.w,
+                                  height: 100.h,
+                                  fit: BoxFit.fill,
+                                ),
                               );
                             },
                           ),
@@ -191,20 +194,20 @@ class EditProfileView extends StatelessWidget {
                             height: 30.h,
                             child: Container(
                               padding:
-                                  const EdgeInsets.all(3),
+                              const EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 color: AppColors.white,
                                 borderRadius:
-                                    BorderRadius.circular(
-                                      100.r,
-                                    ),
+                                BorderRadius.circular(
+                                  100.r,
+                                ),
                               ),
                               child: GestureDetector(
                                 onTap: () {
                                   context
                                       .read<
-                                        ProfileCubit
-                                      >()
+                                      ProfileCubit
+                                  >()
                                       .changeUserPhoto();
                                 },
                                 child: SvgPicture.asset(
@@ -224,7 +227,7 @@ class EditProfileView extends StatelessWidget {
                         Expanded(
                           child: AppTextFormField(
                             hintText:
-                                context.l10n.first_name,
+                            context.l10n.first_name,
                             controller: context
                                 .read<ProfileCubit>()
                                 .firstNameController,
@@ -251,7 +254,7 @@ class EditProfileView extends StatelessWidget {
                         Expanded(
                           child: AppTextFormField(
                             hintText:
-                                context.l10n.last_name,
+                            context.l10n.last_name,
                             controller: context
                                 .read<ProfileCubit>()
                                 .lastNameController,
@@ -312,9 +315,9 @@ class EditProfileView extends StatelessWidget {
                           .phoneController,
                       isPassword: false,
                       keyboardType:
-                          const TextInputType.numberWithOptions(
-                            decimal: false,
-                          ),
+                      const TextInputType.numberWithOptions(
+                        decimal: false,
+                      ),
                       hintText: context.l10n.enter_phone,
                       validator: (value) {
                         if (value == null || value.isEmpty

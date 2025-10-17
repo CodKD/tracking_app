@@ -16,7 +16,7 @@ class ProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       buildWhen: (previous, current) =>
-          current is GetLoggedDriverDataSuccess ||
+      current is GetLoggedDriverDataSuccess ||
           current is GetLoggedDriverDataError ||
           current is GetLoggedDriverDataLoading,
       builder: (context, state) {
@@ -53,16 +53,17 @@ class ProfileBody extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(
                           AppRoutes.editProfile,
+                          arguments: state.driver,
                         );
                       },
                       contentPadding:
-                          const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
+                      const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       leading: ClipRRect(
                         borderRadius:
-                            BorderRadius.circular(100.r),
+                        BorderRadius.circular(100.r),
                         child: Image.network(
                           state.driver.photo ?? "",
                           fit: BoxFit.cover,
@@ -77,18 +78,18 @@ class ProfileBody extends StatelessWidget {
                       ),
                       subtitle: Column(
                         crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        CrossAxisAlignment.start,
                         children: [
                           Text(
                             state.driver.email ?? '',
                             style:
-                                AppStyles.regular16black,
+                            AppStyles.regular16black,
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             state.driver.phone ?? '',
                             style:
-                                AppStyles.regular16black,
+                            AppStyles.regular16black,
                           ),
                         ],
                       ),
@@ -122,13 +123,14 @@ class ProfileBody extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(
                           AppRoutes.editeVehicalInfo,
+                          arguments: state.driver,
                         );
                       },
                       contentPadding:
-                          const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
+                      const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                       title: Text(
                         "Vehicle info",
                         style: AppStyles.font20BlackW500,
@@ -136,20 +138,20 @@ class ProfileBody extends StatelessWidget {
                       ),
                       subtitle: Column(
                         crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        CrossAxisAlignment.start,
                         children: [
                           Text(
                             state.driver.vehicleType!
                                 .hexToString(),
                             style:
-                                AppStyles.regular16black,
+                            AppStyles.regular16black,
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             state.driver.vehicleNumber ??
                                 '',
                             style:
-                                AppStyles.regular16black,
+                            AppStyles.regular16black,
                           ),
                         ],
                       ),
@@ -188,6 +190,24 @@ class ProfileBody extends StatelessWidget {
           case PhotoChangedSuccess():
             throw UnimplementedError();
           case PhotoChangedError():
+            throw UnimplementedError();
+          case GetVehiclesLoading():
+          // TODO: Handle this case.
+            throw UnimplementedError();
+          case GetVehiclesSuccess():
+          // TODO: Handle this case.
+            throw UnimplementedError();
+          case GetVehiclesError():
+          // TODO: Handle this case.
+            throw UnimplementedError();
+          case DriverApplyLicenseImagePicked():
+          // TODO: Handle this case.
+            throw UnimplementedError();
+          case DriverApplyImageError():
+          // TODO: Handle this case.
+            throw UnimplementedError();
+          case DriverApplyLicenseImageCleared():
+          // TODO: Handle this case.
             throw UnimplementedError();
         }
       },

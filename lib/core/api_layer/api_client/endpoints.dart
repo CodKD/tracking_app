@@ -25,4 +25,5 @@ class Endpoints {
       '/v1/orders/driver-orders';
   static const String googleMapsbaseUrl =
       'https://maps.googleapis.com/maps/api/';
+  static const String allVehicles = "/v1/vehicles";
 }
