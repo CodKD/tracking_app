@@ -132,11 +132,22 @@ class ProfileCubit extends Cubit<ProfileState> {
     try {
       emit(GetVehiclesLoading());
       final result = await getAllVehiclesUseCase.call();
+
       final vehicles =
           result.vehicles
-              ?.map((e) => e.type ?? '')
+              ?.where((e) {
+                final type = e.type ?? '';
+                final isObjectId =
+                    type.length == 24 &&
+                    RegExp(
+                      r'^[a-fA-F0-9]+$',
+                    ).hasMatch(type);
+                return !isObjectId;
+              })
+              .map((e) => e.type ?? '')
               .toList() ??
           [];
+
       emit(GetVehiclesSuccess(vehicles: vehicles));
     } catch (e) {
       emit(GetVehiclesError(message: e.toString()));

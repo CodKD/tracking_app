@@ -76,24 +76,101 @@ class _EditVehicleView extends StatelessWidget {
                   child: Column(
                     children: [
                       DropdownButtonFormField<String>(
-                        items: vehicles
-                            .map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              ),
+                        value:
+                            vehicles.contains(
+                              cubit
+                                  .vehicleTypeController
+                                  .text,
                             )
-                            .toList(),
+                            ? cubit
+                                  .vehicleTypeController
+                                  .text
+                            : null,
+
+                        items: vehicles.map((e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.motorcycle,
+                                  color: AppColors.pink,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  e,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color:
+                                        AppColors.black,
+                                    fontWeight:
+                                        FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
                         decoration: InputDecoration(
                           labelText:
                               context.l10n.vehicle_type,
                           labelStyle: TextStyle(
                             color: AppColors.grey,
-                            fontSize: 14.sp,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
                           ),
-                          border:
-                              const OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.grey.shade100,
+                          contentPadding:
+                              EdgeInsets.symmetric(
+                                vertical: 14.h,
+                                horizontal: 16.w,
+                              ),
+                          enabledBorder:
+                              OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(
+                                      16,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors
+                                      .grey
+                                      .shade300,
+                                  width: 1,
+                                ),
+                              ),
+                          focusedBorder:
+                              OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(
+                                      16,
+                                    ),
+                                borderSide:
+                                    const BorderSide(
+                                      color:
+                                          AppColors.pink,
+                                      width: 1.5,
+                                    ),
+                              ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(16),
+                            borderSide: const BorderSide(
+                              color: Colors.redAccent,
+                              width: 1,
+                            ),
+                          ),
                         ),
+                        icon: const Icon(
+                          Icons
+                              .keyboard_arrow_down_rounded,
+                          color: AppColors.pink,
+                          size: 26,
+                        ),
+                        dropdownColor: Colors.white,
+                        borderRadius:
+                            BorderRadius.circular(16),
                         onChanged: (value) {
                           cubit.vehicleTypeController =
                               TextEditingController(
@@ -140,13 +217,30 @@ class _EditVehicleView extends StatelessWidget {
                                 },
                                 child: IgnorePointer(
                                   child: TextFormField(
-                                    keyboardType:
-                                        TextInputType
-                                            .number,
+                                    readOnly: true,
+                                    controller: TextEditingController(
+                                      text:
+                                          cubit.vehicleLicense !=
+                                              null
+                                          ? cubit.getFileName(
+                                              cubit
+                                                  .vehicleLicense!
+                                                  .path,
+                                            )
+                                          : '',
+                                    ),
+                                    style: TextStyle(
+                                      color:
+                                          AppColors.grey,
+                                      fontSize: 12.sp,
+                                    ),
                                     decoration: InputDecoration(
                                       labelText: context
                                           .l10n
                                           .vehicleLicense,
+                                      hintText: context
+                                          .l10n
+                                          .choose_vehicle_license_img,
                                       labelStyle:
                                           TextStyle(
                                             color:
@@ -155,30 +249,88 @@ class _EditVehicleView extends StatelessWidget {
                                             fontSize:
                                                 14.sp,
                                           ),
-                                      hintText: context
-                                          .l10n
-                                          .choose_vehicle_license_img,
-                                      hintStyle:
-                                          TextStyle(
-                                            color:
-                                                AppColors
-                                                    .grey,
-                                            fontSize:
-                                                14.sp,
-                                          ),
-                                      border:
-                                          const OutlineInputBorder(),
+                                      hintStyle: TextStyle(
+                                        color: AppColors
+                                            .grey
+                                            .withOpacity(
+                                              0.7,
+                                            ),
+                                        fontSize: 14.sp,
+                                      ),
                                       errorText:
                                           field.hasError
                                           ? field
                                                 .errorText
                                           : null,
+                                      contentPadding:
+                                          EdgeInsets.symmetric(
+                                            horizontal:
+                                                14.w,
+                                            vertical:
+                                                12.h,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(
+                                              12.r,
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: AppColors
+                                              .grey
+                                              .withOpacity(
+                                                0.4,
+                                              ),
+                                          width: 1.2,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(
+                                              12.r,
+                                            ),
+                                        borderSide:
+                                            const BorderSide(
+                                              color:
+                                                  AppColors
+                                                      .pink,
+                                              width: 1.6,
+                                            ),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(
+                                              12.r,
+                                            ),
+                                        borderSide:
+                                            const BorderSide(
+                                              color: Colors
+                                                  .red,
+                                              width: 1.4,
+                                            ),
+                                      ),
+                                      focusedErrorBorder:
+                                          OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(
+                                                  12.r,
+                                                ),
+                                            borderSide:
+                                                const BorderSide(
+                                                  color: Colors
+                                                      .red,
+                                                  width:
+                                                      1.6,
+                                                ),
+                                          ),
                                       suffixIcon:
                                           cubit.vehicleLicense ==
                                               null
                                           ? const Icon(
                                               Icons
                                                   .file_upload,
+                                              color:
+                                                  AppColors
+                                                      .pink,
                                             )
                                           : IconButton(
                                               icon: const Icon(
@@ -192,31 +344,6 @@ class _EditVehicleView extends StatelessWidget {
                                                     .clearVehicleLicense();
                                               },
                                             ),
-                                    ),
-                                    readOnly: true,
-                                    style: TextStyle(
-                                      color:
-                                          AppColors.grey,
-                                      fontSize: 12.sp,
-                                      backgroundColor:
-                                          cubit.vehicleLicense !=
-                                              null
-                                          ? AppColors
-                                                .pink
-                                                .shade200
-                                          : Colors
-                                                .transparent,
-                                    ),
-                                    controller: TextEditingController(
-                                      text:
-                                          cubit.vehicleLicense !=
-                                              null
-                                          ? cubit.getFileName(
-                                              cubit
-                                                  .vehicleLicense!
-                                                  .path,
-                                            )
-                                          : '',
                                     ),
                                   ),
                                 ),
