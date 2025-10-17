@@ -14,12 +14,14 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          getIt<ProfileCubit>()..getLoggedUserData(),
+      getIt<ProfileCubit>()
+        ..getLoggedUserData(),
       child: SafeArea(
         child: Column(
           children: [
             AppBarProfile(
-              title: context.l10n.editProfile,
+              title: context.l10n.profile,
+
             ),
             SizedBox(height: 3.heightPercent(context)),
             const ProfileBody(),

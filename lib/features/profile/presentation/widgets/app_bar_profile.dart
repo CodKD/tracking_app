@@ -17,10 +17,6 @@ class AppBarProfile extends StatelessWidget {
       children: [
         Row(
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.arrow_back_ios),
-            ),
             Text(title, style: AppStyles.font20BlackW500),
           ],
         ),

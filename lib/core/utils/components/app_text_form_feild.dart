@@ -60,47 +60,63 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       decoration: InputDecoration(
         labelText: widget.labelText,
         hintText: widget.hintText,
-        hintStyle: widget.hintStyle ?? const TextStyle(color: AppColors.grey),
+        hintStyle: widget.hintStyle ??
+            TextStyle(
+              color: AppColors.grey.withOpacity(0.9),
+              fontSize: 13.sp,
+            ),
         isDense: true,
-        labelStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
-        contentPadding:
-            widget.contentPadding ??
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        focusedBorder:
-            widget.focusedBorder ??
-            OutlineInputBorder(
-              borderSide: const BorderSide(width: 1),
-              borderRadius: BorderRadius.circular(4.0),
-            ),
-        enabledBorder:
-            widget.enabledBorder ??
-            OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.grey, width: 1),
-              borderRadius: BorderRadius.circular(4.0),
-            ),
+        labelStyle: TextStyle(
+          color: AppColors.grey.withOpacity(0.9),
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+        ),
+        contentPadding: widget.contentPadding ??
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        filled: true,
+        fillColor: widget.backgroundColor ?? Colors.grey.shade50,
+
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            color: Colors.grey.shade300,
+            width: 1.2,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: const BorderSide(
+            color: AppColors.pink,
+            width: 1.8,
+          ),
+        ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1),
-          borderRadius: BorderRadius.circular(4.0),
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: const BorderSide(
+            color: Colors.redAccent,
+            width: 1.4,
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1),
-          borderRadius: BorderRadius.circular(4.0),
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: const BorderSide(
+            color: Colors.redAccent,
+            width: 1.4,
+          ),
         ),
         suffixIcon: widget.isPassword
             ? IconButton(
-                onPressed: () {
-                  setState(() {
-                    isObscureText = !isObscureText;
-                  });
-                },
-                icon: Icon(
-                  isObscureText ? Icons.visibility_off : Icons.visibility,
-                  color: AppColors.grey,
-                ),
-              )
+          onPressed: () {
+            setState(() {
+              isObscureText = !isObscureText;
+            });
+          },
+          icon: Icon(
+            isObscureText ? Icons.visibility_off : Icons.visibility,
+            color: AppColors.grey,
+          ),
+        )
             : widget.suffixIcon,
-        fillColor: widget.backgroundColor,
-        filled: true,
       ),
       obscureText: widget.isPassword ? isObscureText : false,
       style: const TextStyle(fontSize: 14),

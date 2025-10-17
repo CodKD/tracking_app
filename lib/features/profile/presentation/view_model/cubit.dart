@@ -54,7 +54,72 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  // Change user photo using image picker and convert to PNG
+  List<String> vehicles = [];
+
+  // Initialize vehicle data
+  void initializeVehicle(ProfileDriverEntity? driver) {
+    if (driver != null) {
+      vehicleTypeController.text =
+          driver.vehicleType ?? '';
+      vehicleNumberController.text =
+          driver.vehicleNumber ?? '';
+      vehicleLicenseController.text =
+          driver.vehicleLicense ?? '';
+    }
+  }
+
+  String getFileName(String filePath) {
+    return filePath.split('/').last;
+  }
+
+  Future<void> pickVehicleLicenseImage() async {
+    final pickedFile = await pickImage();
+    if (pickedFile != null) {
+      vehicleLicense = File(pickedFile.path);
+      vehicleLicenseController.text = getFileName(
+        vehicleLicense!.path,
+      );
+      emit(
+        DriverApplyLicenseImagePicked(pickedFile.path),
+      );
+    } else {
+      emit(DriverApplyImageError("No image selected"));
+    }
+  }
+
+  void clearVehicleLicense() {
+    vehicleLicense = null;
+    vehicleLicenseController.clear();
+    emit(DriverApplyLicenseImageCleared());
+  }
+
+  Future<void> loadVehicles() async {
+    try {
+      emit(GetVehiclesLoading());
+      final result = await getAllVehiclesUseCase.call();
+
+      final vehicles =
+          result.vehicles
+              ?.where((e) {
+                final type = e.type ?? '';
+                final isObjectId =
+                    type.length == 24 &&
+                    RegExp(
+                      r'^[a-fA-F0-9]+$',
+                    ).hasMatch(type);
+                return !isObjectId;
+              })
+              .map((e) => e.type ?? '')
+              .toList() ??
+          [];
+
+      emit(GetVehiclesSuccess(vehicles: vehicles));
+    } catch (e) {
+      emit(GetVehiclesError(message: e.toString()));
+    }
+  }
+
+
   Future<void> changeUserPhoto() async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
