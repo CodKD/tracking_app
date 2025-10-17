@@ -53,7 +53,6 @@ class ProfileBody extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(
                           AppRoutes.editProfile,
-                          arguments: state.driver,
                         );
                       },
                       contentPadding:
@@ -123,7 +122,6 @@ class ProfileBody extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(
                           AppRoutes.editeVehicalInfo,
-                          arguments: state.driver,
                         );
                       },
                       contentPadding:
@@ -190,24 +188,6 @@ class ProfileBody extends StatelessWidget {
           case PhotoChangedSuccess():
             throw UnimplementedError();
           case PhotoChangedError():
-            throw UnimplementedError();
-          case GetVehiclesLoading():
-            // TODO: Handle this case.
-            throw UnimplementedError();
-          case GetVehiclesSuccess():
-            // TODO: Handle this case.
-            throw UnimplementedError();
-          case GetVehiclesError():
-            // TODO: Handle this case.
-            throw UnimplementedError();
-          case DriverApplyLicenseImagePicked():
-            // TODO: Handle this case.
-            throw UnimplementedError();
-          case DriverApplyImageError():
-            // TODO: Handle this case.
-            throw UnimplementedError();
-          case DriverApplyLicenseImageCleared():
-            // TODO: Handle this case.
             throw UnimplementedError();
         }
       },

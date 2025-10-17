@@ -3,9 +3,10 @@ import 'package:tracking_app/core/extensions/project_extensions.dart';
 import 'package:tracking_app/features/home/presentation/Tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 
 class RefreshHome extends StatelessWidget {
-  const RefreshHome({super.key, required this.viewModel});
+  const RefreshHome({super.key, required this.viewModel , required this.savedToken});
 
   final HomeTabCubit viewModel;
+  final String savedToken;
 
   @override
   Widget build(BuildContext context) {

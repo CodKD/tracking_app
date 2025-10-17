@@ -18,10 +18,7 @@ class ApplyFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<
-      DriverApplyCubit,
-      DriverApplyState
-    >(
+    return BlocListener<DriverApplyCubit, DriverApplyState>(
       listener: (context, state) {
         if (state case DriverApplyLoading()) {
           DialogUtils.showLoading(
@@ -36,16 +33,13 @@ class ApplyFields extends StatelessWidget {
             posActions: "OK",
             posFunction: (p0) {
               Navigator.of(context).pop(); // close dialog
-              Navigator.of(context).pushNamed(
-                AppRoutes.applicationApprovedScreen,
-              );
+              Navigator.of(
+                context,
+              ).pushNamed(AppRoutes.applicationApprovedScreen);
             },
           );
         } else if (state case DriverApplyError()) {
-          Navigator.of(
-            context,
-            rootNavigator: true,
-          ).pop(); // close loading
+          Navigator.of(context, rootNavigator: true).pop(); // close loading
           showDialog(
             context: context,
             builder: (ctx) => AlertDialog(
@@ -53,8 +47,7 @@ class ApplyFields extends StatelessWidget {
               content: Text(state.message),
               actions: [
                 TextButton(
-                  onPressed: () =>
-                      Navigator.of(ctx).pop(),
+                  onPressed: () => Navigator.of(ctx).pop(),
                   child: const Text("OK"),
                 ),
               ],
@@ -88,17 +81,16 @@ class ApplyFields extends StatelessWidget {
                             c.image,
                             width: 48.w,
                             fit: BoxFit.cover,
-                            placeholderBuilder:
-                                (context) => Container(
-                                  width: 24.w,
-                                  height: 16.h,
-                                  color: AppColors.grey,
-                                  child: const Icon(
-                                    Icons.flag,
-                                    size: 12,
-                                    color: AppColors.grey,
-                                  ),
-                                ),
+                            placeholderBuilder: (context) => Container(
+                              width: 24.w,
+                              height: 16.h,
+                              color: AppColors.grey,
+                              child: const Icon(
+                                Icons.flag,
+                                size: 12,
+                                color: AppColors.grey,
+                              ),
+                            ),
                           ),
                           15.widthBox,
                           // Country name (truncated if too long)
@@ -107,11 +99,8 @@ class ApplyFields extends StatelessWidget {
                               c.name.length > 20
                                   ? '${c.name.substring(0, 20)}...'
                                   : c.name,
-                              overflow:
-                                  TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                              ),
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 14.sp),
                             ),
                           ),
                         ],
@@ -130,15 +119,11 @@ class ApplyFields extends StatelessWidget {
             15.heightBox,
             AppTextFormField(
               isPassword: false,
-              controller: context
-                  .read<DriverApplyCubit>()
-                  .firstNameController,
+              controller: context.read<DriverApplyCubit>().firstNameController,
               hintText: context.l10n.enter_first_name,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context
-                      .l10n
-                      .descriptionFirstName;
+                  return context.l10n.descriptionFirstName;
                 }
                 if (value.length < 2) {
                   return "Name must be at least 2 characters";
@@ -150,9 +135,7 @@ class ApplyFields extends StatelessWidget {
             15.heightBox,
             AppTextFormField(
               isPassword: false,
-              controller: context
-                  .read<DriverApplyCubit>()
-                  .lastNameController,
+              controller: context.read<DriverApplyCubit>().lastNameController,
               hintText: context.l10n.enter_last_name,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -167,26 +150,19 @@ class ApplyFields extends StatelessWidget {
             ),
             15.heightBox,
             DropdownButtonFormField<String>(
-              initialValue:
-                  cubit.selectedVehicleType.isEmpty
+              initialValue: cubit.selectedVehicleType.isEmpty
                   ? null
                   : cubit.selectedVehicleType,
               decoration: InputDecoration(
                 labelText: context.l10n.vehicle_type,
-                labelStyle: TextStyle(
-                  color: AppColors.grey,
-                  fontSize: 14.sp,
-                ),
+                labelStyle: TextStyle(color: AppColors.grey, fontSize: 14.sp),
                 border: const OutlineInputBorder(),
               ),
               items: cubit.vehicleTypes
                   .map(
                     (d) => DropdownMenuItem(
                       value: d,
-                      child: Text(
-                        d,
-                        style: TextStyle(fontSize: 14.sp),
-                      ),
+                      child: Text(d, style: TextStyle(fontSize: 14.sp)),
                     ),
                   )
                   .toList(),
@@ -207,30 +183,22 @@ class ApplyFields extends StatelessWidget {
               hintText: context.l10n.enter_vehicle_number,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return context
-                      .l10n
-                      .descriptionVehicleNumber;
+                  return context.l10n.descriptionVehicleNumber;
                 }
                 return null;
               },
               labelText: context.l10n.vehicleNumber,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
-                    decimal: false,
-                  ),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: false,
+              ),
             ),
             15.heightBox,
-            BlocBuilder<
-              DriverApplyCubit,
-              DriverApplyState
-            >(
+            BlocBuilder<DriverApplyCubit, DriverApplyState>(
               builder: (context, state) {
                 return FormField<File>(
                   validator: (value) {
                     if (cubit.vehicleLicense == null) {
-                      return context
-                          .l10n
-                          .uploadVehicleLicenseError;
+                      return context.l10n.uploadVehicleLicenseError;
                     }
                     return null;
                   },
@@ -241,42 +209,29 @@ class ApplyFields extends StatelessWidget {
                       },
                       child: IgnorePointer(
                         child: TextFormField(
-                          keyboardType:
-                              TextInputType.number,
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            labelText: context
-                                .l10n
-                                .vehicleLicense,
+                            labelText: context.l10n.vehicleLicense,
                             labelStyle: TextStyle(
                               color: AppColors.grey,
                               fontSize: 14.sp,
                             ),
-                            hintText: context
-                                .l10n
-                                .choose_vehicle_license_img,
+                            hintText: context.l10n.choose_vehicle_license_img,
                             hintStyle: TextStyle(
                               color: AppColors.grey,
                               fontSize: 14.sp,
                             ),
-                            border:
-                                const OutlineInputBorder(),
-                            errorText: field.hasError
-                                ? field.errorText
-                                : null,
-                            suffixIcon:
-                                cubit.vehicleLicense ==
-                                    null
-                                ? const Icon(
-                                    Icons.file_upload,
-                                  )
+                            border: const OutlineInputBorder(),
+                            errorText: field.hasError ? field.errorText : null,
+                            suffixIcon: cubit.vehicleLicense == null
+                                ? const Icon(Icons.file_upload)
                                 : IconButton(
                                     icon: const Icon(
                                       Icons.close,
                                       color: Colors.red,
                                     ),
                                     onPressed: () {
-                                      cubit
-                                          .clearVehicleLicense();
+                                      cubit.clearVehicleLicense();
                                     },
                                   ),
                           ),
@@ -284,21 +239,13 @@ class ApplyFields extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.grey,
                             fontSize: 12.sp,
-                            backgroundColor:
-                                cubit.vehicleLicense !=
-                                    null
+                            backgroundColor: cubit.vehicleLicense != null
                                 ? AppColors.pink.shade200
                                 : Colors.transparent,
                           ),
                           controller: TextEditingController(
-                            text:
-                                cubit.vehicleLicense !=
-                                    null
-                                ? cubit.getFileName(
-                                    cubit
-                                        .vehicleLicense!
-                                        .path,
-                                  )
+                            text: cubit.vehicleLicense != null
+                                ? cubit.getFileName(cubit.vehicleLicense!.path)
                                 : '',
                           ),
                         ),
@@ -311,9 +258,7 @@ class ApplyFields extends StatelessWidget {
             15.heightBox,
             AppTextFormField(
               isPassword: false,
-              controller: context
-                  .read<DriverApplyCubit>()
-                  .emailController,
+              controller: context.read<DriverApplyCubit>().emailController,
               hintText: context.l10n.enter_mail,
               keyboardType: TextInputType.emailAddress,
 
@@ -336,24 +281,19 @@ class ApplyFields extends StatelessWidget {
               controller: context
                   .read<DriverApplyCubit>()
                   .phoneNumberController,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
-                    decimal: false,
-                  ),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: false,
+              ),
 
               hintText: context.l10n.enter_phone,
               validator: (value) {
                 if (value == null || value.isEmpty
                 //!AppRegex.isPhoneNumberValid(value)
                 ) {
-                  return context
-                      .l10n
-                      .descriptionPhoneNumber;
+                  return context.l10n.descriptionPhoneNumber;
                 }
                 if (!AppRegex.isPhoneNumberValid(value)) {
-                  return context
-                      .l10n
-                      .enterAValidEgyptianPhoneNumber;
+                  return context.l10n.enterAValidEgyptianPhoneNumber;
                 }
                 return null;
               },
@@ -362,14 +302,11 @@ class ApplyFields extends StatelessWidget {
             15.heightBox,
             AppTextFormField(
               isPassword: false,
-              controller: context
-                  .read<DriverApplyCubit>()
-                  .nIDController,
+              controller: context.read<DriverApplyCubit>().nIDController,
               hintText: context.l10n.enter_national_id,
-              keyboardType:
-                  const TextInputType.numberWithOptions(
-                    decimal: false,
-                  ),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: false,
+              ),
 
               validator: (value) {
                 if (value == null || value.isEmpty
@@ -385,10 +322,7 @@ class ApplyFields extends StatelessWidget {
               labelText: context.l10n.nID,
             ),
             const SizedBox(height: 15),
-            BlocBuilder<
-              DriverApplyCubit,
-              DriverApplyState
-            >(
+            BlocBuilder<DriverApplyCubit, DriverApplyState>(
               builder: (context, state) {
                 return FormField<File>(
                   validator: (value) {
@@ -405,37 +339,27 @@ class ApplyFields extends StatelessWidget {
                       child: IgnorePointer(
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: context
-                                .l10n
-                                .choose_national_id_img,
+                            hintText: context.l10n.choose_national_id_img,
                             hintStyle: TextStyle(
                               color: AppColors.grey,
                               fontSize: 14.sp,
                             ),
-                            labelText:
-                                context.l10n.n_iD_img,
+                            labelText: context.l10n.n_iD_img,
                             labelStyle: TextStyle(
                               color: AppColors.grey,
                               fontSize: 14.sp,
                             ),
-                            border:
-                                const OutlineInputBorder(),
-                            errorText: field.hasError
-                                ? field.errorText
-                                : null,
-                            suffixIcon:
-                                cubit.nIDImg == null
-                                ? const Icon(
-                                    Icons.file_upload,
-                                  )
+                            border: const OutlineInputBorder(),
+                            errorText: field.hasError ? field.errorText : null,
+                            suffixIcon: cubit.nIDImg == null
+                                ? const Icon(Icons.file_upload)
                                 : IconButton(
                                     icon: const Icon(
                                       Icons.close,
                                       color: Colors.red,
                                     ),
                                     onPressed: () {
-                                      cubit
-                                          .clearNIDImage();
+                                      cubit.clearNIDImage();
                                     },
                                   ),
                           ),
@@ -443,21 +367,15 @@ class ApplyFields extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.grey,
                             fontSize: 12.sp,
-                            backgroundColor:
-                                cubit.nIDImg != null
+                            backgroundColor: cubit.nIDImg != null
                                 ? AppColors.pink.shade200
                                 : Colors.transparent,
                           ),
-                          controller:
-                              TextEditingController(
-                                text: cubit.nIDImg != null
-                                    ? cubit.getFileName(
-                                        cubit
-                                            .nIDImg!
-                                            .path,
-                                      )
-                                    : '',
-                              ),
+                          controller: TextEditingController(
+                            text: cubit.nIDImg != null
+                                ? cubit.getFileName(cubit.nIDImg!.path)
+                                : '',
+                          ),
                         ),
                       ),
                     );
@@ -466,18 +384,14 @@ class ApplyFields extends StatelessWidget {
               },
             ),
             15.heightBox,
-            BlocBuilder<
-              DriverApplyCubit,
-              DriverApplyState
-            >(
+            BlocBuilder<DriverApplyCubit, DriverApplyState>(
               builder: (context, state) {
                 return Row(
                   children: [
                     Expanded(
                       child: AppTextFormField(
                         isPassword: true,
-                        initialObscureText:
-                            cubit.isPasswordObscureText,
+                        initialObscureText: cubit.isPasswordObscureText,
                         suffixIcon: IconButton(
                           icon: Icon(
                             cubit.isPasswordObscureText
@@ -485,29 +399,19 @@ class ApplyFields extends StatelessWidget {
                                 : Icons.visibility,
                           ),
                           onPressed: () {
-                            cubit
-                                .changePasswordVisibility();
+                            cubit.changePasswordVisibility();
                           },
                         ),
-                        controller:
-                            cubit.passwordController,
+                        controller: cubit.passwordController,
                         hintText: context.l10n.password,
                         validator: (value) {
                           if (value == null ||
                               value.isEmpty ||
-                              !AppRegex.isPasswordValid(
-                                value,
-                              )) {
-                            return context
-                                .l10n
-                                .passwordError;
+                              !AppRegex.isPasswordValid(value)) {
+                            return context.l10n.passwordError;
                           }
-                          if (!AppRegex.isPasswordValid(
-                            value,
-                          )) {
-                            return context
-                                .l10n
-                                .passwordError;
+                          if (!AppRegex.isPasswordValid(value)) {
+                            return context.l10n.passwordError;
                           }
                           return null;
                         },
@@ -518,8 +422,7 @@ class ApplyFields extends StatelessWidget {
                     Expanded(
                       child: AppTextFormField(
                         isPassword: true,
-                        initialObscureText: cubit
-                            .isConfirmPasswordObscureText,
+                        initialObscureText: cubit.isConfirmPasswordObscureText,
                         suffixIcon: IconButton(
                           icon: Icon(
                             cubit.isConfirmPasswordObscureText
@@ -527,39 +430,26 @@ class ApplyFields extends StatelessWidget {
                                 : Icons.visibility,
                           ),
                           onPressed: () {
-                            cubit
-                                .changeConfirmPasswordVisibility();
+                            cubit.changeConfirmPasswordVisibility();
                           },
                         ),
-                        controller: cubit
-                            .confirmPasswordController,
-                        hintText:
-                            context.l10n.confirm_password,
+                        controller: cubit.confirmPasswordController,
+                        hintText: context.l10n.confirm_password,
                         validator: (value) {
                           if (value == null ||
                               value.isEmpty ||
                               !AppRegex.isConfirmPasswordValid(
-                                cubit
-                                    .passwordController
-                                    .text,
+                                cubit.passwordController.text,
                                 value,
                               )) {
-                            return context
-                                .l10n
-                                .confirmPasswordError;
+                            return context.l10n.confirmPasswordError;
                           }
-                          if (value !=
-                              cubit
-                                  .passwordController
-                                  .text) {
-                            return context
-                                .l10n
-                                .confirmPasswordError;
+                          if (value != cubit.passwordController.text) {
+                            return context.l10n.confirmPasswordError;
                           }
                           return null;
                         },
-                        labelText:
-                            context.l10n.confirm_password,
+                        labelText: context.l10n.confirm_password,
                       ),
                     ),
                   ],

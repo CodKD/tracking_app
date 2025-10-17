@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class UpdateProfileRequestEntity {
   UpdateProfileRequestEntity({
     this.firstName,
@@ -7,9 +5,6 @@ class UpdateProfileRequestEntity {
     this.email,
     this.gender,
     this.phone,
-    this.vehicleType,
-    this.vehicleNumber,
-    this.vehicleLicense,
   });
 
   String? firstName;
@@ -17,7 +12,4 @@ class UpdateProfileRequestEntity {
   String? email;
   String? gender;
   String? phone;
-  final String? vehicleType;
-  final String? vehicleNumber;
-  final File? vehicleLicense;
 }

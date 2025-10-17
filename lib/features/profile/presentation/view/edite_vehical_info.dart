@@ -1,45 +1,3 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tracking_app/core/extensions/project_extensions.dart';
-import 'package:tracking_app/core/theme/app_colors.dart';
-import 'package:tracking_app/core/utils/components/app_text_form_feild.dart';
-import 'package:tracking_app/core/utils/components/custom_button.dart';
-import 'package:tracking_app/features/profile/domain/entities/get_logged_driver_entity.dart';
-import 'package:tracking_app/features/profile/presentation/view_model/cubit.dart';
-import '../../../../core/di/di.dart';
-
-class EditeVehicalInfo extends StatelessWidget {
-  const EditeVehicalInfo({
-    super.key,
-    required this.driver,
-  });
-
-  final ProfileDriverEntity driver;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        final cubit = getIt<ProfileCubit>();
-        cubit.initializeVehicle(driver);
-        cubit.loadVehicles();
-        return cubit;
-      },
-      child: const _EditVehicleView(),
-    );
-  }
-}
-
-class _EditVehicleView extends StatelessWidget {
-  const _EditVehicleView();
-
-  @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<ProfileCubit>();
-
-=======
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking_app/core/extensions/project_extensions.dart';
@@ -55,8 +13,9 @@ class EditeVehicalInfo extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.l10n.edit_vehical_info),
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-         
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
@@ -418,47 +377,5 @@ class EditeVehicalInfo extends StatelessWidget {
                 throw UnimplementedError();
             }
           },
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 24.0,
-        ),
-        child: Column(
-          children: [
-            DropdownButtonFormField(
-              items: ["Car", "Truck", "Bike"]
-                  .map(
-                    (e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(e),
-                    ),
-                  )
-                  .toList(),
-              decoration: InputDecoration(
-                labelText: context.l10n.vehicle_type,
-                labelStyle: TextStyle(
-                  color: AppColors.grey,
-                  fontSize: 14.sp,
-                ),
-                border: const OutlineInputBorder(),
-              ),
-              onChanged: (value) {},
-              validator: (v) => (v == null || v.isEmpty)
-                  ? context.l10n.descriptionCountry
-                  : null,
-            ),
-            SizedBox(height: 16.h),
-            AppTextFormField(
-              hintText: context.l10n.enter_vehicle_number,
-
-              labelText: context.l10n.vehicle_number,
-              validator: (v) => (v == null || v.isEmpty)
-                  ? context.l10n.vehicleNumber
-                  : null,
-              isPassword: false,
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

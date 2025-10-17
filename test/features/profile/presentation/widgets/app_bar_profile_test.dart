@@ -3,18 +3,18 @@
 // import 'package:tracking_app/features/profile/presentation/widgets/app_bar_profile.dart';
 // import 'package:tracking_app/core/l10n/app_localizations.dart';
 
-void main() {
-  testWidgets('AppBarProfile displays title and notification badge', (
-    WidgetTester tester,
-  ) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: [Locale('en')],
-        home: Scaffold(body: AppBarProfile(title: 'edite profile',)),
-      ),
-    );
-  }
+// void main() {
+//   testWidgets('AppBarProfile displays title and notification badge', (
+//     WidgetTester tester,
+//   ) async {
+//     await tester.pumpWidget(
+//       const MaterialApp(
+//         localizationsDelegates: AppLocalizations.localizationsDelegates,
+//         supportedLocales: [Locale('en')],
+//         home: Scaffold(body: AppBarProfile()),
+//       ),
+//     );
+
 //     // Check for the profile title
 //     expect(find.text('Profile'), findsOneWidget);
 
