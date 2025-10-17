@@ -54,6 +54,7 @@ abstract class Routes {
                 settings.arguments as ProfileDriverEntity;
             return EditProfile(driver: args);
           },
+          builder: (context) => const EditProfile(),
         );
       case AppRoutes.applicationApprovedScreen:
         return MaterialPageRoute(
@@ -71,6 +72,8 @@ abstract class Routes {
                 settings.arguments as ProfileDriverEntity;
             return EditeVehicalInfo(driver: args);
           },
+
+          builder: (context) => const EditeVehicalInfo(),
         );
       case AppRoutes.applyScreen:
         return MaterialPageRoute(

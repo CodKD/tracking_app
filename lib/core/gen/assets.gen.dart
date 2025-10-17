@@ -167,6 +167,10 @@ class $AssetsImageGen {
   AssetGenImage get completed =>
       const AssetGenImage('assets/image/completed.png');
 
+  /// File path: assets/image/image_null.png
+  AssetGenImage get imageNull =>
+      const AssetGenImage('assets/image/image_null.png');
+
   /// File path: assets/image/no_routes.png
   AssetGenImage get noRoutes =>
       const AssetGenImage('assets/image/no_routes.png');
@@ -183,6 +187,7 @@ class $AssetsImageGen {
   List<AssetGenImage> get values => [
     cancelled,
     completed,
+    imageNull,
     noRoutes,
     onboarding,
     profileD,
